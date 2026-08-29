@@ -484,7 +484,9 @@ hr {
 }
 #view-summary .star-list li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
 /* 비교표 */
+#view-summary .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:4px; }
 #view-summary .comp-table { width:100%; border-collapse:collapse; font-size:.90em; margin-top:4px; }
+#view-summary .table-wrap .comp-table { margin-top:0; min-width:420px; }
 #view-summary .comp-table th {
   background:#1a1a2e; color:#fff; padding:9px 10px;
   text-align:center; font-weight:700;
@@ -493,11 +495,15 @@ hr {
   padding:9px 10px; border-bottom:1px solid #e5e0d8; vertical-align:middle;
 }
 #view-summary .comp-table tr:last-child td { border-bottom:none; }
+/* 기본: 첫 셀 = 키워드(개념/항목명) → 굵게. 순수 비교표(구분/A/B)는 <table class="comp-table compare">로 굵기 해제 */
 #view-summary .comp-table td:first-child { font-weight:700; color:#374151; font-size:.92em; }
+#view-summary .comp-table.compare td:first-child { font-weight:400; color:inherit; }
 #view-summary .comp-table tr:nth-child(even) td { background:#fafafa; }
 #view-summary .th-blue { background:var(--c1)!important; }
-#view-summary .th-green { background:var(--c2)!important; }|
+#view-summary .th-green { background:var(--c2)!important; }
 #view-summary .th-purple { background:var(--c5)!important; }
+#view-summary .th-red { background:var(--c3)!important; }
+#view-summary .th-orange { background:var(--c4)!important; }
 
 /* 하이라이트 박스 */
 #view-summary .hbox {
@@ -1070,11 +1076,14 @@ hr {
 #fav-overlay .hbox-red { background:var(--c3l); border-left:3px solid var(--c3); }
 #fav-overlay .hbox-purple { background:var(--c5l); border-left:3px solid var(--c5); }
 #fav-overlay .hbox b { font-weight:800; }
+#fav-overlay .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:4px; }
 #fav-overlay .comp-table { width:100%; border-collapse:collapse; font-size:.90em; margin-top:4px; }
+#fav-overlay .table-wrap .comp-table { margin-top:0; min-width:420px; }
 #fav-overlay .comp-table th { background:#1a1a2e; color:#fff; padding:9px 10px; text-align:center; font-weight:700; }
 #fav-overlay .comp-table td { padding:9px 10px; border-bottom:1px solid #e5e0d8; vertical-align:top; }
 #fav-overlay .comp-table tr:last-child td { border-bottom:none; }
 #fav-overlay .comp-table td:first-child { font-weight:700; color:#374151; font-size:.92em; white-space:nowrap; }
+#fav-overlay .comp-table.compare td:first-child { font-weight:400; color:inherit; white-space:normal; }
 #fav-overlay .comp-table tr:nth-child(even) td { background:#fafafa; }
 #fav-overlay .th-blue { background:var(--c1)!important; }
 #fav-overlay .th-green { background:var(--c2)!important; }
@@ -2110,7 +2119,7 @@ function goIndex() {
   if (fav) fav.classList.remove('open');
 }
 
-const SUBJECT_FILTER_STORAGE_KEY = 'sw-study-selected-subjects';
+const SUBJECT_FILTER_STORAGE_KEY = 'sw2-study-selected-subjects';
 const selectedSubjectFilters = new Set();
 
 /** 메인 과목 목록에서 선택한 과목들을 표시 */
@@ -2227,7 +2236,7 @@ const SUMMARY_DATA = {
     subtitle: '1강 ~ 15강 강의별 요점카드',
     icon: '💼',
     chapters: [
-      { num: "1강", name: "사회복지실천 — 정의의 두 흐름과 통합적 실천", icon: "🌱",
+        { num: "1강", name: "사회복지실천 — 정의의 두 흐름과 통합적 실천", icon: "🌱",
   cards: [
 
     { icon: '📂', title: '01. 오프닝 — 두 장면의 사회복지사',
@@ -2675,7 +2684,7 @@ const SUMMARY_DATA = {
 
   ]
 }
-    ]
+        ]
   },
 
   /* ── 과목 2: 사회복지조사론 ── */
@@ -2881,7 +2890,7 @@ function initSumScrollCollapse() {
       const pos = loadLastPosition();
       if (pos && pos.type === 'summary') {
         pos.scrollY = scrollY;
-        try { localStorage.setItem('sw-last-position', JSON.stringify(pos)); } catch(e) {}
+        try { localStorage.setItem('sw2-last-position', JSON.stringify(pos)); } catch(e) {}
       }
     }, 800);
   };
@@ -3374,7 +3383,7 @@ function shuffle(arr) {
 /* ════════════════════════════════════════════════════════════
    [추가] 기능 1: 마지막 본 위치 저장 / 이어서 보기
 ════════════════════════════════════════════════════════════ */
-const LAST_POS_KEY = 'sw-last-position';
+const LAST_POS_KEY = 'sw2-last-position';
 
 function saveLastPosition(pos) {
   try { localStorage.setItem(LAST_POS_KEY, JSON.stringify(pos)); } catch(e) {}
@@ -3519,7 +3528,7 @@ function updateSspChips() {
 /* ════════════════════════════════════════════════════════════
    [추가] 기능 2: 즐겨찾기 (요약 카드)
 ════════════════════════════════════════════════════════════ */
-const FAV_KEY = 'sw-favorites';
+const FAV_KEY = 'sw2-favorites';
 
 function loadFavorites() {
   try { return JSON.parse(localStorage.getItem(FAV_KEY)) || {}; } catch(e) { return {}; }
