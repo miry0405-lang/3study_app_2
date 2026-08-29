@@ -1,0 +1,3966 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사회복지학과 3학년 학습 허브</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+/* ══════════════════════════════════════════
+   GLOBAL RESET & CSS 변수
+══════════════════════════════════════════ */
+:root {
+  /* 인덱스/공통 색상 */
+  --bg: #f0f4ff;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #374151;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-light: #dbeafe;
+  --green: #059669;
+  --green-light: #d1fae5;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --orange: #d97706;
+  --orange-light: #fef3c7;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --cyan: #0891b2;
+  --cyan-light: #cffafe;
+  /* 요점정리 컬러 변수 */
+  --c1:#2563eb; --c1l:#dbeafe;
+  --c2:#059669; --c2l:#d1fae5;
+  --c3:#dc2626; --c3l:#fee2e2;
+  --c4:#d97706; --c4l:#fef3c7;
+  --c5:#7c3aed; --c5l:#ede9fe;
+  --c6:#0891b2; --c6l:#cffafe;
+  --c7:#be185d; --c7l:#fce7f3;
+  /* 퀴즈 변수 */
+  --card:#ffffff; --card2:#f5f7ff; --qcard:#dbeafe;
+  --accent2:#059669; --correct:#16a34a; --wrong:#dc2626;
+  --warn:#d97706; --wtext:#ffffff;
+  /* 공통 폰트 크기 (JS로 제어) */
+  --fs:17px;
+  /* 전역 상단바 높이 */
+  --gbar-h: 52px;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Noto Sans KR',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:var(--fs);
+  min-height:100vh;
+  line-height:1.75;
+  padding-top:var(--gbar-h);
+}
+/* ══════════════════════════════════════════
+   전역 고정 상단바
+══════════════════════════════════════════ */
+#global-topbar {
+  position:fixed; top:0; left:0; right:0; z-index:3000;
+  height:var(--gbar-h);
+  background:#1a1a2e;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 14px;
+  box-shadow:0 2px 10px rgba(0,0,0,.25);
+}
+#g-home-btn {
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,.12); border:1.5px solid rgba(255,255,255,.22);
+  color:#fff; border-radius:10px; padding:8px 14px;
+  font-family:inherit; font-size:.88em; font-weight:700;
+  cursor:pointer; transition:all .18s; white-space:nowrap;
+}
+#g-home-btn:hover { background:rgba(255,255,255,.24); }
+#g-home-btn.on-home { opacity:.45; cursor:default; pointer-events:none; }
+.g-fs-wrap { display:flex; align-items:center; gap:5px; }
+.g-fs-label {
+  font-size:.78em; font-weight:700; color:rgba(255,255,255,.5);
+  margin-right:4px; white-space:nowrap;
+}
+.gfsb {
+  background:rgba(255,255,255,.1); border:1.5px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.75); border-radius:8px; padding:6px 11px;
+  font-family:inherit; font-weight:700; cursor:pointer;
+  transition:all .15s; line-height:1; white-space:nowrap;
+}
+.gfsb:hover:not(.active) { background:rgba(255,255,255,.2); color:#fff; }
+.gfsb.active { background:#2563eb; border-color:#2563eb; color:#fff; }
+.gfsb-small  { font-size:11px; }
+.gfsb-mid    { font-size:13px; }
+.gfsb-large  { font-size:15px; }
+.gfsb-xlarge { font-size:17px; }
+
+/* 기존 idx-fs-bar 숨김 (전역바로 대체) */
+.idx-fs-bar { display:none !important; }
+
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+
+/* ══════════════════════════════════════════
+   앱 뷰 전환 (show/hide SPA)
+══════════════════════════════════════════ */
+.app-view { display:none; }
+.app-view.active { display:block; }
+/* 퀴즈 뷰는 flex 레이아웃 */
+#view-quiz.active {
+  display:flex; flex-direction:column;
+  align-items:center; min-height:100vh; padding-bottom:40px;
+}
+
+/* ══════════════════════════════════════════
+   인덱스 뷰 스타일
+══════════════════════════════════════════ */
+.hero-header {
+  background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 60%,#7c3aed 100%);
+  color:#fff; padding:24px 20px 20px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.hero-header::before {
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:240px; height:240px;
+  background:rgba(255,255,255,.06); border-radius:50%;
+}
+.hero-header::after {
+  content:''; position:absolute; bottom:-40px; left:-40px;
+  width:180px; height:180px;
+  background:rgba(255,255,255,.04); border-radius:50%;
+}
+.hero-icon { font-size:2.0em; margin-bottom:6px; }
+.hero-title { font-size:1.3em; font-weight:900; letter-spacing:-.5px; margin-bottom:4px; }
+.hero-sub { font-size:.80em; color:rgba(255,255,255,.75); line-height:1.5; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+  border-radius:20px; padding:4px 12px;
+  font-size:.90em; font-weight:700; margin-top:10px; color:rgba(255,255,255,.9);
+}
+.idx-main { max-width:720px; margin:0 auto; padding:16px 14px 60px; }
+.section-label {
+  display:flex; align-items:center; gap:8px;
+  font-size:.90em; font-weight:800; color:var(--muted);
+  letter-spacing:1px; text-transform:uppercase; margin:24px 0 12px;
+}
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.subject-filter-wrap {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:14px; padding:16px 18px; margin-bottom:0;
+}
+.subject-filter-title {
+  font-size:.88em; font-weight:800; color:var(--muted); margin-bottom:10px;
+}
+.subject-filter-buttons { display:flex; gap:8px; flex-wrap:wrap; }
+.subject-filter-btn {
+  border:1.5px solid var(--border); border-radius:20px; background:#f8fafc;
+  color:var(--muted); cursor:pointer; font-family:inherit; font-size:.90em;
+  font-weight:800; padding:9px 16px; transition:background .15s,color .15s,border-color .15s,transform .15s;
+}
+.subject-filter-btn:hover { transform:translateY(-1px); border-color:#93c5fd; color:var(--accent-dark); }
+.subject-filter-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+/* 과목 선택 토글 헤더 */
+.sf-toggle {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 14px; background:#fff;
+  border:1.5px solid #e2e8f0; border-radius:12px;
+  cursor:pointer; transition:border-color .15s;
+  margin-bottom:0; min-height:52px;
+}
+.sf-toggle:hover { border-color:#93c5fd; }
+.sf-toggle-left { display:flex; align-items:center; gap:8px; }
+.sf-toggle-label { font-size:13px; font-weight:800; color:#374151; white-space:nowrap; }
+.sf-active-badge {
+  font-size:12px; font-weight:700; padding:3px 10px;
+  border-radius:20px; white-space:nowrap;
+  background:#eff6ff; color:#2563eb; display:none;
+}
+.sf-active-badge.show { display:inline-block; }
+.sf-toggle-arrow {
+  font-size:.95em; color:#94a3b8; flex-shrink:0;
+  transition:transform .22s; display:inline-block;
+}
+.sf-toggle-arrow.open { transform:rotate(90deg); }
+.sf-body {
+  display:none; padding-top:8px; margin-bottom:14px;
+}
+.sf-body.open { display:block; animation:fadeIn .18s; }
+.subject-card.is-hidden { display:none; }
+/* 과목 카드 */
+.subject-card {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:18px; margin-bottom:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06); overflow:hidden;
+  transition:transform .15s,box-shadow .15s;
+}
+.subject-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.1); }
+.card-header {
+  display:flex; align-items:center; gap:14px;
+  padding:18px 20px 14px; border-bottom:1px solid var(--border);
+}
+.card-emoji {
+  font-size:1.8em; width:50px; height:50px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:14px; flex-shrink:0;
+}
+.card-info { flex:1; min-width:0; }
+.card-num { font-size:.80em; font-weight:800; letter-spacing:.5px; margin-bottom:3px; }
+.card-title { font-size:1.05em; font-weight:900; line-height:1.3; }
+.card-desc { font-size:.88em; color:var(--muted); margin-top:4px; line-height:1.6; }
+.card-tag {
+  display:inline-block; font-size:.78em; font-weight:700;
+  padding:3px 10px; border-radius:20px; margin:2px 2px 0 0; vertical-align:middle;
+}
+.card-actions { display:grid; grid-template-columns:1fr 1fr; }
+.action-btn {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:18px 14px; text-decoration:none; font-family:inherit;
+  font-size:.92em; font-weight:700; transition:filter .15s; cursor:pointer; border:none;
+}
+.action-btn:first-child { border-right:1px solid var(--border); }
+.action-btn .btn-icon { font-size:1.2em; }
+.action-btn .btn-label { text-align:left; line-height:1.3; }
+.action-btn .btn-sub { font-size:.8em; font-weight:500; opacity:.75; display:block; }
+.action-btn:hover { filter:brightness(.94); }
+.btn-card { background:linear-gradient(135deg,#eff6ff,#dbeafe); color:var(--accent-dark); }
+.btn-quiz { background:linear-gradient(135deg,#f0fdf4,#d1fae5); color:#065f46; }
+.btn-card-purple { background:linear-gradient(135deg,#f5f3ff,#ede9fe); color:#5b21b6; }
+.btn-card-green { background:linear-gradient(135deg,#f0fdf4,#d1fae5); color:#065f46; }
+.btn-card-orange { background:linear-gradient(135deg,#fffbeb,#fef3c7); color:#92400e; }
+.btn-card-red { background:linear-gradient(135deg,#fff1f2,#fee2e2); color:#9f1239; }
+.btn-card-cyan { background:linear-gradient(135deg,#ecfeff,#cffafe); color:#0e7490; }
+/* 테마별 색상 */
+.theme-blue .card-emoji { background:var(--accent-light); }
+.theme-blue .card-num { color:var(--accent); }
+.theme-purple .card-emoji { background:var(--purple-light); }
+.theme-purple .card-num { color:var(--purple); }
+.theme-green .card-emoji { background:var(--green-light); }
+.theme-green .card-num { color:var(--green); }
+.theme-orange .card-emoji { background:var(--orange-light); }
+.theme-orange .card-num { color:var(--orange); }
+.theme-red .card-emoji { background:var(--red-light); }
+.theme-red .card-num { color:var(--red); }
+.theme-cyan .card-emoji { background:var(--cyan-light); }
+.theme-cyan .card-num { color:var(--cyan); }
+/* 이용 안내 */
+.how-card { background:var(--surface); border:1.5px solid var(--border); border-radius:14px; padding:16px 18px; }
+.how-title { font-size:.9em; font-weight:800; color:var(--accent); margin-bottom:10px; }
+.how-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.how-list li { display:flex; align-items:flex-start; gap:9px; font-size:.88em; line-height:1.6; color:var(--muted); }
+.idx-footer { text-align:center; padding:20px; font-size:.90em; color:var(--muted); border-top:1px solid var(--border); margin-top:10px; line-height:1.75; }
+
+/* 메인 글자 크기 조절 바 */
+.idx-fs-bar {
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,.95); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 16px; gap:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.idx-fs-label {
+  font-size:.90em; font-weight:800; color:var(--muted);
+  letter-spacing:.5px; white-space:nowrap; display:flex; align-items:center; gap:5px;
+}
+.idx-fs-btns { display:flex; gap:5px; }
+.idx-fsb {
+  background:#f1f5f9; border:1.5px solid var(--border);
+  color:var(--muted); border-radius:8px; padding:8px 14px;
+  cursor:pointer; font-family:inherit; font-weight:700;
+  transition:all .15s; line-height:1;
+}
+.idx-fsb:hover:not(.active) { border-color:var(--accent); color:var(--accent); background:#eff6ff; }
+.idx-fsb.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.idx-fsb-small  { font-size:13px; }
+.idx-fsb-mid    { font-size:15px; }
+.idx-fsb-large  { font-size:17px; }
+.idx-fsb-xlarge { font-size:20px; }
+
+/* ══════════════════════════════════════════
+   요점정리 뷰 스타일
+   (원본 summary.html 스타일 기반)
+══════════════════════════════════════════ */
+hr {
+  border: none;              /* 기본 테두리 제거 */
+  border-top: 1px solid #ccc; /* 위쪽에 얇은 회색 선 */
+  margin: 20px 0;            /* 위아래 여백 */
+}
+#view-summary { background:#f7f4ef; }
+#view-summary .sum-sticky { position:sticky; top:var(--gbar-h); z-index:200; }
+#view-summary .sum-site-header {
+  background:#1a1a2e; color:#fff;
+  padding:12px 14px 10px;
+  transition: all .25s ease;
+  cursor:default;
+}
+/* 접힌 상태 - 얇은 띠 */
+#view-summary .sum-site-header.collapsed {
+  padding:8px 14px;
+  cursor:pointer;
+}
+#view-summary .sum-site-header.collapsed .sum-title-row,
+#view-summary .sum-site-header.collapsed .sum-search-row {
+  display:none;
+}
+/* 접힌 상태 안내 띠 */
+.sum-collapsed-bar {
+  display:none;
+  align-items:center; justify-content:space-between;
+}
+#view-summary .sum-site-header.collapsed .sum-collapsed-bar {
+  display:flex;
+}
+.sum-collapsed-title {
+  font-size:13px; font-weight:700; color:rgba(255,255,255,.9);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.sum-collapsed-hint {
+  font-size:12px; color:rgba(255,255,255,.6);
+  white-space:nowrap; margin-left:10px; flex-shrink:0;
+}
+/* 행1: 제목 전용 (버튼 없음) */
+#view-summary .sum-title-row {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:8px;
+}
+#view-summary .sum-header-row1 {
+  display:flex; justify-content:space-between;
+  align-items:flex-start; margin-bottom:8px;
+}
+#view-summary .sum-header-titles h1 { font-size:1.1em; font-weight:900; letter-spacing:-.5px; }
+#view-summary .sum-header-titles p { font-size:.90em; color:#94a3b8; margin-top:2px; }
+#view-summary .sum-back-btn {
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+  color:rgba(255,255,255,.9); border-radius:8px; padding:8px 14px;
+  cursor:pointer; font-family:inherit; font-size:.88em; font-weight:700;
+  transition:all .15s; white-space:nowrap; flex-shrink:0; margin-right:10px;
+}
+#view-summary .sum-back-btn:hover { background:rgba(255,255,255,.25); }
+#view-summary .sum-title-wrap { display:flex; align-items:center; }
+#view-summary .sum-fs-wrap { display:flex; gap:4px; flex-shrink:0; }
+#view-summary .sum-fs-btn {
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22);
+  color:rgba(255,255,255,.85); border-radius:6px; padding:6px 10px;
+  cursor:pointer; font-family:inherit; font-size:13px; font-weight:700;
+  line-height:1.3; transition:all .15s;
+}
+#view-summary .sum-fs-btn.active,
+#view-summary .sum-fs-btn:hover {
+  background:rgba(255,255,255,.9); color:#1a1a2e; border-color:rgba(255,255,255,.9);
+}
+/* 검색창 */
+#view-summary .sum-search-row { width:100%; }
+#view-summary .sum-search-box {
+  display:flex; align-items:center; background:#fff;
+  border-radius:9px; padding:0 12px; gap:8px;
+}
+#view-summary .sum-search-box input {
+  flex:1; border:none; outline:none; font-family:inherit;
+  font-size:.90em; color:#1a1a2e; padding:9px 0; background:transparent;
+}
+#view-summary .sum-search-box input::placeholder { color:#b0b8c4; }
+#view-summary .sum-srch-clear {
+  border:none; background:none; cursor:pointer; color:#9ca3af; font-size:1em; padding:2px 4px;
+}
+/* 챕터 내비 */
+#view-summary .sum-ch-nav {
+  display:flex; gap:6px; padding:10px 12px;
+  overflow-x:auto; background:#fff;
+  border-bottom:1px solid #e5e0d8;
+  scrollbar-width:none;
+  align-items:center;
+}
+/* 헤더 펼치기 버튼 */
+#sum-expand-btn {
+  flex-shrink:0; margin-left:auto; padding:5px 10px;
+  background:#f1f5f9; border:1.5px solid #e2e8f0;
+  border-radius:20px; font-family:inherit; font-size:12px;
+  font-weight:700; color:#374151; cursor:pointer;
+  transition:all .15s; white-space:nowrap; display:none;
+}
+#sum-expand-btn.show { display:inline-flex; align-items:center; gap:4px; }
+#sum-expand-btn:hover { background:#dbeafe; border-color:#93c5fd; color:#1d4ed8; }
+#view-summary .sum-ch-nav::-webkit-scrollbar { display:none; }
+#view-summary .sum-ch-btn {
+  flex-shrink:0; padding:7px 14px; border-radius:20px;
+  border:1.5px solid #e5e0d8; background:#fff; color:#374151;
+  font-family:inherit; font-size:.9em; font-weight:700;
+  cursor:pointer; transition:all .15s;
+}
+#view-summary .sum-ch-btn.active,
+#view-summary .sum-ch-btn:hover {
+  background:#1a1a2e; color:#fff; border-color:#1a1a2e;
+}
+/* 메인 컨텐츠 */
+#sumMain { padding:14px 12px 60px; max-width:720px; margin:0 auto; }
+/* 챕터 섹션 */
+#view-summary .ch-section { display:none; }
+#view-summary .ch-section.active { display:block; animation:fadeIn .3s; }
+#view-summary .ch-title {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:14px; padding-bottom:10px; border-bottom:2px solid #1a1a2e;
+}
+#view-summary .ch-num {
+  background:#1a1a2e; color:#fff; font-size:.90em;
+  font-weight:900; padding:4px 12px; border-radius:4px;
+}
+#view-summary .ch-name { font-size:1.05em; font-weight:900; }
+/* 카드 */
+#view-summary .card {
+  background:#fff; border-radius:14px; padding:16px;
+  margin-bottom:12px; border:1px solid #e5e0d8;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+#view-summary .card details {
+  border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;
+  margin-top:8px; background:#f8fafc;
+}
+#view-summary .card summary {
+  cursor:pointer; font-weight:800; color:#1f2937;
+}
+#view-summary .card details p {
+  margin-top:8px; line-height:1.65; color:#374151;
+}
+#view-summary .card-head { display:flex; align-items:center; gap:8px; margin-bottom:12px; padding-right:32px; }
+#view-summary .card-icon { font-size:1.2em; }
+#view-summary .card-title { font-size:1.0em; font-weight:900; color:#1a1a2e; }
+/* 태그 */
+#view-summary .tag {
+  display:inline-block; padding:3px 10px; border-radius:4px;
+  font-size:.80em; font-weight:700; margin-bottom:8px;
+}
+#view-summary .tag-blue { background:var(--c1l); color:var(--c1); }
+#view-summary .tag-green { background:var(--c2l); color:var(--c2); }
+#view-summary .tag-red { background:var(--c3l); color:var(--c3); }
+#view-summary .tag-yellow { background:var(--c4l); color:var(--c4); }
+#view-summary .tag-purple { background:var(--c5l); color:var(--c5); }
+#view-summary .tag-cyan { background:var(--c6l); color:var(--c6); }
+/* 포인트 리스트 */
+#view-summary .pts {
+  list-style:none; display:flex; flex-direction:column;
+  gap:6px; word-break:keep-all; word-wrap:break-word;
+}
+#view-summary .pts li {
+  display:block; position:relative; padding-left:16px;
+  font-size:.94em; line-height:1.6; margin:2px 0;
+}
+#view-summary .pts li::before { content:'▸'; color:var(--c1); position:absolute; left:0; top:0; }
+#view-summary .pts.green li::before { color:var(--c2); }
+#view-summary .pts.red li::before { color:var(--c3); }
+#view-summary .pts.purple li::before { color:var(--c5); }
+#view-summary .pts.yellow li::before { color:var(--c4); }
+
+#view-summary .ptsFC {
+  list-style:none; display:flex; flex-direction:column;
+  gap:6px; word-break:keep-all; word-wrap:break-word;
+}
+#view-summary .ptsFC li {
+  display:block; position:relative; padding-left:16px;
+  font-size:.94em; line-height:1.6; margin:2px 0;
+}
+#view-summary .ptsFC li:first-child::before { content:'▸'; color:var(--c1); position:absolute; left:0; top:0; }
+#view-summary .ptsFC li:not(:first-child) { position: relative; padding-left:25px; }
+#view-summary .ptsFC li:not(:first-child)::before { content: '-'; color: var(--c1); position: absolute; left: 15px; top: 0; }
+
+#view-summary .ptsCK {
+  list-style:none; display:flex; flex-direction:column; flex-direction:row; flex-wrap: wrap;
+  gap:6px; word-break:keep-all; word-wrap:break-word;
+}
+#view-summary .ptsCK li {
+  display:inline; position:relative; padding-left:20px;
+  font-size:.94em; line-height:1.6; margin:2px 5px 2px 0;
+}
+#view-summary .ptsCK li::before { content:'☑'; color:var(--c3); position:absolute; left:0; top:0; }
+
+/* 시험 포인트 */
+#view-summary .star-list {
+  list-style:none; display:flex; flex-direction:column;
+  gap:5px; word-break:keep-all;
+}
+#view-summary .star-list li {
+  display:block; position:relative; padding-left:18px;
+  font-size:.93em; line-height:1.75;
+}
+#view-summary .star-list li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
+/* 비교표 */
+#view-summary .comp-table { width:100%; border-collapse:collapse; font-size:.90em; margin-top:4px; }
+#view-summary .comp-table th {
+  background:#1a1a2e; color:#fff; padding:9px 10px;
+  text-align:center; font-weight:700;
+}
+#view-summary .comp-table td {
+  padding:9px 10px; border-bottom:1px solid #e5e0d8; vertical-align:middle;
+}
+#view-summary .comp-table tr:last-child td { border-bottom:none; }
+#view-summary .comp-table td:first-child { font-weight:700; color:#374151; font-size:.92em; }
+#view-summary .comp-table tr:nth-child(even) td { background:#fafafa; }
+#view-summary .th-blue { background:var(--c1)!important; }
+#view-summary .th-green { background:var(--c2)!important; }|
+#view-summary .th-purple { background:var(--c5)!important; }
+
+/* 하이라이트 박스 */
+#view-summary .hbox {
+  border-radius:10px; padding:13px 15px; margin-top:8px;
+  font-size:.93em; line-height:1.7;
+}
+#view-summary .hbox-blue { background:var(--c1l); border-left:3px solid var(--c1); }
+#view-summary .hbox-green { background:var(--c2l); border-left:3px solid var(--c2); }
+#view-summary .hbox-yellow { background:var(--c4l); border-left:3px solid var(--c4); }
+#view-summary .hbox-white { background:var(--c11); border-left:3px solid var(--c1); }
+#view-summary .hbox-red { background:var(--c3l); border-left:3px solid var(--c3); }
+#view-summary .hbox-purple { background:var(--c5l); border-left:3px solid var(--c5); }
+#view-summary .hbox b { font-weight:800; }
+/* 흐름도 */
+#view-summary .flow {
+  display:flex; align-items:center; flex-wrap:wrap;
+  gap:4px; font-size:.90em; margin-top:6px;
+}
+#view-summary .flow-item {
+  background:var(--c1l); color:var(--c1);
+  font-weight:700; padding:4px 10px; border-radius:6px;
+  text-align: center;
+}
+
+#view-summary .flow-arrow { color:#6b7280; }
+/* 배지 */
+#view-summary .badge-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+#view-summary .badge {
+  padding:5px 13px; border-radius:20px;
+  font-size:.9em; font-weight:700; border:1.5px solid;
+}
+#view-summary .badge-blue { background:var(--c1l); color:var(--c1); border-color:#93c5fd; }
+#view-summary .badge-green { background:var(--c2l); color:var(--c2); border-color:#6ee7b7; }
+#view-summary .badge-red { background:var(--c3l); color:var(--c3); border-color:#fca5a5; }
+#view-summary .badge-yellow { background:var(--c4l); color:var(--c4); border-color:#fcd34d; }
+#view-summary .badge-purple { background:var(--c5l); color:var(--c5); border-color:#c4b5fd; }
+#view-summary .badge-gray { background:#f1f5f9; color:#475569; border-color:#cbd5e1; }
+/* 기출 배지 */
+#view-summary .kichul {
+  display:inline-flex; align-items:center; gap:3px;
+  background:#fef2f2; color:#b91c1c; border:1.2px solid #fca5a5;
+  border-radius:5px; font-size:.80em; font-weight:800;
+  padding:2px 7px; margin-left:5px; vertical-align:middle;
+  white-space:nowrap;
+}
+/* 구분선 / 소제목 */
+#view-summary .divider { height:1px; background:#e5e0d8; margin:10px 0; }
+#view-summary .sub {
+  font-size:.88em; font-weight:800; color:#374151;
+  margin:10px 0 6px; text-transform:uppercase; letter-spacing:.5px;
+}
+#view-summary .sub-tit {
+  font-size:.9em; font-weight:800; color:#000000;
+  margin:10px 0 6px; text-transform:uppercase; letter-spacing:.5px;
+}
+#view-summary .no { color:var(--c3); font-weight:700; }
+#view-summary .ok { color:var(--c2); font-weight:700; }
+#view-summary strong { font-weight:800; }
+/* 검색 결과 오버레이 */
+#sumSearchResults {
+  display:none; position:fixed; top:var(--gbar-h); left:0; right:0; bottom:0;
+  z-index:500; background:#f7f4ef; overflow-y:auto;
+}
+#sumSearchResults .sr-body { padding:12px; max-width:720px; margin:0 auto; padding-bottom:60px; }
+.sr-item {
+  background:#fff; border:1px solid #e5e0d8; border-radius:12px;
+  padding:14px; margin-bottom:10px; cursor:pointer;
+  box-shadow:0 1px 4px rgba(0,0,0,.05); transition:border-color .15s;
+}
+.sr-item:hover { border-color:var(--c1); }
+.sr-chip {
+  display:inline-block; background:var(--c1l); color:var(--c1);
+  font-size:.71em; font-weight:700; padding:2px 8px;
+  border-radius:4px; margin-bottom:5px; cursor:pointer; transition:background .15s;
+}
+.sr-chip:hover { background:#bfdbfe; }
+/* search results chapter nav */
+.sr-sticky-wrap {
+  position:sticky; top:0; z-index:10; background:#fff;
+}
+.sr-ch-nav {
+  display:flex; gap:6px; padding:8px 12px;
+  overflow-x:auto; background:#fff;
+  border-bottom:1px solid #e5e0d8;
+  scrollbar-width:none;
+}
+.sr-ch-nav::-webkit-scrollbar { display:none; }
+.sr-ch-btn {
+  flex-shrink:0; padding:4px 11px; border-radius:20px;
+  border:1.5px solid #e5e0d8; background:#fff; color:#6b7280;
+  font-family:inherit; font-size:.76em; font-weight:700;
+  cursor:pointer; transition:all .15s; white-space:nowrap;
+}
+.sr-ch-btn.active, .sr-ch-btn:hover {
+  background:#1a1a2e; color:#fff; border-color:#1a1a2e;
+}
+.sr-card-title { font-size:.88em; font-weight:800; margin-bottom:4px; }
+.sr-snippet { font-size:.81em; color:#6b7280; line-height:1.6; }
+.sr-snippet mark { background:#fef9c3; color:#854d0e; border-radius:2px; padding:0 2px; font-weight:700; }
+.no-result { text-align:center; padding:60px 20px; color:#6b7280; }
+.no-result .nri { font-size:2.5em; margin-bottom:10px; }
+/* 검색 결과 상단 바 */
+#sumSearchResults .sr-top-bar {
+  display:flex; align-items:center; gap:8px;
+  background:#1a1a2e; padding:10px 14px;
+}
+#sumSearchResults .sr-search-box {
+  flex:1; display:flex; align-items:center; gap:6px;
+  background:#fff; border-radius:8px; padding:0 10px;
+}
+#sumSearchResults .sr-search-box input {
+  flex:1; border:none; outline:none; font-family:inherit;
+  font-size:.90em; color:#1a1a2e; padding:8px 0; background:transparent;
+}
+#sumSearchResults .sr-search-box input::placeholder { color:#b0b8c4; }
+#sumSearchResults .sr-back-btn {
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+  color:#fff; border-radius:8px; padding:5px 10px;
+  cursor:pointer; font-family:inherit; font-size:.90em; font-weight:700;
+}
+#sumSearchResults .sr-title { color:#fff; font-size:.88em; font-weight:700; }
+#sumSearchResults .sr-count { color:#94a3b8; font-size:.76em; margin-left:auto; }
+
+/* ══════════════════════════════════════════
+   메인 전체 검색 오버레이
+══════════════════════════════════════════ */
+/* 히어로 헤더 검색 버튼 */
+.hero-search-btn {
+  position:absolute; top:16px; right:16px; z-index:10;
+  background:rgba(255,255,255,.18); border:1.5px solid rgba(255,255,255,.35);
+  color:#fff; border-radius:50%; width:42px; height:42px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.15em; cursor:pointer; transition:all .2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.hero-search-btn:hover { background:rgba(255,255,255,.32); transform:scale(1.08); }
+
+/* 전체 검색 오버레이 */
+#main-search-overlay {
+  display:none; position:fixed; inset:0; top:var(--gbar-h); z-index:900;
+  background:#f0f4ff; flex-direction:column;
+  animation:fadeIn .2s;
+}
+#main-search-overlay.open { display:flex; }
+
+/* 검색 헤더 */
+.msr-header {
+  background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 60%,#7c3aed 100%);
+  padding:14px 16px; display:flex; align-items:center; gap:10px;
+  position:sticky; top:0; z-index:10;
+  box-shadow:0 2px 12px rgba(0,0,0,.18);
+}
+.msr-close-btn {
+  background:rgba(255,255,255,.18); border:1.5px solid rgba(255,255,255,.3);
+  color:#fff; border-radius:10px; padding:7px 13px;
+  font-family:inherit; font-size:.90em; font-weight:700;
+  cursor:pointer; transition:all .15s; flex-shrink:0;
+}
+.msr-close-btn:hover { background:rgba(255,255,255,.32); }
+.msr-input-wrap {
+  flex:1; display:flex; align-items:center;
+  background:#fff; border-radius:12px; padding:0 14px; gap:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+.msr-input-wrap span { font-size:1em; color:#9ca3af; }
+.msr-input-wrap input {
+  flex:1; border:none; outline:none; font-family:inherit;
+  font-size:.95em; color:#1e293b; padding:11px 0; background:transparent;
+}
+.msr-input-wrap input::placeholder { color:#b0b8c4; }
+.msr-clear-btn {
+  border:none; background:none; cursor:pointer; color:#9ca3af;
+  font-size:1em; padding:2px 4px; display:none;
+}
+
+/* 결과 영역 */
+.msr-body { flex:1; overflow-y:auto; padding:16px 14px 60px; max-width:720px; margin:0 auto; width:100%; }
+
+/* 초기 안내 */
+.msr-hint {
+  text-align:center; padding:60px 20px 40px; color:var(--muted);
+}
+.msr-hint .hint-icon { font-size:3em; margin-bottom:14px; }
+.msr-hint p { font-size:.88em; line-height:1.7; }
+.msr-hint .hint-chips { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:14px; }
+.msr-hint .hint-chip {
+  background:var(--accent-light); color:var(--accent);
+  border:1px solid #93c5fd; border-radius:20px;
+  font-size:.74em; font-weight:700; padding:4px 12px; cursor:pointer;
+  transition:all .15s;
+}
+.msr-hint .hint-chip:hover { background:var(--accent); color:#fff; }
+
+/* 결과 없음 */
+.msr-no-result {
+  text-align:center; padding:50px 20px; color:var(--muted);
+}
+.msr-no-result .no-icon { font-size:2.5em; margin-bottom:12px; }
+.msr-no-result p { font-size:.88em; line-height:1.7; }
+
+/* 결과 요약 바 */
+.msr-result-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.msr-result-count { font-size:.90em; font-weight:800; color:var(--accent); }
+.msr-result-sub { font-size:.76em; color:var(--muted); }
+
+/* 과목 그룹 */
+.msr-subject-group { margin-bottom:20px; }
+.msr-subject-label {
+  display:flex; align-items:center; gap:8px;
+  font-size:.78em; font-weight:800; color:var(--muted);
+  letter-spacing:.5px; margin-bottom:8px; padding-bottom:6px;
+  border-bottom:1.5px solid var(--border);
+}
+.msr-subject-label .subj-badge {
+  padding:2px 10px; border-radius:20px; font-size:.9em;
+  font-weight:800; color:#fff;
+}
+
+/* 결과 카드 */
+.msr-result-card {
+  background:#fff; border:1.5px solid var(--border);
+  border-radius:14px; padding:14px 16px; margin-bottom:10px;
+  cursor:pointer; transition:all .18s;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+.msr-result-card:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.1); border-color:var(--accent); }
+.msr-rc-top { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.msr-rc-chapter {
+  font-size:.7em; font-weight:700; padding:2px 9px; border-radius:20px;
+  background:var(--accent-light); color:var(--accent); flex-shrink:0;
+}
+.msr-rc-title { font-size:.9em; font-weight:800; color:var(--text); line-height:1.4; }
+.msr-rc-snippet {
+  font-size:.8em; color:var(--muted); line-height:1.6;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.msr-rc-snippet mark {
+  background:#fef08a; color:#713f12; border-radius:2px; padding:0 2px;
+  font-weight:700;
+}
+.msr-rc-arrow {
+  margin-left:auto; flex-shrink:0; font-size:1em; color:var(--muted);
+}
+
+/* ══════════════════════════════════════════
+   퀴즈 뷰 스타일
+   (원본 quiz.html 스타일 기반)
+══════════════════════════════════════════ */
+#qz-topbar {
+  width:100%; max-width:720px;
+  display:flex; align-items:center; justify-content:center;
+  padding:12px 16px; background:var(--card);
+  border-bottom:2px solid var(--border);
+  position:sticky; top:var(--gbar-h); z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+.qz-back-btn {
+  background:#f1f5f9; border:1px solid var(--border); color:var(--muted);
+  border-radius:8px; padding:8px 13px; cursor:pointer;
+  font-family:inherit; font-size:.88em; font-weight:700;
+  transition:all .15s; margin-right:6px;
+}
+.qz-back-btn:hover { background:var(--accent-light); color:var(--accent); border-color:var(--accent); }
+.qz-title-sm { font-weight:700; color:var(--accent); font-size:.9em; }
+#qz-font-btns { display:flex; gap:4px; }
+.qfb {
+  background:#f1f5f9; border:1px solid var(--border); color:var(--muted);
+  border-radius:6px; padding:6px 10px; cursor:pointer;
+  font-family:inherit; font-size:13px; transition:all .2s;
+}
+.qfb.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.qfb:hover:not(.active) { border-color:var(--accent); color:var(--accent); background:#eff6ff; }
+#qz-app { width:100%; max-width:720px; padding:0 12px; }
+.qz-screen { display:none; }
+.qz-screen.active { display:block; }
+/* 시작화면 */
+#qz-start { padding-top:30px; }
+.qz-hero {
+  text-align:center; padding:40px 20px 30px;
+  background:linear-gradient(135deg,#eef2ff 0%,#dbeafe 100%);
+  border-radius:20px; border:1px solid #bfdbfe;
+  margin-top:16px; position:relative; overflow:hidden;
+}
+.qz-hero::before {
+  content:''; position:absolute; top:-40px; right:-40px;
+  width:200px; height:200px;
+  background:radial-gradient(circle,rgba(37,99,235,.1),transparent 70%);
+  border-radius:50%;
+}
+.qz-hero-icon { font-size:3.5em; margin-bottom:12px; }
+.qz-hero h1 { font-size:1.5em; font-weight:900; color:var(--accent); margin-bottom:6px; }
+.qz-hero p { color:var(--muted); font-size:.9em; line-height:1.6; }
+.qz-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:24px 0; }
+.qz-info-item {
+  background:#fff; border:1px solid #bfdbfe; border-radius:12px;
+  padding:14px; text-align:center; box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.qz-info-item .label { font-size:.75em; color:var(--muted); margin-bottom:4px; }
+.qz-info-item .value { font-size:1.2em; font-weight:700; color:var(--accent2); }
+.btn-start {
+  width:100%; padding:16px;
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  border:none; border-radius:14px; color:#fff;
+  font-size:1.1em; font-weight:700; cursor:pointer;
+  font-family:inherit; transition:all .2s;
+  box-shadow:0 4px 20px rgba(37,99,235,.3);
+}
+.btn-start:hover { transform:translateY(-2px); box-shadow:0 6px 25px rgba(37,99,235,.4); }
+/* 퀴즈 진행화면 */
+#qz-quiz { padding-top:12px; }
+.qz-prog-area { margin:12px 0 16px; }
+.qz-prog-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.qz-prog-label { font-size:.90em; color:var(--muted); }
+.qz-prog-count { font-weight:700; color:var(--accent); }
+.qz-prog-bar { height:6px; background:#e2e8f0; border-radius:3px; overflow:hidden; }
+.qz-prog-fill {
+  height:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:3px; transition:width .4s ease;
+}
+.chapter-badge {
+  display:inline-block; background:#eff6ff; border:1px solid #bfdbfe;
+  border-radius:20px; padding:5px 14px;
+  font-size:.9em; color:var(--accent); font-weight:600; margin-bottom:10px;
+}
+.q-card {
+  background:var(--qcard); border:1px solid var(--border);
+  border-radius:16px; padding:22px; margin-bottom:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.q-number { font-size:.9em; color:var(--accent); font-weight:700; margin-bottom:8px; }
+.q-text { font-weight:700; line-height:1.8; white-space:pre-line; }
+.q-image-wrap { display:none; margin-top:16px; text-align:center; }
+.q-image-wrap.show { display:block; }
+.q-image {
+  max-width:100%; height:auto; border-radius:10px;
+  border:1px solid var(--border); background:#fff;
+}
+.options { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
+.opt {
+  background:#fff; border:2px solid var(--border); border-radius:12px;
+  padding:15px 18px; cursor:pointer; font-family:inherit;
+  font-size:1em; color:var(--text); text-align:left;
+  line-height:1.6; transition:all .15s;
+}
+.opt:hover:not(:disabled) { border-color:var(--accent); background:rgba(37,99,235,.06); }
+.opt.correct { border-color:var(--correct); background:rgba(22,163,74,.1); color:var(--correct); font-weight:600; }
+.opt.wrong { border-color:var(--wrong); background:rgba(220,38,38,.07); color:var(--wrong); }
+.opt:disabled { cursor:default; }
+.explanation {
+  display:none; background:#f0fdf4; border:1px solid #bbf7d0;
+  border-left:4px solid var(--accent2); border-radius:10px;
+  padding:15px; font-size:.95em; line-height:1.75; color:#1f2937;
+}
+.explanation.show { display:block; animation:fadeIn .3s; }
+.exp-title { font-weight:700; color:var(--accent2); margin-bottom:6px; font-size:.9em; }
+.occurrence-tag {
+  display:inline-block; background:#fef3c7; border:1px solid #fcd34d;
+  color:#92400e; border-radius:6px; padding:3px 10px; font-size:.90em; margin-bottom:8px;
+}
+.qz-nav-row { display:flex; gap:8px; margin-top:10px; }
+.btn-nav {
+  flex:1; padding:12px; border-radius:10px;
+  border:1px solid var(--border); background:#2563eb; color:var(--wtext);
+  font-family:inherit; font-size:.95em; font-weight:600; cursor:pointer;
+  transition:all .15s; box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+.btn-nav:hover { border-color:var(--accent); color:var(--accent); background:#eff6ff; }
+.btn-nav.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+.btn-nav.primary:hover { background:#1d4ed8; }
+.btn-nav:disabled { opacity:.4; cursor:default; }
+.grid-title { font-size:.8em; color:#475569; font-weight:600; margin:16px 0 8px; }
+.num-grid { display:grid; grid-template-columns:repeat(11,1fr); gap:6px; margin-bottom:16px; }
+.num-btn {
+  aspect-ratio:1; border-radius:8px; border:1px solid var(--border);
+  background:#fff; color:var(--muted); font-family:inherit;
+  font-size:.90em; font-weight:600; cursor:pointer; transition:all .15s;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.num-btn.current { border-color:var(--accent); color:var(--accent); background:#eff6ff; }
+.num-btn.correct { background:#dcfce7; border-color:#86efac; color:var(--correct); }
+.num-btn.wrong { background:#fee2e2; border-color:#fca5a5; color:var(--wrong); }
+#qz-check-btn {
+  width:100%; margin-top:10px; padding:13px;
+  background:#fff; border:2px dashed var(--accent);
+  border-radius:12px; color:var(--accent); font-family:inherit;
+  font-size:.95em; font-weight:700; cursor:pointer; transition:all .2s;
+}
+#qz-check-btn:not(:disabled):hover { background:#eff6ff; }
+#qz-check-btn:disabled { opacity:.4; cursor:default; border-style:solid; }
+/* 결과 화면 */
+#qz-result { padding-top:16px; }
+.score-card {
+  background:linear-gradient(135deg,#eef2ff 0%,#dbeafe 100%);
+  border:1px solid #bfdbfe; border-radius:20px; padding:30px 20px;
+  text-align:center; margin-bottom:16px;
+  box-shadow:0 2px 12px rgba(37,99,235,.1);
+}
+.score-circle {
+  width:110px; height:110px; border-radius:50%; border:4px solid var(--accent);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  margin:0 auto 16px; background:#fff;
+  box-shadow:0 0 25px rgba(37,99,235,.15);
+}
+.score-num { font-size:2em; font-weight:900; color:var(--accent); line-height:1; }
+.score-denom { font-size:.8em; color:var(--muted); }
+.grade-badge { display:inline-block; padding:6px 20px; border-radius:20px; font-weight:700; margin-bottom:10px; }
+.grade-A { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
+.grade-B { background:#dbeafe; color:#1d4ed8; border:1px solid #93c5fd; }
+.grade-C { background:#fef3c7; color:#b45309; border:1px solid #fcd34d; }
+.grade-D { background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; }
+.qz-stat-row { display:flex; gap:12px; margin-top:16px; }
+.stat-item {
+  flex:1; background:#fff; border-radius:10px; padding:12px;
+  border:1px solid var(--border); box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.stat-label { font-size:.75em; color:var(--muted); margin-bottom:4px; }
+.stat-val { font-size:1.1em; font-weight:700; }
+.stat-val.c { color:var(--correct); }
+.stat-val.w { color:var(--wrong); }
+.result-list { display:flex; flex-direction:column; gap:10px; }
+.rl-item { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px; }
+.rl-header { display:flex; align-items:flex-start; gap:10px; margin-bottom:8px; }
+.rl-badge {
+  width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.75em; font-weight:700; flex-shrink:0; margin-top:1px;
+}
+.rl-badge.c { background:#dcfce7; color:var(--correct); border:1px solid #86efac; }
+.rl-badge.w { background:#fee2e2; color:var(--wrong); border:1px solid #fca5a5; }
+.rl-q { font-weight:600; font-size:.9em; line-height:1.5; white-space:pre-line; }
+.rl-answers { font-size:.90em; color:var(--muted); margin-bottom:6px; }
+.rl-exp { font-size:.90em; color:#475569; line-height:1.6; border-top:1px solid var(--border); padding-top:8px; }
+.btn-retry {
+  width:100%; padding:15px;
+  background:linear-gradient(135deg,#059669,#047857);
+  border:none; border-radius:14px; color:#fff; font-family:inherit;
+  font-size:1em; font-weight:700; cursor:pointer; margin-top:16px;
+  transition:all .2s; box-shadow:0 4px 15px rgba(5,150,105,.25);
+}
+.btn-retry:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(5,150,105,.35); }
+
+/* ══════════════════════════════════════════
+   학습 현황 접이식 패널
+══════════════════════════════════════════ */
+.ssp-summary {
+  display:flex; align-items:center; gap:9px;
+  padding:12px 14px; background:#fff;
+  border:1.5px solid #e2e8f0; border-radius:12px;
+  cursor:pointer; transition:border-color .15s;
+  margin-bottom:0; min-height:52px; overflow:hidden;
+}
+.ssp-summary:hover { border-color:#93c5fd; }
+.ssp-label { font-size:13px; font-weight:800; color:#6b7280; letter-spacing:.5px; white-space:nowrap; flex-shrink:0; }
+.ssp-chips { display:flex; gap:5px; flex:1; overflow:hidden; flex-wrap:nowrap; min-width:0; }
+.ssp-chip {
+  font-size:13px; font-weight:700; padding:4px 10px;
+  border-radius:20px; white-space:nowrap; flex-shrink:0;
+}
+.ssp-chip-blue { background:#eff6ff; color:#2563eb; }
+.ssp-chip-purple { background:#f5f3ff; color:#7c3aed; }
+.ssp-chip-gray { background:#f1f5f9; color:#94a3b8; }
+.ssp-arrow {
+  font-size:.90em; color:#94a3b8; flex-shrink:0;
+  transition:transform .22s; display:inline-block;
+}
+.ssp-arrow.open { transform:rotate(90deg); }
+.ssp-body {
+  display:none; padding-top:8px;
+  border-left:2px solid #e2e8f0;
+  margin-left:14px; padding-left:10px;
+  margin-bottom:4px;
+}
+.ssp-body.open { display:block; animation:fadeIn .18s; }
+.resume-banner {
+  background:#ffffff;
+  border:1.5px solid #e2e8f0; border-radius:12px;
+  padding:9px 14px; margin-bottom:12px;
+  display:flex; align-items:center; gap:10px;
+  cursor:pointer; transition:all .18s;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.resume-banner:hover { border-color:#93c5fd; box-shadow:0 2px 8px rgba(37,99,235,.12); }
+.resume-banner-icon { font-size:1.15em; flex-shrink:0; }
+.resume-banner-info { flex:1; min-width:0; }
+.resume-banner-label { font-size:.75em; font-weight:800; color:#2563eb; letter-spacing:.5px; margin-bottom:1px; }
+.resume-banner-title { font-size:.92em; font-weight:800; color:#1e293b; line-height:1.3; }
+.resume-banner-sub { font-size:.80em; color:#6b7280; margin-top:1px; }
+.resume-banner-arrow { font-size:1em; color:#94a3b8; flex-shrink:0; }
+
+/* ══════════════════════════════════════════
+   [추가] 기능 2: 즐겨찾기
+══════════════════════════════════════════ */
+/* 요약 카드 즐겨찾기 버튼 */
+.fav-btn {
+  position:absolute; top:12px; right:12px;
+  background:none; border:none; cursor:pointer;
+  font-size:1.2em; padding:4px; line-height:1;
+  transition:transform .2s; z-index:5;
+  opacity:.5;
+}
+.fav-btn:hover { transform:scale(1.25); opacity:1; }
+.fav-btn.active { opacity:1; }
+#view-summary .card { position:relative; }
+
+/* 즐겨찾기 오버레이 */
+#fav-overlay {
+  display:none; position:fixed; inset:0; top:var(--gbar-h); z-index:800;
+  background:#f7f4ef; flex-direction:column;
+  animation:fadeIn .2s;
+}
+#fav-overlay.open { display:flex; }
+.fav-ov-header {
+  background:#1a1a2e; color:#fff;
+  padding:12px 16px; display:flex; align-items:center; gap:10px;
+  position:sticky; top:0; z-index:10;
+}
+.fav-ov-close {
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+  color:#fff; border-radius:8px; padding:5px 10px;
+  font-family:inherit; font-size:.90em; font-weight:700; cursor:pointer;
+}
+.fav-ov-title { font-size:.95em; font-weight:800; flex:1; }
+.fav-ov-body { flex:1; overflow-y:auto; padding:14px 14px 60px; max-width:720px; margin:0 auto; width:100%; }
+.fav-ov-empty { text-align:center; padding:60px 20px; color:#6b7280; }
+.fav-ov-empty .ei { font-size:2.5em; margin-bottom:12px; }
+.fav-card-wrap {
+  background:#fff; border:1px solid #e5e0d8; border-radius:14px;
+  padding:14px; margin-bottom:12px; position:relative;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+/* 즐겨찾기 오버레이 내 card 스타일 (summary 스코프 밖) */
+#fav-overlay .card {
+  background:#fff; border-radius:14px; padding:16px;
+  margin-bottom:12px; border:1px solid #e5e0d8;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+#fav-overlay .card-head { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+#fav-overlay .card-icon { font-size:1.2em; }
+#fav-overlay .card-title { font-size:1.0em; font-weight:900; color:#1a1a2e; }
+#fav-overlay .tag {
+  display:inline-block; padding:3px 10px; border-radius:4px;
+  font-size:.80em; font-weight:700; margin-bottom:8px;
+}
+#fav-overlay .tag-blue { background:var(--c1l); color:var(--c1); }
+#fav-overlay .tag-green { background:var(--c2l); color:var(--c2); }
+#fav-overlay .tag-red { background:var(--c3l); color:var(--c3); }
+#fav-overlay .tag-yellow { background:var(--c4l); color:var(--c4); }
+#fav-overlay .tag-purple { background:var(--c5l); color:var(--c5); }
+#fav-overlay .tag-cyan { background:var(--c6l); color:var(--c6); }
+#fav-overlay .pts { list-style:none; display:flex; flex-direction:column; gap:6px; word-break:keep-all; }
+#fav-overlay .pts li { display:block; position:relative; padding-left:16px; font-size:.94em; line-height:1.75; }
+#fav-overlay .pts li::before { content:'▸'; color:var(--c1); position:absolute; left:0; top:0; }
+#fav-overlay .pts.green li::before { color:var(--c2); }
+#fav-overlay .pts.red li::before { color:var(--c3); }
+#fav-overlay .pts.purple li::before { color:var(--c5); }
+#fav-overlay .pts.yellow li::before { color:var(--c4); }
+#fav-overlay .star-list { list-style:none; display:flex; flex-direction:column; gap:5px; }
+#fav-overlay .star-list li { display:block; position:relative; padding-left:18px; font-size:.93em; line-height:1.75; }
+#fav-overlay .star-list li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
+#fav-overlay .hbox { border-radius:10px; padding:13px 15px; margin-top:8px; font-size:.93em; line-height:1.7; }
+#fav-overlay .hbox-blue { background:var(--c1l); border-left:3px solid var(--c1); }
+#fav-overlay .hbox-green { background:var(--c2l); border-left:3px solid var(--c2); }
+#fav-overlay .hbox-yellow { background:var(--c4l); border-left:3px solid var(--c4); }
+#fav-overlay .hbox-red { background:var(--c3l); border-left:3px solid var(--c3); }
+#fav-overlay .hbox-purple { background:var(--c5l); border-left:3px solid var(--c5); }
+#fav-overlay .hbox b { font-weight:800; }
+#fav-overlay .comp-table { width:100%; border-collapse:collapse; font-size:.90em; margin-top:4px; }
+#fav-overlay .comp-table th { background:#1a1a2e; color:#fff; padding:9px 10px; text-align:center; font-weight:700; }
+#fav-overlay .comp-table td { padding:9px 10px; border-bottom:1px solid #e5e0d8; vertical-align:top; }
+#fav-overlay .comp-table tr:last-child td { border-bottom:none; }
+#fav-overlay .comp-table td:first-child { font-weight:700; color:#374151; font-size:.92em; white-space:nowrap; }
+#fav-overlay .comp-table tr:nth-child(even) td { background:#fafafa; }
+#fav-overlay .th-blue { background:var(--c1)!important; }
+#fav-overlay .th-green { background:var(--c2)!important; }
+#fav-overlay .th-purple { background:var(--c5)!important; }
+#fav-overlay .th-red { background:var(--c3)!important; }
+#fav-overlay .badge-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+#fav-overlay .badge { padding:5px 13px; border-radius:20px; font-size:.9em; font-weight:700; border:1.5px solid; }
+#fav-overlay .badge-blue { background:var(--c1l); color:var(--c1); border-color:#93c5fd; }
+#fav-overlay .badge-green { background:var(--c2l); color:var(--c2); border-color:#6ee7b7; }
+#fav-overlay .badge-red { background:var(--c3l); color:var(--c3); border-color:#fca5a5; }
+#fav-overlay .badge-yellow { background:var(--c4l); color:var(--c4); border-color:#fcd34d; }
+#fav-overlay .badge-purple { background:var(--c5l); color:var(--c5); border-color:#c4b5fd; }
+#fav-overlay .badge-gray { background:#f1f5f9; color:#475569; border-color:#cbd5e1; }
+#fav-overlay .flow { display:flex; align-items:center; flex-wrap:wrap; gap:4px; font-size:.90em; margin-top:6px; }
+#fav-overlay .flow-item { background:var(--c1l); color:var(--c1); font-weight:700; padding:4px 10px; border-radius:6px; text-align:center; }
+#fav-overlay .flow-arrow { color:#374151; }
+#fav-overlay .kichul { display:inline-flex; align-items:center; gap:3px; background:#fef2f2; color:#b91c1c; border:1.2px solid #fca5a5; border-radius:5px; font-size:.80em; font-weight:800; padding:2px 7px; margin-left:5px; vertical-align:middle; }
+#fav-overlay .sub { font-size:.88em; font-weight:800; color:#374151; margin:10px 0 6px; letter-spacing:.5px; }
+#fav-overlay .sub-tit { font-size:.9em; font-weight:800; color:#000; margin:10px 0 6px; }
+#fav-overlay .divider { height:1px; background:#e5e0d8; margin:10px 0; }
+#fav-overlay strong { font-weight:800; }
+#fav-overlay .no { color:var(--c3); font-weight:700; }
+#fav-overlay .ok { color:var(--c2); font-weight:700; }
+
+/* ══════════════════════════════════════════
+   [추가] 기능 4: 강별 연습문제 미리보기 모달
+══════════════════════════════════════════ */
+/* 섹션 하단 버튼 */
+.ch-quiz-btn {
+  display:flex; align-items:center; gap:8px;
+  width:100%; padding:10px 14px; margin:6px 0 18px;
+  background:#fff;
+  border:1.5px solid #e2e8f0; border-radius:12px;
+  color:#475569; font-family:inherit; font-size:.90em; font-weight:700;
+  cursor:pointer; transition:all .18s; text-align:left;
+}
+.ch-quiz-btn:hover { border-color:#93c5fd; color:#2563eb; box-shadow:0 2px 8px rgba(37,99,235,.08); }
+.ch-quiz-btn .cqb-count {
+  margin-left:auto; background:#2563eb; color:#fff;
+  border-radius:20px; padding:2px 10px; font-size:.76em;
+}
+.ch-quiz-btn .cqb-none {
+  margin-left:auto; color:#cbd5e1; font-size:.78em; font-weight:500;
+}
+
+/* 모달 오버레이 */
+#rq-modal {
+  display:none; position:fixed; inset:0; top:var(--gbar-h); z-index:900;
+  background:rgba(0,0,0,.45); align-items:flex-end;
+  animation:fadeIn .15s;
+}
+#rq-modal.open { display:flex; }
+.rq-sheet {
+  background:#fff; width:100%; max-height:88vh;
+  border-radius:20px 20px 0 0;
+  display:flex; flex-direction:column;
+  animation:slideUp .22s ease-out;
+}
+@keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+.rq-sheet-header {
+  padding:16px 18px 12px; border-bottom:1px solid #e5e0d8;
+  display:flex; align-items:center; gap:10px; flex-shrink:0;
+}
+.rq-sheet-drag {
+  width:36px; height:4px; background:#e5e0d8;
+  border-radius:2px; margin:0 auto 12px; flex-shrink:0;
+}
+.rq-sheet-title { font-size:.95em; font-weight:900; color:#1a1a2e; flex:1; }
+.rq-sheet-count { font-size:.78em; color:#6b7280; }
+.rq-close-btn {
+  background:#f1f5f9; border:none; border-radius:8px;
+  padding:6px 12px; font-family:inherit; font-size:.90em;
+  font-weight:700; color:#475569; cursor:pointer;
+}
+.rq-sheet-body { flex:1; overflow-y:auto; padding:14px 16px 30px; }
+
+/* 문제 카드 */
+.rq-q-card {
+  border:1.5px solid #e5e0d8; border-radius:12px;
+  padding:14px; margin-bottom:12px;
+  background:#fafafa;
+}
+.rq-q-top {
+  display:flex; align-items:center; gap:8px; margin-bottom:8px;
+}
+.rq-q-num {
+  background:#1a1a2e; color:#fff; border-radius:6px;
+  font-size:.90em; font-weight:800; padding:2px 8px; flex-shrink:0;
+}
+.rq-occ-tag {
+  background:#fef3c7; border:1px solid #fcd34d;
+  color:#92400e; border-radius:6px;
+  font-size:.7em; font-weight:700; padding:2px 7px;
+}
+.rq-q-text {
+  font-size:.9em; font-weight:700; line-height:1.7;
+  color:#1a1a2e; white-space:pre-line; margin-bottom:10px;
+}
+.rq-opts { display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+.rq-opt {
+  background:#fff; border:1.5px solid #e5e0d8;
+  border-radius:9px; padding:9px 13px;
+  font-size:.90em; color:#374151; line-height:1.5;
+  transition:border-color .15s;
+}
+.rq-opt.rq-correct { border-color:#059669; background:#f0fdf4; color:#065f46; font-weight:700; }
+.rq-opt.rq-hidden-ans { border-color:#e5e0d8; color:#9ca3af; }
+.rq-toggle-btn {
+  background:#1a1a2e; color:#fff; border:none;
+  border-radius:8px; padding:7px 14px;
+  font-family:inherit; font-size:.8em; font-weight:700;
+  cursor:pointer; transition:all .15s; margin-bottom:8px;
+}
+.rq-toggle-btn:hover { background:#2563eb; }
+.rq-exp {
+  background:#f0fdf4; border:1px solid #bbf7d0;
+  border-left:3px solid #059669; border-radius:8px;
+  padding:10px 12px; font-size:.90em; line-height:1.65;
+  color:#374151; display:none;
+}
+.rq-exp.show { display:block; animation:fadeIn .2s; }
+.rq-no-q {
+  text-align:center; padding:50px 20px; color:#9ca3af;
+}
+.rq-no-q .rq-no-icon { font-size:2em; margin-bottom:10px; }
+/* 전체 답 토글 바 */
+.rq-global-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 0 14px; border-bottom:1px solid #e5e0d8; margin-bottom:14px;
+}
+.rq-global-label { font-size:.8em; color:#6b7280; font-weight:600; }
+.rq-global-toggle {
+  background:#f1f5f9; border:1.5px solid #e2e8f0;
+  color:#475569; border-radius:8px; padding:6px 14px;
+  font-family:inherit; font-size:.8em; font-weight:700;
+  cursor:pointer; transition:all .15s;
+}
+.rq-global-toggle.on { background:#059669; border-color:#059669; color:#fff; }
+.fav-card-meta {
+  display:flex; flex-direction:column; gap:4px;
+  margin-bottom:8px;
+}
+.fav-card-subj {
+  padding:2px 8px; border-radius:4px; font-weight:700;
+  font-size:11px; color:#fff; align-self:flex-start;
+  white-space:nowrap;
+}
+.fav-card-chapter {
+  font-size:.90em; color:#374151; font-weight:600;
+}
+.fav-card-title {
+  font-size:.9em; font-weight:800; color:#1a1a2e; margin-bottom:10px;
+}
+.fav-card-go {
+  background:#1a1a2e; color:#fff; border:none; border-radius:8px;
+  padding:7px 14px; font-family:inherit; font-size:.78em; font-weight:700;
+  cursor:pointer; transition:all .15s;
+}
+.fav-card-go:hover { background:#2563eb; }
+.fav-card-del {
+  position:absolute; top:10px; right:10px;
+  background:none; border:none; cursor:pointer;
+  font-size:1em; color:#9ca3af; padding:4px; transition:color .15s;
+}
+.fav-card-del:hover { color:#dc2626; }
+/* 메인 즐겨찾기 버튼 */
+.hero-fav-btn {
+  position:absolute; top:16px; right:62px; z-index:10;
+  background:rgba(255,255,255,.18); border:1.5px solid rgba(255,255,255,.35);
+  color:#fff; border-radius:50%; width:42px; height:42px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.15em; cursor:pointer; transition:all .2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.hero-fav-btn:hover { background:rgba(255,255,255,.32); transform:scale(1.08); }
+.fav-count-badge {
+  position:absolute; top:-4px; right:-4px;
+  background:#f59e0b; color:#fff; border-radius:50%;
+  width:16px; height:16px; font-size:10px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  display:none;
+}
+
+/* ══════════════════════════════════════════
+   [추가] 기능 3: 오답노트
+══════════════════════════════════════════ */
+.btn-wrongnote {
+  width:100%; padding:14px;
+  background:linear-gradient(135deg,#7c3aed,#6d28d9);
+  border:none; border-radius:14px; color:#fff; font-family:inherit;
+  font-size:1em; font-weight:700; cursor:pointer; margin-top:10px;
+  transition:all .2s; box-shadow:0 4px 15px rgba(124,58,237,.25);
+  display:none;
+}
+.btn-wrongnote:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(124,58,237,.35); }
+/* 오답노트 뷰 (퀴즈 내 서브 뷰) */
+#qz-wrongnote { padding-top:16px; }
+.wn-header {
+  background:linear-gradient(135deg,#f5f3ff,#ede9fe);
+  border:1px solid #c4b5fd; border-radius:16px;
+  padding:20px; text-align:center; margin-bottom:14px;
+}
+.wn-header h2 { font-size:1.1em; font-weight:900; color:#5b21b6; margin-bottom:4px; }
+.wn-header p { font-size:.90em; color:#7c3aed; }
+.wn-stat { display:inline-block; background:#7c3aed; color:#fff; border-radius:20px; padding:4px 14px; font-size:.78em; font-weight:700; margin-top:8px; }
+.wn-card {
+  background:#fff; border:1.5px solid #e5e0d8; border-radius:14px;
+  padding:16px; margin-bottom:12px;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.wn-q-badge {
+  display:inline-block; background:#fee2e2; color:#b91c1c;
+  border:1px solid #fca5a5; border-radius:20px;
+  font-size:.90em; font-weight:700; padding:4px 12px; margin-bottom:8px;
+}
+.wn-q-text { font-weight:700; line-height:1.8; margin-bottom:10px; white-space:pre-line; }
+.wn-ans-row { font-size:.90em; margin-bottom:6px; }
+.wn-ans-correct { color:#059669; font-weight:700; }
+.wn-ans-wrong { color:#dc2626; font-weight:700; }
+.wn-exp { font-size:.88em; color:#374151; line-height:1.7; border-top:1px solid #e5e0d8; padding-top:8px; margin-top:6px; }
+.wn-subj-badge {
+  display:inline-block; border-radius:4px; padding:2px 8px;
+  font-size:.90em; font-weight:700; color:#fff; margin-bottom:10px;
+}
+.wn-retry-btn {
+  width:100%; padding:14px;
+  background:linear-gradient(135deg,#dc2626,#b91c1c);
+  border:none; border-radius:14px; color:#fff; font-family:inherit;
+  font-size:1em; font-weight:700; cursor:pointer; margin-top:10px;
+  transition:all .2s; box-shadow:0 4px 15px rgba(220,38,38,.25);
+}
+.wn-retry-btn:hover { transform:translateY(-2px); }
+.wn-clear-btn {
+  width:100%; padding:11px;
+  background:#fff; border:1.5px solid #dc2626; color:#dc2626;
+  border-radius:12px; font-family:inherit;
+  font-size:.88em; font-weight:700; cursor:pointer; margin-top:8px;
+  transition:all .15s;
+}
+.wn-clear-btn:hover { background:#fee2e2; }
+/* 메인 오답노트 접근 버튼 */
+.wrong-note-main-btn {
+  background:linear-gradient(135deg,#f5f3ff,#ede9fe);
+  border:1.5px solid #c4b5fd; border-radius:14px;
+  padding:14px 18px; margin-bottom:14px;
+  display:flex; align-items:center; gap:12px;
+  cursor:pointer; transition:all .18s;
+}
+.wrong-note-main-btn:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(124,58,237,.15); }
+.wnm-info { flex:1; }
+.wnm-label { font-size:.80em; font-weight:800; color:#7c3aed; letter-spacing:.5px; margin-bottom:2px; }
+.wnm-title { font-size:.97em; font-weight:800; color:#4c1d95; }
+.wnm-sub { font-size:.90em; color:#374151; margin-top:2px; }
+/* 오답노트 빈 상태 */
+.wn-empty-state {
+  background:#fff; border:1.5px solid #e2e8f0;
+  border-radius:14px; padding:16px 18px;
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:14px;
+}
+.wn-empty-icon { font-size:1.4em; flex-shrink:0; opacity:.4; }
+.wn-empty-text { font-size:.8em; color:#94a3b8; line-height:1.5; }
+/* 과목별 오답 행 */
+.wn-subj-row {
+  background:#fff; border:1.5px solid #e2e8f0;
+  border-radius:12px; padding:11px 15px; margin-bottom:8px;
+  display:flex; align-items:center; gap:10px;
+  cursor:pointer; transition:all .15s;
+}
+.wn-subj-row:hover { border-color:#c4b5fd; box-shadow:0 2px 8px rgba(124,58,237,.1); }
+.wn-subj-dot {
+  width:8px; height:8px; border-radius:50%; flex-shrink:0;
+}
+.wn-subj-name { font-size:.92em; font-weight:700; color:#1e293b; flex:1; }
+.wn-subj-cnt {
+  background:#7c3aed; color:#fff;
+  border-radius:20px; padding:3px 12px;
+  font-size:.90em; font-weight:800; flex-shrink:0;
+}
+.wn-total-row {
+  background:linear-gradient(135deg,#f5f3ff,#ede9fe);
+  border:1.5px solid #c4b5fd; border-radius:12px;
+  padding:11px 15px; margin-bottom:8px;
+  display:flex; align-items:center; gap:10px;
+  cursor:pointer; transition:all .15s;
+}
+.wn-total-row:hover { box-shadow:0 2px 8px rgba(124,58,237,.15); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     전역 고정 상단바 — 모든 뷰에서 항상 표시
+     홈 버튼 + 글자 크기 조절
+═══════════════════════════════════════════════════════════ -->
+<div id="global-topbar">
+  <button id="g-home-btn" class="on-home" onclick="goIndex()">홈</button>
+  <div class="g-fs-wrap">
+    <span class="g-fs-label">가</span>
+    <button class="gfsb gfsb-small"           data-key="작게"   onclick="setGlobalFs(15,'작게')">작게</button>
+    <button class="gfsb gfsb-mid active"      data-key="보통"   onclick="setGlobalFs(17,'보통')">보통</button>
+    <button class="gfsb gfsb-large"           data-key="크게"   onclick="setGlobalFs(19,'크게')">크게</button>
+    <button class="gfsb gfsb-xlarge"          data-key="더크게" onclick="setGlobalFs(21,'더크게')">더크게</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     뷰 1: 인덱스 (메인 허브)
+     - index.html 기반
+     - 6개 과목 카드 표시
+     - 버튼 클릭 시 요점정리/퀴즈 뷰로 전환
+═══════════════════════════════════════════════════════════ -->
+<div id="view-index" class="app-view active">
+
+  <div class="hero-header">
+    <!-- 즐겨찾기 버튼 -->
+    <button class="hero-fav-btn" onclick="openFavOverlay()" title="즐겨찾기 카드 보기">
+      ⭐<span class="fav-count-badge" id="favCountBadge"></span>
+    </button>
+    <!-- 전체 검색 버튼 -->
+    <button class="hero-search-btn" onclick="openMainSearch()" title="전체 요약 검색">🔍</button>
+    <div class="hero-icon">📚</div>
+    <div class="hero-title">사회복지학과 학습 허브</div>
+    <div class="hero-sub">과목별 요약정리 카드와 기출 퀴즈로<br>체계적으로 시험을 준비하세요</div>
+    <div class="hero-badge">🎓 방송통신대 사회복지학과 3학년 1학기 기말고사 대비</div>
+  </div>
+
+  <!-- 글자 크기 조절 바 — 전체 너비, 헤더에 밀착 -->
+  <div class="idx-fs-bar">
+    <span class="idx-fs-label">🔤 글자 크기</span>
+    <div class="idx-fs-btns">
+      <button class="idx-fsb idx-fsb-small"  data-key="작게"   onclick="setIdxFs(15,'작게')">가</button>
+      <button class="idx-fsb idx-fsb-mid active" data-key="보통"   onclick="setIdxFs(17,'보통')">가</button>
+      <button class="idx-fsb idx-fsb-large"  data-key="크게"   onclick="setIdxFs(19,'크게')">가</button>
+      <button class="idx-fsb idx-fsb-xlarge" data-key="더크게" onclick="setIdxFs(21,'더크게')">가</button>
+    </div>
+  </div>
+
+  <div class="idx-main">
+
+    <!-- 학습 현황 접이식 패널 -->
+    <div id="studyStatusPanel" style="margin-top:4px;margin-bottom:14px">
+      <div class="ssp-summary" onclick="toggleStudyPanel()">
+        <span class="ssp-label">📊 학습 현황</span>
+        <span class="ssp-chips" id="sspChips">
+          <span class="ssp-chip ssp-chip-gray">연습문제 후 업데이트</span>
+        </span>
+        <span class="ssp-arrow" id="sspArrow">›</span>
+      </div>
+      <div class="ssp-body" id="sspBody">
+        <div id="resumeBanner"></div>
+        <div id="wrongNoteSection"></div>
+      </div>
+    </div>
+
+    <!-- 과목 선택 토글 -->
+    <div class="sf-toggle" onclick="toggleSubjectPanel()">
+      <div class="sf-toggle-left">
+        <span>🎯</span>
+        <span class="sf-toggle-label">과목 선택</span>
+        <span class="sf-active-badge" id="sfActiveBadge"></span>
+      </div>
+      <span class="sf-toggle-arrow" id="sfArrow">›</span>
+    </div>
+    <div class="sf-body" id="sfBody">
+      <div class="subject-filter-wrap">
+        <div class="subject-filter-title">보고 싶은 과목을 선택하세요</div>
+        <div class="subject-filter-buttons" aria-label="과목 선택">
+          <button type="button" class="subject-filter-btn active" data-filter="all" onclick="toggleSubjectFilter('all', this)">전체</button>
+          <button type="button" class="subject-filter-btn" data-filter="1" onclick="toggleSubjectFilter(1, this)">사회복지실천론</button>
+          <button type="button" class="subject-filter-btn" data-filter="2" onclick="toggleSubjectFilter(2, this)">사회복지조사론</button>
+          <button type="button" class="subject-filter-btn" data-filter="3" onclick="toggleSubjectFilter(3, this)">지역사회복지론</button>
+          <button type="button" class="subject-filter-btn" data-filter="4" onclick="toggleSubjectFilter(4, this)">사회복지정책론</button>
+          <button type="button" class="subject-filter-btn" data-filter="5" onclick="toggleSubjectFilter(5, this)">인간행동과사회환경</button>
+          <button type="button" class="subject-filter-btn" data-filter="6" onclick="toggleSubjectFilter(6, this)">여성복지론</button>
+          <button type="button" class="subject-filter-btn" data-filter="7" onclick="toggleSubjectFilter(7, this)">노인복지론</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 과목 목록 — 6개 과목 모두 표시 -->
+    <div class="section-label" id="subjectListLabel">✅ 학습 가능 과목</div>
+
+    <!-- ── 과목 1: 사회복지실천론 ── -->
+    <div class="subject-card theme-blue" data-subject-id="1">
+      <div class="card-header">
+        <div class="card-emoji">💼</div>
+        <div class="card-info">
+          <div class="card-num">SUBJECT 01</div>
+          <div class="card-title">사회복지실천론</div>
+          <div class="card-desc">
+            실천 방법론·기술·프로세스<br>
+            <span class="card-tag" style="background:#dbeafe;color:#1d4ed8;">요약카드</span>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">연습문제</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn btn-card" onclick="goSummary(1)">
+          <span class="btn-icon">📖</span>
+          <span class="btn-label">요약정리<span class="btn-sub">핵심 카드 요약</span></span>
+        </button>
+        <button class="action-btn btn-quiz" onclick="goQuiz(1)">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-label">연습문제<span class="btn-sub">랜덤 출제 25문항</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 과목 2: 사회복지조사론 ── -->
+    <div class="subject-card theme-green" data-subject-id="2">
+      <div class="card-header">
+        <div class="card-emoji">📊</div>
+        <div class="card-info">
+          <div class="card-num">SUBJECT 02</div>
+          <div class="card-title">사회복지조사론</div>
+          <div class="card-desc">
+            조사 방법론·통계·데이터 분석<br>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">요약카드</span>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">기출문제</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn btn-card-green" onclick="goSummary(2)">
+          <span class="btn-icon">📖</span>
+          <span class="btn-label">요약정리<span class="btn-sub">핵심 카드 요약</span></span>
+        </button>
+        <button class="action-btn btn-quiz" onclick="goQuiz(2)">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-label">연습문제<span class="btn-sub">랜덤 25문항</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 과목 3: 지역사회복지론 ── -->
+    <div class="subject-card theme-purple" data-subject-id="3">
+      <div class="card-header">
+        <div class="card-emoji">🏘️</div>
+        <div class="card-info">
+          <div class="card-num">SUBJECT 03</div>
+          <div class="card-title">지역사회복지론</div>
+          <div class="card-desc">
+            지역사회·개발·조직·실천<br>
+            <span class="card-tag" style="background:#ede9fe;color:#5b21b6;">요약카드</span>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">연습문제</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn btn-card-purple" onclick="goSummary(3)">
+          <span class="btn-icon">📖</span>
+          <span class="btn-label">요약정리<span class="btn-sub">핵심 카드 요약</span></span>
+        </button>
+        <button class="action-btn btn-quiz" onclick="goQuiz(3)">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-label">연습문제<span class="btn-sub">랜덤 출제 25문항</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 과목 4: 사회복지정책론 ── -->
+    <div class="subject-card theme-orange" data-subject-id="4">
+      <div class="card-header">
+        <div class="card-emoji">📋</div>
+        <div class="card-info">
+          <div class="card-num">SUBJECT 04</div>
+          <div class="card-title">사회복지정책론</div>
+          <div class="card-desc">
+            정책 분석·기획·입법·평가<br>
+            <span class="card-tag" style="background:#fef3c7;color:#92400e;">요약카드</span>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">연습문제</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn btn-card-orange" onclick="goSummary(4)">
+          <span class="btn-icon">📖</span>
+          <span class="btn-label">요약정리<span class="btn-sub">핵심 카드 요약</span></span>
+        </button>
+        <button class="action-btn btn-quiz" onclick="goQuiz(4)">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-label">연습문제<span class="btn-sub">랜덤 출제 25문항</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 과목 5: 인간행동과사회환경 ── -->
+    <div class="subject-card theme-red" data-subject-id="5">
+      <div class="card-header">
+        <div class="card-emoji">🧠</div>
+        <div class="card-info">
+          <div class="card-num">SUBJECT 05</div>
+          <div class="card-title">인간행동과사회환경</div>
+          <div class="card-desc">
+            인간행동·심리·사회체계 이해<br>
+            <span class="card-tag" style="background:#fee2e2;color:#b91c1c;">요약카드</span>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">연습문제</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn btn-card-red" onclick="goSummary(5)">
+          <span class="btn-icon">📖</span>
+          <span class="btn-label">요약정리<span class="btn-sub">핵심 카드 요약</span></span>
+        </button>
+        <button class="action-btn btn-quiz" onclick="goQuiz(5)">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-label">연습문제<span class="btn-sub">랜덤 출제 25문항</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 과목 6: 여성복지론 (선택) ── -->
+    <div class="subject-card theme-cyan" data-subject-id="6">
+      <div class="card-header">
+        <div class="card-emoji">👩</div>
+        <div class="card-info">
+          <div class="card-num">SUBJECT 06</div>
+          <div class="card-title">여성복지론 <span style="font-size:.85em;opacity:.7;">(선택과목)</span></div>
+          <div class="card-desc">
+            여성 이슈·젠더 관점·정책 실무<br>
+            <span class="card-tag" style="background:#cffafe;color:#0e7490;">요약카드</span>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">연습문제</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn btn-card-cyan" onclick="goSummary(6)">
+          <span class="btn-icon">📖</span>
+          <span class="btn-label">요약정리<span class="btn-sub">핵심 카드 요약</span></span>
+        </button>
+        <button class="action-btn btn-quiz" onclick="goQuiz(6)">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-label">연습문제<span class="btn-sub">랜덤 출제 25문항</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 과목 7: 노인복지론 (선택) ── -->
+    <div class="subject-card theme-pink" data-subject-id="7">
+      <div class="card-header">
+        <div class="card-emoji">👴</div>
+        <div class="card-info">
+          <div class="card-num">SUBJECT 07</div>
+          <div class="card-title">노인복지론 <span style="font-size:.85em;opacity:.7;">(선택과목)</span></div>
+          <div class="card-desc">
+            노화·노인문제·정책·서비스<br>
+            <span class="card-tag" style="background:#fce7f3;color:#be185d;">요약카드</span>
+            <span class="card-tag" style="background:#d1fae5;color:#065f46;">연습문제</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn btn-card-pink" onclick="goSummary(7)">
+          <span class="btn-icon">📖</span>
+          <span class="btn-label">요약정리<span class="btn-sub">핵심 카드 요약</span></span>
+        </button>
+        <button class="action-btn btn-quiz" onclick="goQuiz(7)">
+          <span class="btn-icon">✏️</span>
+          <span class="btn-label">연습문제<span class="btn-sub">랜덤 출제 25문항</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 이용 안내 -->
+    <div class="section-label">💡 이용 안내</div>
+    <div class="how-card">
+      <div class="how-title">🗺️ 이렇게 사용하세요</div>
+      <ul class="how-list">
+        <li><span>📖</span><span><b>요약정리</b> — 핵심 내용을 카드 형식으로 정리. 강의별 탭 이동, 키워드 검색, 글씨 크기 조절 가능.</span></li>
+        <li><span>✏️</span><span><b>연습문제</b> — 문제은행에서 랜덤 출제. 즉시 정답·해설 확인, 번호판으로 자유 이동.</span></li>
+        <li><span>📱</span><span>모바일·태블릿·PC 모두 최적화. 홈 화면에 추가하면 앱처럼 사용 가능.</span></li>
+      </ul>
+    </div>
+
+  </div><!-- /idx-main -->
+
+  <div class="idx-footer">
+    사회복지학과 기말시험 학습 허브 · 통합 단일 파일<br>
+  </div>
+
+  <!-- ── 전체 과목 요약 검색 오버레이 ── -->
+  <div id="main-search-overlay" role="dialog" aria-label="전체 요약 검색">
+    <div class="msr-header">
+      <button class="msr-close-btn" onclick="closeMainSearch()">✕ 닫기</button>
+      <div class="msr-input-wrap">
+        <span>🔍</span>
+        <input type="text" id="msrInput" placeholder="전체 과목에서 키워드 검색... 예) 생존권, 사회보험, 인권"
+          oninput="doMainSearch(this.value)" autocomplete="off">
+        <button class="msr-clear-btn" id="msrClearBtn" onclick="clearMainSearch()">✕</button>
+      </div>
+    </div>
+    <div class="msr-body" id="msrBody">
+      <!-- 초기 안내 -->
+      <div class="msr-hint" id="msrHint">
+        <div class="hint-icon">🔍</div>
+        <p>모든 과목의 요약정리 내용을 한 번에 검색할 수 있습니다.<br>키워드를 입력하면 관련 카드가 바로 표시됩니다.</p>
+        <div class="hint-chips">
+          <span class="hint-chip" onclick="setMainSearch('생존권')">생존권</span>
+          <span class="hint-chip" onclick="setMainSearch('사회보험')">사회보험</span>
+          <span class="hint-chip" onclick="setMainSearch('인권')">인권</span>
+          <span class="hint-chip" onclick="setMainSearch('복지국가')">복지국가</span>
+          <span class="hint-chip" onclick="setMainSearch('사회보장')">사회보장</span>
+          <span class="hint-chip" onclick="setMainSearch('노동')">노동</span>
+          <span class="hint-chip" onclick="setMainSearch('급여')">급여</span>
+          <span class="hint-chip" onclick="setMainSearch('지역사회')">지역사회</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /view-index -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     [추가] 즐겨찾기 오버레이 (전체 앱 공통)
+═══════════════════════════════════════════════════════════ -->
+<div id="fav-overlay">
+  <div class="fav-ov-header">
+    <button class="fav-ov-close" onclick="closeFavOverlay()" style="display:none">← 돌아가기</button>
+    <span class="fav-ov-title">⭐ 즐겨찾기 카드</span>
+    <span id="favOvCount" style="font-size:.78em;color:#94a3b8"></span>
+  </div>
+  <div class="fav-ov-body" id="favOvBody"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     [추가] 강별 연습문제 미리보기 모달 (바텀시트)
+═══════════════════════════════════════════════════════════ -->
+<div id="rq-modal" onclick="closeRqModal(event)">
+  <div class="rq-sheet" onclick="event.stopPropagation()">
+    <div class="rq-sheet-drag"></div>
+    <div class="rq-sheet-header">
+      <div style="flex:1;min-width:0">
+        <div class="rq-sheet-title" id="rq-sheet-title">연습문제</div>
+        <div class="rq-sheet-count" id="rq-sheet-count"></div>
+      </div>
+      <button class="rq-global-toggle" id="rq-global-toggle" onclick="toggleAllAnswers()">정답 보기</button>
+      <button class="rq-close-btn" onclick="closeRqModal()">닫기</button>
+    </div>
+    <div class="rq-sheet-body" id="rq-sheet-body"></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     뷰 2: 요점정리 (summary.html 기반)
+     - 동적 렌더링: SUMMARY_DATA 객체에서 챕터·카드 생성
+     - 챕터 탭 전환 / 키워드 검색 / 글씨 크기 조절
+═══════════════════════════════════════════════════════════ -->
+<div id="view-summary" class="app-view">
+
+  <div class="sum-sticky">
+    <div class="sum-site-header" id="sumSiteHeader" onclick="handleHeaderClick()">
+      <!-- 접힌 상태 안내 띠 -->
+      <div class="sum-collapsed-bar">
+        <span class="sum-collapsed-title" id="sum-collapsed-title-text">📚 요점정리</span>
+        <span class="sum-collapsed-hint">▼ 눌러서 펼치기</span>
+      </div>
+      <!-- 행1: 과목 제목 전용 -->
+      <div class="sum-title-row">
+        <div class="sum-header-titles">
+          <h1 id="sum-title-text">📚 요점정리</h1>
+          <p id="sum-subtitle-text">카드 요약</p>
+        </div>
+      </div>
+      <!-- 행2: 검색 -->
+      <div class="sum-search-row">
+        <div class="sum-search-box">
+          <span>🔍</span>
+          <input type="text" id="sumSearchInput"
+            placeholder="키워드 검색 예) 생존권, 사회보험, 인권..."
+            oninput="doSumSearch(this.value)"
+            onclick="event.stopPropagation()">
+          <button class="sum-srch-clear" id="sumClearBtn"
+            onclick="clearSumSearch()" style="display:none">✕</button>
+        </div>
+      </div>
+    </div>
+    <!-- 챕터 내비 (JS로 동적 생성) + 펼치기 버튼 -->
+    <nav class="sum-ch-nav" id="sumChNav">
+      <button id="sum-expand-btn" onclick="expandSumHeader()" title="제목·검색창 펼치기">▲ 펼치기</button>
+    </nav>
+  </div>
+
+  <!-- 카드 콘텐츠 영역 (JS로 동적 생성) -->
+  <div id="sumMain"></div>
+
+  <!-- 검색 결과 오버레이 -->
+  <div id="sumSearchResults">
+    <div class="sr-sticky-wrap">
+      <div class="sr-top-bar">
+        <button class="sr-back-btn" onclick="clearSumSearch()">← 돌아가기</button>
+        <div class="sr-search-box">
+          <span>🔍</span>
+          <input type="text" id="sumSearchInput2" placeholder="키워드 검색..."
+            oninput="syncSumSearch(this.value)"
+            onclick="event.stopPropagation()">
+          <button class="sum-srch-clear" id="sumClearBtn2"
+            onclick="clearSumSearch()" style="display:none">✕</button>
+        </div>
+        <span class="sr-count" id="sumSrCount"></span>
+      </div>
+      <nav class="sr-ch-nav" id="srChNav"></nav>
+    </div>
+    <div class="sr-body" id="sumSrBody"></div>
+  </div>
+
+</div><!-- /view-summary -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     뷰 3: 퀴즈 (quiz.html 기반)
+     - 과목별 QUIZ_BANK에서 랜덤 출제
+     - 시작/진행/결과 3단계 화면 전환
+═══════════════════════════════════════════════════════════ -->
+<div id="view-quiz" class="app-view">
+
+  <!-- 상단 바 -->
+  <div id="qz-topbar">
+    <span class="qz-title-sm" id="qz-title-text">📚 퀴즈</span>
+  </div>
+
+  <div id="qz-app">
+
+    <!-- ── 시작 화면 ── -->
+    <div id="qz-start" class="qz-screen active">
+      <div class="qz-hero">
+        <div class="qz-hero-icon" id="qz-hero-icon">📚</div>
+        <h1 id="qz-hero-title">퀴즈</h1>
+        <p id="qz-hero-desc">문제를 불러오는 중...</p>
+        <div class="qz-info-grid">
+          <div class="qz-info-item"><div class="label">총 문제 수</div><div class="value" id="qz-info-total">-</div></div>
+          <div class="qz-info-item"><div class="label">출제 문항</div><div class="value" id="qz-info-count">-</div></div>
+          <div class="qz-info-item"><div class="label">강의 범위</div><div class="value" id="qz-info-range">-</div></div>
+          <div class="qz-info-item"><div class="label">문제 유형</div><div class="value">4지선다</div></div>
+        </div>
+        <button class="btn-start" onclick="startQuiz()">🎯 퀴즈 시작하기</button>
+      </div>
+    </div>
+
+    <!-- ── 퀴즈 진행 화면 ── -->
+    <div id="qz-quiz" class="qz-screen">
+      <div class="qz-prog-area">
+        <div class="qz-prog-row">
+          <span class="qz-prog-label">진행 상황</span>
+          <span class="qz-prog-count" id="qz-prog-count">1 / 25</span>
+        </div>
+        <div class="qz-prog-bar">
+          <div class="qz-prog-fill" id="qz-prog-fill" style="width:4%"></div>
+        </div>
+      </div>
+      <div class="chapter-badge" id="qz-chapter-badge">📖 제1강</div>
+      <div class="q-card">
+        <div class="q-number" id="qz-q-number">문제 1</div>
+        <div class="q-text" id="qz-q-text"></div>
+        <div class="q-image-wrap" id="qz-image-wrap">
+          <img class="q-image" id="qz-image" src="" alt="문제 그림">
+        </div>
+      </div>
+      <div class="options" id="qz-options"></div>
+      <div class="explanation" id="qz-explanation">
+        <div class="exp-title">💡 해설</div>
+        <div id="qz-occ-tag"></div>
+        <div id="qz-exp-text"></div>
+      </div>
+      <div class="qz-nav-row">
+        <button class="btn-nav" id="qz-btn-prev" onclick="qzNavigate(-1)">◀ 이전</button>
+        <button class="btn-nav" id="qz-btn-next" onclick="qzNavigate(1)">다음 ▶</button>
+      </div>
+      <button id="qz-check-btn" onclick="showQzResult()" disabled>📊 결과 확인하기</button>
+      <div class="grid-title">📋 문제 탐색</div>
+      <div class="num-grid" id="qz-num-grid"></div>
+    </div>
+
+    <!-- ── 결과 화면 ── -->
+    <div id="qz-result" class="qz-screen">
+      <div class="score-card">
+        <div class="score-circle">
+          <div class="score-num" id="qz-res-score">0</div>
+          <div class="score-denom" id="qz-res-denom">/ 25</div>
+        </div>
+        <div class="grade-badge" id="qz-grade-badge">-</div>
+        <div style="color:var(--muted);font-size:.9em" id="qz-res-pct"></div>
+        <div class="qz-stat-row">
+          <div class="stat-item"><div class="stat-label">✅ 정답</div><div class="stat-val c" id="qz-res-c">0</div></div>
+          <div class="stat-item"><div class="stat-label">❌ 오답</div><div class="stat-val w" id="qz-res-w">0</div></div>
+          <div class="stat-item"><div class="stat-label">🎯 정답률</div><div class="stat-val" id="qz-res-rate">0%</div></div>
+        </div>
+      </div>
+      <div class="result-list" id="qz-result-list"></div>
+      <button class="btn-retry" onclick="startQuiz()">🔄 새 문제로 다시 풀기</button>
+      <button class="btn-wrongnote" id="btnWrongNote" onclick="showWrongNoteView()">📝 오답노트 보기</button>
+    </div>
+
+    <!-- ── 오답노트 화면 ── -->
+    <div id="qz-wrongnote" class="qz-screen">
+      <div class="wn-header">
+        <h2>📝 오답노트</h2>
+        <p id="wn-subj-name">과목명</p>
+        <span class="wn-stat" id="wn-stat-text">0문제</span>
+      </div>
+      <div id="wn-list"></div>
+      <button class="wn-retry-btn" onclick="retryWrongOnly()">🔁 틀린 문제만 다시 풀기</button>
+      <button class="wn-clear-btn" onclick="clearWrongNote()">🗑️ 이 과목 오답노트 초기화</button>
+      <button class="btn-nav" style="margin-top:10px" onclick="showQzScreen('qz-result')">← 결과로 돌아가기</button>
+    </div>
+
+  </div><!-- /qz-app -->
+
+</div><!-- /view-quiz -->
+
+
+<script>
+/** 메인 페이지 글자 크기 설정 */
+function setIdxFs(size, key) {
+  document.documentElement.style.setProperty('--fs', size + 'px');
+  document.querySelectorAll('.idx-fsb').forEach(b => {
+    // 버튼 텍스트 대신 data 속성으로 비교
+    b.classList.toggle('active', b.getAttribute('data-key') === key);
+  });
+  try { localStorage.setItem('idxFontKey', JSON.stringify({ px: size, label: key })); } catch(e) {}
+}
+
+/* ── 전역 글자 크기 (모든 뷰 통합) ── */
+function setGlobalFs(px, key) {
+  document.documentElement.style.setProperty('--fs', px + 'px');
+  document.querySelectorAll('.gfsb').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-key') === key);
+  });
+  try { localStorage.setItem('globalFontKey', JSON.stringify({ px, label: key })); } catch(e) {}
+}
+
+/* ── 홈 버튼 상태 ── */
+function updateHomeBtn(isHome) {
+  const btn = document.getElementById('g-home-btn');
+  if (!btn) return;
+  btn.classList.toggle('on-home', isHome);
+}
+
+/* ════════════════════════════════════════════════════════════
+   0. 메인 전체 검색 기능
+════════════════════════════════════════════════════════════ */
+
+/** 검색 오버레이 열기 */
+function openMainSearch() {
+  const ov = document.getElementById('main-search-overlay');
+  ov.classList.add('open');
+  setTimeout(() => document.getElementById('msrInput').focus(), 100);
+}
+
+/** 검색 오버레이 닫기 */
+function closeMainSearch() {
+  document.getElementById('main-search-overlay').classList.remove('open');
+  clearMainSearch();
+}
+
+/** 검색어 초기화 */
+function clearMainSearch() {
+  const inp = document.getElementById('msrInput');
+  inp.value = '';
+  document.getElementById('msrClearBtn').style.display = 'none';
+  renderMsrHint();
+}
+
+/** 힌트 칩으로 검색어 설정 */
+function setMainSearch(kw) {
+  const inp = document.getElementById('msrInput');
+  inp.value = kw;
+  doMainSearch(kw);
+}
+
+/** HTML 태그 제거 유틸 */
+function stripHtml(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+}
+
+/** 하이라이트 처리 */
+function highlightKw(text, kw) {
+  if (!kw) return text;
+  const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(escaped, 'gi'), m => `<mark>${m}</mark>`);
+}
+
+/** 힌트 화면 복원 */
+function renderMsrHint() {
+  document.getElementById('msrBody').innerHTML = `
+    <div class="msr-hint" id="msrHint">
+      <div class="hint-icon">🔍</div>
+      <p>모든 과목의 요약정리 내용을 한 번에 검색할 수 있습니다.<br>키워드를 입력하면 관련 카드가 바로 표시됩니다.</p>
+      <div class="hint-chips">
+        <span class="hint-chip" onclick="setMainSearch('생존권')">생존권</span>
+        <span class="hint-chip" onclick="setMainSearch('사회보험')">사회보험</span>
+        <span class="hint-chip" onclick="setMainSearch('인권')">인권</span>
+        <span class="hint-chip" onclick="setMainSearch('복지국가')">복지국가</span>
+        <span class="hint-chip" onclick="setMainSearch('사회보장')">사회보장</span>
+        <span class="hint-chip" onclick="setMainSearch('노동')">노동</span>
+        <span class="hint-chip" onclick="setMainSearch('급여')">급여</span>
+        <span class="hint-chip" onclick="setMainSearch('지역사회')">지역사회</span>
+      </div>
+    </div>`;
+}
+
+/** 과목별 테마 색상 */
+const SUBJ_COLORS = {
+  1:'#2563eb', 2:'#7c3aed', 3:'#059669', 4:'#d97706', 5:'#dc2626', 6:'#0891b2'
+};
+
+/** 실제 검색 실행 */
+function doMainSearch(query) {
+  const q = query.trim();
+  const clearBtn = document.getElementById('msrClearBtn');
+  clearBtn.style.display = q ? 'block' : 'none';
+
+  if (!q) { renderMsrHint(); return; }
+
+  // SUMMARY_DATA 전체 탐색
+  const results = []; // { subjectId, subjectTitle, subjectIcon, chapterIdx, chapterNum, chapterName, cardIcon, cardTitle, snippet }
+
+  Object.keys(SUMMARY_DATA).forEach(sid => {
+    const subj = SUMMARY_DATA[sid];
+    if (!subj.chapters) return;
+    subj.chapters.forEach((ch, chapterIdx) => {
+      if (!ch.cards) return;
+      ch.cards.forEach(card => {
+        const plain = stripHtml(card.html || '') + ' ' + (card.title || '');
+        if (plain.toLowerCase().includes(q.toLowerCase())) {
+          // 스니펫: 키워드 주변 80자
+          const idx = plain.toLowerCase().indexOf(q.toLowerCase());
+          const start = Math.max(0, idx - 30);
+          const raw = plain.slice(start, start + 120).trim();
+          const snippet = (start > 0 ? '…' : '') + raw + (raw.length >= 120 ? '…' : '');
+          results.push({
+            subjectId: parseInt(sid),
+            subjectTitle: subj.title,
+            subjectIcon: subj.icon,
+            chapterIdx,
+            chapterNum: ch.num,
+            chapterName: ch.name,
+            cardIcon: card.icon,
+            cardTitle: card.title,
+            snippet
+          });
+        }
+      });
+    });
+  });
+
+  renderMsrResults(results, q);
+}
+
+/** 결과 렌더링 */
+function renderMsrResults(results, q) {
+  const body = document.getElementById('msrBody');
+  if (!results.length) {
+    body.innerHTML = `
+      <div class="msr-no-result">
+        <div class="no-icon">🔎</div>
+        <p><b>"${q}"</b>에 해당하는 내용을 찾지 못했습니다.<br>다른 키워드로 검색해보세요.</p>
+      </div>`;
+    return;
+  }
+
+  // 과목별 그룹화
+  const groups = {};
+  results.forEach(r => {
+    if (!groups[r.subjectId]) groups[r.subjectId] = [];
+    groups[r.subjectId].push(r);
+  });
+
+  let html = `<div class="msr-result-bar">
+    <span class="msr-result-count">검색 결과 ${results.length}건</span>
+    <span class="msr-result-sub">"${q}" · ${Object.keys(groups).length}개 과목</span>
+  </div>`;
+
+  Object.keys(groups).sort((a,b)=>a-b).forEach(sid => {
+    const grp = groups[sid];
+    const color = SUBJ_COLORS[sid] || '#64748b';
+    html += `<div class="msr-subject-group">
+      <div class="msr-subject-label">
+        <span class="subj-badge" style="background:${color}">${grp[0].subjectIcon}</span>
+        ${grp[0].subjectTitle}
+        <span style="margin-left:auto;font-size:.90em;font-weight:700;color:${color}">${grp.length}건</span>
+    </div>`;
+    grp.forEach(r => {
+      const hl = highlightKw(r.snippet, q);
+      const titleHl = highlightKw(r.cardTitle, q);
+      const cardTitleArg = JSON.stringify(r.cardTitle).replace(/'/g, '&#39;');
+      html += `<div class="msr-result-card" onclick='msrGoSummary(${r.subjectId}, ${r.chapterIdx}, ${cardTitleArg})'>
+        <div class="msr-rc-top">
+          <span class="msr-rc-chapter" style="background:${color}18;color:${color}">${r.chapterNum} · ${r.chapterName}</span>
+          <span class="msr-rc-arrow">›</span>
+        </div>
+        <div class="msr-rc-title">${r.cardIcon} ${titleHl}</div>
+        <div class="msr-rc-snippet">${hl}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+
+  body.innerHTML = html;
+}
+
+/** 검색 결과에서 해당 요약 카드로 이동 */
+function msrGoSummary(subjectId, chapterIdx, cardTitle) {
+  closeMainSearch();
+  goSummary(subjectId);
+  goSumCard(chapterIdx, cardTitle);
+}
+
+/* ════════════════════════════════════════════════════════════
+   1. 뷰 전환 (Navigation)
+════════════════════════════════════════════════════════════ */
+
+/** 특정 뷰를 활성화하고 나머지를 숨깁니다 */
+function showView(id) {
+  document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+/** 메인 인덱스로 이동 */
+function goIndex() {
+  showView('view-index');
+  updateWrongNoteMainBtn();
+  renderResumeBanner();
+  updateHomeBtn(true);
+  document.body.style.overflow = '';
+  const fav = document.getElementById('fav-overlay');
+  if (fav) fav.classList.remove('open');
+}
+
+const SUBJECT_FILTER_STORAGE_KEY = 'sw-study-selected-subjects';
+const selectedSubjectFilters = new Set();
+
+/** 메인 과목 목록에서 선택한 과목들을 표시 */
+function toggleSubjectFilter(subjectId, btn) {
+  const allBtn = document.querySelector('.subject-filter-btn[data-filter="all"]');
+
+  if (subjectId === 'all') {
+    selectedSubjectFilters.clear();
+    document.querySelectorAll('.subject-filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+  } else {
+    const key = String(subjectId);
+    if (selectedSubjectFilters.has(key)) {
+      selectedSubjectFilters.delete(key);
+      if (btn) btn.classList.remove('active');
+    } else {
+      selectedSubjectFilters.add(key);
+      if (btn) btn.classList.add('active');
+    }
+
+    if (allBtn) allBtn.classList.remove('active');
+    if (selectedSubjectFilters.size === 0 && allBtn) {
+      allBtn.classList.add('active');
+    }
+  }
+
+  saveSubjectFilterState();
+  applySubjectFilterState();
+  updateSfBadge();
+}
+
+/** 선택한 과목 필터 상태 저장 */
+function saveSubjectFilterState() {
+  localStorage.setItem(SUBJECT_FILTER_STORAGE_KEY, JSON.stringify([...selectedSubjectFilters]));
+}
+
+/** 저장된 과목 필터 상태 복원 */
+function restoreSubjectFilterState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SUBJECT_FILTER_STORAGE_KEY) || '[]');
+    selectedSubjectFilters.clear();
+    saved.forEach(id => {
+      if (['1','2','3','4','5','6'].includes(String(id))) {
+        selectedSubjectFilters.add(String(id));
+      }
+    });
+  } catch (e) {
+    selectedSubjectFilters.clear();
+  }
+
+  document.querySelectorAll('.subject-filter-btn').forEach(btn => {
+    const key = btn.dataset.filter;
+    btn.classList.toggle('active', key === 'all' ? selectedSubjectFilters.size === 0 : selectedSubjectFilters.has(key));
+  });
+
+  applySubjectFilterState();
+  updateSfBadge();
+}
+
+/** 과목 필터 상태를 화면에 반영 */
+function applySubjectFilterState() {
+  const showAll = selectedSubjectFilters.size === 0;
+  document.querySelectorAll('#view-index .subject-card[data-subject-id]').forEach(card => {
+    card.classList.toggle('is-hidden', !showAll && !selectedSubjectFilters.has(card.dataset.subjectId));
+  });
+
+  const label = document.getElementById('subjectListLabel');
+  if (label) {
+    label.textContent = showAll ? '✅ 학습 가능 과목' : `✅ 선택한 과목 ${selectedSubjectFilters.size}개`;
+  }
+}
+
+restoreSubjectFilterState();
+
+/** 요점정리 뷰로 이동 (subjectId: 1~6) */
+function goSummary(subjectId) {
+  renderSummaryView(subjectId);
+  showView('view-summary');
+  saveLastPosition({ type:'summary', subjectId, chapterIdx:0 });
+  updateHomeBtn(false);
+}
+
+/** 퀴즈 뷰로 이동 (subjectId: 1~6) */
+function goQuiz(subjectId) {
+  initQuizView(subjectId);
+  showView('view-quiz');
+  updateHomeBtn(false);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   2. 요점정리 데이터 (SUMMARY_DATA)
+   ─────────────────────────────────────────────────────────
+   구조:
+   {
+     subjectId: {
+       title, subtitle, icon,
+       chapters: [
+         { num, name, cards: [{ icon, title, html }] }
+       ]
+     }
+   }
+   
+   ✏️ 사용자 수정 방법:
+   - 챕터 추가: chapters 배열에 객체 추가
+   - 카드 추가: 해당 챕터의 cards 배열에 { icon, title, html } 추가
+   - html 내에는 .pts, .hbox, .comp-table 등 스타일 클래스 사용 가능
+════════════════════════════════════════════════════════════ */
+const SUMMARY_DATA = {
+
+  /* ── 과목 1: 사회복지실천론 ── */
+  1: {
+    title: '사회복지실천론',
+    subtitle: '1강 ~ 15강 강의별 요점카드',
+    icon: '💼',
+    chapters: [
+      { num: "1강", name: "사회복지실천 — 정의의 두 흐름과 통합적 실천", icon: "🌱",
+  cards: [
+
+    { icon: '📂', title: '01. 오프닝 — 두 장면의 사회복지사',
+      html:   `
+        <div class="badge-row">
+          <span class="badge badge-blue">두 장면의 사회복지사와 비대칭</span>
+          <span class="badge badge-green">학습목표 (5가지)</span>
+        </div>
+      `
+    },
+
+    { icon: '👥', title: '두 장면의 사회복지사와 비대칭',
+      html:   `
+        <div class="hbox hbox-blue">사회복지사에게는 미시적 이미지(상담·사례관리)와 거시적 이미지(옹호·조직화·정책) 두 장면이 모두 존재하며, 이 강의는 미시 이미지가 압도적으로 익숙한 "비대칭"에서 출발한다</div>
+        <div class="sub">두 장면</div>
+        <ul class="pts">
+          <li><b>눈에 익숙한 장면</b>: 복지관·센터·공공기관에서 상담·사례관리·서비스 연계를 수행 — 한국에서 가장 익숙한 사회복지사의 이미지</li>
+          <li><b>상대적으로 덜 보이는 장면</b>: 권익옹호·주민조직화·캠페인·정책 제안에 참여</li>
+          <li>두 장면 <b>모두</b> 사회복지사가 수행할 수 있는 정당한 실천 영역이다 — 이 강의 전체를 관통하는 문제의식은 사회복지실천을 한쪽(미시)으로만 좁혀 이해하지 않는 것</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 오프닝 질문: "당신이 떠올린 사회복지사는 누구입니까?" — "둘은 다른 사람이 아니다. 같은 전문직의 두 얼굴이다."</div>
+      `
+    },
+
+    { icon: '🎯', title: '학습목표 (5가지)',
+      html:   `
+        <div class="hbox hbox-blue">이번 강의는 사회복지실천의 기본개념·역사적 뿌리·정의·목적·기능·통합적 실천과 한국적 맥락을 다루고, 앞으로의 학습 시각의 밑그림을 제시한다</div>
+        <div class="sub">다섯 가지 목표</div>
+        <ul class="star-list">
+          <li>사회복지실천의 <b>기본개념</b>을 이해한다</li>
+          <li>사회복지실천의 <b>역사적 뿌리</b>를 살펴본다</li>
+          <li>사회복지실천의 <b>정의·목적·기능</b>을 탐구한다</li>
+          <li><b>통합적 실천과 한국적 맥락</b>을 살펴본다</li>
+          <li>이 수업이 어떤 시각으로 사회복지실천을 학습할지에 대한 <b>밑그림</b>을 제시한다</li>
+        </ul>
+      `
+    },
+
+    { icon: '📂', title: '02. 개념의 출발 — Welfare',
+      html:   `
+        <div class="badge-row">
+          <span class="badge badge-blue">Welfare의 어원과 사회복지의 정의</span>
+          <span class="badge badge-green">제도와 삶 사이의 다리</span>
+          <span class="badge badge-purple">용어의 변천</span>
+        </div>
+      `
+    },
+
+    { icon: '🌱', title: 'Welfare의 어원과 사회복지의 정의',
+      html:   `
+        <div class="hbox hbox-blue">사회복지(Social Welfare)는 개인 혼자만의 안녕이 아니라 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적이고 사회적인 노력이다</div>
+        <div class="sub">용어의 어원</div>
+        <ul class="pts">
+          <li><b>Welfare</b> = wel(좋은/잘) + fare(지내다/살아가다) → "잘 지내는 상태", 안녕한 상태, 좋게 살아가는 상태를 뜻하는 말에서 출발한 개념</li>
+          <li><b>Social</b>의 의미: 사교적인, 사회적인, <b>공공의</b>라는 뜻을 함께 지님</li>
+        </ul>
+        <div class="sub">Social Welfare를 이해하기 위한 두 질문</div>
+        <ul class="pts">
+          <li>누가 <b>구성원</b>인가? (복지의 대상 범위)</li>
+          <li>무엇을 <b>좋은 상태</b>라고 볼 것인가? (복지의 내용/기준)</li>
+          <li>이 질문에 대한 답은 시대와 사회에 따라 달라져 왔다</li>
+        </ul>
+      `
+    },
+
+    { icon: '🌉', title: '제도와 삶 사이의 다리 — 사회복지 vs 사회복지실천',
+      html:   `
+        <div class="hbox hbox-blue">사회복지실천은 제도를 삶으로 가져오고, 삶의 문제를 제도 변화로 되돌려 보내는 이중 방향의 활동이다</div>
+        <div class="sub">사회복지 vs 사회복지실천</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th class="th-blue">사회복지</th><th class="th-green">사회복지실천</th></tr>
+          <tr><td><b>주체</b></td><td>가치·제도·정책</td><td>사회복지사</td></tr>
+          <tr><td><b>내용</b></td><td>법, 예산, 전달체계, 사회적 권리의 구조</td><td>사람 사이의 전문 활동 (상담, 연계, 조직화, 옹호)</td></tr>
+          <tr><td><b>성격</b></td><td>구조 차원</td><td>삶의 변화 과정</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 법과 예산은 책상 위에 있을 때 추상적이다. 그것이 어느 가정의 식탁에 도착하고, 어느 청년의 삶의 선택지를 넓히고, 어느 지역에 자원을 연결할 때 비로소 사회복지실천이 된다</div>
+      `
+    },
+
+    { icon: '📜', title: '용어의 변천 ★',
+      html:   `
+        <div class="hbox hbox-blue">사회사업 → 사회복지 → 사회복지실천으로 이어진 용어 변화는 작은 명칭 변경이 아니라 전문직 정체성의 이동을 담고 있다</div>
+        <div class="sub">시기별 용어 변천</div>
+        <table class="comp-table">
+          <tr><th>시기</th><th>용어</th><th>함의</th></tr>
+          <tr><td>1960~70년대</td><td>사회사업</td><td>자선·종교·구호의 흔적</td></tr>
+          <tr><td>1980년대 이후</td><td>사회복지</td><td>국가·제도·정책의 확대</td></tr>
+          <tr><td>현재</td><td><b>사회복지실천</b></td><td>사회복지의 가치와 목표를 현장에서 구현하는 전문적 활동 / 전문직 활동과 통합적 실천</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 한국사회복지가 자선에서 제도로, 제도에서 전문적 실천으로 이동해 온 흔적이다</div>
+      `
+    },
+
+    { icon: '📂', title: '03. 역사적 뿌리',
+      html:   `
+        <div class="badge-row">
+          <span class="badge badge-blue">배경</span>
+          <span class="badge badge-blue">자선조직협회(COS)</span>
+          <span class="badge badge-green">인보관운동</span>
+          <span class="badge badge-green">Jane Addams</span>
+          <span class="badge badge-purple">COS vs 인보관운동</span>
+        </div>
+      `
+    },
+
+    { icon: '🏙️', title: '배경 — 산업화·도시화와 두 가지 답',
+      html:   `
+        <div class="hbox hbox-blue">같은 문제(빈곤·도시 문제) 앞에서 두 가지 서로 다른 답(COS, 인보관운동)이 등장했다</div>
+        <div class="sub">배경 흐름</div>
+        <ul class="pts">
+          <li>19세기 말, 영국과 미국의 대도시는 산업화·도시화의 압력을 강하게 받음</li>
+          <li>농촌 인구의 도시 이동 → 열악한 노동 조건 → 빈곤이 대규모 <b>도시 문제</b>로 나타남</li>
+          <li>기존의 교외 자선·자발적 구호만으로는 이 문제를 감당하기 어려워짐</li>
+        </ul>
+      `
+    },
+
+    { icon: '📋', title: '자선조직협회(COS, Charity Organization Society)',
+      html:   `
+        <div class="hbox hbox-blue">COS는 자선을 체계화하고 중복 구호와 의존을 줄이기 위해 개별 가정의 상황을 조사·조정한 흐름으로, 오늘날 개별사회사업·사례관리의 토대가 되었다</div>
+        <div class="sub">문제의식 · 초점 · 방법 · 유산</div>
+        <ul class="pts">
+          <li><b>문제의식</b>: 어떻게 하면 자선을 체계화하고, 중복 구호와 의존을 줄일 수 있을까? — 오늘날의 <b>효율성</b> 질문과 맥이 닿는 문제의식</li>
+          <li><b>초점</b>: 개별 가정의 상황 조사와 구호의 조정</li>
+          <li><b>방법</b>: 우애방문(friendly visiting), 기록, 사정, 기관 간 조정 — 초기에는 중산층·상류층의 자원봉사 활동(우애방문)으로 이루어졌고, 이후 유급 조사원과 전문직 활동으로 발전함</li>
+          <li><b>유산</b>: 개별사회사업(casework)과 전문직화의 토대 — 오늘날의 개별사회사업·사례관리·사정과 기록의 전통은 이 흐름과 연결됨</li>
+        </ul>
+        <div class="sub">공헌과 한계</div>
+        <table class="comp-table">
+          <tr><th class="th-blue">공헌</th><th>한계</th></tr>
+          <tr><td>자선을 체계화함</td><td>빈곤을 개인의 도덕성·생활습관 문제로 좁게 볼 위험</td></tr>
+          <tr><td>조사와 기록을 발전시킴</td><td>구조적 원인 분석이 약함</td></tr>
+          <tr><td>중복 구호를 조정함</td><td>도움 관계에 권력 비대칭이 큼</td></tr>
+          <tr><td>전문직화의 토대를 마련함</td><td>—</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 역사는 "좋다/나쁘다"의 판단이 아니라, 무엇을 보았고 무엇을 덜 보았는지를 묻는 공부다 — COS를 단순히 "나쁜 역사"로만 보아서는 안 된다</div>
+      `
+    },
+
+    { icon: '🏠', title: '인보관운동 (Settlement House Movement)',
+      html:   `
+        <div class="hbox hbox-blue">인보관운동은 가난한 사람을 바꾸는 것이 아니라 함께 살며 지역과 제도를 바꾸려 한 흐름으로, 지역사회조직·옹호·정책개입의 토대가 되었다</div>
+        <div class="sub">문제의식 · 초점 · 방법 · 유산</div>
+        <ul class="pts">
+          <li><b>문제의식</b>: 가난한 사람을 바꾸는 것이 아니라, 함께 살며 지역과 제도를 바꿀 수는 없을까?</li>
+          <li><b>초점</b>: 빈곤 지역의 생활 조건과 사회 구조 — 사람들이 살아가는 주거·노동·교육·위생·정치적 권리의 조건을 함께 봄. "환경 속의 인간"이라는 관점과 맞닿아 있음</li>
+          <li><b>방법</b>: 거주(함께 살기), 교육, 문화 활동, 주민 조직화, 정책 개선</li>
+          <li><b>유산</b>: 지역사회조직, 옹호, 정책개입의 토대</li>
+        </ul>
+        <div class="sub">공헌과 주의점</div>
+        <table class="comp-table">
+          <tr><th class="th-green">공헌</th><th>주의점</th></tr>
+          <tr><td>빈곤의 구조적 조건을 보게 함</td><td>당시 활동가는 대체로 교육받은 중산층이었음 — 계급·문화적 위치가 영향을 줌</td></tr>
+          <tr><td>지역사회와 함께하는 실천을 발전시킴</td><td>"함께 산다"는 말에도 권력 차이가 존재</td></tr>
+          <tr><td>교육·문화·정책개혁을 연결함</td><td>모든 인보관이 급진적·민주주의적이었던 것은 아님</td></tr>
+          <tr><td>옹호와 조직화의 기반을 제공함</td><td>—</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 비판적 존중: 계승하되 신화화하지 않는다</div>
+      `
+    },
+
+    { icon: '👤', title: '인보관운동의 상징 인물 — Jane Addams',
+      html:   `
+        <div class="hbox hbox-blue">Jane Addams는 헐 하우스(Hull House)를 통해 이주민·노동자·여성·아동의 생활 조건 개선, 교육 프로그램, 문화 활동, 사회조사, 정책개혁을 한 공간에서 연결한 인보관운동의 상징적 인물이다</div>
+        <div class="sub">의의</div>
+        <ul class="pts">
+          <li>사회복지 역사와 평화운동의 교차점에 있는 중요한 인물</li>
+        </ul>
+        <div class="hbox hbox-red">❌ 유의점 — 현대적 의미의 사회복지사 <b>자격 제도 이전</b>의 인물이다. "사회복지사 자격을 가진 인물"처럼 표현하기보다, 사회복지 역사의 중요한 <b>선구자</b>로 설명하는 것이 정확하다</div>
+      `
+    },
+
+    { icon: '⚖️', title: 'COS vs 인보관운동 비교 ★',
+      html:   `
+        <div class="hbox hbox-blue">사회복지실천은 개인 사정과 구조적 조건이라는 두 질문을 동시에 붙드는 전문 활동이며, COS와 인보관운동은 각각 미시·거시 실천 계보의 상징적 뿌리다</div>
+        <div class="sub">두 흐름 전체 비교</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th class="th-blue">COS</th><th class="th-green">인보관운동</th></tr>
+          <tr><td><b>핵심 질문</b></td><td>이 사람에게 지금 필요한 도움은 무엇인가?</td><td>이 문제가 반복되게 만드는 조건은 무엇인가?</td></tr>
+          <tr><td><b>방법</b></td><td>개별 사정·사례관리·서비스 조정·기록</td><td>지역사회·조직화·옹호·정책 변화</td></tr>
+          <tr><td><b>실천 계보</b></td><td>미시 실천 → 개별사회사업·사례관리·임상사회복지</td><td>거시 실천 → 지역사회조직·옹호·정책개입</td></tr>
+        </table>
+        <div class="sub">한계 — 계보는 상징적 지도일 뿐</div>
+        <ul class="pts">
+          <li>이 "계보"는 이해를 돕는 <b>단순화된 상징적 지도</b>일 뿐이며, 현실의 역사는 이보다 더 복잡함</li>
+          <li>임상사회복지가 COS만의 후예는 아니고, 거시실천이 인보관만의 후예도 아님</li>
+          <li>정신분석, 시민권운동, 노동운동, 정책학, 지역사회개발 등 여러 흐름이 함께 섞여 있음</li>
+          <li>→ COS적 접근과 인보관적 접근을 <b>통합하는 사고</b>가 필요함</li>
+        </ul>
+      `
+    },
+
+    { icon: '📂', title: '04. 정의 · 목적 · 기능',
+      html:   `
+        <div class="badge-row">
+          <span class="badge badge-blue">정의의 계보</span>
+          <span class="badge badge-blue">정의의 발전 (Richmond → NASW → IFSW)</span>
+          <span class="badge badge-green">한국적 정의 (윤리강령)</span>
+          <span class="badge badge-purple">통합적 정의</span>
+          <span class="badge badge-yellow">목적·기능·기준</span>
+        </div>
+      `
+    },
+
+    { icon: '🧭', title: '정의의 계보',
+      html:   `
+        <div class="hbox hbox-blue">사회복지실천의 정의는 Richmond → NASW → IFSW → 한국 윤리강령/본 교재 순으로 확장되어 온, 현장의 질문이 쌓인 언어다</div>
+        <div class="sub">정의 계보의 특징</div>
+        <ul class="pts">
+          <li>정의는 책상 위 문장이 아니라, <b>현장의 질문들이 쌓인 언어</b>다</li>
+          <li>앞서 본 두 흐름(개인과 환경, 구호와 개혁, 사례관리와 조직화)의 긴장이 이 정의들 안에 계속 남아 있다</li>
+        </ul>
+      `
+    },
+
+    { icon: '📖', title: '정의의 발전 ① ~ ③ — Richmond → NASW → IFSW',
+      html:   `
+        <div class="hbox hbox-blue">사회복지실천의 정의는 개인 중심(Richmond)에서 집단·지역사회(NASW), 사회변화·임파워먼트(IFSW)로 계속 확장되어 왔다</div>
+        <div class="sub">① 고전적 정의 (Richmond)</div>
+        <ul class="pts">
+          <li><b>정의</b>: 개인과 사회환경 사이의 관계를 <b>의식적으로 조정</b>하여 개인의 발달을 돕는 전문 활동</li>
+          <li><b>핵심 의미 1</b>: 자선이 아니라 <b>의식적이고 전문적인 실천</b></li>
+          <li><b>핵심 의미 2</b>: 대상은 개인이지만, 초점은 개인과 환경 <b>사이의 관계</b>에 있음</li>
+          <li><b>주의</b>: 당대의 개인 중심성을 비판적으로 읽을 필요가 있음</li>
+        </ul>
+        <div class="sub">② 현대적 확장① (NASW)</div>
+        <ul class="pts">
+          <li><b>정의</b>: 개인·집단·지역사회의 기능을 돕고, <b>사회적 조건을 함께 만들어 가는</b> 활동</li>
+          <li><b>확장된 대상</b>: 개인 → 집단 → 지역사회</li>
+          <li><b>확장된 목표</b>: 개인의 사회적 기능 증진에서 끝나지 않고, 그 기능이 가능하도록 하는 <b>사회적 조건을 만드는 데까지</b> 확장 — 적응만이 아니라 사회적 조건의 형성</li>
+        </ul>
+        <div class="sub">③ 현대적 확장② (IFSW 계열)</div>
+        <ul class="pts">
+          <li><b>정의</b>: 사회 변화, 사회 발전, 사회적 응집, <b>임파워먼트와 해방</b>을 촉진하는 실천 기반 전문직이자 학문 영역</li>
+          <li>사회복지사는 단순한 서비스 제공자가 아니라, 사람들의 권리와 주체성을 확장하고 공동체의 관계를 회복하며 구조적 조건에 개입하는 전문직</li>
+          <li><b>세 핵심 요소</b>: 사회 변화(구조적 조건에 대한 개입) / 사회적 응집(관계와 공동체의 회복) / 임파워먼트(권리와 주체성의 확장)</li>
+        </ul>
+      `
+    },
+
+    { icon: '🇰🇷', title: '한국적 정의의 기반 (한국사회복지사 윤리강령)',
+      html:   `
+        <div class="hbox hbox-blue">한국사회복지사 윤리강령은 인간의 존엄성과 가치를 상위 가치로 강조하며, 개인 지원과 사회정의를 함께 명시한다</div>
+        <div class="sub">핵심 내용</div>
+        <ul class="pts">
+          <li><b>핵심 가치</b>: 인간의 존엄성과 가치 · 자기결정 · 권익 옹호 · 사회정의 · 전문성</li>
+          <li><b>강점</b>: 인간 존엄성을 상위 가치로, 매우 강하게 강조함</li>
+          <li><b>균형</b>: 개인 지원(클라이언트의 권익옹호)과 사회정의를 함께 명시</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 과제 — 윤리강령의 언어가 현장에서 자동으로 실천되는 것은 아니다. 한국의 기관문화, 행정구조, 자원제약이라는 환경적 요건 속에서 이 가치들을 어떻게 구체화할지가 항상 남겨진 과제다</div>
+      `
+    },
+
+    { icon: '🧩', title: '통합적 정의 (본 강의) ★',
+      html:   `
+        <div class="hbox hbox-blue">개인의 삶과 사회의 구조를 함께 보는 통합적 전문 활동으로, 미시·중시·거시 세 차원으로 구성된다</div>
+        <div class="sub">세 차원</div>
+        <table class="comp-table">
+          <tr><th>차원</th><th>내용</th><th>방법 예시</th></tr>
+          <tr><td>한 사람의 변화 (미시)</td><td>개인 수준 개입</td><td>상담, 사정, 개입, 사례관리</td></tr>
+          <tr><td>공동체의 형성 (중시)</td><td>관계·집단 수준 개입</td><td>관계, 집단, 조직, 지역사회 자원</td></tr>
+          <tr><td>제도의 변화 (거시)</td><td>구조 수준 개입</td><td>옹호, 정책 제안, 거버넌스</td></tr>
+        </table>
+        <div class="sub">핵심 명제</div>
+        <ul class="pts">
+          <li>세 차원 중 <b>하나만으로는</b> 사회복지실천 전체를 설명하기 어렵다</li>
+          <li>그렇다고 모든 사회복지사가 이 세 차원을 <b>동시에 직접 수행</b>해야 한다는 뜻은 아니다 — 중요한 것은 자신이 서 있는 자리에서 이 세 차원을 <b>연결하고 통합하는 능력</b>이다</li>
+        </ul>
+      `
+    },
+
+    { icon: '⚙️', title: '목적 · 기능 · 기준',
+      html:   `
+        <div class="hbox hbox-blue">사회복지실천은 좋은 마음만으로 이루어지는 활동이 아니라, 목적·기능·기준을 갖춘 전문적 실천이다</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th>내용</th></tr>
+          <tr><td><b>목적</b></td><td>문제 해결, 욕구 충족, 사회적 기능 증진, 권리와 정의의 실현</td></tr>
+          <tr><td><b>기능</b></td><td>사정, 개입, 연계·조정, 옹호·조직화</td></tr>
+          <tr><td><b>기준</b></td><td>클라이언트의 삶, 사회적 조건, 전문직 윤리, 책무성</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 좋은 의도만으로는 충분하지 않다 — 전문적 판단과 책임이 필요하다</div>
+      `
+    },
+
+    { icon: '📂', title: '05. 통합적 실천과 한국적 맥락',
+      html:   `
+        <div class="badge-row">
+          <span class="badge badge-blue">통합적 실천의 세 층위</span>
+          <span class="badge badge-blue">적용 사례 — 청년 1인가구</span>
+          <span class="badge badge-green">오해 방지</span>
+          <span class="badge badge-purple">한국적 맥락 — 시기별 전개</span>
+          <span class="badge badge-yellow">왜 미시 중심 이미지가 강한가</span>
+          <span class="badge badge-red">통합의 회복</span>
+        </div>
+      `
+    },
+
+    { icon: '🔺', title: '통합적 실천의 세 층위 ★',
+      html:   `
+        <div class="hbox hbox-blue">실천은 미시·중시·거시 세 층위로 구분되며, 클라이언트의 어려움은 보통 한 층위에서만 발생하지 않는다</div>
+        <div class="sub">세 층위</div>
+        <table class="comp-table">
+          <tr><th>층위 (한글)</th><th>층위 (영문)</th><th>대상</th></tr>
+          <tr><td>미시</td><td>마이크로(Micro)</td><td>개인·가족</td></tr>
+          <tr><td>중시</td><td>매조(Mezzo)</td><td>집단·기관·이웃·지역·네트워크</td></tr>
+          <tr><td>거시</td><td>매크로(Macro)</td><td>지역사회·정책·제도·사회구조</td></tr>
+        </table>
+        <div class="sub">핵심 명제</div>
+        <ul class="pts">
+          <li>클라이언트의 어려움은 보통 한 층위에서만 발생하지 않는다 → 필요에 따라 층위를 이동하며 판단하는 것이 사회복지사 전문성의 핵심</li>
+          <li>예: 한 사람의 <b>우울</b>은 개인의 감정 문제일 수도 있지만, 가족관계·직장환경·지역자원·복지제도와도 연결됨</li>
+        </ul>
+      `
+    },
+
+    { icon: '🧑', title: '적용 사례 — 청년 1인가구',
+      html:   `
+        <div class="hbox hbox-blue">사례 하나에도 개인의 삶, 관계망, 사회 조건이 함께 들어 있다</div>
+        <div class="sub">층위별 개입 예시</div>
+        <table class="comp-table">
+          <tr><th>층위</th><th>개입 예시</th></tr>
+          <tr><td><b>미시</b></td><td>청년의 불안과 우울, 생활 리듬·위기·위험, 강점과 자원 확인</td></tr>
+          <tr><td><b>중시</b></td><td>가족 관계, 직장 관계, 친구·동료의 지지망, 기관 간 협력</td></tr>
+          <tr><td><b>거시</b></td><td>고용 불안정, 주거 문제, 청년 정책, 사회적 낙인</td></tr>
+        </table>
+      `
+    },
+
+    { icon: '🚫', title: '오해 방지 — 통합성은 만능성이 아니다 ★',
+      html:   `
+        <div class="hbox hbox-blue">통합성은 만능성이 아니라 연결 능력이다</div>
+        <div class="sub">오해와 현실</div>
+        <ul class="pts">
+          <li><b>오해</b>: "사회복지사 한 명이 상담도, 조직화도, 정책도, 연구도 모두 직접 해야 한다"</li>
+          <li><b>현실</b>: 사회복지사는 자신이 속한 기관, 주어진 직무·권한·경력에 따라 특정 역할을 맡음</li>
+          <li><b>핵심</b>: 자신이 미시 실천을 하더라도 사례의 중시적 측면과 거시적 맥락을 이해해야 하고, 정책 실천을 하더라도 현장과 개인·가족의 삶에 대한 이해가 있어야 함</li>
+        </ul>
+      `
+    },
+
+    { icon: '🇰🇷', title: '한국적 맥락 — 시기별 전개 (네 시기)',
+      html:   `
+        <div class="hbox hbox-blue">한국 사회복지실천은 태동기·도입기·제도화기·확장기의 네 시기를 거치며 인보관적 실천에서 전문직 확장으로 발전해왔다</div>
+        <div class="sub">시기별 전개</div>
+        <table class="comp-table">
+          <tr><th>시기 구분</th><th>연도</th><th>주요 사건</th><th>의미</th></tr>
+          <tr><td><b>태동기</b></td><td>1921~45</td><td>태화여자관(태화 기독교사회관)·방면위원제도</td><td>인보관적 실천의 도입</td></tr>
+          <tr><td><b>도입기</b></td><td>1947~60s</td><td>이화여대 기독교사회사업과 설립·외원단체 활동</td><td>전문교육과 구호 실천</td></tr>
+          <tr><td><b>제도화기</b></td><td>1970~80s</td><td>사회복지사업법·1983년 사회복지사 자격제도</td><td>국가 제도화와 전문직 형성</td></tr>
+          <tr><td><b>확장기</b></td><td>2003~</td><td>2003년 사회복지사 1급 국가시험 시행·영역별 전문화</td><td>전문직 확장과 통합 과제, 복지국가 확대와 함께 활동 영역 확장</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 연도와 사건은 강의용 요약이며, 세부 내용은 보충자료에서 더 정교하게 다룸</div>
+      `
+    },
+
+    { icon: '🔍', title: '왜 미시 중심 이미지가 강한가 — 단정 대신 조건 분석 ★',
+      html:   `
+        <div class="hbox hbox-blue">미시 중심 이미지가 강한 것은 개인의 잘못이 아니라 교육·행정·대상·이미지 등 여러 조건이 겹친 결과다</div>
+        <div class="sub">조건 분석</div>
+        <table class="comp-table">
+          <tr><th>조건</th><th>내용</th></tr>
+          <tr><td><b>교육과 교과목 분화</b></td><td>실천론·실천기술론은 개인·가족(미시) 중심, 지역사회복지론·정책론은 별도 과목으로 분리</td></tr>
+          <tr><td><b>기관과 행정 구조</b></td><td>서비스 제공·사례관리·평가지표·행정기록이 일상업무를 강하게 조직</td></tr>
+          <tr><td><b>대상 인구의 분화</b></td><td>아동·청소년·여성 등 대상군이 다양하게 분화되어 있음</td></tr>
+          <tr><td><b>전문직 이미지</b></td><td>상담자·사례관리자 이미지는 선명, 조직가·옹호자 이미지는 상대적으로 약함</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 "미시가 잘못"이 아니라, 통합적 연결이 약해질 위험을 말하는 것이다</div>
+      `
+    },
+
+    { icon: '🔗', title: '통합의 회복 ★',
+      html:   `
+        <div class="hbox hbox-blue">사회복지실천의 힘은 깊이(미시)와 넓이(거시)를 함께 갖는 데 있다</div>
+        <div class="sub">세 실천의 역할</div>
+        <ul class="pts">
+          <li><b>미시실천</b>은 관계와 개입의 <b>깊이</b>를 제공</li>
+          <li><b>중시실천</b>은 집단·기관·지역 <b>자원을 연결</b></li>
+          <li><b>거시실천</b>은 권리·정책·사회조건을 <b>이해하고 읽게</b> 함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 한 사람을 돕는 일과 조건을 바꾸는 일은 서로 경쟁하지 않는다 — 오히려 서로가 서로를 필요로 하고 보완한다</div>
+      `
+    },
+
+    { icon: '📂', title: '06. 앞으로의 학습 관점 — 여섯 가지 렌즈',
+      html:   `
+        <div class="badge-row">
+          <span class="badge badge-blue">여섯 가지 렌즈</span>
+          <span class="badge badge-green">클로징 질문 & 다음 강의 예고</span>
+        </div>
+      `
+    },
+
+    { icon: '🔭', title: '앞으로의 학습 관점 — 여섯 가지 렌즈 ★',
+      html:   `
+        <div class="hbox hbox-blue">1강은 통합성·가치중심성·관계성·비판성·책무성·미래성이라는 여섯 관점의 문을 여는 장이다</div>
+        <div class="sub">여섯 가지 렌즈</div>
+        <table class="comp-table">
+          <tr><th>관점</th><th>내용</th></tr>
+          <tr><td><b>통합성</b></td><td>미시·중시·거시 연결 — 한 관점으로만 문제·개입을 바라보지 않고 세 층위를 연결해 이해</td></tr>
+          <tr><td><b>가치 중심(성)</b></td><td>인간 존엄성과 사회정의에 가치를 둠</td></tr>
+          <tr><td><b>관계성</b></td><td>협력적 동반 관계를 중시</td></tr>
+          <tr><td><b>비판성</b></td><td>권력과 구조를 읽는 비판적 시각</td></tr>
+          <tr><td><b>(사회복지적) 책무성</b></td><td>평가·기록·증거 활용을 통해 실천을 책임 있게 만듦</td></tr>
+          <tr><td><b>미래성</b></td><td>디지털 전환 이후의 위기·지속가능성 등 미래지향적 시각</td></tr>
+        </table>
+      `
+    },
+
+    { icon: '💬', title: '클로징 질문 & 다음 강의 예고',
+      html:   `
+        <div class="hbox hbox-blue">"나는 사회복지사를 어떤 사람으로 상상하는가?"라는 질문으로 1강을 마무리하며, 다음 강의는 실천 관점 이론들을 다룬다</div>
+        <div class="sub">클로징 질문</div>
+        <ul class="pts">
+          <li>"나는 사회복지사를 어떤 사람으로 상상하는가?" — 상담자? 사례관리자? 옹호자? 조직가? 정책기획자? 연구자?</li>
+          <li>중요한 것은 <b>어느 하나의 이미지가 사회복지사를 전부 설명하지 않는다</b>는 점</li>
+          <li>이번 학기 동안 이 질문의 답을 조금씩 넓혀간다</li>
+        </ul>
+        <div class="sub">다음 강의 예고 키워드</div>
+        <ul class="pts">
+          <li>#생태체계관점  #강점관점  #empowerment(임파워먼트)관점  #비판적사회복지</li>
+        </ul>
+      `
+    },
+
+    { icon: '📝', title: '1강 핵심 요약',
+      html:   `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>Welfare의 정의</b></td><td>wel(좋은)+fare(살아가다) — 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적·사회적 노력</td></tr>
+          <tr><td><b>용어의 변천</b></td><td>사회사업(1960~70) → 사회복지(1980~) → 사회복지실천(현재) — 전문직 정체성의 이동</td></tr>
+          <tr><td><b>COS</b></td><td>자선 체계화·개별 조사·조정 — 개별사회사업·사례관리의 토대(미시 계보)</td></tr>
+          <tr><td><b>인보관운동</b></td><td>함께 살며 지역·제도를 바꿈, Jane Addams(Hull House) — 지역조직·옹호·정책개입의 토대(거시 계보)</td></tr>
+          <tr><td><b>정의의 발전</b></td><td>Richmond(개인 중심) → NASW(집단·지역사회) → IFSW(사회변화·응집·임파워먼트)</td></tr>
+          <tr><td><b>통합적 정의</b></td><td>미시(한 사람의 변화)·중시(공동체 형성)·거시(제도의 변화) 세 차원을 연결·통합하는 활동</td></tr>
+          <tr><td><b>미시·중시·거시</b></td><td>클라이언트 어려움은 한 층위에만 머물지 않음 — 층위를 이동하며 판단하는 것이 전문성의 핵심</td></tr>
+          <tr><td><b>통합성의 의미</b></td><td>만능성이 아니라 연결 능력 — 자신의 자리에서 미시·중시·거시를 연결하는 능력</td></tr>
+          <tr><td><b>한국적 맥락 4시기</b></td><td>태동기(1921~45) → 도입기(1947~60s) → 제도화기(1970~80s) → 확장기(2003~)</td></tr>
+          <tr><td><b>여섯 가지 렌즈</b></td><td>통합성·가치중심성·관계성·비판성·책무성·미래성 — 앞으로의 학습을 여는 관점</td></tr>
+        </table>
+      `
+    }
+
+  ]
+}
+    ]
+  },
+
+  /* ── 과목 2: 사회복지조사론 ── */
+  2: {
+    title: '사회복지조사론',
+    subtitle: '1강 ~ 15강 강의별 요점카드',
+    icon: '📊',
+    chapters: [
+      { num: "1강", name: "강의제목을 입력하세요", icon: "📌",
+        cards: [
+          // 카드를 여기에 추가
+        ]
+      }
+    ]
+  },
+
+  /* ── 과목 3: 지역사회복지론 ── */
+  3: {
+    title: '지역사회복지론',
+    subtitle: '1강 ~ 15강 강의별 요점카드',
+    icon: '🏘️',
+    chapters: [
+      { num: "1강", name: "강의제목을 입력하세요", icon: "📌",
+        cards: [
+          // 카드를 여기에 추가
+        ]
+      }
+    ]
+  },
+
+  /* ── 과목 4: 사회복지정책론 ── */
+  4: {
+    title: '사회복지정책론',
+    subtitle: '1강 ~ 15강 강의별 요점카드',
+    icon: '📋',
+    chapters: [
+      { num: "1강", name: "강의제목을 입력하세요", icon: "📌",
+        cards: [
+          // 카드를 여기에 추가
+        ]
+      }
+    ]
+  },
+
+  /* ── 과목 5: 인간행동과사회환경 ── */
+  5: {
+    title: '인간행동과사회환경',
+    subtitle: '1강 ~ 15강 강의별 요점카드',
+    icon: '🧠',
+    chapters: [
+      { num: "1강", name: "강의제목을 입력하세요", icon: "📌",
+        cards: [
+          // 카드를 여기에 추가
+        ]
+      }
+    ]
+  },
+
+  /* ── 과목 6: 여성복지론 (선택) ── */
+  6: {
+    title: '여성복지론',
+    subtitle: '1강 ~ 15강 강의별 요점카드',
+    icon: '👩',
+    chapters: [
+      { num: "1강", name: "강의제목을 입력하세요", icon: "📌",
+        cards: [
+          // 카드를 여기에 추가
+        ]
+      }
+    ]
+  },
+
+  /* ── 과목 7: 노인복지론 (선택) ── */
+  7: {
+    title: '노인복지론',
+    subtitle: '1강 ~ 15강 강의별 요점카드',
+    icon: '👴',
+    chapters: [
+      { num: "1강", name: "강의제목을 입력하세요", icon: "📌",
+        cards: [
+          // 카드를 여기에 추가
+        ]
+      }
+    ]
+  }
+
+};
+
+
+
+/* ════════════════════════════════════════════════════════════
+   3. 요점정리 렌더링 (Summary Renderer)
+════════════════════════════════════════════════════════════ */
+
+/** 특정 과목의 요점정리 뷰를 렌더링합니다 */
+let currentSummarySubjectId = 1; // 현재 요점정리 과목 추적
+
+function renderSummaryView(subjectId) {
+  const data = SUMMARY_DATA[subjectId];
+  if (!data) return;
+  currentSummarySubjectId = subjectId;
+
+  // 헤더 정보 업데이트
+  document.getElementById('sum-title-text').textContent = data.icon + ' ' + data.title + ' 요점정리';
+  document.getElementById('sum-subtitle-text').textContent = data.subtitle;
+  const ct = document.getElementById('sum-collapsed-title-text');
+  if (ct) ct.textContent = data.icon + ' ' + data.title;
+
+  // 챕터 내비 버튼 생성
+  const nav = document.getElementById('sumChNav');
+  nav.innerHTML = data.chapters.map((ch, i) =>
+    `<button class="sum-ch-btn${i===0?' active':''}" onclick="showSumCh(${i},this)">${ch.num}</button>`
+  ).join('');
+  // 펼치기 버튼 재추가 (innerHTML 덮어쓰기로 사라지므로)
+  const expandBtn = document.createElement('button');
+  expandBtn.id = 'sum-expand-btn';
+  expandBtn.title = '제목·검색창 펼치기';
+  expandBtn.textContent = '▲ 펼치기';
+  expandBtn.onclick = expandSumHeader;
+  nav.appendChild(expandBtn);
+
+  // 챕터 섹션 및 카드 생성 (즐겨찾기 버튼 포함)
+  const main = document.getElementById('sumMain');
+  main.innerHTML = data.chapters.map((ch, i) => {
+    // 이 강의 문제 수 미리 계산
+    const chNum = parseInt(ch.num);
+    const bank = (QUIZ_BANK[subjectId] || []).filter(q => q.chapter === chNum);
+    const qCount = bank.length;
+    const btnLabel = qCount > 0
+      ? `<span class="cqb-count">${qCount}문제</span>`
+      : `<span class="cqb-none">문제 없음</span>`;
+
+    return `
+    <section class="ch-section${i===0?' active':''}" id="sumSec${i}">
+      <div class="ch-title">
+        <span class="ch-num">${ch.num}</span>
+        <span class="ch-name">${ch.name}</span>
+      </div>
+      ${ch.cards.map(card => {
+        const favKey = makeFavKey(subjectId, i, card.title);
+        const isFav = isFavorite(favKey);
+        return `
+        <div class="card" data-fav-key="${favKey}">
+          <button class="fav-btn${isFav?' active':''}"
+            onclick="toggleFav(${subjectId},${i},'${card.title.replace(/'/g,"\\'")}','${card.icon}',this)"
+            title="${isFav?'즐겨찾기 해제':'즐겨찾기 추가'}">${isFav?'⭐':'☆'}</button>
+          <div class="card-head">
+            <span class="card-icon">${card.icon}</span>
+            <span class="card-title">${card.title}</span>
+          </div>
+          ${card.html}
+        </div>`;
+      }).join('')}
+      <button class="ch-quiz-btn" onclick="openRqModal(${subjectId}, ${chNum}, '${ch.num} ${ch.name.replace(/'/g,"\\'")}')">
+        📝 이 강 연습문제 보기 ${btnLabel}
+      </button>
+    </section>`;
+  }).join('');
+
+  // 검색 인덱스 초기화
+  sumSearchIdx = null;
+  document.getElementById('sumSearchInput').value = '';
+  document.getElementById('sumClearBtn').style.display = 'none';
+  document.getElementById('sumSearchResults').style.display = 'none';
+
+  // 글씨 크기 복원 (전역 설정 사용)
+  try {
+    const saved = JSON.parse(localStorage.getItem('globalFontKey'))
+               || JSON.parse(localStorage.getItem('sumFontKey'));
+    if (saved) setGlobalFs(saved.px, saved.label);
+  } catch(e) {}
+
+  // 헤더 초기 펼침 상태로 리셋 + 스크롤 감지 시작
+  expandSumHeader();
+  initSumScrollCollapse();
+}
+
+/* ── 요점정리 헤더 스크롤 접힘 ── */
+let _sumScrollHandler = null;
+let _sumScrollPaused = false;
+let _sumScrollSaveTimer = null;
+
+function initSumScrollCollapse() {
+  if (_sumScrollHandler) window.removeEventListener('scroll', _sumScrollHandler);
+
+  _sumScrollHandler = function() {
+    if (!document.getElementById('view-summary').classList.contains('active')) return;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const header = document.getElementById('sumSiteHeader');
+    const btn = document.getElementById('sum-expand-btn');
+
+    // 헤더 접힘
+    if (!_sumScrollPaused && header) {
+      if (scrollY > 60) {
+        header.classList.add('collapsed');
+        if (btn) btn.classList.add('show');
+      }
+    }
+
+    // 스크롤 위치 저장 (디바운스 800ms)
+    clearTimeout(_sumScrollSaveTimer);
+    _sumScrollSaveTimer = setTimeout(() => {
+      const pos = loadLastPosition();
+      if (pos && pos.type === 'summary') {
+        pos.scrollY = scrollY;
+        try { localStorage.setItem('sw-last-position', JSON.stringify(pos)); } catch(e) {}
+      }
+    }, 800);
+  };
+  window.addEventListener('scroll', _sumScrollHandler, { passive: true });
+}
+
+function handleHeaderClick() {
+  const header = document.getElementById('sumSiteHeader');
+  if (header && header.classList.contains('collapsed')) {
+    expandSumHeader();
+  }
+}
+
+function expandSumHeader() {
+  const header = document.getElementById('sumSiteHeader');
+  const btn = document.getElementById('sum-expand-btn');
+  if (header) header.classList.remove('collapsed');
+  if (btn) btn.classList.remove('show');
+  // 펼친 후 2초간 스크롤 감지 중단 (바로 재접힘 방지)
+  _sumScrollPaused = true;
+  setTimeout(() => { _sumScrollPaused = false; }, 2000);
+}
+
+/** 챕터 탭 전환 */
+function showSumCh(idx, btn) {
+  const sr = document.getElementById('sumSearchResults');
+  if (sr && sr.style.display !== 'none') clearSumSearch();
+
+  document.querySelectorAll('#sumMain .ch-section').forEach((s, i) => {
+    s.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('#sumChNav .sum-ch-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // 마지막 챕터 위치 저장 (새 챕터니까 scrollY=0)
+  saveLastPosition({ type:'summary', subjectId: currentSummarySubjectId, chapterIdx: idx, scrollY: 0 });
+}
+
+/** 글씨 크기 조절 (요점정리 전용) */
+function setSumFs(px, label) {
+  document.documentElement.style.setProperty('--fs', px + 'px');
+  document.querySelectorAll('.sum-fs-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === label);
+  });
+  try { localStorage.setItem('sumFontKey', JSON.stringify({ px, label })); } catch(e) {}
+}
+
+/* ── 검색 기능 ── */
+let sumSearchIdx = null;
+
+function buildSumSearchIdx() {
+  const idx = [];
+  document.querySelectorAll('#sumMain .ch-section').forEach((sec, secIdx) => {
+    const chNum = (sec.querySelector('.ch-num') || {}).textContent || '';
+    const chTitle = (sec.querySelector('.ch-name') || {}).textContent || '';
+    sec.querySelectorAll('.card').forEach(card => {
+      const cardTitle = (card.querySelector('.card-title') || {}).textContent || '';
+      const cardText = card.innerText || '';
+      idx.push({ secIdx, chNum, chTitle, cardTitle, cardText });
+    });
+  });
+  return idx;
+}
+
+function ehSum(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function sumHighlight(text, kw) {
+  const parts = text.split(new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'));
+  return parts.map(p => p.toLowerCase() === kw.toLowerCase() ? '<mark>' + ehSum(p) + '</mark>' : ehSum(p)).join('');
+}
+
+function syncSumSearch(val) {
+  const inp1 = document.getElementById('sumSearchInput');
+  if (inp1) inp1.value = val;
+  const clr = document.getElementById('sumClearBtn');
+  if (clr) clr.style.display = val ? 'block' : 'none';
+  const clr2 = document.getElementById('sumClearBtn2');
+  if (clr2) clr2.style.display = val ? 'block' : 'none';
+  doSumSearch(val);
+}
+
+function renderSrHits(hits, kw) {
+  document.getElementById('sumSrCount').textContent = hits.length + '개 결과';
+  if (hits.length === 0) {
+    document.getElementById('sumSrBody').innerHTML = '<div class="no-result"><div class="nri">🔍</div><p>결과가 없습니다.</p></div>';
+    return;
+  }
+  document.getElementById('sumSrBody').innerHTML = hits.map(function(item) {
+    var lines = item.cardText.split('\n').map(function(l){return l.trim();})
+      .filter(function(l){ return l.length > 3 && l.toLowerCase().indexOf(kw) !== -1; });
+    var snippet = sumHighlight(lines.slice(0,3).join(' … ').slice(0,160), kw);
+    var titleSafe = item.cardTitle.replace(/'/g, "&#39;");
+    return '<div class="sr-item">'
+      + '<div class="sr-chip" onclick="goSumChapter(' + item.secIdx + ')" title="이 챕터로 이동">' + ehSum(item.chNum) + ' · ' + ehSum(item.chTitle) + '</div>'
+      + '<div class="sr-card-title" onclick="goSumCard(' + item.secIdx + ',\'' + titleSafe + '\')">' + ehSum(item.cardTitle) + '</div>'
+      + '<div class="sr-snippet" onclick="goSumCard(' + item.secIdx + ',\'' + titleSafe + '\')">' + snippet + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function buildSrChNav(hits, q) {
+  var nav = document.getElementById('srChNav');
+  if (!nav) return;
+  var allChaps = [];
+  var seen = {};
+  if (sumSearchIdx) {
+    sumSearchIdx.forEach(function(item) {
+      if (!seen[item.secIdx]) {
+        seen[item.secIdx] = true;
+        allChaps.push({ secIdx: item.secIdx, chNum: item.chNum });
+      }
+    });
+  }
+  nav.innerHTML = allChaps.map(function(ch) {
+    return '<button class="sr-ch-btn" onclick="goSumChapter(' + ch.secIdx + ')">' + ch.chNum + '</button>';
+  }).join('');
+}
+
+function filterSrCh(secIdx, btn, q) {
+  document.querySelectorAll('.sr-ch-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  if (!sumSearchIdx) sumSearchIdx = buildSumSearchIdx();
+  var kw = q.toLowerCase();
+  var hits = sumSearchIdx.filter(function(item){ return item.cardText.toLowerCase().indexOf(kw) !== -1; });
+  if (secIdx !== null) hits = hits.filter(function(item){ return item.secIdx === secIdx; });
+  renderSrHits(hits, kw);
+}
+
+function doSumSearch(q) {
+  var trimmed = q.trim();
+  document.getElementById('sumClearBtn').style.display = trimmed ? 'block' : 'none';
+  var inp2 = document.getElementById('sumSearchInput2');
+  if (inp2 && inp2.value !== q) inp2.value = q;
+  var clr2 = document.getElementById('sumClearBtn2');
+  if (clr2) clr2.style.display = trimmed ? 'block' : 'none';
+  if (!trimmed) { document.getElementById('sumSearchResults').style.display = 'none'; var nav=document.getElementById('srChNav'); if(nav) nav.innerHTML=''; return; }
+  if (!sumSearchIdx) sumSearchIdx = buildSumSearchIdx();
+  var kw = trimmed.toLowerCase();
+  var hits = sumSearchIdx.filter(function(item){ return item.cardText.toLowerCase().indexOf(kw) !== -1; });
+  renderSrHits(hits, kw);
+  document.getElementById('sumSearchResults').style.display = 'block';
+  buildSrChNav(hits, trimmed);
+}
+
+function goSumCard(secIdx, cardTitle) {
+  clearSumSearch();
+  const targetBtn = [...document.querySelectorAll('#sumChNav .sum-ch-btn')]
+    .find((b, i) => i === secIdx);
+  showSumCh(secIdx, targetBtn);
+  setTimeout(() => {
+    const sec = document.querySelectorAll('#sumMain .ch-section')[secIdx];
+    if (!sec) return;
+    let found = null;
+    sec.querySelectorAll('.card').forEach(card => {
+      if ((card.querySelector('.card-title')||{}).textContent === cardTitle) found = card;
+    });
+    if (found) {
+      found.style.outline = '3px solid #2563eb';
+      found.style.outlineOffset = '3px';
+      found.scrollIntoView({ behavior:'smooth', block:'center' });
+      setTimeout(() => { found.style.outline=''; found.style.outlineOffset=''; }, 2500);
+    }
+  }, 180);
+}
+
+function goSumChapter(secIdx) {
+  clearSumSearch();
+  var btns = document.querySelectorAll('#sumChNav .sum-ch-btn');
+  var targetBtn = btns[secIdx] || null;
+  showSumCh(secIdx, targetBtn);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function clearSumSearch() {
+  document.getElementById('sumSearchInput').value = '';
+  document.getElementById('sumClearBtn').style.display = 'none';
+  var inp2 = document.getElementById('sumSearchInput2');
+  if (inp2) inp2.value = '';
+  var clr2 = document.getElementById('sumClearBtn2');
+  if (clr2) clr2.style.display = 'none';
+  var nav = document.getElementById('srChNav');
+  if (nav) nav.innerHTML = '';
+  document.getElementById('sumSearchResults').style.display = 'none';
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   4. 퀴즈 문제은행 (QUIZ_BANK)
+   ─────────────────────────────────────────────────────────
+   구조: { subjectId: [ {id, chapter, question, options, answer, occurrence, explanation} ] }
+   
+   ✏️ 사용자 수정 방법:
+   - 문제 추가: QUIZ_BANK[subjectId].push({...}) 로 추가
+   - answer 값은 0-based 인덱스 (options 배열의 정답 위치)
+════════════════════════════════════════════════════════════ */
+const QUIZ_BANK = {
+
+  /* ── 과목 1: 사회복지실천론 ── */
+  1: [],
+
+  /* ── 과목 2: 사회복지조사론 ── */
+  2: [],
+
+  /* ── 과목 3: 지역사회복지론 ── */
+  3: [],
+
+  /* ── 과목 4: 사회복지정책론 ── */
+  4: [],
+
+  /* ── 과목 5: 인간행동과사회환경 ── */
+  5: [],
+
+  /* ── 과목 6: 여성복지론 (선택) ── */
+  6: [],
+
+  /* ── 과목 7: 노인복지론 (선택) ── */
+  7: []
+
+};
+
+/* ════════════════════════════════════════════════════════════
+   5. 퀴즈 엔진 (Quiz Engine)
+════════════════════════════════════════════════════════════ */
+
+/* 과목별 메타 정보 */
+const SUBJECT_META = {
+  1: { name:'사회복지실천론', icon:'💼', range:'1~15강', color:'var(--accent)' },
+  2: { name:'사회복지조사론', icon:'📊', range:'1~15강', color:'var(--green)' },
+  3: { name:'지역사회복지론', icon:'🏘️', range:'1~15강', color:'var(--purple)' },
+  4: { name:'사회복지정책론', icon:'📋', range:'1~15강', color:'var(--orange)' },
+  5: { name:'인간행동과사회환경', icon:'🧠', range:'1~15강', color:'var(--red)' },
+  6: { name:'여성복지론', icon:'👩', range:'1~15강', color:'var(--cyan)' },
+  7: { name:'노인복지론', icon:'👴', range:'1~15강', color:'var(--pink)' }
+};
+
+/* 현재 퀴즈 상태 */
+let currentSubjectId = 1;
+let quizList = [];      // 선택된 문제 배열
+let quizCurrent = 0;    // 현재 문제 인덱스
+let quizAnswers = [];   // 사용자 답변 배열 (-1: 미답)
+let quizCorrect = [];   // 정답 여부 배열
+let quizLen = 0;        // 출제 문항 수
+
+/** 퀴즈 뷰 초기화 (과목 선택 → 시작 화면 설정) */
+function initQuizView(subjectId) {
+  currentSubjectId = subjectId;
+  const meta = SUBJECT_META[subjectId];
+  const bank = QUIZ_BANK[subjectId] || [];
+
+  // 타이틀 업데이트
+  document.getElementById('qz-title-text').textContent = meta.icon + ' ' + meta.name;
+  document.getElementById('qz-hero-icon').textContent = meta.icon;
+  document.getElementById('qz-hero-title').textContent = meta.name;
+  document.getElementById('qz-hero-desc').textContent =
+    `${meta.range} 연습문제 기반 퀴즈\n매 시도마다 랜덤 ${Math.min(25, bank.length)}문항이 출제됩니다`;
+  document.getElementById('qz-info-total').textContent = bank.length + '개';
+  document.getElementById('qz-info-count').textContent = Math.min(25, bank.length) + '개';
+  document.getElementById('qz-info-range').textContent = meta.range;
+
+  // 시작 화면 표시
+  showQzScreen('qz-start');
+
+  // 폰트 크기 복원 (전역 설정 사용)
+  try {
+    const f = JSON.parse(localStorage.getItem('globalFontKey'))
+           || JSON.parse(localStorage.getItem('qzFontKey'));
+    if (f) setGlobalFs(f.px, f.label);
+  } catch(e) {}
+}
+
+/** 퀴즈 시작 */
+function startQuiz() {
+  const bank = QUIZ_BANK[currentSubjectId] || [];
+  if (bank.length === 0) { alert('문제가 없습니다. QUIZ_BANK에 문제를 추가해주세요.'); return; }
+
+  quizLen = Math.min(25, bank.length);
+  quizList = shuffle([...bank]).slice(0, quizLen);
+  quizCurrent = 0;
+  quizAnswers = new Array(quizLen).fill(-1);
+  quizCorrect = new Array(quizLen).fill(false);
+
+  // 결과 확인 버튼 초기화
+  document.getElementById('qz-check-btn').disabled = true;
+  // 문항 수 분모 업데이트
+  document.getElementById('qz-res-denom').textContent = '/ ' + quizLen;
+
+  showQzScreen('qz-quiz');
+  renderQzQuestion();
+  renderQzGrid();
+  window.scrollTo({ top: 0 });
+}
+
+/** 퀴즈 화면 전환 */
+function showQzScreen(id) {
+  document.querySelectorAll('.qz-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+/** 문제 렌더링 */
+function renderQzQuestion() {
+  const q = quizList[quizCurrent];
+  const idx = quizCurrent;
+
+  document.getElementById('qz-prog-count').textContent = `${idx+1} / ${quizLen}`;
+  document.getElementById('qz-prog-fill').style.width = ((idx+1)/quizLen*100) + '%';
+  document.getElementById('qz-chapter-badge').textContent = `📖 제${q.chapter}강`;
+  document.getElementById('qz-q-number').textContent = `문제 ${idx+1}`;
+  document.getElementById('qz-q-text').textContent = q.question;
+  
+  const imageWrap = document.getElementById('qz-image-wrap');
+  const imageEl = document.getElementById('qz-image');
+  if (q.image) {
+    imageEl.src = location.protocol === 'file:' && q.image.startsWith('/') ? q.image.slice(1) : q.image;
+    imageEl.alt = q.imageAlt || '문제 그림';
+    imageWrap.classList.add('show');
+  } else {
+    imageEl.removeAttribute('src');
+    imageWrap.classList.remove('show');
+  }
+
+  const optEl = document.getElementById('qz-options');
+  optEl.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = `${ ['①','②','③','④'][i] } ${opt}`;
+    btn.onclick = () => qzSelectAnswer(i);
+    optEl.appendChild(btn);
+  });
+
+  document.getElementById('qz-explanation').classList.remove('show');
+
+  if (quizAnswers[idx] !== -1) renderQzAnswered(idx);
+
+  document.getElementById('qz-btn-prev').disabled = idx === 0;
+  document.getElementById('qz-btn-next').disabled = idx === quizLen - 1;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/** 답변 선택 */
+function qzSelectAnswer(chosen) {
+  if (quizAnswers[quizCurrent] !== -1) return;
+  const q = quizList[quizCurrent];
+  quizAnswers[quizCurrent] = chosen;
+  quizCorrect[quizCurrent] = chosen === q.answer;
+  renderQzAnswered(quizCurrent);
+  renderQzGrid();
+  if (quizAnswers.every(a => a !== -1))
+    document.getElementById('qz-check-btn').disabled = false;
+}
+
+/** 답변 완료 상태 렌더링 */
+function renderQzAnswered(idx) {
+  const q = quizList[idx];
+  const chosen = quizAnswers[idx];
+  const opts = document.getElementById('qz-options').querySelectorAll('.opt');
+
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add('correct');
+    else if (i === chosen && chosen !== q.answer) btn.classList.add('wrong');
+  });
+
+  const occEl = document.getElementById('qz-occ-tag');
+  occEl.innerHTML = q.occurrence && q.occurrence.length
+    ? q.occurrence.map(o => `<span class="occurrence-tag">📌 기출:${o}</span>`).join(' ')
+    : '';
+  document.getElementById('qz-exp-text').textContent = q.explanation;
+  document.getElementById('qz-explanation').classList.add('show');
+}
+
+/** 이전/다음 이동 */
+function qzNavigate(dir) {
+  const next = quizCurrent + dir;
+  if (next < 0 || next >= quizLen) return;
+  quizCurrent = next;
+  renderQzQuestion();
+}
+
+/** 번호판 렌더링 */
+function renderQzGrid() {
+  const grid = document.getElementById('qz-num-grid');
+  grid.innerHTML = '';
+  for (let i = 0; i < quizLen; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'num-btn';
+    btn.textContent = i + 1;
+    if (i === quizCurrent) btn.classList.add('current');
+    if (quizAnswers[i] !== -1) btn.classList.add(quizCorrect[i] ? 'correct' : 'wrong');
+    btn.onclick = () => { quizCurrent = i; renderQzQuestion(); renderQzGrid(); };
+    grid.appendChild(btn);
+  }
+}
+
+/** 결과 화면 */
+function showQzResult() {
+  const totalCorrect = quizCorrect.filter(Boolean).length;
+  const pct = Math.round(totalCorrect / quizLen * 100);
+
+  document.getElementById('qz-res-score').textContent = totalCorrect;
+  document.getElementById('qz-res-c').textContent = totalCorrect;
+  document.getElementById('qz-res-w').textContent = quizLen - totalCorrect;
+  document.getElementById('qz-res-rate').textContent = pct + '%';
+  document.getElementById('qz-res-pct').textContent = `정답률 ${pct}%`;
+
+  const badge = document.getElementById('qz-grade-badge');
+  if (pct >= 90)      { badge.textContent='🏆 우수'; badge.className='grade-badge grade-A'; }
+  else if (pct >= 70) { badge.textContent='👍 양호'; badge.className='grade-badge grade-B'; }
+  else if (pct >= 50) { badge.textContent='📚 보통'; badge.className='grade-badge grade-C'; }
+  else                { badge.textContent='💪 분발'; badge.className='grade-badge grade-D'; }
+
+  const list = document.getElementById('qz-result-list');
+  list.innerHTML = '';
+  quizList.forEach((q, i) => {
+    const isOk = quizCorrect[i];
+    const uAns = quizAnswers[i];
+    const occ = q.occurrence && q.occurrence.length
+      ? `<span class="occurrence-tag">📌 연습문제: ${q.occurrence.join(', ')}</span> ` : '';
+    const item = document.createElement('div');
+    item.className = 'rl-item';
+    item.innerHTML = `
+      <div class="rl-header">
+        <div class="rl-badge ${isOk?'c':'w'}">${isOk?'✓':'✗'}</div>
+        <div>
+          <div style="font-size:.75em;color:var(--muted);margin-bottom:3px">${occ}제${q.chapter}강 · 문제${i+1}</div>
+          <div class="rl-q">${q.question.length>60?q.question.slice(0,60)+'…':q.question}</div>
+        </div>
+      </div>
+      <div class="rl-answers">
+        정답: <span style="color:var(--correct)">${['①','②','③','④'][q.answer]} ${q.options[q.answer]}</span>
+        ${!isOk?` &nbsp;|&nbsp; 내 선택: <span style="color:var(--wrong)">${['①','②','③','④'][uAns]} ${q.options[uAns]}</span>`:''}
+      </div>
+      <div class="rl-exp">${q.explanation.slice(0,120)}${q.explanation.length>120?'…':''}</div>
+    `;
+    list.appendChild(item);
+  });
+
+  // 오답 저장
+  saveWrongAnswers(currentSubjectId, quizList, quizCorrect, quizAnswers);
+
+  // 오답노트 버튼 표시
+  const wrongCount = quizCorrect.filter(v => !v).length;
+  const btnWN = document.getElementById('btnWrongNote');
+  if (btnWN) {
+    btnWN.style.display = wrongCount > 0 ? 'block' : 'none';
+    btnWN.textContent = `📝 오답노트 보기 (${wrongCount}문제)`;
+  }
+
+  showQzScreen('qz-result');
+  window.scrollTo({ top: 0 });
+}
+
+/* ── 퀴즈 폰트 크기 ── */
+function setQzFs(size, key) {
+  document.documentElement.style.setProperty('--fs', size + 'px');
+  document.querySelectorAll('.qfb').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().replace(' ','') === key.replace(' ',''));
+  });
+  try { localStorage.setItem('qzFontKey', JSON.stringify({ px: size, label: key })); } catch(e) {}
+}
+
+/* ── 공통 유틸리티 ── */
+/** 배열 셔플 (Fisher-Yates) */
+function shuffle(arr) {
+  for (let i = arr.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/* ── 페이지 로드 시 글자 크기 복원 ── */
+(function restoreFontSize() {
+  try {
+    // 전역 키 우선, 없으면 레거시 키 확인
+    const saved = JSON.parse(localStorage.getItem('globalFontKey'))
+               || JSON.parse(localStorage.getItem('idxFontKey'));
+    if (saved && saved.px) {
+      setGlobalFs(saved.px, saved.label);
+    }
+  } catch(e) {}
+})();
+
+/* ════════════════════════════════════════════════════════════
+   [추가] 기능 1: 마지막 본 위치 저장 / 이어서 보기
+════════════════════════════════════════════════════════════ */
+const LAST_POS_KEY = 'sw-last-position';
+
+function saveLastPosition(pos) {
+  try { localStorage.setItem(LAST_POS_KEY, JSON.stringify(pos)); } catch(e) {}
+  renderResumeBanner();
+}
+
+function loadLastPosition() {
+  try { return JSON.parse(localStorage.getItem(LAST_POS_KEY)); } catch(e) { return null; }
+}
+
+function renderResumeBanner() {
+  const pos = loadLastPosition();
+  const el = document.getElementById('resumeBanner');
+  if (!el) return;
+
+  if (!pos) {
+    el.innerHTML = '';
+    updateSspChips();
+    return;
+  }
+
+  const meta = SUBJECT_META[pos.subjectId];
+  const data = SUMMARY_DATA[pos.subjectId];
+  if (!meta) { el.innerHTML = ''; updateSspChips(); return; }
+
+  // 요약카드만 노출 (연습문제는 이어보기 제외)
+  if (pos.type !== 'summary' || !data) {
+    el.innerHTML = '';
+    updateSspChips();
+    return;
+  }
+
+  const ch = data.chapters[pos.chapterIdx] || data.chapters[0];
+  const mainTitle = `${meta.icon} ${meta.name}`;
+  const subTitle = ch ? `${ch.num} ${ch.name}` : '요점정리';
+  const onclick = `resumeSummary(${pos.subjectId}, ${pos.chapterIdx || 0})`;
+
+  el.innerHTML = `
+    <div class="resume-banner" onclick="${onclick}">
+      <div class="resume-banner-icon">▶️</div>
+      <div class="resume-banner-info">
+        <div class="resume-banner-label">이어서 보기</div>
+        <div class="resume-banner-title">${mainTitle}</div>
+        <div class="resume-banner-sub">${subTitle}</div>
+      </div>
+      <div class="resume-banner-arrow">›</div>
+    </div>`;
+
+  updateSspChips();
+}
+
+function resumeSummary(subjectId, chapterIdx) {
+  renderSummaryView(subjectId);
+  showView('view-summary');
+  updateHomeBtn(false);
+
+  const pos = loadLastPosition();
+  const savedScrollY = (pos && pos.scrollY) ? pos.scrollY : 0;
+
+  setTimeout(() => {
+    const btns = document.querySelectorAll('#sumChNav .sum-ch-btn');
+    if (btns[chapterIdx]) {
+      // 탭 전환 (내부 scrollTo 0 방지를 위해 직접 처리)
+      document.querySelectorAll('#sumMain .ch-section').forEach((s, i) => {
+        s.classList.toggle('active', i === chapterIdx);
+      });
+      btns.forEach(b => b.classList.remove('active'));
+      btns[chapterIdx].classList.add('active');
+    }
+    // 저장된 스크롤 위치 복원
+    window.scrollTo({ top: savedScrollY, behavior: 'smooth' });
+  }, 150);
+}
+
+// 페이지 로드 시 배너 렌더
+renderResumeBanner();
+
+/* ── 학습 현황 패널 토글 ── */
+function toggleStudyPanel() {
+  const body = document.getElementById('sspBody');
+  const arrow = document.getElementById('sspArrow');
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+/* 과목 선택 패널 토글 */
+function toggleSubjectPanel() {
+  const body = document.getElementById('sfBody');
+  const arrow = document.getElementById('sfArrow');
+  if (!body) return;
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+/* 선택된 과목 배지 업데이트 */
+function updateSfBadge() {
+  const badge = document.getElementById('sfActiveBadge');
+  if (!badge) return;
+  const activeBtn = document.querySelector('.subject-filter-btn.active');
+  if (!activeBtn) return;
+  const label = activeBtn.textContent.trim();
+  if (label === '전체') {
+    badge.textContent = '전체';
+  } else {
+    badge.textContent = label;
+  }
+  badge.classList.add('show');
+}
+
+function updateSspChips() {
+  const chips = document.getElementById('sspChips');
+  if (!chips) return;
+
+  const pos = loadLastPosition();
+  const chipList = [];
+
+  // 이어보기 칩
+  if (pos && SUBJECT_META[pos.subjectId]) {
+    const meta = SUBJECT_META[pos.subjectId];
+    chipList.push(`<span class="ssp-chip ssp-chip-blue">▶ ${meta.icon} ${meta.name}</span>`);
+  }
+
+  // 오답 칩
+  let totalWrong = 0;
+  for (let i = 1; i <= 6; i++) {
+    totalWrong += Object.keys(loadWrongNotes(i)).length;
+  }
+  if (totalWrong > 0) {
+    chipList.push(`<span class="ssp-chip ssp-chip-purple">✗ 오답 ${totalWrong}문제</span>`);
+  }
+
+  if (!chipList.length) {
+    chips.innerHTML = `<span class="ssp-chip ssp-chip-gray">연습문제 후 업데이트</span>`;
+  } else {
+    chips.innerHTML = chipList.join('');
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   [추가] 기능 2: 즐겨찾기 (요약 카드)
+════════════════════════════════════════════════════════════ */
+const FAV_KEY = 'sw-favorites';
+
+function loadFavorites() {
+  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || {}; } catch(e) { return {}; }
+}
+
+function saveFavorites(favs) {
+  try { localStorage.setItem(FAV_KEY, JSON.stringify(favs)); } catch(e) {}
+}
+
+function makeFavKey(subjectId, chapterIdx, cardTitle) {
+  return `${subjectId}_${chapterIdx}_${cardTitle.replace(/[^a-zA-Z0-9가-힣]/g,'_')}`;
+}
+
+function isFavorite(favKey) {
+  const favs = loadFavorites();
+  return !!favs[favKey];
+}
+
+function toggleFav(subjectId, chapterIdx, cardTitle, cardIcon, btn) {
+  const favs = loadFavorites();
+  const key = makeFavKey(subjectId, chapterIdx, cardTitle);
+
+  if (favs[key]) {
+    delete favs[key];
+    btn.textContent = '☆';
+    btn.classList.remove('active');
+    btn.title = '즐겨찾기 추가';
+  } else {
+    const data = SUMMARY_DATA[subjectId];
+    const ch = data && data.chapters[chapterIdx];
+    const card = ch && ch.cards.find(c => c.title === cardTitle);
+    favs[key] = {
+      subjectId, chapterIdx, cardTitle, cardIcon,
+      cardHtml: card ? card.html : '',
+      subjectTitle: data ? data.title : '',
+      subjectIcon: data ? data.icon : '',
+      chapterNum: ch ? ch.num : '',
+      chapterName: ch ? ch.name : '',
+      savedAt: Date.now()
+    };
+    btn.textContent = '⭐';
+    btn.classList.add('active');
+    btn.title = '즐겨찾기 해제';
+    // 찜 효과
+    btn.style.transform = 'scale(1.4)';
+    setTimeout(() => { btn.style.transform = ''; }, 300);
+  }
+
+  saveFavorites(favs);
+  updateFavCountBadge();
+}
+
+function updateFavCountBadge() {
+  const favs = loadFavorites();
+  const count = Object.keys(favs).length;
+  const badge = document.getElementById('favCountBadge');
+  if (badge) {
+    badge.style.display = count > 0 ? 'flex' : 'none';
+    badge.textContent = count > 9 ? '9+' : count;
+  }
+}
+
+function openFavOverlay() {
+  const ov = document.getElementById('fav-overlay');
+  ov.classList.add('open');
+  renderFavOverlay();
+  updateHomeBtn(false);
+  document.body.style.overflow = 'hidden'; // 배경 스크롤 잠금
+}
+
+function closeFavOverlay() {
+  document.getElementById('fav-overlay').classList.remove('open');
+  updateHomeBtn(true);
+  document.body.style.overflow = ''; // 스크롤 복원
+}
+
+function renderFavOverlay() {
+  const favs = loadFavorites();
+  const keys = Object.keys(favs);
+  const countEl = document.getElementById('favOvCount');
+  if (countEl) countEl.textContent = `총 ${keys.length}개`;
+
+  const body = document.getElementById('favOvBody');
+  if (!keys.length) {
+    body.innerHTML = `
+      <div class="fav-ov-empty">
+        <div class="ei">⭐</div>
+        <p>아직 즐겨찾기한 카드가 없습니다.<br>요약정리의 카드 우측 상단 ☆을 눌러<br>중요한 카드를 저장하세요.</p>
+      </div>`;
+    return;
+  }
+
+  const colors = { 1:'#2563eb', 2:'#7c3aed', 3:'#059669', 4:'#d97706', 5:'#dc2626', 6:'#0891b2' };
+  keys.sort((a,b) => (favs[b].savedAt||0) - (favs[a].savedAt||0));
+
+  body.innerHTML = keys.map(key => {
+    const f = favs[key];
+    const color = colors[f.subjectId] || '#64748b';
+    return `
+      <div class="fav-card-wrap" id="favCard_${key}">
+        <button class="fav-card-del" onclick="removeFav('${key}')" title="즐겨찾기 삭제">✕</button>
+        <div class="fav-card-meta">
+          <span class="fav-card-subj" style="background:${color}">${f.subjectIcon} ${f.subjectTitle}</span>
+          <span class="fav-card-chapter">${f.chapterNum} · ${f.chapterName}</span>
+        </div>
+        <div class="card" style="margin:0 0 10px;box-shadow:none;border:1px solid #e5e0d8;">
+          <div class="card-head">
+            <span class="card-icon">${f.cardIcon}</span>
+            <span class="card-title">${f.cardTitle}</span>
+          </div>
+          ${f.cardHtml}
+        </div>
+        <button class="fav-card-go"
+          onclick="favGoCard(${f.subjectId},${f.chapterIdx},'${f.cardTitle.replace(/'/g,"\\'")}')">
+          📖 원본 카드로 이동
+        </button>
+      </div>`;
+  }).join('');
+}
+
+function removeFav(key) {
+  const favs = loadFavorites();
+  delete favs[key];
+  saveFavorites(favs);
+  updateFavCountBadge();
+  renderFavOverlay();
+}
+
+function favGoCard(subjectId, chapterIdx, cardTitle) {
+  closeFavOverlay();
+  goSummary(subjectId);
+  setTimeout(() => {
+    const btns = document.querySelectorAll('#sumChNav .sum-ch-btn');
+    if (btns[chapterIdx]) showSumCh(chapterIdx, btns[chapterIdx]);
+    setTimeout(() => {
+      // 해당 카드로 스크롤
+      const cards = document.querySelectorAll('#sumMain .card');
+      cards.forEach(c => {
+        const titleEl = c.querySelector('.card-title');
+        if (titleEl && titleEl.textContent.trim() === cardTitle) {
+          c.scrollIntoView({ behavior:'smooth', block:'center' });
+          c.style.outline = '3px solid #f59e0b';
+          setTimeout(() => { c.style.outline = ''; }, 1500);
+        }
+      });
+    }, 200);
+  }, 80);
+}
+
+// 초기화
+updateFavCountBadge();
+
+
+/* ════════════════════════════════════════════════════════════
+   [추가] 기능 3: 오답노트 (연습문제)
+════════════════════════════════════════════════════════════ */
+const WRONG_NOTE_KEY_PREFIX = 'sw-wrong-note-';
+
+function getWrongNoteKey(subjectId) {
+  return WRONG_NOTE_KEY_PREFIX + subjectId;
+}
+
+function saveWrongAnswers(subjectId, qList, qCorrect, qAnswers) {
+  const key = getWrongNoteKey(subjectId);
+  let existing = {};
+  try { existing = JSON.parse(localStorage.getItem(key)) || {}; } catch(e) {}
+
+  qList.forEach((q, i) => {
+    if (!qCorrect[i]) {
+      // 오답인 경우 저장 (기존 오답 누적, 중복은 id로 제거)
+      existing[q.id] = {
+        ...q,
+        myAnswer: qAnswers[i],
+        savedAt: Date.now()
+      };
+    }
+  });
+
+  try { localStorage.setItem(key, JSON.stringify(existing)); } catch(e) {}
+  updateWrongNoteMainBtn();
+}
+
+function loadWrongNotes(subjectId) {
+  try { return JSON.parse(localStorage.getItem(getWrongNoteKey(subjectId))) || {}; } catch(e) { return {}; }
+}
+
+function updateWrongNoteMainBtn() {
+  const section = document.getElementById('wrongNoteSection');
+  if (!section) return;
+
+  const colors = { 1:'#2563eb', 2:'#7c3aed', 3:'#059669', 4:'#d97706', 5:'#dc2626', 6:'#0891b2' };
+  const subjects = [];
+  let total = 0;
+
+  for (let i = 1; i <= 6; i++) {
+    const notes = loadWrongNotes(i);
+    const cnt = Object.keys(notes).length;
+    if (cnt > 0) {
+      total += cnt;
+      subjects.push({ id: i, cnt, meta: SUBJECT_META[i], color: colors[i] });
+    }
+  }
+
+  if (total === 0) {
+    section.innerHTML = '';
+    updateSspChips();
+    return;
+  }
+
+  const rows = subjects.map(s => `
+    <div class="wn-subj-row" onclick="openWrongNoteFromMain(${s.id})">
+      <div class="wn-subj-dot" style="background:${s.color}"></div>
+      <span class="wn-subj-name">${s.meta.icon} ${s.meta.name}</span>
+      <span class="wn-subj-cnt">✗ ${s.cnt}문제</span>
+      <span style="color:#94a3b8;font-size:.9em">›</span>
+    </div>`).join('');
+
+  section.innerHTML = `
+    <div class="wn-total-row" onclick="openWrongNoteFromMain(0)">
+      <span style="font-size:1.1em">📝</span>
+      <span style="font-size:.90em;font-weight:800;color:#4c1d95;flex:1">전체 오답노트 — 총 ${total}문제</span>
+      <span style="color:#7c3aed;font-size:.9em">›</span>
+    </div>
+    ${rows}`;
+
+  updateSspChips();
+}
+
+function showWrongNoteView() {
+  const notes = loadWrongNotes(currentSubjectId);
+  const list = Object.values(notes).sort((a,b) => b.savedAt - a.savedAt);
+  const meta = SUBJECT_META[currentSubjectId];
+
+  document.getElementById('wn-subj-name').textContent = `${meta.icon} ${meta.name}`;
+  document.getElementById('wn-stat-text').textContent = `오답 ${list.length}문제`;
+
+  const colors = { 1:'#2563eb', 2:'#7c3aed', 3:'#059669', 4:'#d97706', 5:'#dc2626', 6:'#0891b2' };
+  const color = colors[currentSubjectId] || '#64748b';
+
+  const wnList = document.getElementById('wn-list');
+  if (!list.length) {
+    wnList.innerHTML = `<div style="text-align:center;padding:40px 20px;color:#6b7280">오답이 없습니다! 🎉</div>`;
+  } else {
+    wnList.innerHTML = list.map((q, idx) => {
+      const myAns = q.myAnswer;
+      return `
+        <div class="wn-card">
+          <span class="wn-subj-badge" style="background:${color}">${meta.icon} ${meta.name}</span>
+          <span class="wn-q-badge">✗ 오답 · 제${q.chapter}강</span>
+          <div class="wn-q-text">${q.question}</div>
+          <div class="wn-ans-row">
+            <span class="wn-ans-correct">✓ 정답: ${['①','②','③','④'][q.answer]} ${q.options[q.answer]}</span>
+          </div>
+          ${myAns !== undefined && myAns !== -1 ? `
+          <div class="wn-ans-row">
+            <span class="wn-ans-wrong">✗ 내 답: ${['①','②','③','④'][myAns]} ${q.options[myAns]}</span>
+          </div>` : ''}
+          <div class="wn-exp">${q.explanation}</div>
+        </div>`;
+    }).join('');
+  }
+
+  showQzScreen('qz-wrongnote');
+  window.scrollTo({ top: 0 });
+}
+
+function retryWrongOnly() {
+  const notes = loadWrongNotes(currentSubjectId);
+  const wrongList = Object.values(notes);
+
+  if (!wrongList.length) { alert('오답 목록이 없습니다.'); return; }
+
+  quizLen = wrongList.length;
+  quizList = shuffle([...wrongList]);
+  quizCurrent = 0;
+  quizAnswers = new Array(quizLen).fill(-1);
+  quizCorrect = new Array(quizLen).fill(false);
+
+  document.getElementById('qz-check-btn').disabled = true;
+  document.getElementById('qz-res-denom').textContent = '/ ' + quizLen;
+
+  showQzScreen('qz-quiz');
+  renderQzQuestion();
+  renderQzGrid();
+  window.scrollTo({ top: 0 });
+}
+
+function clearWrongNote() {
+  const btn = document.querySelector('.wn-clear-btn');
+  if (!btn) return;
+
+  if (btn.dataset.confirm !== 'ready') {
+    // 1차 클릭: 경고 상태로 변경
+    btn.dataset.confirm = 'ready';
+    btn.textContent = '⚠️ 한 번 더 누르면 초기화됩니다';
+    btn.style.background = '#fee2e2';
+    btn.style.borderColor = '#fca5a5';
+    btn.style.color = '#dc2626';
+    // 3초 후 원래 상태로
+    setTimeout(() => {
+      if (btn.dataset.confirm === 'ready') {
+        btn.dataset.confirm = '';
+        btn.textContent = '🗑️ 이 과목 오답노트 초기화';
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }
+    }, 3000);
+  } else {
+    // 2차 클릭: 실제 삭제
+    btn.dataset.confirm = '';
+    btn.textContent = '🗑️ 이 과목 오답노트 초기화';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+    try { localStorage.removeItem(getWrongNoteKey(currentSubjectId)); } catch(e) {}
+    updateWrongNoteMainBtn();
+    showWrongNoteView();
+  }
+}
+
+function openWrongNoteFromMain(subjectId) {
+  if (subjectId && subjectId > 0) {
+    goQuiz(subjectId);
+    setTimeout(() => showWrongNoteView(), 100);
+  } else {
+    for (let i = 1; i <= 6; i++) {
+      const notes = loadWrongNotes(i);
+      if (Object.keys(notes).length > 0) {
+        goQuiz(i);
+        setTimeout(() => showWrongNoteView(), 100);
+        return;
+      }
+    }
+  }
+}
+
+// 초기화
+updateWrongNoteMainBtn();
+updateSspChips();
+
+/* ════════════════════════════════════════════════════════════
+   [추가] 기능 4: 강별 연습문제 미리보기 모달
+════════════════════════════════════════════════════════════ */
+let rqShowAnswers = false; // 전체 정답 표시 여부
+
+function openRqModal(subjectId, chapterNum, chapterLabel) {
+  const bank = (QUIZ_BANK[subjectId] || []).filter(q => q.chapter === chapterNum);
+  const meta = SUBJECT_META[subjectId];
+
+  document.getElementById('rq-sheet-title').textContent =
+    `${meta.icon} ${chapterLabel}`;
+  document.getElementById('rq-sheet-count').textContent =
+    bank.length ? `연습문제 ${bank.length}문제` : '등록된 문제가 없습니다';
+
+  rqShowAnswers = false;
+  const tog = document.getElementById('rq-global-toggle');
+  tog.textContent = '정답 보기';
+  tog.classList.remove('on');
+
+  const body = document.getElementById('rq-sheet-body');
+
+  if (!bank.length) {
+    body.innerHTML = `
+      <div class="rq-no-q">
+        <div class="rq-no-icon">📭</div>
+        <p>이 강에 등록된 연습문제가 없습니다.</p>
+      </div>`;
+  } else {
+    body.innerHTML = bank.map((q, idx) => {
+      const occ = q.occurrence && q.occurrence.length
+        ? q.occurrence.map(o => `<span class="rq-occ-tag">📌 ${o}</span>`).join(' ')
+        : '';
+      const opts = q.options.map((opt, oi) => `
+        <div class="rq-opt${rqShowAnswers && oi === q.answer ? ' rq-correct' : ''}" data-opt="${oi}">
+          ${['①','②','③','④'][oi]} ${opt}
+        </div>`).join('');
+      return `
+        <div class="rq-q-card" id="rqCard${idx}" data-answer="${q.answer}">
+          <div class="rq-q-top">
+            <span class="rq-q-num">Q${idx+1}</span>
+            ${occ}
+          </div>
+          <div class="rq-q-text">${q.question}</div>
+          <div class="rq-opts" id="rqOpts${idx}">${opts}</div>
+          <button class="rq-toggle-btn" onclick="toggleRqAnswer(${idx})">💡 정답·해설 보기</button>
+          <div class="rq-exp" id="rqExp${idx}">
+            <b>정답:</b> ${['①','②','③','④'][q.answer]} ${q.options[q.answer]}<br><br>
+            ${q.explanation}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  document.getElementById('rq-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeRqModal(e) {
+  if (e && e.target !== document.getElementById('rq-modal')) return;
+  document.getElementById('rq-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleRqAnswer(idx) {
+  const exp = document.getElementById(`rqExp${idx}`);
+  const card = document.getElementById(`rqCard${idx}`);
+  const answer = parseInt(card.dataset.answer);
+  const btn = card.querySelector('.rq-toggle-btn');
+  const isShow = exp.classList.toggle('show');
+
+  // 정답 선지 하이라이트
+  card.querySelectorAll('.rq-opt').forEach((opt, i) => {
+    opt.classList.toggle('rq-correct', isShow && i === answer);
+  });
+
+  btn.textContent = isShow ? '💡 정답·해설 숨기기' : '💡 정답·해설 보기';
+}
+
+function toggleAllAnswers() {
+  rqShowAnswers = !rqShowAnswers;
+  const tog = document.getElementById('rq-global-toggle');
+  tog.textContent = rqShowAnswers ? '정답 숨기기' : '정답 보기';
+  tog.classList.toggle('on', rqShowAnswers);
+
+  document.querySelectorAll('.rq-q-card').forEach(card => {
+    const answer = parseInt(card.dataset.answer);
+    const exp = card.querySelector('.rq-exp');
+    const btn = card.querySelector('.rq-toggle-btn');
+
+    if (rqShowAnswers) {
+      exp.classList.add('show');
+      btn.textContent = '💡 정답·해설 숨기기';
+    } else {
+      exp.classList.remove('show');
+      btn.textContent = '💡 정답·해설 보기';
+    }
+
+    card.querySelectorAll('.rq-opt').forEach((opt, i) => {
+      opt.classList.toggle('rq-correct', rqShowAnswers && i === answer);
+    });
+  });
+}
+
+</script>
+</body>
+</html>
