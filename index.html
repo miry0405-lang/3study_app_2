@@ -1035,11 +1035,27 @@ hr {
 .fav-ov-body { flex:1; overflow-y:auto; padding:14px 14px 60px; max-width:720px; margin:0 auto; width:100%; }
 .fav-ov-empty { text-align:center; padding:60px 20px; color:#6b7280; }
 .fav-ov-empty .ei { font-size:2.5em; margin-bottom:12px; }
+.fav-ov-filter { padding:10px 14px 2px; max-width:720px; margin:0 auto; width:100%; }
+.fav-ov-filter-buttons { display:flex; gap:6px; flex-wrap:wrap; }
+.fav-filter-btn {
+  border:1.5px solid #e2e8f0; border-radius:20px; background:#fff;
+  color:#64748b; cursor:pointer; font-family:inherit; font-size:.84em;
+  font-weight:800; padding:6px 13px; transition:background .15s,color .15s,border-color .15s;
+}
+.fav-filter-btn:hover { border-color:#93c5fd; color:#2563eb; }
+.fav-filter-btn.active { color:#fff; border-color:transparent; }
 .fav-card-wrap {
   background:#fff; border:1px solid #e5e0d8; border-radius:14px;
   padding:14px; margin-bottom:12px; position:relative;
   box-shadow:0 1px 4px rgba(0,0,0,.05);
 }
+.fav-card-summary { cursor:pointer; }
+.fav-card-summary-title { display:flex; align-items:center; gap:8px; margin-top:6px; }
+.fav-card-summary-title .card-title { flex:1; }
+.fav-card-arrow { color:#94a3b8; font-size:.85em; transition:transform .2s; flex-shrink:0; }
+.fav-card-arrow.open { transform:rotate(180deg); }
+.fav-card-body { display:none; margin-top:10px; }
+.fav-card-body.open { display:block; animation:fadeIn .15s; }
 /* 즐겨찾기 오버레이 내 card 스타일 (summary 스코프 밖) */
 #fav-overlay .card {
   background:#fff; border-radius:14px; padding:16px;
@@ -1708,6 +1724,7 @@ hr {
     <span class="fav-ov-title">⭐ 즐겨찾기 카드</span>
     <span id="favOvCount" style="font-size:.78em;color:#94a3b8"></span>
   </div>
+  <div class="fav-ov-filter" id="favOvFilter"></div>
   <div class="fav-ov-body" id="favOvBody"></div>
 </div>
 
@@ -19038,6 +19055,7 @@ function updateFavCountBadge() {
 function openFavOverlay() {
   const ov = document.getElementById('fav-overlay');
   ov.classList.add('open');
+  favActiveFilter = 'all';
   renderFavOverlay();
   updateHomeBtn(false);
   document.body.style.overflow = 'hidden'; // 배경 스크롤 잠금
@@ -19049,14 +19067,19 @@ function closeFavOverlay() {
   document.body.style.overflow = ''; // 스크롤 복원
 }
 
+let favActiveFilter = 'all';
+
 function renderFavOverlay() {
   const favs = loadFavorites();
   const keys = Object.keys(favs);
   const countEl = document.getElementById('favOvCount');
-  if (countEl) countEl.textContent = `총 ${keys.length}개`;
-
+  const filterEl = document.getElementById('favOvFilter');
   const body = document.getElementById('favOvBody');
+  const colors = { 1:'#2563eb', 2:'#7c3aed', 3:'#059669', 4:'#d97706', 5:'#dc2626', 6:'#0891b2', 7:'#db2777' };
+
   if (!keys.length) {
+    if (countEl) countEl.textContent = '';
+    if (filterEl) filterEl.innerHTML = '';
     body.innerHTML = `
       <div class="fav-ov-empty">
         <div class="ei">⭐</div>
@@ -19065,32 +19088,104 @@ function renderFavOverlay() {
     return;
   }
 
-  const colors = { 1:'#2563eb', 2:'#7c3aed', 3:'#059669', 4:'#d97706', 5:'#dc2626', 6:'#0891b2' };
-  keys.sort((a,b) => (favs[b].savedAt||0) - (favs[a].savedAt||0));
+  // 즐겨찾기에 담긴 과목만 집계
+  const subjCounts = {};
+  keys.forEach(k => {
+    const sid = favs[k].subjectId;
+    subjCounts[sid] = (subjCounts[sid] || 0) + 1;
+  });
+  const presentSubjIds = Object.keys(subjCounts).map(Number).sort((a,b) => a-b);
 
-  body.innerHTML = keys.map(key => {
+  // 선택된 필터 과목이 더 이상 없으면 전체로 복귀
+  if (favActiveFilter !== 'all' && !subjCounts[favActiveFilter]) {
+    favActiveFilter = 'all';
+  }
+
+  // 필터 배지 렌더 (2과목 이상 담겼을 때만 표시)
+  if (filterEl) {
+    if (presentSubjIds.length <= 1) {
+      filterEl.innerHTML = '';
+    } else {
+      const allActive = favActiveFilter === 'all';
+      let html = `<div class="fav-ov-filter-buttons">`;
+      html += `<button type="button" class="fav-filter-btn${allActive ? ' active' : ''}"
+                 style="${allActive ? 'background:#1a1a2e;border-color:#1a1a2e' : ''}"
+                 onclick="setFavFilter('all')">전체 ${keys.length}</button>`;
+      presentSubjIds.forEach(sid => {
+        const meta = SUBJECT_META[sid] || {};
+        const color = colors[sid] || '#64748b';
+        const active = String(favActiveFilter) === String(sid);
+        html += `<button type="button" class="fav-filter-btn${active ? ' active' : ''}"
+                   style="${active ? `background:${color};border-color:${color}` : ''}"
+                   onclick="setFavFilter('${sid}')">${meta.icon || ''} ${meta.name || ''} ${subjCounts[sid]}</button>`;
+      });
+      html += `</div>`;
+      filterEl.innerHTML = html;
+    }
+  }
+
+  // 필터 적용
+  const filteredKeys = favActiveFilter === 'all'
+    ? keys
+    : keys.filter(k => String(favs[k].subjectId) === String(favActiveFilter));
+
+  if (countEl) countEl.textContent = `총 ${filteredKeys.length}개`;
+  filteredKeys.sort((a,b) => (favs[b].savedAt||0) - (favs[a].savedAt||0));
+
+  if (!filteredKeys.length) {
+    body.innerHTML = `
+      <div class="fav-ov-empty">
+        <div class="ei">🔍</div>
+        <p>해당 과목의 즐겨찾기가 없습니다.</p>
+      </div>`;
+    return;
+  }
+
+  body.innerHTML = filteredKeys.map(key => {
     const f = favs[key];
     const color = colors[f.subjectId] || '#64748b';
     return `
       <div class="fav-card-wrap" id="favCard_${key}">
         <button class="fav-card-del" onclick="removeFav('${key}')" title="즐겨찾기 삭제">✕</button>
-        <div class="fav-card-meta">
-          <span class="fav-card-subj" style="background:${color}">${f.subjectIcon} ${f.subjectTitle}</span>
-          <span class="fav-card-chapter">${f.chapterNum} · ${f.chapterName}</span>
-        </div>
-        <div class="card" style="margin:0 0 10px;box-shadow:none;border:1px solid #e5e0d8;">
-          <div class="card-head">
+        <div class="fav-card-summary" onclick="toggleFavCard('${key}')">
+          <div class="fav-card-meta">
+            <span class="fav-card-subj" style="background:${color}">${f.subjectIcon} ${f.subjectTitle}</span>
+            <span class="fav-card-chapter">${f.chapterNum} · ${f.chapterName}</span>
+          </div>
+          <div class="fav-card-summary-title">
             <span class="card-icon">${f.cardIcon}</span>
             <span class="card-title">${f.cardTitle}</span>
+            <span class="fav-card-arrow" id="favArrow_${key}">▾</span>
           </div>
-          ${f.cardHtml}
         </div>
-        <button class="fav-card-go"
-          onclick="favGoCard(${f.subjectId},${f.chapterIdx},'${f.cardTitle.replace(/'/g,"\\'")}')">
-          📖 원본 카드로 이동
-        </button>
+        <div class="fav-card-body" id="favBody_${key}">
+          <div class="card" style="margin:0 0 10px;box-shadow:none;border:1px solid #e5e0d8;">
+            <div class="card-head">
+              <span class="card-icon">${f.cardIcon}</span>
+              <span class="card-title">${f.cardTitle}</span>
+            </div>
+            ${f.cardHtml}
+          </div>
+          <button class="fav-card-go"
+            onclick="favGoCard(${f.subjectId},${f.chapterIdx},'${f.cardTitle.replace(/'/g,"\\'")}')">
+            📖 원본 카드로 이동
+          </button>
+        </div>
       </div>`;
   }).join('');
+}
+
+function toggleFavCard(key) {
+  const body = document.getElementById(`favBody_${key}`);
+  const arrow = document.getElementById(`favArrow_${key}`);
+  if (!body) return;
+  const isOpen = body.classList.toggle('open');
+  if (arrow) arrow.classList.toggle('open', isOpen);
+}
+
+function setFavFilter(subjectId) {
+  favActiveFilter = subjectId;
+  renderFavOverlay();
 }
 
 function removeFav(key) {
