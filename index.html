@@ -350,10 +350,10 @@ hr {
   background:rgba(255,255,255,.9); color:#1a1a2e; border-color:rgba(255,255,255,.9);
 }
 /* 검색창 */
-#view-summary .sum-search-row { width:100%; }
+#view-summary .sum-search-row { width:100%; display:flex; align-items:center; gap:8px; }
 #view-summary .sum-search-box {
   display:flex; align-items:center; background:#fff;
-  border-radius:9px; padding:0 12px; gap:8px;
+  border-radius:9px; padding:0 12px; gap:8px; flex:1; min-width:0;
 }
 #view-summary .sum-search-box input {
   flex:1; border:none; outline:none; font-family:inherit;
@@ -363,6 +363,13 @@ hr {
 #view-summary .sum-srch-clear {
   border:none; background:none; cursor:pointer; color:#9ca3af; font-size:1em; padding:2px 4px;
 }
+#view-summary .sum-print-btn {
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+  color:#fff; border-radius:9px; padding:9px 12px;
+  cursor:pointer; font-family:inherit; font-size:.90em; font-weight:700;
+  flex-shrink:0; transition:background .15s; white-space:nowrap;
+}
+#view-summary .sum-print-btn:hover { background:rgba(255,255,255,.28); }
 /* 챕터 내비 */
 #view-summary .sum-ch-nav {
   display:flex; gap:6px; padding:10px 12px;
@@ -1031,6 +1038,47 @@ hr {
   color:#fff; border-radius:8px; padding:5px 10px;
   font-family:inherit; font-size:.90em; font-weight:700; cursor:pointer;
 }
+.fav-ov-print-btn {
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+  color:#fff; border-radius:8px; padding:5px 10px;
+  font-family:inherit; font-size:.90em; font-weight:700; cursor:pointer;
+  display:flex; align-items:center; gap:4px; flex-shrink:0;
+}
+.fav-ov-print-btn:hover { background:rgba(255,255,255,.25); }
+
+/* 강 선택 인쇄 오버레이 */
+#cpo-overlay {
+  display:none; position:fixed; inset:0; top:var(--gbar-h); z-index:820;
+  background:#f7f4ef; flex-direction:column; animation:fadeIn .2s;
+}
+#cpo-overlay.open { display:flex; }
+#cpo-overlay .fav-ov-close { display:inline-block !important; }
+.cpo-body { flex:1; overflow-y:auto; padding:16px 16px 100px; max-width:720px; margin:0 auto; width:100%; }
+.cpo-select-all {
+  display:flex; align-items:center; gap:8px; font-weight:800; font-size:.92em;
+  color:#374151; margin-bottom:14px; cursor:pointer; user-select:none;
+}
+.cpo-select-all input { width:17px; height:17px; accent-color:#2563eb; cursor:pointer; }
+.cpo-chapter-group { margin-bottom:18px; }
+.cpo-chapter-item {
+  display:flex; align-items:center; gap:10px;
+  background:#fff; border:1.5px solid #e5e0d8; border-radius:12px;
+  padding:12px 14px; margin-bottom:8px; cursor:pointer; transition:border-color .15s;
+}
+.cpo-chapter-item:hover { border-color:#93c5fd; }
+.cpo-chapter-item input { width:18px; height:18px; accent-color:#2563eb; cursor:pointer; flex-shrink:0; }
+.cpo-chapter-item .cpo-ch-num { font-weight:900; color:#2563eb; font-size:.88em; flex-shrink:0; }
+.cpo-chapter-item .cpo-ch-name { font-size:.92em; color:#1e293b; font-weight:700; }
+.cpo-footer {
+  position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:#fff; border-top:1px solid #e5e0d8; z-index:5;
+}
+.cpo-print-btn {
+  width:100%; max-width:720px; margin:0 auto; display:block;
+  background:#1a1a2e; color:#fff; border:none; border-radius:12px;
+  padding:13px; font-family:inherit; font-size:.95em; font-weight:800; cursor:pointer;
+}
+.cpo-print-btn:disabled { background:#cbd5e1; cursor:not-allowed; }
 .fav-ov-title { font-size:.95em; font-weight:800; flex:1; }
 .fav-ov-body { flex:1; overflow-y:auto; padding:14px 14px 60px; max-width:720px; margin:0 auto; width:100%; }
 .fav-ov-empty { text-align:center; padding:60px 20px; color:#6b7280; }
@@ -1123,6 +1171,119 @@ hr {
 #fav-overlay strong { font-weight:800; }
 #fav-overlay .no { color:var(--c3); font-weight:700; }
 #fav-overlay .ok { color:var(--c2); font-weight:700; }
+
+/* ══════════════════════════════════════════
+   [추가] 즐겨찾기 인쇄용 A4 문서 스타일
+══════════════════════════════════════════ */
+.fav-print-title { display:none; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm; }
+
+  html, body { background:#fff !important; }
+  body > *:not(#fav-overlay) { display:none !important; }
+
+  #fav-overlay {
+    display:block !important; position:static !important; inset:auto !important;
+    top:auto !important; background:#fff !important; z-index:auto !important;
+    animation:none !important; overflow:visible !important; height:auto !important;
+    filter:grayscale(100%) !important;
+  }
+
+  #fav-overlay .fav-ov-header,
+  #fav-overlay .fav-ov-filter,
+  #fav-overlay .fav-card-del,
+  #fav-overlay .fav-card-go,
+  #fav-overlay .fav-card-arrow,
+  #fav-overlay .fav-card-summary { display:none !important; }
+
+  .fav-print-title {
+    display:block !important;
+    border-bottom:2px solid #111; padding-bottom:10px; margin-bottom:18px;
+  }
+  .fav-print-title h1 { font-size:1.35em; margin:0 0 4px; color:#111; }
+  .fav-print-title .fav-print-sub { font-size:.85em; color:#555; }
+
+  #fav-overlay .fav-ov-body {
+    padding:0 !important; margin:0 !important; max-width:none !important;
+    overflow:visible !important; width:auto !important;
+  }
+
+  /* 카드끼리 페이지 넘김 없이 이어 붙여 출력 (여백 최소화) */
+  #fav-overlay .fav-card-wrap {
+    background:#fff !important; border:none !important; border-bottom:1px solid #ccc;
+    border-radius:0 !important; box-shadow:none !important;
+    padding:0 0 10px !important; margin-bottom:10px !important;
+    page-break-inside:auto; break-inside:auto;
+  }
+
+  #fav-overlay .fav-card-meta { margin-bottom:6px; }
+  #fav-overlay .fav-card-subj {
+    background:none !important; color:#111 !important;
+    border:1px solid #111 !important; padding:2px 9px;
+  }
+  #fav-overlay .fav-card-chapter { color:#555 !important; }
+
+  #fav-overlay .fav-card-body { display:block !important; margin-top:6px !important; }
+
+  #fav-overlay .card {
+    background:#fff !important; border:none !important; box-shadow:none !important;
+    padding:0 !important; margin-bottom:0 !important;
+  }
+  #fav-overlay .card-title { font-size:1.05em; color:#111; }
+
+  /* 강조 박스 — 색 배경 대신 흰 배경 + 테두리로 (잉크 절약) */
+  #fav-overlay .hbox {
+    background:#fff !important; border:1px solid #999 !important; color:#111 !important;
+    page-break-inside:avoid; break-inside:avoid;
+  }
+  #fav-overlay .hbox-blue,
+  #fav-overlay .hbox-green,
+  #fav-overlay .hbox-yellow,
+  #fav-overlay .hbox-red,
+  #fav-overlay .hbox-purple { background:#fff !important; border-left:3px solid #333 !important; }
+
+  /* 표 — 제목 셀 옅은 회색(약 20%) + 검정 글씨 */
+  #fav-overlay .comp-table { page-break-inside:avoid; break-inside:avoid; }
+  #fav-overlay .comp-table th {
+    background:#e2e2e2 !important; color:#111 !important; border:1px solid #999;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  #fav-overlay .comp-table td { color:#111 !important; border-bottom:1px solid #ccc !important; }
+  #fav-overlay .comp-table tr:nth-child(even) td { background:#fff !important; }
+  #fav-overlay .th-blue, #fav-overlay .th-green,
+  #fav-overlay .th-purple, #fav-overlay .th-red, #fav-overlay .th-orange {
+    background:#e2e2e2 !important; color:#111 !important;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+
+  /* 배지 / 기출 표시 / 플로우 / 리스트 — 색 없이 테두리·글자로만 구분 */
+  #fav-overlay .badge,
+  #fav-overlay .badge-blue, #fav-overlay .badge-green, #fav-overlay .badge-red,
+  #fav-overlay .badge-yellow, #fav-overlay .badge-purple, #fav-overlay .badge-gray {
+    background:#fff !important; color:#111 !important; border:1px solid #999 !important;
+  }
+  #fav-overlay .kichul {
+    background:#fff !important; color:#111 !important; border:1px solid #111 !important;
+  }
+  #fav-overlay .flow-item { background:#fff !important; color:#111 !important; border:1px solid #999 !important; }
+  #fav-overlay .flow-arrow { color:#333 !important; }
+  #fav-overlay .pts li::before,
+  #fav-overlay .star-list li::before { color:#333 !important; }
+  #fav-overlay .tag,
+  #fav-overlay .tag-blue, #fav-overlay .tag-green, #fav-overlay .tag-red,
+  #fav-overlay .tag-yellow, #fav-overlay .tag-purple, #fav-overlay .tag-cyan {
+    background:#fff !important; color:#111 !important; border:1px solid #999 !important;
+  }
+
+  /* 강별 인쇄(챕터 선택 인쇄)용 구획 제목 */
+  #fav-overlay .print-chapter-title {
+    font-size:1.12em; font-weight:900; color:#111 !important;
+    margin:20px 0 10px; padding-bottom:6px; border-bottom:1.5px solid #333;
+    page-break-after:avoid; break-after:avoid;
+  }
+  #fav-overlay .print-chapter-block:first-child .print-chapter-title { margin-top:0; }
+}
 
 /* ══════════════════════════════════════════
    [추가] 기능 4: 강별 연습문제 미리보기 모달
@@ -1723,9 +1884,32 @@ hr {
     <button class="fav-ov-close" onclick="closeFavOverlay()" style="display:none">← 돌아가기</button>
     <span class="fav-ov-title">⭐ 즐겨찾기 카드</span>
     <span id="favOvCount" style="font-size:.78em;color:#94a3b8"></span>
+    <button class="fav-ov-print-btn" onclick="printFavorites()" title="인쇄하기">🖨 인쇄</button>
   </div>
+  <div class="fav-print-title" id="favPrintTitle"></div>
   <div class="fav-ov-filter" id="favOvFilter"></div>
   <div class="fav-ov-body" id="favOvBody"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     [추가] 강 선택 인쇄 오버레이 (요약정리 전체 공통)
+═══════════════════════════════════════════════════════════ -->
+<div id="cpo-overlay">
+  <div class="fav-ov-header">
+    <button class="fav-ov-close" onclick="closeChapterPrintOverlay()">← 닫기</button>
+    <span class="fav-ov-title" id="cpoTitle">🖨 강 선택 인쇄</span>
+    <span id="cpoCount" style="font-size:.78em;color:#94a3b8"></span>
+  </div>
+  <div class="cpo-body">
+    <label class="cpo-select-all">
+      <input type="checkbox" id="cpoSelectAll" onchange="toggleCpoSelectAll(this)">
+      <span>전체 선택</span>
+    </label>
+    <div id="cpoChapterList"></div>
+  </div>
+  <div class="cpo-footer">
+    <button class="cpo-print-btn" onclick="printSelectedChapters()">🖨 선택한 강 인쇄</button>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -1779,6 +1963,7 @@ hr {
           <button class="sum-srch-clear" id="sumClearBtn"
             onclick="clearSumSearch()" style="display:none">✕</button>
         </div>
+        <button class="sum-print-btn" onclick="event.stopPropagation(); openChapterPrintOverlay()" title="강 선택 인쇄">🖨</button>
       </div>
     </div>
     <!-- 챕터 내비 (JS로 동적 생성) + 펼치기 버튼 -->
@@ -19186,6 +19371,146 @@ function toggleFavCard(key) {
 function setFavFilter(subjectId) {
   favActiveFilter = subjectId;
   renderFavOverlay();
+}
+
+function printFavorites() {
+  const favs = loadFavorites();
+  const keys = Object.keys(favs);
+  if (!keys.length) return;
+
+  const filteredKeys = favActiveFilter === 'all'
+    ? keys
+    : keys.filter(k => String(favs[k].subjectId) === String(favActiveFilter));
+  if (!filteredKeys.length) return;
+
+  // 인쇄 전 모든 카드 펼치기
+  document.querySelectorAll('#favOvBody .fav-card-body').forEach(el => el.classList.add('open'));
+  document.querySelectorAll('#favOvBody .fav-card-arrow').forEach(el => el.classList.add('open'));
+
+  // 인쇄용 타이틀 구성
+  const filterLabel = favActiveFilter === 'all'
+    ? '전체 과목'
+    : ((SUBJECT_META[favActiveFilter] && SUBJECT_META[favActiveFilter].name) || '');
+  const dateStr = new Date().toLocaleDateString('ko-KR');
+  const titleEl = document.getElementById('favPrintTitle');
+  if (titleEl) {
+    titleEl.innerHTML = `
+      <h1>⭐ 즐겨찾기 요약노트</h1>
+      <div class="fav-print-sub">${filterLabel} · 총 ${filteredKeys.length}개 · ${dateStr}</div>`;
+  }
+
+  setTimeout(() => window.print(), 100);
+}
+
+window.addEventListener('afterprint', () => {
+  document.querySelectorAll('#favOvBody .fav-card-body.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('#favOvBody .fav-card-arrow.open').forEach(el => el.classList.remove('open'));
+});
+
+/* ══════════════════════════════════════════
+   [추가] 기능: 과목별 강 선택 인쇄
+══════════════════════════════════════════ */
+function openChapterPrintOverlay() {
+  const subjectId = currentSummarySubjectId;
+  const data = SUMMARY_DATA[subjectId];
+  if (!data) return;
+
+  const meta = SUBJECT_META[subjectId] || {};
+  const titleEl = document.getElementById('cpoTitle');
+  if (titleEl) titleEl.textContent = `🖨 ${meta.icon || data.icon || ''} ${data.title} · 강 선택 인쇄`;
+
+  const listEl = document.getElementById('cpoChapterList');
+  if (listEl) {
+    listEl.innerHTML = data.chapters.map((ch, i) => `
+      <label class="cpo-chapter-item">
+        <input type="checkbox" class="cpo-ch-check" data-idx="${i}" onchange="updateCpoCount()">
+        <span class="cpo-ch-num">${ch.num}</span>
+        <span class="cpo-ch-name">${ch.name}</span>
+      </label>`
+    ).join('');
+  }
+
+  const selectAll = document.getElementById('cpoSelectAll');
+  if (selectAll) selectAll.checked = false;
+  updateCpoCount();
+
+  document.getElementById('cpo-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeChapterPrintOverlay() {
+  document.getElementById('cpo-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleCpoSelectAll(cb) {
+  document.querySelectorAll('.cpo-ch-check').forEach(el => { el.checked = cb.checked; });
+  updateCpoCount();
+}
+
+function updateCpoCount() {
+  const all = document.querySelectorAll('.cpo-ch-check');
+  const checked = document.querySelectorAll('.cpo-ch-check:checked');
+  const countEl = document.getElementById('cpoCount');
+  if (countEl) countEl.textContent = checked.length ? `${checked.length}개 선택됨` : '';
+
+  const selectAll = document.getElementById('cpoSelectAll');
+  if (selectAll) selectAll.checked = all.length > 0 && checked.length === all.length;
+
+  const printBtn = document.querySelector('.cpo-print-btn');
+  if (printBtn) printBtn.disabled = checked.length === 0;
+}
+
+function printSelectedChapters() {
+  const subjectId = currentSummarySubjectId;
+  const data = SUMMARY_DATA[subjectId];
+  if (!data) return;
+
+  const checkedBoxes = [...document.querySelectorAll('.cpo-ch-check:checked')];
+  if (!checkedBoxes.length) return;
+  const idxList = checkedBoxes.map(cb => parseInt(cb.dataset.idx, 10)).sort((a,b) => a-b);
+
+  const meta = SUBJECT_META[subjectId] || {};
+  const chNums = idxList.map(i => data.chapters[i].num).join(', ');
+  const dateStr = new Date().toLocaleDateString('ko-KR');
+
+  // 인쇄용 타이틀
+  const titleEl = document.getElementById('favPrintTitle');
+  if (titleEl) {
+    titleEl.innerHTML = `
+      <h1>${meta.icon || data.icon || ''} ${data.title}</h1>
+      <div class="fav-print-sub">${chNums} · ${dateStr}</div>`;
+  }
+
+  // 강별 카드 전체 펼쳐서 마크업 구성 (즐겨찾기 인쇄용 스타일 재사용)
+  const filterEl = document.getElementById('favOvFilter');
+  if (filterEl) filterEl.innerHTML = '';
+
+  const bodyEl = document.getElementById('favOvBody');
+  if (bodyEl) {
+    bodyEl.innerHTML = idxList.map(i => {
+      const ch = data.chapters[i];
+      const cardsHtml = ch.cards.map(card => `
+        <div class="fav-card-wrap">
+          <div class="card">
+            <div class="card-head">
+              <span class="card-icon">${card.icon}</span>
+              <span class="card-title">${card.title}</span>
+            </div>
+            ${card.html}
+          </div>
+        </div>`
+      ).join('');
+      return `
+        <div class="print-chapter-block">
+          <div class="print-chapter-title">${ch.num} · ${ch.name}</div>
+          ${cardsHtml}
+        </div>`;
+    }).join('');
+  }
+
+  closeChapterPrintOverlay();
+  setTimeout(() => window.print(), 100);
 }
 
 function removeFav(key) {
