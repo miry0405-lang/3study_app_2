@@ -1187,7 +1187,6 @@ hr {
     display:block !important; position:static !important; inset:auto !important;
     top:auto !important; background:#fff !important; z-index:auto !important;
     animation:none !important; overflow:visible !important; height:auto !important;
-    filter:grayscale(100%) !important;
   }
 
   #fav-overlay .fav-ov-header,
@@ -2439,568 +2438,369 @@ const SUMMARY_DATA = {
     icon: '💼',
     chapters: [
         { num: "1강", name: "사회복지실천 — 정의의 두 흐름과 통합적 실천", icon: "🌱",
-          cards: [
-
-            { icon: '📂', title: '01. 오프닝 — 두 장면의 사회복지사',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">두 장면의 사회복지사와 비대칭</span>
-                  <span class="badge badge-green">학습목표 (5가지)</span>
-                </div>
-              `
-            },
-
-            { icon: '👥', title: '두 장면의 사회복지사와 비대칭',
-              html:   `
-                <div class="hbox hbox-blue">사회복지사에게는 미시적 이미지(상담·사례관리)와 거시적 이미지(옹호·조직화·정책) 두 장면이 모두 존재하며, 이 강의는 미시 이미지가 압도적으로 익숙한 "비대칭"에서 출발한다</div>
-                <div class="sub">두 장면</div>
-                <ul class="pts">
-                  <li><b>눈에 익숙한 장면</b>: 복지관·센터·공공기관에서 상담·사례관리·서비스 연계를 수행 — 한국에서 가장 익숙한 사회복지사의 이미지</li>
-                  <li><b>상대적으로 덜 보이는 장면</b>: 권익옹호·주민조직화·캠페인·정책 제안에 참여</li>
-                  <li>두 장면 <b>모두</b> 사회복지사가 수행할 수 있는 정당한 실천 영역이다 — 이 강의 전체를 관통하는 문제의식은 사회복지실천을 한쪽(미시)으로만 좁혀 이해하지 않는 것</li>
-                  <li>다만 한국의 <b>대중적 이미지와 공식 자료</b>에는 전자(미시)가 훨씬 더 자주 보인다 — 오늘 강의는 바로 이 비대칭에서 출발한다</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 오프닝 질문: "당신이 떠올린 사회복지사는 누구입니까?" — "둘은 다른 사람이 아니다. 같은 전문직의 두 얼굴이다."</div>
-              `
-            },
-
-            { icon: '🎯', title: '학습목표 (5가지)',
-              html:   `
-                <div class="hbox hbox-blue">이번 강의는 사회복지실천의 기본개념·역사적 뿌리·정의·목적·기능·통합적 실천과 한국적 맥락을 다루고, 앞으로의 학습 시각의 밑그림을 제시한다</div>
-                <div class="sub">다섯 가지 목표</div>
-                <ul class="star-list">
-                  <li>사회복지실천의 <b>기본개념</b>을 이해한다</li>
-                  <li>사회복지실천의 <b>역사적 뿌리</b>를 살펴본다</li>
-                  <li>사회복지실천의 <b>정의·목적·기능</b>을 탐구한다</li>
-                  <li><b>통합적 실천과 한국적 맥락</b>을 살펴본다</li>
-                  <li>이 수업이 어떤 시각으로 사회복지실천을 학습할지에 대한 <b>밑그림</b>을 제시한다</li>
-                </ul>
-              `
-            },
-
-            { icon: '📂', title: '02. 개념의 출발 — Welfare',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">Welfare의 어원과 사회복지의 정의</span>
-                  <span class="badge badge-green">제도와 삶 사이의 다리</span>
-                  <span class="badge badge-purple">용어의 변천</span>
-                </div>
-              `
-            },
-
-            { icon: '🌱', title: 'Welfare의 어원과 사회복지의 정의',
-              html:   `
-                <div class="hbox hbox-blue">사회복지(Social Welfare)는 개인 혼자만의 안녕이 아니라 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적이고 사회적인 노력이다</div>
-                <div class="sub">용어의 어원</div>
-                <ul class="pts">
-                  <li><b>Welfare</b> = wel(좋은/잘) + fare(지내다/살아가다) → "잘 지내는 상태", 안녕한 상태, 좋게 살아가는 상태를 뜻하는 말에서 출발한 개념</li>
-                  <li><b>Social</b>의 의미: 사교적인, 사회적인, <b>공공의</b>라는 뜻을 함께 지님</li>
-                </ul>
-                <div class="sub">Social Welfare를 이해하기 위한 두 질문</div>
-                <ul class="pts">
-                  <li>누가 <b>구성원</b>인가? (복지의 대상 범위)</li>
-                  <li>무엇을 <b>좋은 상태</b>라고 볼 것인가? (복지의 내용/기준)</li>
-                  <li>이 질문에 대한 답은 시대와 사회에 따라 달라져 왔다</li>
-                </ul>
-              `
-            },
-
-            { icon: '🌉', title: '제도와 삶 사이의 다리 — 사회복지 vs 사회복지실천',
-              html:   `
-                <div class="hbox hbox-blue">사회복지실천은 제도를 삶으로 가져오고, 삶의 문제를 제도 변화로 되돌려 보내는 이중 방향의 활동이다</div>
-                <div class="sub">사회복지 vs 사회복지실천</div>
-                <div class="table-wrap"><table class="comp-table compare">
-                  <tr><th>구분</th><th class="th-blue">사회복지</th><th class="th-green">사회복지실천</th></tr>
-                  <tr><td>주체</td><td>가치·제도·정책</td><td>사회복지사</td></tr>
-                  <tr><td>내용</td><td>법, 예산, 전달체계, 사회적 권리의 구조</td><td>사람 사이의 전문 활동 (상담, 연계, 조직화, 옹호)</td></tr>
-                  <tr><td>성격</td><td>구조 차원</td><td>삶의 변화 과정</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 법과 예산은 책상 위에 있을 때 추상적이다. 그것이 어느 가정의 식탁에 도착하고, 어느 청년의 삶의 선택지를 넓히고, 어느 지역에 자원을 연결할 때 비로소 사회복지실천이 된다</div>
-              `
-            },
-
-            { icon: '📜', title: '용어의 변천 ★',
-              html:   `
-                <div class="hbox hbox-blue">사회사업 → 사회복지 → 사회복지실천으로 이어진 용어 변화는 작은 명칭 변경이 아니라 전문직 정체성의 이동을 담고 있다</div>
-                <div class="sub">시기별 용어 변천</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>시기</th><th>용어</th><th>함의</th></tr>
-                  <tr><td>1960~70년대</td><td>사회사업</td><td>자선·종교·구호의 흔적</td></tr>
-                  <tr><td>1980년대 이후</td><td>사회복지</td><td>국가·제도·정책의 확대</td></tr>
-                  <tr><td>현재</td><td><b>사회복지실천</b></td><td>사회복지의 가치와 목표를 현장에서 구현하는 전문적 활동 / 전문직 활동과 통합적 실천</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 한국사회복지가 자선에서 제도로, 제도에서 전문적 실천으로 이동해 온 흔적이다</div>
-              `
-            },
-
-            { icon: '📂', title: '03. 역사적 뿌리',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">배경</span>
-                  <span class="badge badge-blue">자선조직협회(COS)</span>
-                  <span class="badge badge-green">인보관운동</span>
-                  <span class="badge badge-green">Jane Addams</span>
-                  <span class="badge badge-purple">COS vs 인보관운동</span>
-                </div>
-              `
-            },
-
-            { icon: '🏙️', title: '배경 — 산업화·도시화와 두 가지 답',
-              html:   `
-                <div class="hbox hbox-blue">같은 문제(빈곤·도시 문제) 앞에서 두 가지 서로 다른 답(COS, 인보관운동)이 등장했다</div>
-                <div class="sub">배경 흐름</div>
-                <ul class="pts">
-                  <li>19세기 말, 영국과 미국의 대도시는 산업화·도시화의 압력을 강하게 받음</li>
-                  <li>농촌 인구의 도시 이동 → 열악한 노동 조건 → 빈곤이 대규모 <b>도시 문제</b>로 나타남</li>
-                  <li>기존의 교외 자선·자발적 구호만으로는 이 문제를 감당하기 어려워짐</li>
-                </ul>
-              `
-            },
-
-            { icon: '📋', title: '자선조직협회(COS, Charity Organization Society)',
-              html:   `
-                <div class="hbox hbox-blue">COS는 자선을 체계화하고 중복 구호와 의존을 줄이기 위해 개별 가정의 상황을 조사·조정한 흐름으로, 오늘날 개별사회사업·사례관리의 토대가 되었다</div>
-                <div class="sub">문제의식 · 초점 · 방법 · 유산</div>
-                <ul class="pts">
-                  <li><b>문제의식</b>: 어떻게 하면 자선을 체계화하고, 중복 구호와 의존을 줄일 수 있을까? — 오늘날의 <b>효율성</b> 질문과 맥이 닿는 문제의식</li>
-                  <li><b>초점</b>: 개별 가정의 상황 조사와 구호의 조정</li>
-                  <li><b>방법</b>: 우애방문(friendly visiting), 기록, 사정, 기관 간 조정 — 초기에는 중산층·상류층의 자원봉사 활동(우애방문)으로 이루어졌고, 이후 유급 조사원과 전문직 활동으로 발전함</li>
-                  <li><b>유산</b>: 개별사회사업(casework)과 전문직화의 토대 — 오늘날의 개별사회사업·사례관리·사정과 기록의 전통은 이 흐름과 연결됨</li>
-                </ul>
-                <div class="sub">공헌과 한계</div>
-                <div class="table-wrap"><table class="comp-table compare">
-                  <tr><th class="th-blue">공헌</th><th>한계</th></tr>
-                  <tr><td>자선을 체계화함</td><td>빈곤을 개인의 도덕성·생활습관 문제로 좁게 볼 위험</td></tr>
-                  <tr><td>조사와 기록을 발전시킴</td><td>구조적 원인 분석이 약함</td></tr>
-                  <tr><td>중복 구호를 조정함</td><td>도움 관계에 권력 비대칭이 큼</td></tr>
-                  <tr><td>전문직화의 토대를 마련함</td><td>—</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 역사는 "좋다/나쁘다"의 판단이 아니라, 무엇을 보았고 무엇을 덜 보았는지를 묻는 공부다 — COS를 단순히 "나쁜 역사"로만 보아서는 안 된다</div>
-              `
-            },
-
-            { icon: '🏠', title: '인보관운동 (Settlement House Movement)',
-              html:   `
-                <div class="hbox hbox-blue">인보관운동은 가난한 사람을 바꾸는 것이 아니라 함께 살며 지역과 제도를 바꾸려 한 흐름으로, 지역사회조직·옹호·정책개입의 토대가 되었다</div>
-                <div class="sub">문제의식 · 초점 · 방법 · 유산</div>
-                <ul class="pts">
-                  <li><b>문제의식</b>: 가난한 사람을 바꾸는 것이 아니라, 함께 살며 지역과 제도를 바꿀 수는 없을까?</li>
-                  <li><b>초점</b>: 빈곤 지역의 생활 조건과 사회 구조 — 사람들이 살아가는 주거·노동·교육·위생·정치적 권리의 조건을 함께 봄. "환경 속의 인간"이라는 관점과 맞닿아 있음</li>
-                  <li><b>방법</b>: 거주(함께 살기), 교육, 문화 활동, 주민 조직화, 정책 개선</li>
-                  <li><b>유산</b>: 지역사회조직, 옹호, 정책개입의 토대</li>
-                </ul>
-                <div class="sub">공헌과 주의점</div>
-                <div class="table-wrap"><table class="comp-table compare">
-                  <tr><th class="th-green">공헌</th><th>주의점</th></tr>
-                  <tr><td>빈곤의 구조적 조건을 보게 함</td><td>당시 활동가는 대체로 교육받은 중산층이었음 — 계급·문화적 위치가 영향을 줌</td></tr>
-                  <tr><td>지역사회와 함께하는 실천을 발전시킴</td><td>"함께 산다"는 말에도 권력 차이가 존재</td></tr>
-                  <tr><td>교육·문화·정책개혁을 연결함</td><td>모든 인보관이 급진적·민주주의적이었던 것은 아님</td></tr>
-                  <tr><td>옹호와 조직화의 기반을 제공함</td><td>—</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 비판적 존중: 계승하되 신화화하지 않는다</div>
-              `
-            },
-
-            { icon: '👤', title: '인보관운동의 상징 인물 — Jane Addams',
-              html:   `
-                <div class="hbox hbox-blue">Jane Addams는 헐 하우스(Hull House)를 통해 이주민·노동자·여성·아동의 생활 조건 개선, 교육 프로그램, 문화 활동, 사회조사, 정책개혁을 한 공간에서 연결한 인보관운동의 상징적 인물이다</div>
-                <div class="sub">의의</div>
-                <ul class="pts">
-                  <li>사회복지 역사와 평화운동의 교차점에 있는 중요한 인물</li>
-                </ul>
-                <div class="hbox hbox-red">❌ 유의점 — 현대적 의미의 사회복지사 <b>자격 제도 이전</b>의 인물이다. "사회복지사 자격을 가진 인물"처럼 표현하기보다, 사회복지 역사의 중요한 <b>선구자</b>로 설명하는 것이 정확하다</div>
-              `
-            },
-
-            { icon: '⚖️', title: 'COS vs 인보관운동 비교 ★',
-              html:   `
-                <div class="hbox hbox-blue">사회복지실천은 개인 사정과 구조적 조건이라는 두 질문을 동시에 붙드는 전문 활동이며, COS와 인보관운동은 각각 미시·거시 실천 계보의 상징적 뿌리다</div>
-                <div class="sub">두 흐름 전체 비교</div>
-                <div class="table-wrap"><table class="comp-table compare">
-                  <tr><th>구분</th><th class="th-blue">COS</th><th class="th-green">인보관운동</th></tr>
-                  <tr><td>핵심 질문</td><td>이 사람에게 지금 필요한 도움은 무엇인가?</td><td>이 문제가 반복되게 만드는 조건은 무엇인가?</td></tr>
-                  <tr><td>방법</td><td>개별 사정·사례관리·서비스 조정·기록</td><td>지역사회·조직화·옹호·정책 변화</td></tr>
-                  <tr><td>실천 계보</td><td>미시 실천 → 개별사회사업·사례관리·임상사회복지</td><td>거시 실천 → 지역사회조직·옹호·정책개입</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 사회복지실천은 한 사람을 돕되 그 사람이 놓인 환경적 조건을 함께 보고, 조건을 바꾸려 하되 눈앞의 한 사람을 놓치지 않는 활동이다</div>
-                <div class="sub">한계 — 계보는 상징적 지도일 뿐</div>
-                <ul class="pts">
-                  <li>이 "계보"는 이해를 돕는 <b>단순화된 상징적 지도</b>일 뿐이며, 현실의 역사는 이보다 더 복잡함</li>
-                  <li>임상사회복지가 COS만의 후예는 아니고, 거시실천이 인보관만의 후예도 아님</li>
-                  <li>정신분석, 시민권운동, 노동운동, 정책학, 지역사회개발 등 여러 흐름이 함께 섞여 있음</li>
-                  <li>→ COS적 접근과 인보관적 접근을 <b>통합하는 사고</b>가 필요함</li>
-                </ul>
-              `
-            },
-
-            { icon: '📂', title: '04. 정의 · 목적 · 기능',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">정의의 계보</span>
-                  <span class="badge badge-blue">정의의 발전 (Richmond → NASW → IFSW)</span>
-                  <span class="badge badge-green">한국적 정의 (윤리강령)</span>
-                  <span class="badge badge-purple">통합적 정의</span>
-                  <span class="badge badge-yellow">목적·기능·기준</span>
-                </div>
-              `
-            },
-
-            { icon: '🧭', title: '정의의 계보',
-              html:   `
-                <div class="hbox hbox-blue">사회복지실천의 정의는 Richmond → NASW → IFSW → 한국 윤리강령/본 교재 순으로 확장되어 온, 현장의 질문이 쌓인 언어다</div>
-                <div class="sub">정의 계보의 특징</div>
-                <ul class="pts">
-                  <li>정의는 책상 위 문장이 아니라, <b>현장의 질문들이 쌓인 언어</b>다</li>
-                  <li>앞서 본 두 흐름(개인과 환경, 구호와 개혁, 사례관리와 조직화)의 긴장이 이 정의들 안에 계속 남아 있다</li>
-                </ul>
-              `
-            },
-
-            { icon: '📖', title: '정의의 발전 ① ~ ③ — Richmond → NASW → IFSW',
-              html:   `
-                <div class="hbox hbox-blue">사회복지실천의 정의는 개인 중심(Richmond)에서 집단·지역사회(NASW), 사회변화·임파워먼트(IFSW)로 계속 확장되어 왔다</div>
-                <div class="sub">① 고전적 정의 (Richmond)</div>
-                <ul class="pts">
-                  <li><b>정의</b>: 개인과 사회환경 사이의 관계를 <b>의식적으로 조정</b>하여 개인의 발달을 돕는 전문 활동</li>
-                  <li><b>핵심 의미 1</b>: 자선이 아니라 <b>의식적이고 전문적인 실천</b></li>
-                  <li><b>핵심 의미 2</b>: 대상은 개인이지만, 초점은 개인과 환경 <b>사이의 관계</b>에 있음</li>
-                  <li><b>주의</b>: 당대의 개인 중심성을 비판적으로 읽을 필요가 있음</li>
-                </ul>
-                <div class="sub">② 현대적 확장① (NASW)</div>
-                <ul class="pts">
-                  <li><b>정의</b>: 개인·집단·지역사회의 기능을 돕고, <b>사회적 조건을 함께 만들어 가는</b> 활동</li>
-                  <li><b>확장된 대상</b>: 개인 → 집단 → 지역사회</li>
-                  <li><b>확장된 목표</b>: 개인의 사회적 기능 증진에서 끝나지 않고, 그 기능이 가능하도록 하는 <b>사회적 조건을 만드는 데까지</b> 확장 — 적응만이 아니라 사회적 조건의 형성</li>
-                </ul>
-                <div class="sub">③ 현대적 확장② (IFSW 계열)</div>
-                <ul class="pts">
-                  <li><b>정의</b>: 사회 변화, 사회 발전, 사회적 응집, <b>임파워먼트와 해방</b>을 촉진하는 실천 기반 전문직이자 학문 영역</li>
-                  <li>사회복지사는 단순한 서비스 제공자가 아니라, 사람들의 권리와 주체성을 확장하고 공동체의 관계를 회복하며 구조적 조건에 개입하는 전문직</li>
-                  <li><b>세 핵심 요소</b>: 사회 변화(구조적 조건에 대한 개입) / 사회적 응집(관계와 공동체의 회복) / 임파워먼트(권리와 주체성의 확장)</li>
-                </ul>
-              `
-            },
-
-            { icon: '🇰🇷', title: '한국적 정의의 기반 (한국사회복지사 윤리강령)',
-              html:   `
-                <div class="hbox hbox-blue">한국사회복지사 윤리강령은 인간의 존엄성과 가치를 상위 가치로 강조하며, 개인 지원과 사회정의를 함께 명시한다</div>
-                <div class="sub">핵심 내용</div>
-                <ul class="pts">
-                  <li><b>핵심 가치</b>: 인간의 존엄성과 가치 · 자기결정 · 권익 옹호 · 사회정의 · 전문성</li>
-                  <li><b>강점</b>: 인간 존엄성을 상위 가치로, 매우 강하게 강조함</li>
-                  <li><b>균형</b>: 개인 지원(클라이언트의 권익옹호)과 사회정의를 함께 명시</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 과제 — 윤리강령의 언어가 현장에서 자동으로 실천되는 것은 아니다. 한국의 기관문화, 행정구조, 자원제약이라는 환경적 요건 속에서 이 가치들을 어떻게 구체화할지가 항상 남겨진 과제다</div>
-              `
-            },
-
-            { icon: '🧩', title: '통합적 정의 (본 강의) ★',
-              html:   `
-                <div class="hbox hbox-blue">개인의 삶과 사회의 구조를 함께 보는 통합적 전문 활동으로, 미시·중시·거시 세 차원으로 구성된다</div>
-                <div class="sub">세 차원</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>차원</th><th>내용</th><th>방법 예시</th></tr>
-                  <tr><td>한 사람의 변화 (미시)</td><td>개인 수준 개입</td><td>상담, 사정, 개입, 사례관리</td></tr>
-                  <tr><td>공동체의 형성 (중시)</td><td>관계·집단 수준 개입</td><td>관계, 집단, 조직, 지역사회 자원</td></tr>
-                  <tr><td>제도의 변화 (거시)</td><td>구조 수준 개입</td><td>옹호, 정책 제안, 거버넌스</td></tr>
-                </table></div>
-                <div class="sub">핵심 명제</div>
-                <ul class="pts">
-                  <li>세 차원 중 <b>하나만으로는</b> 사회복지실천 전체를 설명하기 어렵다</li>
-                  <li>그렇다고 모든 사회복지사가 이 세 차원을 <b>동시에 직접 수행</b>해야 한다는 뜻은 아니다 — 중요한 것은 자신이 서 있는 자리에서 이 세 차원을 <b>연결하고 통합하는 능력</b>이다</li>
-                </ul>
-              `
-            },
-
-            { icon: '⚙️', title: '목적 · 기능 · 기준',
-              html:   `
-                <div class="hbox hbox-blue">사회복지실천은 좋은 마음만으로 이루어지는 활동이 아니라, 목적·기능·기준을 갖춘 전문적 실천이다</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>구분</th><th>내용</th></tr>
-                  <tr><td>목적</td><td>문제 해결, 욕구 충족, 사회적 기능 증진, 권리와 정의의 실현</td></tr>
-                  <tr><td>기능</td><td>사정, 개입, 연계·조정, 옹호·조직화</td></tr>
-                  <tr><td>기준</td><td>클라이언트의 삶, 사회적 조건, 전문직 윤리, 책무성</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 좋은 의도만으로는 충분하지 않다 — 전문적 판단과 책임이 필요하다</div>
-              `
-            },
-
-            { icon: '📂', title: '05. 통합적 실천과 한국적 맥락',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">통합적 실천의 세 층위</span>
-                  <span class="badge badge-blue">적용 사례 — 청년 1인가구</span>
-                  <span class="badge badge-green">오해 방지</span>
-                  <span class="badge badge-purple">한국적 맥락 — 시기별 전개</span>
-                  <span class="badge badge-yellow">왜 미시 중심 이미지가 강한가</span>
-                  <span class="badge badge-red">통합의 회복</span>
-                </div>
-              `
-            },
-
-            { icon: '🔺', title: '통합적 실천의 세 층위 ★',
-              html:   `
-                <div class="hbox hbox-blue">실천은 미시·중시·거시 세 층위로 구분되며, 클라이언트의 어려움은 보통 한 층위에서만 발생하지 않는다</div>
-                <div class="sub">세 층위</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>층위 (한글)</th><th>층위 (영문)</th><th>대상</th></tr>
-                  <tr><td>미시</td><td>마이크로(Micro)</td><td>개인·가족</td></tr>
-                  <tr><td>중시</td><td>매조(Mezzo)</td><td>집단·기관·이웃·지역·네트워크</td></tr>
-                  <tr><td>거시</td><td>매크로(Macro)</td><td>지역사회·정책·제도·사회구조</td></tr>
-                </table></div>
-                <div class="sub">핵심 명제</div>
-                <ul class="pts">
-                  <li>클라이언트의 어려움은 보통 한 층위에서만 발생하지 않는다 → 필요에 따라 층위를 이동하며 판단하는 것이 사회복지사 전문성의 핵심</li>
-                  <li>예: 한 사람의 <b>우울</b>은 개인의 감정 문제일 수도 있지만, 가족관계·직장환경·지역자원·복지제도와도 연결됨</li>
-                </ul>
-              `
-            },
-
-            { icon: '🧑', title: '적용 사례 — 청년 1인가구',
-              html:   `
-                <div class="hbox hbox-blue">사례 하나에도 개인의 삶, 관계망, 사회 조건이 함께 들어 있다</div>
-                <div class="sub">층위별 개입 예시</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>층위</th><th>개입 예시</th></tr>
-                  <tr><td>미시</td><td>청년의 불안과 우울, 생활 리듬·위기·위험, 강점과 자원 확인</td></tr>
-                  <tr><td>중시</td><td>가족 관계, 직장 관계, 친구·동료의 지지망, 기관 간 협력</td></tr>
-                  <tr><td>거시</td><td>고용 불안정, 주거 문제, 청년 정책, 사회적 낙인</td></tr>
-                </table></div>
-              `
-            },
-
-            { icon: '🚫', title: '오해 방지 — 통합성은 만능성이 아니다 ★',
-              html:   `
-                <div class="hbox hbox-blue">통합성은 만능성이 아니라 연결 능력이다</div>
-                <div class="sub">오해와 현실</div>
-                <ul class="pts">
-                  <li><b>오해</b>: "사회복지사 한 명이 상담도, 조직화도, 정책도, 연구도 모두 직접 해야 한다"</li>
-                  <li><b>현실</b>: 사회복지사는 자신이 속한 기관, 주어진 직무·권한·경력에 따라 특정 역할을 맡음</li>
-                  <li><b>핵심</b>: 자신이 미시 실천을 하더라도 사례의 중시적 측면과 거시적 맥락을 이해해야 하고, 정책 실천을 하더라도 현장과 개인·가족의 삶에 대한 이해가 있어야 함</li>
-                </ul>
-                <div class="hbox hbox-red">❌ "통합성 = 모든 것을 직접 다 해야 한다(만능성)"로 오해하면 안 된다 — 통합성은 만능성이 아니라 <b>연결 능력</b>이다</div>
-              `
-            },
-
-            { icon: '🇰🇷', title: '한국적 맥락 — 시기별 전개 (네 시기)',
-              html:   `
-                <div class="hbox hbox-blue">한국 사회복지실천은 태동기·도입기·제도화기·확장기의 네 시기를 거치며 인보관적 실천에서 전문직 확장으로 발전해왔다</div>
-                <div class="sub">시기별 전개</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>시기 구분</th><th>연도</th><th>주요 사건</th><th>의미</th></tr>
-                  <tr><td>태동기</td><td>1921~45</td><td>태화여자관(태화 기독교사회관)·방면위원제도</td><td>인보관적 실천의 도입</td></tr>
-                  <tr><td>도입기</td><td>1947~60s</td><td>이화여대 기독교사회사업과 설립·외원단체 활동</td><td>전문교육과 구호 실천</td></tr>
-                  <tr><td>제도화기</td><td>1970~80s</td><td>사회복지사업법·1983년 사회복지사 자격제도</td><td>국가 제도화와 전문직 형성</td></tr>
-                  <tr><td>확장기</td><td>2003~</td><td>2003년 사회복지사 1급 국가시험 시행·영역별 전문화</td><td>전문직 확장과 통합 과제, 복지국가 확대와 함께 활동 영역 확장</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 연도와 사건은 강의용 요약이며, 세부 내용은 보충자료에서 더 정교하게 다룸</div>
-              `
-            },
-
-            { icon: '🔍', title: '왜 미시 중심 이미지가 강한가 — 단정 대신 조건 분석 ★',
-              html:   `
-                <div class="hbox hbox-blue">미시 중심 이미지가 강한 것은 개인의 잘못이 아니라 교육·행정·대상·이미지 등 여러 조건이 겹친 결과다</div>
-                <div class="sub">조건 분석</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>조건</th><th>내용</th></tr>
-                  <tr><td>교육과 교과목 분화</td><td>실천론·실천기술론은 개인·가족(미시) 중심, 지역사회복지론·정책론은 별도 과목으로 분리</td></tr>
-                  <tr><td>기관과 행정 구조</td><td>서비스 제공·사례관리·평가지표·행정기록이 일상업무를 강하게 조직</td></tr>
-                  <tr><td>대상 인구의 분화</td><td>아동·청소년·여성 등 대상군이 다양하게 분화되어 있음</td></tr>
-                  <tr><td>전문직 이미지</td><td>상담자·사례관리자 이미지는 선명, 조직가·옹호자 이미지는 상대적으로 약함</td></tr>
-                </table></div>
-                <div class="hbox hbox-yellow">💡 "미시가 잘못"이 아니라, 통합적 연결이 약해질 위험을 말하는 것이다</div>
-              `
-            },
-
-            { icon: '🔗', title: '통합의 회복 ★',
-              html:   `
-                <div class="hbox hbox-blue">사회복지실천의 힘은 깊이(미시)와 넓이(거시)를 함께 갖는 데 있다</div>
-                <div class="sub">세 실천의 역할</div>
-                <ul class="pts">
-                  <li><b>미시실천</b>은 관계와 개입의 <b>깊이</b>를 제공</li>
-                  <li><b>중시실천</b>은 집단·기관·지역 <b>자원을 연결</b></li>
-                  <li><b>거시실천</b>은 권리·정책·사회조건을 <b>이해하고 읽게</b> 함</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 한 사람을 돕는 일과 조건을 바꾸는 일은 서로 경쟁하지 않는다 — 오히려 서로가 서로를 필요로 하고 보완한다</div>
-              `
-            },
-
-            { icon: '📂', title: '06. 앞으로의 학습 관점 — 여섯 가지 렌즈',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">여섯 가지 렌즈</span>
-                  <span class="badge badge-green">클로징 질문 & 다음 강의 예고</span>
-                </div>
-              `
-            },
-
-            { icon: '🔭', title: '앞으로의 학습 관점 — 여섯 가지 렌즈 ★',
-              html:   `
-                <div class="hbox hbox-blue">1강은 통합성·가치중심성·관계성·비판성·책무성·미래성이라는 여섯 관점의 문을 여는 장이다</div>
-                <div class="sub">여섯 가지 렌즈</div>
-                <div class="table-wrap"><table class="comp-table">
-                  <tr><th>관점</th><th>내용</th></tr>
-                  <tr><td>통합성</td><td>미시·중시·거시 연결 — 한 관점으로만 문제·개입을 바라보지 않고 세 층위를 연결해 이해</td></tr>
-                  <tr><td>가치 중심(성)</td><td>인간 존엄성과 사회정의에 가치를 둠</td></tr>
-                  <tr><td>관계성</td><td>협력적 동반 관계를 중시</td></tr>
-                  <tr><td>비판성</td><td>권력과 구조를 읽는 비판적 시각</td></tr>
-                  <tr><td>(사회복지적) 책무성</td><td>평가·기록·증거 활용을 통해 실천을 책임 있게 만듦</td></tr>
-                  <tr><td>미래성</td><td>디지털 전환 이후의 위기·지속가능성 등 미래지향적 시각</td></tr>
-                </table></div>
-              `
-            },
-
-            { icon: '💬', title: '클로징 질문 & 다음 강의 예고',
-              html:   `
-                <div class="hbox hbox-blue">"나는 사회복지사를 어떤 사람으로 상상하는가?"라는 질문으로 1강을 마무리하며, 다음 강의는 실천 관점 이론들을 다룬다</div>
-                <div class="sub">클로징 질문</div>
-                <ul class="pts">
-                  <li>"나는 사회복지사를 어떤 사람으로 상상하는가?" — 상담자? 사례관리자? 옹호자? 조직가? 정책기획자? 연구자?</li>
-                  <li>중요한 것은 <b>어느 하나의 이미지가 사회복지사를 전부 설명하지 않는다</b>는 점</li>
-                  <li>이번 학기 동안 이 질문의 답을 조금씩 넓혀간다</li>
-                </ul>
-                <div class="sub">다음 강의 예고 키워드</div>
-                <ul class="pts">
-                  <li>#생태체계관점  #강점관점  #empowerment(임파워먼트)관점  #비판적사회복지</li>
-                </ul>
-              `
-            },
-
-            { icon: '📝', title: '1강 핵심 요약',
-              html:   `
-                <table class="comp-table">
-                  <tr><th>개념</th><th>핵심 내용</th></tr>
-                  <tr><td>Welfare의 정의</td><td>wel(좋은)+fare(살아가다) — 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적·사회적 노력</td></tr>
-                  <tr><td>용어의 변천</td><td>사회사업(1960~70) → 사회복지(1980~) → 사회복지실천(현재) — 전문직 정체성의 이동</td></tr>
-                  <tr><td>COS</td><td>자선 체계화·개별 조사·조정 — 개별사회사업·사례관리의 토대(미시 계보)</td></tr>
-                  <tr><td>인보관운동</td><td>함께 살며 지역·제도를 바꿈, Jane Addams(Hull House) — 지역조직·옹호·정책개입의 토대(거시 계보)</td></tr>
-                  <tr><td>정의의 발전</td><td>Richmond(개인 중심) → NASW(집단·지역사회) → IFSW(사회변화·응집·임파워먼트)</td></tr>
-                  <tr><td>통합적 정의</td><td>미시(한 사람의 변화)·중시(공동체 형성)·거시(제도의 변화) 세 차원을 연결·통합하는 활동</td></tr>
-                  <tr><td>미시·중시·거시</td><td>클라이언트 어려움은 한 층위에만 머물지 않음 — 층위를 이동하며 판단하는 것이 전문성의 핵심</td></tr>
-                  <tr><td>통합성의 의미</td><td>만능성이 아니라 연결 능력 — 자신의 자리에서 미시·중시·거시를 연결하는 능력</td></tr>
-                  <tr><td>한국적 맥락 4시기</td><td>태동기(1921~45) → 도입기(1947~60s) → 제도화기(1970~80s) → 확장기(2003~)</td></tr>
-                  <tr><td>여섯 가지 렌즈</td><td>통합성·가치중심성·관계성·비판성·책무성·미래성 — 앞으로의 학습을 여는 관점</td></tr>
-                </table>
-              `
-            }
-
-          ]
-        },
-        { num: "2강", name: "생태체계·강점·임파워먼트·비판사회복지 — 실천 관점의 지도", icon: "🧭",
-          cards: [
-
-            { icon: '📂', title: '01. 학습목표 & 사례 — 김민서(29세)',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">학습목표</span>
-                  <span class="badge badge-green">사례 — 김민서(29세)</span>
-                </div>
-              `
-            },
-
-            { icon: '🎯', title: '학습목표',
-              html:   `
-                <div class="hbox hbox-blue">지난 1강에서 사회복지실천은 미시·중시·거시를 통합하는 활동이라고 정리했다. 그 통합을 어떻게 할 것인가는 사회복지사가 어떤 이론적 렌즈를 채택하는지에 따라 달라진다 — 같은 클라이언트를 만나도 진단주의 관점의 사회복지사와 임파워먼트 관점의 사회복지사는 다른 질문을 던지고 다른 개입을 한다</div>
-                <div class="sub">학습목표 (4가지)</div>
-                <ul class="star-list">
-                  <li>생태체계관점·강점관점·임파워먼트 관점의 핵심 명제를 설명할 수 있다 (한국 사회복지 교과서에서도 비교적 잘 다뤄지는 영역)</li>
-                  <li>비판사회복지와 반억압실천(AOP)의 등장 배경과 의미를 이해한다 (한국에서는 아직 충분히 소개되지 않았지만 본 강의가 비중 있게 다루는 영역)</li>
-                  <li>거시 실천의 이론적 자원(정치경제학·공동체이론·거버넌스)을 사회복지실천과 연결할 수 있다</li>
-                  <li>각 관점이 같은 사례에서 어떻게 다른 개입을 만드는지 비교할 수 있다</li>
-                </ul>
-              `
-            },
-
-            { icon: '🧑', title: '사례 — 김민서(29세)',
-              html:   `
-                <div class="hbox hbox-blue">이 강의 전체는 김민서 사례에 네 가지 다른 이론적 관점을 차례로 적용해보며, 같은 사람이 관점에 따라 어떻게 다르게 보이는지를 따라간다</div>
-                <div class="sub">사례 개요</div>
-                <ul class="pts">
-                  <li>지방의 한 광역시 출신, 4년제 대학 졸업, 서울의 한 고시원 거주</li>
-                  <li><b>5년째 취업 준비 중</b>, 마지막 아르바이트를 그만둔 지 3개월</li>
-                  <li>학자금 대출과 생활비로 누적된 빚 약 <b>1,200만 원</b></li>
-                  <li>부모님과는 명절도 2년째 가지 않았고, 친구들과 연락도 거의 끊김</li>
-                  <li>며칠 전 동주민센터 사회복지사가 <b>1인가구 발굴 사업</b> 가정방문으로 처음 만남</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 강의의 출발 질문: "왜 취업을 못 했는가"가 아니라 "그녀는 어떻게 이 5년을 버텨왔을까"</div>
-              `
-            },
-
-            { icon: '📂', title: '02. 왜 이론인가',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">이론은 실천의 나침반</span>
-                  <span class="badge badge-green">다원적 이론 활용(Healy)</span>
-                  <span class="badge badge-purple">이론적 틀 — 세 층위</span>
-                  <span class="badge badge-yellow">실천 관점의 역사적 전개</span>
-                </div>
-              `
-            },
-
-            { icon: '🧭', title: '이론은 실천의 나침반 ★',
-              html:   `
-                <div class="hbox hbox-blue">핵심 명제 — "사회복지사가 채택한 이론이 그 사람의 사회복지를 결정한다"</div>
-                <div class="sub">흔한 오해</div>
-                <ul class="pts">
-                  <li><b>흔한 오해</b>: "나는 이론보다 실천이 중요하다고 생각한다" — 그러나 이 말에는 오해가 있음</li>
-                  <li><b>이론 없는 실천은 불가능</b>하다 — 우리는 의식하지 못한 이론을 이미 갖고 있을 뿐</li>
-                </ul>
-                <div class="sub">이론의 세 가지 역할</div>
-                <ul class="pts">
-                  <li><b>진단 틀의 제공</b>: 클라이언트의 어려움을 어떻게 이해할 것인가 — 예: 같은 우울이라도 어떤 이론은 신경전달물질의 문제로, 어떤 이론은 가족체계의 문제로, 어떤 이론은 사회구조의 문제로 진단함</li>
-                  <li><b>변화 가능성의 정의</b>: 무엇을 변화시킬 수 있다고 볼 것인가</li>
-                  <li><b>개입의 정당화</b>: 어떤 방향으로 개입할 것인가</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 이론을 의식하지 않으면 자기 실천이 어떤 가정 위에 서 있는지 알지 못한다 — 이론은 학술적 도구가 아니라 <b>실천의 방향을 정하는 나침반</b>이다</div>
-              `
-            },
-
-            { icon: '🔀', title: '다원적 이론 활용(Theoretical Pluralism) ★',
-              html:   `
-                <div class="hbox hbox-blue">호주의 학자 카렌 힐리(Karen Healy)가 정리한 입장 — 한 가지 관점이 모든 사례를 설명할 수 없으므로, 사회복지사는 클라이언트의 상황에 따라 여러 관점을 선택적·통합적으로 활용해야 한다는 원칙</div>
-                <div class="sub">핵심 내용</div>
-                <ul class="pts">
-                  <li>예: 정신분석학은 어떤 사례에는 강력한 도구이지만 다른 사례에는 부적절할 수 있음. 강점 관점은 어떤 사례에서는 회복의 열쇠가 되지만, 다른 사례에서는 구조적 문제를 보이지 않게 만들 수 있음</li>
-                  <li>단, 여러 관점을 활용하려면 <b>각 관점의 명제와 한계</b>를 명확히 알고 있어야 함</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 다원주의는 "아무거나 다 좋다"는 것이 아니다</div>
-              `
-            },
-
-            { icon: '🏗️', title: '사회복지실천의 이론적 틀 — 세 층위',
-              html:   `
-                <div class="hbox hbox-blue">사회복지실천의 이론적 틀은 기초이론 → 실천 관점 → 실천 모델의 세 층위로 구성된다</div>
-                <div class="sub">세 층위</div>
-                <table class="comp-table">
-                  <tr><th>층위</th><th>내용</th></tr>
-                  <tr><td>1. 기초이론(理)</td><td>사회학·심리학·경제학·정치학·행정학 등에서 차용, 인간·사회·문제의 포괄적 설명</td></tr>
-                  <tr><td>2. 실천 관점(觀)</td><td>기초이론과 실천 모델을 잇는 다리 — <b>본 장의 초점</b></td></tr>
-                  <tr><td>3. 실천 모델(法)</td><td>구체적 개입 방법 — 사례관리·집단상담·옹호 등</td></tr>
-                </table>
-                <div class="sub">관점이 만드는 차이</div>
-                <ul class="pts">
-                  <li>같은 기초이론(생태체계)을 가져도 실천 관점이 다르면 완전히 다른 개입이 나옴</li>
-                  <li>예: 두 사회복지사가 모두 생태체계 이론을 기초이론으로 갖고 있어도, 한 명은 강점관점 → 자원 연계 중심 개입 / 다른 한 명은 비판적 관점 → 구조적 조건 분석·옹호활동 중심 개입</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 "실천 관점이 곧 안목이다. 그 안목이 클라이언트의 삶을 바꾼다" — 자신이 어떤 관점에 서 있는지 자각하는 것이 사회복지사 윤리의 출발점</div>
-              `
-            },
-
-            { icon: '📜', title: '실천 관점의 역사적 전개 (약 100년의 발달사)',
-              html:   `
-                <div class="hbox hbox-blue">사회복지 실천 관점은 진단주의(1910s)에서 시작해 기능주의·문제해결·통합적 관점을 거쳐 1980년대 이후 강점·임파워먼트·비판사회복지·AOP로 분화되어 왔다</div>
-                <div class="sub">시기별 전개</div>
-                <table class="comp-table">
-                  <tr><th>시기</th><th>관점</th><th>대표 학자</th><th>핵심</th></tr>
-                  <tr><td>1910s</td><td>진단주의</td><td>Richmond, Freud</td><td>클라이언트를 진단하고 처방하는 의학적 모델</td></tr>
-                  <tr><td>1930s</td><td>기능주의</td><td>Rank, Smalley</td><td>진단이 아니라 관계와 시간의 중요성</td></tr>
-                  <tr><td>1950s</td><td>문제해결</td><td>Perlman</td><td>클라이언트의 어려움은 문제 자체가 아니라 문제 해결 과정의 결함</td></tr>
-                  <tr><td>1970s</td><td>통합적 관점</td><td>Pincus·Minahan, Goldstein</td><td>미시·중시·거시 통합 시도</td></tr>
-                  <tr><td>1980s~</td><td>분화</td><td>—</td><td>강점·임파워먼트·비판사회복지·AOP — <b>본 장의 초점</b></td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 "실천 관점은 시대의 산물이다. 사회가 변하면 관점도 변한다."</div>
-              `
-            },
+        cards: [
+          { icon: "📂", title: "01. 오프닝 — 두 장면의 사회복지사",
+            html: `
+              <div class="badge-row">
+                <span class="badge badge-blue">두 장면과 문제의식</span>
+                <span class="badge badge-green">학습목표 5가지</span>
+              </div>
+            `
+          },
+          { icon: "👥", title: "두 장면의 사회복지사와 문제의식",
+            html: `
+              <div class="hbox hbox-blue">익숙한 미시 장면(상담·사례관리·서비스 연계)과 덜 보이는 거시 장면(권익옹호·주민조직화·정책 제안) — 둘 다 정당한 실천 영역이라는 문제의식이 강의 전체를 관통</div>
+              <div class="sub">출발 질문과 비대칭</div>
+              <ul class="pts">
+                <li>오프닝 질문: "당신이 떠올린 사회복지사는 누구입니까?"</li>
+                <li>한국의 대중적 이미지·공식 자료엔 미시 장면이 훨씬 자주 보인다는 <b>비대칭</b>에서 강의 출발</li>
+              </ul>
+              <div class="hbox hbox-yellow">💡 "둘은 다른 사람이 아니다. 같은 전문직의 두 얼굴이다."</div>
+            `
+          },
+          { icon: "📂", title: "02. 개념의 출발 — Welfare",
+            html: `
+              <div class="badge-row">
+                <span class="badge badge-blue">Welfare 어원과 정의</span>
+                <span class="badge badge-green">사회복지 vs 사회복지실천</span>
+                <span class="badge badge-purple">용어의 변천</span>
+              </div>
+            `
+          },
+          { icon: "🔤", title: "Welfare의 어원과 사회복지의 정의",
+            html: `
+              <div class="hbox hbox-blue">Welfare = wel(좋은) + fare(지내다) → "잘 지내는 상태" — 사회복지는 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적·사회적 노력</div>
+              <div class="sub">Social Welfare의 두 질문</div>
+              <ul class="pts">
+                <li>누가 <b>구성원</b>인가 / 무엇이 <b>좋은 상태</b>인가</li>
+                <li>Social의 의미: 사교적·사회적·<b>공공의</b> 세 의미를 함께 지님</li>
+                <li>이 질문의 답은 시대·사회에 따라 달라져 왔음</li>
+              </ul>
+            `
+          },
+          { icon: "🌉", title: "제도와 삶 사이의 다리 — 사회복지 vs 사회복지실천",
+            html: `
+              <div class="hbox hbox-blue">사회복지실천은 제도를 삶으로 가져오고, 삶의 문제를 제도 변화로 되돌리는 <b>이중 방향</b> 활동</div>
+              <div class="sub">사회복지 vs 사회복지실천 비교</div>
+              <table class="comp-table compare">
+                <tr><th>구분</th><th class="th-blue">사회복지</th><th class="th-green">사회복지실천</th></tr>
+                <tr><td>주체</td><td>가치·제도·정책</td><td>사회복지사</td></tr>
+                <tr><td>내용</td><td>법·예산·전달체계</td><td>상담·연계·조직화·옹호</td></tr>
+                <tr><td>성격</td><td>구조 차원</td><td>삶의 변화 과정</td></tr>
+              </table>
+            `
+          },
+          { icon: "🕰️", title: "용어의 변천 — 사회사업 → 사회복지 → 사회복지실천",
+            html: `
+              <div class="hbox hbox-blue">시기에 따라 사회사업 → 사회복지 → 사회복지실천으로 용어가 변화해 왔으며, 이는 전문직 정체성의 이동을 담고 있음</div>
+              <div class="sub">시기별 용어와 함의</div>
+              <table class="comp-table">
+                <tr><th>시기</th><th>용어</th><th>함의</th></tr>
+                <tr><td>1960~70s</td><td>사회사업</td><td>자선·종교·구호의 흔적</td></tr>
+                <tr><td>1980s~</td><td>사회복지</td><td>국가·제도·정책의 확대</td></tr>
+                <tr><td>현재</td><td><b>사회복지실천</b></td><td>전문직 활동과 통합적 실천</td></tr>
+              </table>
+              <div class="hbox hbox-yellow">💡 작은 용어 변화가 아니라 <b>전문직 정체성의 이동</b>을 담고 있음</div>
+            `
+          },
+          { icon: "📂", title: "03. 역사적 뿌리",
+            html: `
+              <div class="badge-row">
+                <span class="badge badge-blue">역사적 배경과 두 흐름</span>
+                <span class="badge badge-green">COS의 발전과 한계</span>
+                <span class="badge badge-purple">인보관운동과 Jane Addams</span>
+              </div>
+            `
+          },
+          { icon: "🏙️", title: "역사적 배경과 두 흐름의 등장",
+            html: `
+              <div class="hbox hbox-blue">산업화·도시화로 빈곤이 대규모 도시 문제화되며 기존 구호 방식으로 감당이 불가능해진 배경에서 COS와 인보관운동이라는 두 흐름이 등장</div>
+              <div class="sub">COS vs 인보관운동 비교</div>
+              <table class="comp-table compare">
+                <tr><th>구분</th><th class="th-blue">COS (자선조직협회)</th><th class="th-green">인보관운동</th></tr>
+                <tr><td>질문</td><td>이 사람에게 지금 필요한 도움은?</td><td>문제가 반복되는 조건은?</td></tr>
+                <tr><td>방법</td><td>개별 사정·조정·기록</td><td>거주·조직화·옹호·정책</td></tr>
+                <tr><td>계보</td><td>미시 → 개별사회사업·사례관리</td><td>거시 → 지역사회조직·옹호</td></tr>
+              </table>
+              <div class="hbox hbox-yellow">💡 사회복지실천은 이 두 질문을 <b>동시에</b> 붙드는 전문 활동 / 역사는 "좋다·나쁘다"가 아니라 <b>무엇을 보았고 덜 보았는지</b>를 묻는 공부</div>
+            `
+          },
+          { icon: "📋", title: "COS(자선조직협회)의 발전과 공헌·한계",
+            html: `
+              <div class="hbox hbox-blue">COS는 개별 사정·조정·기록을 통해 빈곤 문제에 접근한 미시적 흐름으로, 개별사회사업·사례관리의 계보로 이어짐</div>
+              <div class="sub">발전 과정과 공헌·한계</div>
+              <ul class="pts">
+                <li>초기엔 중산층·상류층의 자원봉사(우애방문) → 이후 <b>유급 조사원·전문직 활동</b>으로 발전</li>
+              </ul>
+              <ul class="pts green">
+                <li>공헌: 자선 체계화, 조사·기록 발전</li>
+              </ul>
+              <ul class="pts red">
+                <li>한계: 빈곤을 개인 도덕성 문제로 좁게 볼 위험, 구조분석 약함</li>
+              </ul>
+            `
+          },
+          { icon: "🏘️", title: "인보관운동과 Jane Addams",
+            html: `
+              <div class="hbox hbox-blue">인보관운동은 이주민·노동자·여성·아동의 생활조건 개선을 위해 거주·조직화·옹호·정책개혁을 연결한 거시적 흐름으로, 지역사회조직·옹호의 계보로 이어짐</div>
+              <div class="sub">상징 인물과 공헌·주의점</div>
+              <ul class="pts">
+                <li>상징 인물: <b>Jane Addams</b> (Hull House) — 이주민·노동자·여성·아동의 생활조건 개선, 교육·조사·정책개혁 연결</li>
+              </ul>
+              <ul class="pts green">
+                <li>공헌: 빈곤의 구조적 조건을 보게 함</li>
+              </ul>
+              <ul class="pts red">
+                <li>주의점: 활동가의 계급적 위치가 영향, "함께 산다"에도 권력차 존재</li>
+              </ul>
+              <div class="hbox hbox-yellow">💡 계승하되 신화화하지 않기 — 이 "계보"는 이해를 돕는 지도일 뿐, 실제 역사는 정신분석·시민권운동·노동운동·정책학 등 여러 흐름이 혼재</div>
+              <div class="hbox hbox-red">❌ 유의 — Jane Addams는 사회복지사 <b>자격제도 이전</b>의 선구자로, "사회복지사였다"고 단정하지 않도록 주의</div>
+            `
+          },
+          { icon: "📂", title: "04. 정의 · 목적 · 기능",
+            html: `
+              <div class="badge-row">
+                <span class="badge badge-blue">정의의 계보</span>
+                <span class="badge badge-green">통합적 정의의 세 차원</span>
+                <span class="badge badge-purple">목적·기능·기준</span>
+              </div>
+            `
+          },
+          { icon: "📜", title: "정의의 계보 — Richmond → NASW → IFSW → 한국 윤리강령",
+            html: `
+              <div class="hbox hbox-blue">사회복지실천의 정의는 개인-환경 조정 중심(Richmond)에서 사회 변화·구조 개입을 포함하는 통합적 정의로 발전해 왔음</div>
+              <div class="sub">단계별 정의 핵심</div>
+              <table class="comp-table">
+                <tr><th>단계</th><th>정의 핵심</th></tr>
+                <tr><td>① Richmond (고전)</td><td>개인-환경 관계를 <b>의식적으로 조정</b></td></tr>
+                <tr><td>② NASW 정의</td><td>개인·집단·지역사회 기능 + 사회적 조건 형성</td></tr>
+                <tr><td>③ IFSW 정의</td><td>사회 변화·사회적 응집·<b>임파워먼트와 해방</b></td></tr>
+                <tr><td>④ 한국적 정의</td><td>인간 존엄성·자기결정·권익옹호·사회정의·전문성</td></tr>
+                <tr><td>⑤ 통합적 정의</td><td>개인의 삶 + 사회 구조를 <b>함께</b> 보는 통합적 활동</td></tr>
+              </table>
+              <div class="hbox hbox-yellow">💡 Richmond 정의는 당대의 개인 중심성을 비판적으로 읽을 필요 있음 / IFSW 정의에서 사회복지사는 단순한 서비스 제공자가 아니라 사람들의 권리·주체성을 확장하고 구조적 조건에 개입하는 전문직 / 한국적 정의의 과제는 기관문화·행정구조·자원제약 속에서의 <b>현장 적용</b></div>
+            `
+          },
+          { icon: "🔗", title: "통합적 정의의 세 차원",
+            html: `
+              <div class="hbox hbox-blue">통합적 정의는 한 사람의 변화·공동체의 형성·제도의 변화라는 세 차원을 함께 봄</div>
+              <div class="sub">세 차원과 방법 예시</div>
+              <table class="comp-table">
+                <tr><th>차원</th><th>방법 예시</th></tr>
+                <tr><td>한 사람의 변화</td><td>상담·사정·개입·사례관리</td></tr>
+                <tr><td>공동체의 형성</td><td>관계·집단·조직·지역자원</td></tr>
+                <tr><td>제도의 변화</td><td>옹호·정책 제안·거버넌스</td></tr>
+              </table>
+              <div class="hbox hbox-yellow">💡 세 차원을 <b>동시에 직접 수행할 필요는 없다</b> — 어느 층위에 있든 연결을 이해하고 협력하면 됨</div>
+            `
+          },
+          { icon: "🧭", title: "사회복지실천의 목적·기능·기준",
+            html: `
+              <div class="hbox hbox-blue">목적은 문제해결·욕구충족·사회적 기능 증진·권리와 정의 실현이며, 사정·개입·연계조정·옹호조직화의 기능으로 수행되고, 클라이언트 삶·사회조건·전문직윤리·책무성을 기준으로 판단</div>
+              <div class="sub">목적 / 기능 / 기준</div>
+              <table class="comp-table">
+                <tr><th>목적</th><th>기능</th><th>기준</th></tr>
+                <tr><td>문제해결·욕구충족·사회적 기능 증진·권리와 정의 실현</td><td>사정·개입·연계조정·옹호조직화</td><td>클라이언트 삶·사회조건·전문직윤리·책무성</td></tr>
+              </table>
+            `
+          },
+          { icon: "📂", title: "05. 통합적 실천과 한국적 맥락",
+            html: `
+              <div class="badge-row">
+                <span class="badge badge-blue">미시·중시·거시 세 층위</span>
+                <span class="badge badge-green">청년 1인가구 적용 사례</span>
+                <span class="badge badge-yellow">오해 방지</span>
+                <span class="badge badge-purple">한국적 맥락 시기별 전개</span>
+                <span class="badge badge-gray">왜 미시 중심 이미지가 강한가</span>
+              </div>
+            `
+          },
+          { icon: "🔺", title: "미시·중시·거시 세 층위",
+            html: `
+              <div class="hbox hbox-blue">어려움은 한 층위에서만 발생하지 않으므로, 필요에 따라 층위를 이동하며 판단해야 함</div>
+              <div class="sub">세 층위와 대상</div>
+              <table class="comp-table">
+                <tr><th>층위</th><th>대상</th></tr>
+                <tr><td>미시 (micro)</td><td>개인·가족</td></tr>
+                <tr><td>중시 (mezzo)</td><td>집단·기관·이웃</td></tr>
+                <tr><td>거시 (macro)</td><td>지역사회·정책·제도</td></tr>
+              </table>
+            `
+          },
+          { icon: "🏠", title: "청년 1인가구 적용 사례",
+            html: `
+              <div class="hbox hbox-blue">하나의 사례도 미시·중시·거시 세 층위에서 동시에 개입될 수 있음을 보여주는 예시</div>
+              <div class="sub">층위별 개입 예시</div>
+              <table class="comp-table">
+                <tr><th>층위</th><th>개입 예시</th></tr>
+                <tr><td>미시</td><td>불안·우울 상담, 강점 확인 (우울을 개인 심리 문제로만 볼지 사회구조 문제로 볼지는 관점에 따라 다름)</td></tr>
+                <tr><td>중시</td><td>가족 갈등, 동료 지지망, 기관 간 협력</td></tr>
+                <tr><td>거시</td><td>고용 불안정, 주거 문제, 청년 정책 옹호</td></tr>
+              </table>
+            `
+          },
+          { icon: "🚫", title: "오해 방지 — 통합성은 만능성이 아니다",
+            html: `
+              <div class="hbox hbox-blue">통합적 실천은 사회복지사 한 명이 모든 역할을 직접 다 해야 한다는 뜻이 아니라, 다른 층위와의 연결을 이해하고 협력하는 능력을 뜻함</div>
+              <div class="sub">오해와 핵심</div>
+              <ul class="pts red">
+                <li>오해: "사회복지사 한 명이 상담·조직화·정책을 다 직접 해야 한다"</li>
+              </ul>
+              <ul class="pts">
+                <li>핵심: "자신의 역할이 어느 층위든, 다른 층위와의 연결을 이해하고 협력한다"</li>
+              </ul>
+              <div class="hbox hbox-yellow">💡 핵심 암기 — <b>통합성은 만능성이 아니라 연결 능력</b></div>
+            `
+          },
+          { icon: "🇰🇷", title: "한국적 맥락 — 시기별 전개",
+            html: `
+              <div class="hbox hbox-blue">한국의 사회복지실천은 태동기부터 확장기까지 제도화·전문화 과정을 거쳐 발전해 왔음</div>
+              <div class="sub">시기별 전개</div>
+              <table class="comp-table">
+                <tr><th>시기</th><th>연도</th><th>사건</th></tr>
+                <tr><td>태동기</td><td>1921~45</td><td>태화여자관·방면위원제도</td></tr>
+                <tr><td>도입기</td><td>1947~60s</td><td>이화여대 기독교사회사업과·외원단체</td></tr>
+                <tr><td>제도화기</td><td>1970~80s</td><td>사회복지사업법·1983 자격제도</td></tr>
+                <tr><td>확장기</td><td>2003~</td><td>1급 국가시험·영역별 전문화</td></tr>
+              </table>
+            `
+          },
+          { icon: "🔍", title: "왜 미시 중심 이미지가 강한가",
+            html: `
+              <div class="hbox hbox-blue">교육 분화·행정 구조·전문직 이미지·대상 인구의 분화 등 여러 조건이 겹쳐 미시 중심 이미지가 강화되어 왔음</div>
+              <div class="sub">원인 조건</div>
+              <table class="comp-table">
+                <tr><th>조건</th><th>내용</th></tr>
+                <tr><td>교육 분화</td><td>실천론은 미시 중심, 지역사회·정책은 별도 과목</td></tr>
+                <tr><td>행정 구조</td><td>서비스제공·사례관리·평가지표가 업무를 조직</td></tr>
+                <tr><td>전문직 이미지</td><td>상담자 이미지는 선명, 조직가·옹호자는 약함</td></tr>
+                <tr><td><b>대상 인구의 분화</b></td><td>개입 대상이 세분화되며 미시 중심 서비스가 확대</td></tr>
+              </table>
+              <div class="hbox hbox-yellow">💡 "미시가 잘못"이 아니라 <b>연결이 약해질 위험</b>을 말함 — 통합의 회복 = 관계의 전문성(미시) + 자원 연결(중시) + 정책 시야(거시). "한 사람을 돕는 일과 조건을 바꾸는 일은 경쟁하지 않는다"</div>
+            `
+          },
+          { icon: "📂", title: "06. 앞으로의 학습 관점 — 여섯 렌즈",
+            html: `
+              <div class="badge-row">
+                <span class="badge badge-blue">여섯 관점</span>
+                <span class="badge badge-green">클로징 질문</span>
+              </div>
+            `
+          },
+          { icon: "🔭", title: "여섯 렌즈 — 앞으로의 학습 관점",
+            html: `
+              <div class="hbox hbox-blue">1강은 통합성·가치중심·관계성·비판성·책무성·미래성이라는 여섯 관점의 문을 여는 장</div>
+              <div class="sub">여섯 관점의 내용</div>
+              <table class="comp-table">
+                <tr><th>관점</th><th>내용</th></tr>
+                <tr><td>통합성</td><td>미시·중시·거시 연결</td></tr>
+                <tr><td>가치중심</td><td>인간 존엄성과 사회정의</td></tr>
+                <tr><td>관계성</td><td>협력적 동반 관계</td></tr>
+                <tr><td>비판성</td><td>권력과 구조의 인식</td></tr>
+                <tr><td>책무성</td><td>평가·기록·증거 활용</td></tr>
+                <tr><td>미래성</td><td>디지털·기후·지속가능성</td></tr>
+              </table>
+            `
+          },
+          { icon: "📝", title: "1강 핵심 요약",
+            html: `
+              <table class="comp-table">
+                <tr><th>개념</th><th>핵심 내용</th></tr>
+                <tr><td><b>두 장면</b></td><td>미시(상담·연계)와 거시(옹호·조직화) — <b>모두 정당한 실천 영역</b></td></tr>
+                <tr><td><b>Welfare</b></td><td>구성원이 함께 좋은 상태에 있도록 하는 <b>제도적·사회적 노력</b></td></tr>
+                <tr><td><b>용어 변천</b></td><td>사회사업 → 사회복지 → <b>사회복지실천</b> (전문직 정체성의 이동)</td></tr>
+                <tr><td><b>COS</b></td><td>개별 사정 중심 — <b>미시</b> 계보, 빈곤 개인화 위험</td></tr>
+                <tr><td><b>인보관운동</b></td><td>Jane Addams — <b>거시</b> 계보, 자격제도 이전 선구자(사회복지사 아님)</td></tr>
+                <tr><td><b>정의의 계보</b></td><td>Richmond → NASW → IFSW → 한국 → <b>통합적 정의</b></td></tr>
+                <tr><td><b>통합적 정의 세 차원</b></td><td>한 사람의 변화 / 공동체의 형성 / <b>제도의 변화</b></td></tr>
+                <tr><td><b>세 층위</b></td><td>미시(개인·가족) / 중시(집단·기관) / <b>거시</b>(지역사회·정책)</td></tr>
+                <tr><td><b>통합성</b></td><td>만능성이 아니라 <b>연결 능력</b></td></tr>
+                <tr><td><b>한국적 전개</b></td><td>태동기(1921~) → 도입기 → 제도화기(1983 자격제도) → <b>확장기</b>(2003~ 1급 국가시험)</td></tr>
+                <tr><td><b>여섯 렌즈</b></td><td>통합성·가치중심·관계성·비판성·책무성·<b>미래성</b></td></tr>
+              </table>
+            `
+          },
+        ]
+      },
+        
+{ num: "2강", name: "생태체계·강점·임파워먼트·비판사회복지 — 실천 관점의 지도", icon: "🗺️",
+  cards: [
+    { icon: "📂", title: "01. 학습목표와 사례 — 김민서(29세)",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">학습목표</span>
+          <span class="badge badge-green">사례 — 김민서(29세)</span>
+        </div>
+      `
+    },
+    { icon: "👤", title: "사례 — 김민서(29세)",
+      html: `
+        <div class="hbox hbox-blue">지방 출신, 서울 관악구 고시원 거주, 5년째 취업준비 중인 김민서(29세)가 동주민센터 1인가구 발굴 방문으로 사회복지사를 처음 만난 사례 — 강의 전체는 이 사례에 <b>네 가지 관점</b>을 차례로 적용하며 진행됨</div>
+        <div class="sub">사례 정보</div>
+        <ul class="pts">
+          <li>4년제 대졸, 학자금·생활비 부채 약 1,200만원</li>
+          <li>부모님과 2년째 명절도 안 감, 친구 연락도 거의 끊김</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 출발 질문은 "왜 취업을 못 했는가"가 아니라 "<b>어떻게 5년을 버텨왔는가</b>"</div>
+      `
+    },
+    { icon: "📂", title: "02. 왜 이론인가",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">이론의 역할</span>
+          <span class="badge badge-green">다원적 이론 활용과 세 층위</span>
+          <span class="badge badge-purple">실천 관점의 역사적 분화</span>
+        </div>
+      `
+    },
+    { icon: "🧠", title: "이론의 역할 — 왜 이론인가",
+      html: `
+        <div class="hbox hbox-blue">"이론보다 실천이 중요하다"는 말은 오해 — <b>이론 없는 실천은 불가능하며, 사회복지사가 채택한 이론이 그 사람의 사회복지를 결정한다.</b> 이론은 무의식적으로라도 항상 작동함</div>
+        <div class="sub">이론의 세 가지 역할</div>
+        <table class="comp-table compare">
+          <tr><th>이론의 역할</th><th class="th-blue">내용</th></tr>
+          <tr><td>① 진단 틀 제공</td><td>클라이언트의 어려움을 어떻게 이해할 것인가.</td></tr>
+          <tr><td>② 변화 가능성 정의</td><td>무엇을 변화시킬 수 있다고 볼 것인가</td></tr>
+          <tr><td>③ 개입의 정당화</td><td>어떤 방향으로 개입할 것인가</td></tr>
+        </table>
+      `
+    },
+    { icon: "🧩", title: "다원적 이론 활용",
+      html: `
+        <div class="hbox hbox-blue"><b>다원적 이론 활용</b>(Theoretical Pluralism, Karen Healy) — 한 관점이 모든 사례를 설명하지 못하므로 상황에 따라 여러 관점을 선택적·통합적으로 활용</div>     `
+    },
+    { icon: '🏗️', title: '사회복지실천의 이론적 틀 — 세 층위',
+      html:   `
+        <div class="hbox hbox-blue">사회복지실천의 이론적 틀은 기초이론 → 실천 관점 → 실천 모델의 세 층위로 구성된다</div>
+        <div class="sub">세 층위</div>
+        <table class="comp-table">
+          <tr><th>층위</th><th>내용</th></tr>
+          <tr><td>1. 기초이론(理)</td><td>사회학·심리학·경제학·정치학·행정학 등에서 차용, 인간·사회·문제의 포괄적 설명</td></tr>
+          <tr><td>2. 실천 관점(觀)</td><td>기초이론과 실천 모델을 잇는 다리 — <b>본 장의 초점</b></td></tr>
+          <tr><td>3. 실천 모델(法)</td><td>구체적 개입 방법 — 사례관리·집단상담·옹호 등</td></tr>
+        </table>
+        <div class="sub">관점이 만드는 차이</div>
+        <ul class="pts">
+          <li>같은 기초이론(생태체계)을 가져도 실천 관점이 다르면 완전히 다른 개입이 나옴</li>
+          <li>예: 두 사회복지사가 모두 생태체계 이론을 기초이론으로 갖고 있어도, 한 명은 강점관점 → 자원 연계 중심 개입 / 다른 한 명은 비판적 관점 → 구조적 조건 분석·옹호활동 중심 개입</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 "실천 관점이 곧 안목이다. 그 안목이 클라이언트의 삶을 바꾼다" — 사회복지사 윤리의 출발점</div>
+      `
+    },
+    { icon: '📜', title: '실천 관점의 역사적 전개 (약 100년의 발달사)',
+      html:   `
+        <div class="hbox hbox-blue">사회복지 실천 관점은 진단주의(1910s)에서 시작해 기능주의·문제해결·통합적 관점을 거쳐 1980년대 이후 강점·임파워먼트·비판사회복지·AOP로 분화되어 왔다</div>
+        <div class="sub">시기별 전개</div>
+        <table class="comp-table">
+          <tr><th>시기</th><th>관점</th><th>대표 학자</th><th>핵심</th></tr>
+          <tr><td>1910s</td><td>진단주의</td><td>Richmond, Freud</td><td>클라이언트를 진단하고 처방하는 의학적 모델</td></tr>
+          <tr><td>1930s</td><td>기능주의</td><td>Rank, Smalley</td><td>진단이 아니라 관계와 시간의 중요성</td></tr>
+          <tr><td>1950s</td><td>문제해결</td><td>Perlman</td><td>클라이언트의 어려움은 문제 자체가 아니라 문제 해결 과정의 결함</td></tr>
+          <tr><td>1970s</td><td>통합적 관점</td><td>Pincus·Minahan, Goldstein</td><td>미시·중시·거시 통합 시도</td></tr>
+          <tr><td>1980s~</td><td>분화</td><td>—</td><td>강점·임파워먼트·비판사회복지·AOP — <b>본 장의 초점</b></td></tr>
+        </table>
+      `
+    },
 
             { icon: '📂', title: '03. 전통적 관점 — 체계이론과 생태학적 관점',
               html:   `
@@ -3018,18 +2818,20 @@ const SUMMARY_DATA = {
               html:   `
                 <div class="hbox hbox-blue">모든 현상을 상호작용하는 체계의 집합으로 보는 이론 — 세포에서 유기체로, 가족에서 사회로, 모든 것이 체계다 ("Person in environment"의 출발점)</div>
                 <div class="sub">정의 및 도입</div>
-                <ul class="pts">
-                  <li><b>학자</b>: Ludwig von Bertalanffy (오스트리아 출신 생물학자, 1968년 「General System Theory」)</li>
-                  <li><b>사회복지 도입</b>: 1950~60년대 사이 사회복지에 도입되었고, Pincus와 Minahan(1973)이 본격 적용</li>
-                  <li><b>도입 이유</b>: 클라이언트를 개인이 아닌 가족·집단·지역사회·제도와 상호작용하는 존재로 봄 — 환경을 사회복지의 <b>정식 분석 대상</b>으로 만든 결정적 도구로, 심리치료와의 차별화 지점</li>
-                </ul>
+                <table class="comp-table">
+                  <tr><th>구분</th><th>내용</th></tr>
+                  <tr><td><b>학자</b>: </td><td>Ludwig von Bertalanffy (오스트리아 출신 생물학자, 1968년 「General System Theory」)</td></tr>
+                  <tr><td><b>사회복지 도입</b>: </td><td>1950~60년대 사이 사회복지에 도입되었고, Pincus와 Minahan(1973)이 본격 적용</td></tr>
+                  <tr><td><b>도입 이유</b>: </td><td>클라이언트를 개인이 아닌 가족·집단·지역사회·제도와 상호작용하는 존재로 봄 — 환경을 사회복지의 <b>정식 분석 대상</b>으로 만든 결정적 도구로, 심리치료와의 차별화 지점</td></tr>
+                </table>
                 <div class="sub">체계이론의 네 가지 특징 (사회복지 사정 도구의 기반)</div>
-                <ul class="pts">
-                  <li><b>상호작용</b>: 한 체계의 변화는 다른 체계의 변화를 가져온다 — 예: 부부의 갈등이 자녀의 학교 적응에 영향을 미침</li>
-                  <li><b>위계 구조</b>: 미시 ⊂ 중시 ⊂ 거시 — 체계는 위계적이다</li>
-                  <li><b>자기 조절</b>: 체계는 항상성(homeostasis)을 유지하려 한다 — 예: 가족치료에서 한 사람만 변화하면 가족이 그 사람을 되돌리려는 압력을 가하는 현상</li>
-                  <li><b>개방·폐쇄</b>: 체계는 환경과 정보·자원을 주고받는 정도가 다르다 — 어떤 체계는 환경과 활발히 교류하고, 어떤 체계는 닫혀 있음</li>
-                </ul>
+                <table class="comp-table">
+    		          <tr><th>구분</th><th>내용</th>
+                  <tr><td><b>상호작용</td><td>: 한 체계의 변화는 다른 체계의 변화를 가져온다 — 예: 부부의 갈등이 자녀의 학교 적응에 영향을 미침</td></tr>
+                  <tr><td><b>위계 구조</td><td>: 미시 ⊂ 중시 ⊂ 거시 — 체계는 위계적이다</td></tr>
+                  <tr><td><b>자기 조절</td><td>: 체계는 항상성(homeostasis)을 유지하려 한다 — 예: 가족치료에서 한 사람만 변화하면 가족이 그 사람을 되돌리려는 압력을 가하는 현상</td></tr>
+                  <tr><td><b>개방·폐쇄</td><td>: 체계는 환경과 정보·자원을 주고받는 정도가 다르다 — 어떤 체계는 환경과 활발히 교류하고, 어떤 체계는 닫혀 있음</td></tr>
+                </table>
               `
             },
 
@@ -3039,7 +2841,7 @@ const SUMMARY_DATA = {
                 <div class="sub">특징</div>
                 <ul class="pts">
                   <li>사회복지사의 개입 위치를 명확히 한 첫 사정 도구</li>
-                  <li>다만 다소 추상적이고 기계적인 성격이 있음 — 이를 보완한 것이 생태학적 관점</li>
+                  <li>다만 다소 추상적이고 기계적인 성격이 있음</li>
                 </ul>
                 <div class="sub">4체계</div>
                 <table class="comp-table">
@@ -3088,395 +2890,245 @@ const SUMMARY_DATA = {
                 </table>
               `
             },
-
-            { icon: '🧑', title: '적용 — 김민서 사례 (생태체계)',
+{ icon: '🧑', title: '적용 — 김민서 사례 (생태체계)',
               html:   `
                 <div class="hbox hbox-blue">Bronfenbrenner의 4수준을 김민서 사례에 적용하면, 각 수준에서 단절과 통제 불가능한 조건이 겹쳐 있음을 확인할 수 있다</div>
                 <table class="comp-table">
                   <tr><th>수준</th><th>내용</th></tr>
-                  <tr><td>미시체계</td><td>고시원 방·끊긴 가족과 친구 관계 — 일상의 관계 자체가 빈곤하다</td></tr>
-                  <tr><td>중시체계</td><td>가족·학교·직장·기관이 서로 연결되지 못한다 — 서로 모르는 채로 분리되어 있다</td></tr>
-                  <tr><td>외부체계</td><td>부동산 가격·노동 시장·청년 정책 — 김민서는 통제할 수 없는 영역들</td></tr>
-                  <tr><td>거시체계</td><td>능력주의·취업 중심 문화 — "실패한 청년"이라는 사회적 프레임</td></tr>
+                  <tr><td>미시체계</td><td>고시원·단절된 관계 자체가 빈곤</td></tr>
+                  <tr><td>중시체계</td><td>가족·학교·직장·기관이 단절</td></tr>
+                  <tr><td>외부체계</td><td>부동산가격·노동시장 — 통제불가</td></tr>
+                  <tr><td>거시체계</td><td>능력주의 문화 — "실패한 청년" 프레임</td></tr>
                 </table>
                 <div class="hbox hbox-yellow">💡 생태체계 관점의 사회복지사가 던지는 질문: 어떤 체계와 연결을 회복할 것인가, 어떤 자원을 연계할 것인가?</div>
               `
             },
-
-            { icon: '📂', title: '04. 강점관점과 임파워먼트',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">강점관점</span>
-                  <span class="badge badge-green">임파워먼트 관점</span>
-                  <span class="badge badge-purple">Gutierrez의 임파워먼트 3차원</span>
-                  <span class="badge badge-yellow">Judith Lee의 통합 모델</span>
-                  <span class="badge badge-red">적용 — 김민서 사례</span>
-                </div>
-              `
-            },
-
-            { icon: '💪', title: '강점관점(Strengths Perspective, 1980s~) ★',
-              html:   `
-                <div class="hbox hbox-blue">사회복지사의 시선을 바꾸는 작업 — 클라이언트를 문제를 가진 사람에서 강점을 가진 사람, 힘을 회복해야 할 주체로 보는 시선의 전환 (Person in environment 계열의 심화)</div>
-                <div class="sub">등장 배경</div>
-                <ul class="pts">
-                  <li><b>학자</b>: Dennis Saleebey (1980년대 후반부터 캔자스대학교에서 비판 제기, 1996년 저작)</li>
-                  <li>1980년대까지 사회복지실천은 클라이언트의 문제·결함·병리에 초점 — Richmond의 진단주의 + Freud의 정신분석학적 영향</li>
-                  <li>사회복지사가 가장 먼저 묻던 질문: "이 사람은 뭐가 잘못됐는가"</li>
-                  <li>Saleebey의 비판: 결함을 보는 시선 자체가 클라이언트를 무력화할 수 있다 — <b>사회복지사가 무엇을 보느냐가 사회복지의 효과를 결정한다</b></li>
-                </ul>
-                <div class="sub">시선의 전환</div>
-                <ul class="pts">
-                  <li>"이 사람은 무엇이 잘못되었는가?" → "이 사람은 무엇을 잘하는가? 어떤 자원을 가지고 있는가?"</li>
-                </ul>
-                <div class="hbox hbox-red">❌ 유의점 — 단순한 낙관주의가 아니다("힘내라, 너는 할 수 있다" 같은 응원이 아님). 결함을 보는 시선은 사회복지사의 <b>권력 위치</b>를 드러내는 시선이 될 수 있다 — 진단하고 처방하는 사람이 권력자가 되기 때문이며, 그 권력 위치 자체에 대한 비판이 강점관점의 핵심이다</div>
-                <div class="hbox hbox-yellow">💡 한국 사회복지에서도 보편화된 관점이지만, 그 비판적 함의는 종종 약화된 채 수용되어 왔다는 점에 유의할 것</div>
-              `
-            },
-
-            { icon: '⚡', title: '임파워먼트 관점(Empowerment Perspective, 1976~) ★',
-              html:   `
-                <div class="hbox hbox-blue">클라이언트가 자기 삶에 대한 힘을 회복하는 것이 사회복지의 핵심이라는 관점 — 강점관점보다 먼저 등장했고, 더 정치적이다</div>
-                <div class="sub">학자 및 배경</div>
-                <ul class="pts">
-                  <li><b>학자</b>: Barbara Solomon (1976), 「Black Empowerment: Social Work in Oppressed Communities」</li>
-                  <li>솔로몬은 미국 흑인 공동체에 대한 사회복지실천이 결함 모델에 갇혀 있다고 비판하며, 클라이언트가 자기 삶에 대한 힘을 회복하는 것이 사회복지의 핵심이라 주장</li>
-                </ul>
-                <div class="sub">강점관점과의 차이</div>
-                <table class="comp-table">
-                  <tr><th>관점</th><th>핵심 질문/명제</th></tr>
-                  <tr><td>강점관점</td><td>"이 개인은 강점을 가지고 있다" (머무를 수 있음)</td></tr>
-                  <tr><td>임파워먼트</td><td>"이 개인의 강점이 발휘되지 못하게 만드는 구조적 조건은 무엇인가"를 함께 물음</td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 임파워먼트는 강점관점과 비판사회복지 사이의 가교 — 개인과 구조를 함께 본다</div>
-              `
-            },
-
-            { icon: '🧑‍🤝‍🧑', title: 'Gutierrez(로레인 구티에레즈)의 임파워먼트 3차원(1990) ★',
-              html:   `
-                <div class="hbox hbox-blue">임파워먼트는 단일 차원이 아니다 — 개인·대인·정치 세 차원의 표준을 정리</div>
-                <div class="sub">3차원</div>
-                <table class="comp-table">
-                  <tr><th>수준</th><th>내용</th></tr>
-                  <tr><td>개인 수준</td><td>자기효능감·자존감·통제감의 회복 — "나는 할 수 있다"는 감각의 회복</td></tr>
-                  <tr><td>대인 수준</td><td>타인과의 관계에서의 영향력 회복, 상호 지지 — 소그룹에서의 연대의식 형성</td></tr>
-                  <tr><td>정치 수준</td><td>구조적 권력 관계의 변화 — 집단적 행동·사회운동과 연결</td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 세 차원이 함께 가야 임파워먼트는 자기계발론으로 변질되지 않는다 — 개인 수준만 강조하면 자기계발론으로 변질될 수 있으며, 이는 한국에서 종종 일어나는 일이기도 하다</div>
-              `
-            },
-
-            { icon: '🔗', title: 'Judith Lee의 통합 모델(2001)',
-              html:   `
-                <div class="hbox hbox-blue">강점관점과 임파워먼트 두 관점을 사회복지실천의 종합 모델로 통합한 관점</div>
-                <div class="sub">저서 및 원칙</div>
-                <ul class="pts">
-                  <li><b>저서</b>: 「The Empowerment Approach to Social Work Practice」</li>
-                </ul>
-                <div class="sub">Lee의 네 가지 통합 원칙</div>
-                <ul class="pts">
-                  <li>개인의 변화와 사회 변화의 통합</li>
-                  <li>클라이언트와 사회복지사의 협력 관계 — 전문가-수혜자 관계가 아니라 <b>동반자 관계</b></li>
-                  <li>억압된 집단의 집단적 의식 형성 — 이 지점에서 임파워먼트는 <b>프레이리의 의식화 개념</b>과 연결됨</li>
-                  <li>구조적 권력 관계에 대한 도전</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 Lee는 임파워먼트가 자기계발론으로 흐르지 않도록 비판사회복지의 통찰을 유지하려 했다 — 한국에서도 이 관점이 수용되고 있지만, 정치 수준은 종종 빠진 채 도입되는 경향이 있다</div>
-              `
-            },
-
-            { icon: '🧑', title: '적용 — 김민서 사례 (강점·임파워먼트)',
-              html:   `
-                <div class="hbox hbox-blue">시선의 전환 — "왜 5년 동안 취업을 못 했는가"가 아니라 "어떻게 5년을 버텨왔는가"로. 그녀가 자기 자신을 어떻게 관리했고, 도움을 요청하는 결정을 스스로 내렸는가가 김민서의 강점이다</div>
-                <div class="sub">수준별 개입</div>
-                <table class="comp-table">
-                  <tr><th>수준</th><th>개입</th></tr>
-                  <tr><td>개인 수준</td><td>자기효능감 회복 — "내가 의지가 부족해서, 노력이 부족해서 이 상황이 주어진 것이 아니다"를 인정하고 "나는 여전히 가치 있는 존재다"를 회복하는 작업</td></tr>
-                  <tr><td>대인 수준</td><td>또래 1인가구 모임 연계 — 같은 어려움을 가진 청년들과의 만남으로 고립의 고리를 깨는 것</td></tr>
-                  <tr><td>정치 수준</td><td>청년 1인가구 정책 옹호 활동 참여 — 집단적 의식 형성, 당사자 운동과 연결</td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 Gutierrez의 세 차원이 함께 가야 임파워먼트는 자기계발론이 되지 않는다</div>
-              `
-            },
-
-            { icon: '📂', title: '05. 비판사회복지와 반억압실천(AOP)',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">비판사회복지</span>
-                  <span class="badge badge-blue">비판사회복지의 네 명제</span>
-                  <span class="badge badge-green">반억압실천(AOP)</span>
-                  <span class="badge badge-purple">교차성</span>
-                  <span class="badge badge-yellow">프레이리의 의식화</span>
-                  <span class="badge badge-red">은행식 vs 문제제기식 교육</span>
-                </div>
-              `
-            },
-
-            { icon: '⚔️', title: '비판사회복지(Critical Social Work, 1970s~) ★',
-              html:   `
-                <div class="hbox hbox-blue">1970년대 이후 영미권에서 등장 — 사회복지를 "응용 사회과학"에서 "비판적 사회과학"으로 이동시키는 작업</div>
-                <div class="sub">이론적 배경</div>
-                <ul class="pts">
-                  <li><b>학자</b>: 호주의 Fook(잔 푸크, 2002), Karen Healy(카렌 힐리, 2014)</li>
-                  <li><b>이론적 자원</b>: 마르크스주의, 페미니즘, 비판인종이론, 푸코의 권력이론 등 매우 다양함</li>
-                </ul>
-                <div class="sub">핵심 비판 두 가지</div>
-                <ul class="pts">
-                  <li>기존 사회복지가 사회 구조적 불평등을 충분히 다루지 못한다 — 빈곤·차별·폭력 같은 문제를 <b>개인의 적응 문제로 환원</b>시킨다는 비판</li>
-                  <li>(더 날카로운 비판) 사회복지실천이 의도와 무관하게 구조적 불평등을 <b>재생산</b>할 수 있다 — 사회복지사가 클라이언트를 "관리 가능한 사례"로 만드는 데 참여한다면, 그 행위 자체가 불평등한 구조를 강화·재생산한다는 것</li>
-                </ul>
-              `
-            },
-
-            { icon: '📐', title: '비판사회복지의 네 명제 ★',
-              html:   `
-                <div class="hbox hbox-blue">비판사회복지는 원인·위험·방향·위치라는 네 명제로 정리된다</div>
-                <table class="comp-table">
-                  <tr><th>명제</th><th>내용</th></tr>
-                  <tr><td>원인</td><td>클라이언트의 문제 = 사회 구조적 불평등의 산물 (자본주의·가부장제·인종주의·식민주의)</td></tr>
-                  <tr><td>위험</td><td>사회복지실천이 의도와 무관하게 구조적 불평등을 재생산할 수 있다</td></tr>
-                  <tr><td>방향</td><td>개인의 적응이 아니라 구조의 변화가 사회복지의 궁극적 목표</td></tr>
-                  <tr><td>위치</td><td>사회복지사 자신이 권력 위치에 있다는 자기성찰 — 클라이언트와 동맹을 형성한다</td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 "강점관점이 시선의 전환이었다면, 비판적 사회복지는 위치의 전환이다."</div>
-              `
-            },
-
-            { icon: '🛡️', title: '반억압실천(Anti-Oppressive Practice, AOP, 2002~) ★',
-              html:   `
-                <div class="hbox hbox-blue">비판사회복지의 가장 영향력 있는 실천 모델</div>
-                <div class="sub">학자 및 특징</div>
-                <ul class="pts">
-                  <li><b>학자</b>: Lena Dominelli (영국, 2002), 「Anti-Oppressive Social Work Theory and Practice」</li>
-                </ul>
-                <div class="sub">AOP의 세 차원</div>
-                <ul class="pts">
-                  <li>구조적 불평등에 대한 분석 — 사회복지사가 사회구조를 읽을 수 있어야 함</li>
-                  <li>사회복지 관계 안의 권력에 대한 비판적 성찰 — 사회복지사 자신이 권력의 도구가 될 수 있다는 자각</li>
-                  <li>클라이언트의 임파워먼트와 사회 변화의 결합 — 미시적 개입과 거시적 개입은 분리되지 않는다</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 AOP는 그린(녹색)사회복지, 페미니스트 사회복지와 함께 살펴봐야 할 핵심 모델로 다뤄짐</div>
-              `
-            },
-
-            { icon: '🔀', title: '교차성(Intersectionality) ★',
-              html:   `
-                <div class="hbox hbox-blue">한 개인은 단일한 정체성을 가진 사람이 아니라, 인종·계급·젠더·장애·연령·성적 지향이 교차하는 자리에 있다</div>
-                <div class="sub">핵심 내용</div>
-                <ul class="pts">
-                  <li><b>학자</b>: 미국의 법학자 Kimberlé Crenshaw(킴벌리 크렌쇼, 1989)</li>
-                  <li>예시: "가난한 장애 여성 노인"은 빈곤·장애·여성·노인이라는 네 가지 범주가 교차한 한 사람이다</li>
-                  <li>사회복지사가 이 네 범주를 따로따로 본다면 그 사람의 진짜 삶을 보지 못할 가능성이 높음</li>
-                  <li>AOP는 이 교차성을 인식하고, 자신의 위치에서 가능한 권력 분배와 동맹 형성을 추구함</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 한국에서도 이주민·성소수자·여성·노인 등을 다룰 때 이 교차성 분석이 점점 중요해지고 있다</div>
-              `
-            },
-
-            { icon: '📖', title: '파울로 프레이리(Paulo Freire)의 의식화(Conscientização) ★',
-              html:   `
-                <div class="hbox hbox-blue">억압된 사람들이 자신의 억압 조건을 비판적으로 인식하고, 그 인식을 변혁하기 위한 행동으로 옮기는 과정</div>
-                <div class="sub">학자 및 저서</div>
-                <ul class="pts">
-                  <li><b>학자</b>: Paulo Freire, 브라질 교육학자, 「Pedagogy of the Oppressed」(1970, 한국어로는 「피억압자를 위한 교육학」으로 번역) — 교육학뿐 아니라 신학·시민운동 등 광범위한 영역에 영향을 미친 책</li>
-                </ul>
-                <div class="sub">의식화의 핵심</div>
-                <ul class="pts">
-                  <li>억압된 사람들이 자신의 억압 조건을 비판적으로 인식한다</li>
-                  <li>그 인식을 변혁하기 위한 행동으로 옮긴다</li>
-                  <li>의식화는 단순한 인식 변화가 아니다 — 머리로만 깨닫는 것이 아니라, 깨달음이 행동으로 이어져야 진짜 의식화다</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 공식: 인식 + 행동 = 실천(praxis, 그리스어)</div>
-              `
-            },
-
-            { icon: '⚖️', title: '은행식 교육 vs 제기식 교육 (Freire)',
-              html:   `
-                <div class="hbox hbox-blue">프레이리는 은행식(저축식) 교육과 문제제기식 교육을 대비시키며, 각각을 전문가-수혜자형 사회복지와 비판·임파워먼트 사회복지에 대응시켰다</div>
-                <table class="comp-table">
-                  <tr><th>구분</th><th>내용</th><th>사회복지 적용</th></tr>
-                  <tr><td>은행식(저축식)</td><td>교사가 일방적으로 지식을 전달, 학생은 수동적 수용 — 권위주의·억압 재생산</td><td>전문가-수혜자 사회복지: 사회복지사가 진단하고 클라이언트가 처방받는다</td></tr>
-                  <tr><td>문제제기식</td><td>교사와 학생이 함께 현실을 문제로 제기하고 해결을 모색 — 해방적·민주적</td><td>비판·임파워먼트 사회복지: 함께 현실을 분석하고, 어떤 방향으로 개입할지 변화의 방향을 모색한다</td></tr>
-                </table>
-              `
-            },
-
-            { icon: '🧑', title: '적용 — 김민서 사례 (비판사회복지·AOP)',
-              html:   `
-                <div class="hbox hbox-blue">비판사회복지 관점에서는 "개인 김민서"가 "청년 세대의 김민서"로 시선이 이동한다</div>
-                <table class="comp-table">
-                  <tr><th>요소</th><th>내용</th></tr>
-                  <tr><td>① 구조</td><td>김민서의 빈곤 = 청년 실업·주거 빈곤·학자금 부채의 구조적 산물 (자본주의가 청년 세대를 재생산해온 방식의 결과)</td></tr>
-                  <tr><td>② 교차성</td><td>청년 × 여성 × 비수도권 출신 × 비정규직 — 네 범주가 한 사람에게 교차한다</td></tr>
-                  <tr><td>③ 의식화</td><td>"내 의지 부족, 노력의 부족"이라는 자기 인식에서 "청년 세대가 마주한 구조적 조건"이라는 비판적 인식으로 (Freire)</td></tr>
-                  <tr><td>④ AOP</td><td>사회복지사가 "취업 의지 부족" 라벨링을 단호히 거부 — 동맹 관계의 형성</td></tr>
-                </table>
-              `
-            },
-
-            { icon: '📂', title: '06. 거시 실천의 이론적 자원',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">정치경제학</span>
-                  <span class="badge badge-green">공동체이론</span>
-                  <span class="badge badge-purple">거버넌스이론</span>
-                  <span class="badge badge-yellow">적용 — 김민서 사례</span>
-                </div>
-              `
-            },
-
-            { icon: '💰', title: '정치경제학(Political Economy) ★',
-              html:   `
-                <div class="hbox hbox-blue">경제와 정치의 상호작용을 다루는 이론적 전통 — 사회복지에 적용하면, 사회복지를 자본주의 사회의 구조적 모순을 관리하는 제도로 보는 관점</div>
-                <div class="sub">핵심 내용</div>
-                <ul class="pts">
-                  <li><b>학자</b>: Ferguson(2008), Mullaly(2007)</li>
-                  <li>빈곤·실업·소득 불평등은 단순한 개인의 불운이 아니라 <b>자본주의 경제의 구조적 결과</b></li>
-                </ul>
-                <div class="sub">한국에서의 흐름</div>
-                <ul class="pts">
-                  <li>1980년대 민주화 운동·빈민운동·노동운동과 결합 → 한국 거시 사회복지의 이론적 기반</li>
-                  <li>1990년대 이후 제도화·전문직화 과정에서 약화 — 사회복지학 주류에서 주변화</li>
-                  <li>본 교재는 정치경제학적 분석을 거시 실천의 이론적 자원으로 <b>복원</b>하려 함</li>
-                </ul>
-              `
-            },
-
-            { icon: '🏘️', title: '공동체이론(Community Theory) ★',
-              html:   `
-                <div class="hbox hbox-blue">인간은 공동체적 존재라는 인식 위에서 공동체의 형성·유지·해체를 다루는 이론</div>
-                <div class="sub">두 개념 (Tönnies)</div>
-                <table class="comp-table">
-                  <tr><th>개념</th><th>의미</th></tr>
-                  <tr><td>게마인샤프트(Gemeinschaft, 공동사회)</td><td>혈연·지연에 기반한 자연발생적·정서적 공동체</td></tr>
-                  <tr><td>게젤샤프트(Gesellschaft, 이익사회)</td><td>합리적 계약과 이익에 기반한 사회</td></tr>
-                </table>
-                <div class="sub">학자</div>
-                <ul class="pts">
-                  <li><b>학자</b>: 독일 사회학자 Tönnies(튀니스, 1887), Putnam(퍼트남, 2000)</li>
-                  <li><b>Putnam의 사회자본 이론</b>: 신뢰·호혜성·시민 참여의 네트워크 — 저서 「Bowling Alone」(한국어 「나 홀로 볼링」). 현대사회에서 왜 사회자본이 감소하는지에 대해 여러 학자들이 분석하고 있음</li>
-                </ul>
-              `
-            },
-
-            { icon: '🏛️', title: '거버넌스이론(Governance Theory) ★',
-              html:   `
-                <div class="hbox hbox-blue">정부의 단독 통치(government)에서 다양한 주체의 협력적 통치(governance)로 사회 운영 패러다임이 이동했다는 인식</div>
-                <div class="sub">핵심 내용</div>
-                <ul class="pts">
-                  <li><b>학자</b>: Rhodes(로즈, 1996), Stoker(스토커, 1998) — 1990년대 행정학에서 정립된 개념</li>
-                  <li><b>핵심 주제</b>: 정부·시장·시민사회의 협력적 관계, 다층적 의사결정 구조, 네트워크형 정책 결정</li>
-                </ul>
-                <div class="sub">사회복지에의 적용</div>
-                <ul class="pts">
-                  <li>사회복지는 국가의 시혜적 서비스 제공이 아니라 다양한 주체의 협력적 활동</li>
-                  <li>정부·사회복지기관·시민단체·클라이언트(당사자)가 모두 사회복지의 주체</li>
-                  <li>(10장에서 한국의 마을공동체·주민자치회·평생학습마을 등 자치 조직 맥락에서 다룸)</li>
-                </ul>
-              `
-            },
-
-            { icon: '🧑', title: '적용 — 김민서 사례 (거시 자원)',
-              html:   `
-                <div class="hbox hbox-blue">정치경제학·공동체이론·거버넌스는 김민서 사례에서 서로 다른 각도로 통합적 개입의 근거를 제공한다</div>
-                <table class="comp-table">
-                  <tr><th>이론</th><th>적용 내용</th></tr>
-                  <tr><td>정치경제학</td><td>청년 실업률·주거 빈곤율·학자금 부채 통계 — 김민서는 통계의 점이 아니라 그 통계가 만들어낸 한 결과다</td></tr>
-                  <tr><td>공동체이론</td><td>김민서가 잃은 것은 직업이 아니라 공동체 관계망 그 자체 — Putnam의 사회자본 붕괴가 그녀를 고립시켰다</td></tr>
-                  <tr><td>거버넌스</td><td>동주민센터·청년단체·NGO·당사자 모임의 협력적 개입 구조 필요 — 한 기관의 사례관리로는 궁극적으로 도울 수 없다</td></tr>
-                  <tr><td>통합</td><td>미시 차원의 사례관리(주거·심리 지원)와 거시 차원의 정책 옹호(1인가구 관련 법)가 결합되어야 함</td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 한 사회복지사가 미시·거시를 함께 움직이고 사유하고 영향을 미칠 때 김민서의 6개월이 달라진다</div>
-              `
-            },
-
-            { icon: '📂', title: '07. 본 교재의 입장 — 다원주의, 그러나 상대주의는 아니다',
-              html:   `
-                <div class="badge-row">
-                  <span class="badge badge-blue">Healy의 네 가지 보조 원칙</span>
-                  <span class="badge badge-green">본 강의의 두 가지 입장</span>
-                  <span class="badge badge-purple">네 관점의 비교 — 김민서 사례</span>
-                  <span class="badge badge-yellow">클로징 & 다음 강의 예고</span>
-                </div>
-              `
-            },
-
-            { icon: '📏', title: 'Healy(2014)의 네 가지 보조 원칙 ★',
-              html:   `
-                <div class="hbox hbox-blue">Positionality(입장) — 단일 이론의 절대성을 거부하지만, 다원적 이론이 "무엇이나 가능하다"는 상대주의는 아니다 (「Social Work Theories in Context」)</div>
-                <table class="comp-table">
-                  <tr><th>원칙</th><th>내용</th></tr>
-                  <tr><td>부분성</td><td>모든 이론은 부분적 진실 — 어떤 이론도 사회복지 실천의 모든 것을 설명할 수 없다</td></tr>
-                  <tr><td>도구성</td><td>이론의 가치는 실천에 유용한 안목을 제공하는가에 있다 — 학술적 완성도가 아니라 실천적 유용성이 기준</td></tr>
-                  <tr><td>비중립성</td><td>이론적 선택은 가치중립적이지 않다 — 어떤 이론을 채택하느냐가 어떤 사회를 지향하느냐와 연결된 정치적 선택이다</td></tr>
-                  <tr><td>성찰성(보조)</td><td>자신이 어떤 이론을 왜 채택했는지를 의식하고 성찰하라</td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 다원주의 ≠ 상대주의 — 모든 이론이 동등한 것이 아니라, 각각 다른 일을 한다는 의미</div>
-              `
-            },
-
-            { icon: '🎯', title: '본 강의의 두 가지 분명한 입장 ★',
-              html:   `
-                <div class="hbox hbox-blue">본 강의는 다원주의를 취하되, 통합적 실천과 비판적 의식이라는 두 기준을 분명히 한다</div>
-                <div class="sub">두 가지 입장</div>
-                <ul class="pts">
-                  <li><b>통합적 실천</b>(generalist practice, 일반주의적 실천): 미시·중시·거시의 균형 — 어느 한 차원에만 머무르는 실천은 우리가 추구하는 사회복지의 정체성에 부합하지 않는다</li>
-                  <li><b>비판적 의식</b>(critical consciousness): 구조 분석과 권력에 대한 자각을 동반해야 한다 — 다원주의의 명령</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 "상대주의가 아니다" — 다원주의에도 입장이 있다. 강점관점도, 임파워먼트도, AOP도 모두 활용할 수 있지만, 통합적 실천과 비판적 의식이라는 두 기준과 함께다</div>
-              `
-            },
-
-            { icon: '🔍', title: '네 관점의 비교 — 김민서 사례',
-              html:   `
-                <div class="hbox hbox-blue">생태(체계)·강점/임파워먼트·비판사회복지/AOP·거시 자원의 네 관점은 배타적이 아니라 보완적이다</div>
-                <table class="comp-table">
-                  <tr><th>관점</th><th>질문</th><th>개입</th></tr>
-                  <tr><td>생태(체계)</td><td>어떤 체계와 단절되어 있는가</td><td>체계 연결·자원 연계</td></tr>
-                  <tr><td>강점·임파워먼트</td><td>어떤 강점이 있고 어떻게 힘을 회복할 것인가</td><td>협력적 동반자, 또래 모임·당사자 운동 연결</td></tr>
-                  <tr><td>비판사회복지·AOP</td><td>어떤 구조가 이 사람을 이렇게 만들었는가</td><td>구조에 도전, 동맹 형성, 라벨링·낙인 거부</td></tr>
-                  <tr><td>거시 자원</td><td>어떤 정책·공동체가 필요한가</td><td>정책 옹호·공동체 형성, 다양한 주체와의 협력</td></tr>
-                </table>
-                <div class="hbox hbox-yellow">💡 한 사회복지사가 김민서를 도우려면 네 가지 시선을 모두 가지고 성찰하고 통합할 수 있어야 한다 — 이것이 본 강의가 말하는 다원적 이론의 활용이다</div>
-              `
-            },
-
-            { icon: '💬', title: '클로징 & 다음 강의 예고',
-              html:   `
-                <div class="hbox hbox-blue">오늘 살펴본 것은 사회복지실천의 네 가지 현대 관점(생태체계·강점·임파워먼트·비판사회복지와 AOP)과 거시 실천의 세 가지 이론적 자원(정치경제학·공동체이론·거버넌스)이다</div>
-                <div class="sub">클로징</div>
-                <ul class="pts">
-                  <li>본 강의의 입장은 다원적 이론 활용이지만, <b>통합적 실천과 비판적 의식</b>이라는 입장을 분명히 한다</li>
-                </ul>
-                <div class="hbox hbox-yellow">💡 "이론은 학술적인 장식품이 아니라 사회복지 실천의 나침반이다. 어떤 이론을 택하느냐가 사회복지사가 만드는 사회복지 실천의 모습을 결정한다."</div>
-                <div class="sub">다음 강의 예고</div>
-                <ul class="pts">
-                  <li>사회복지사의 정체성과 역할</li>
-                </ul>
-              `
-            },
-
-            { icon: '📝', title: '2강 핵심 요약',
-              html:   `
-                <table class="comp-table">
-                  <tr><th>개념</th><th>핵심 내용</th></tr>
-                  <tr><td>이론의 역할</td><td>진단틀 제공·변화가능성 정의·개입의 정당화 — 이론은 실천의 나침반</td></tr>
-                  <tr><td>다원적 이론 활용(Healy)</td><td>여러 관점을 상황에 맞게 선택적·통합적으로 활용, 단 "아무거나 다 좋다"는 아님</td></tr>
-                  <tr><td>일반체계이론(GST)</td><td>Bertalanffy — 모든 현상을 상호작용하는 체계로 봄, 상호작용·위계·자기조절·개방폐쇄 네 특징</td></tr>
-                  <tr><td>생태학적 관점</td><td>Germain & Gitterman — 개인과 환경 사이의 적응적 상호작용에 주목(적응·스트레스·대처·자원)</td></tr>
-                  <tr><td>생태체계관점(Bronfenbrenner)</td><td>미시·중시·외부·거시체계로 환경을 구조화</td></tr>
-                  <tr><td>강점관점(Saleebey)</td><td>결함이 아니라 강점에 주목하는 시선의 전환, 단순 낙관주의 아님</td></tr>
-                  <tr><td>임파워먼트(Solomon/Gutierrez)</td><td>개인·대인·정치 세 차원이 함께 가야 자기계발론으로 변질되지 않음</td></tr>
-                  <tr><td>비판사회복지·AOP</td><td>구조적 불평등이 문제의 원인, 사회복지사 자신의 권력 위치에 대한 성찰 필요</td></tr>
-                  <tr><td>교차성(Crenshaw)</td><td>인종·계급·젠더 등 여러 범주가 교차하는 자리에서 개인을 이해</td></tr>
-                  <tr><td>프레이리의 의식화</td><td>인식 + 행동 = 실천(praxis), 문제제기식 교육과 비판·임파워먼트 사회복지가 대응</td></tr>
-                  <tr><td>거시 이론자원</td><td>정치경제학·공동체이론·거버넌스로 구조·공동체·협력적 통치를 분석</td></tr>
-                  <tr><td>본 강의 입장</td><td>다원주의이되 통합적 실천과 비판적 의식이라는 두 기준을 유지 — 상대주의 아님</td></tr>
-                </table>
-              `
-            }
-
-          ]
-        },
+    
+    { icon: "📂", title: "04. 강점관점과 임파워먼트",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">강점관점 vs 임파워먼트</span>
+          <span class="badge badge-green">임파워먼트 세 차원</span>
+          <span class="badge badge-purple">Judith Lee 통합 4원칙</span>
+        </div>
+      `
+    },
+    { icon: "💪", title: "강점관점 vs 임파워먼트 관점",
+      html: `
+        <div class="hbox hbox-blue">두 관점은 사회복지사의 시선을 바꿈 — client를 "문제를 가진 사람"에서 "강점을 가진 사람", "힘을 회복해야 할 주체"로 보는 전환. 1980년대까지 리치몬드의 진단주의·프로이트의 정신분석 영향으로 결함·병리 중심이었던 것에 대한 비판에서 등장</div>
+        <div class="sub">두 관점 비교</div>
+        <table class="comp-table">
+          <tr><th>관점</th><th>학자</th><th>핵심 명제</th></tr>
+          <tr><td>강점관점</td><td>Dennis Saleebey(1996)</td><td>"무엇이 잘못되었는가" → <b>"무엇을 잘하는가/어떤 자원이 있는가"</b><br> 단순 낙관주의 아님, 사회복지사의 권력 위치에 대한 비판</td></tr>
+          <tr><td>임파워먼트 관점</td><td>Barbara Solomon(1976)</td><td>강점관점보다 먼저 등장, 더 정치적<br>"강점이 발휘되지 못하게 만드는 <b>구조</b>는 무엇인가"를 함께 물음</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 임파워먼트는 강점관점과 비판사회복지 사이의 가교 — 개인과 구조를 함께 봄</div>
+      `
+    },
+    { icon: "📊", title: "임파워먼트의 세 차원 (Gutierrez, 1990)",
+      html: `
+        <div class="hbox hbox-blue">임파워먼트는 세 차원이 함께 가야 자기계발론으로 변질되지 않음(Gutierrez, 1990)</div>
+        <div class="sub">세 차원과 김민서 적용</div>
+        <table class="comp-table compare">
+          <tr><th>차원</th><th class="th-blue">내용</th><th class="th-green">김민서 적용</th></tr>
+          <tr><td>개인수준</td><td>자기효능감·자존감</td><td>"내 의지 문제가 아니다" 인정</td></tr>
+          <tr><td>대인수준</td><td>관계에서의 영향력·상호지지</td><td>또래 1인가구 모임 연계</td></tr>
+          <tr><td>정치수준</td><td>구조적 권력관계 변화·집단행동</td><td>청년정책 옹호·당사자운동 참여</td></tr>
+        </table>
+      `
+    },
+    { icon: "🤝", title: "Judith Lee(2001)의 통합 4원칙",
+      html: `
+        <div class="hbox hbox-blue">Judith Lee(2001)는 강점관점과 임파워먼트 관점을 통합 4원칙으로 정리함</div>
+        <div class="sub">통합 4원칙</div>
+        <ul class="pts">
+          <li>① 개인변화+사회변화 통합</li>
+          <li>② 협력관계(동반자 관계)</li>
+          <li>③ 억압집단의 집단적 의식형성(프레이리의 의식화와 연결)</li>
+          <li>④ 구조적 권력관계 도전</li>
+        </ul>
+  <div class="hbox hbox-yellow">💡 Lee는 임파워먼트가 자기계발론으로 흐르지 않도록 비판사회복지의 통찰을 유지하려 했다</div>
+      `
+    },
+    { icon: "📂", title: "05. 비판사회복지와 반억압실천(AOP)",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">비판사회복지의 등장과 핵심 명제</span>
+          <span class="badge badge-green">반억압실천(AOP)</span>
+          <span class="badge badge-purple">교차성</span>
+          <span class="badge badge-yellow">프레이리의 의식화</span>
+          <span class="badge badge-red">김민서 적용 — 비판사회복지·AOP</span>
+        </div>
+      `
+    },
+    { icon: "🏴", title: "비판사회복지의 등장과 핵심 명제",
+      html: `
+        <div class="hbox hbox-blue">강점관점이 <b>시선</b>의 전환이었다면 비판사회복지는 <b>위치</b>의 전환 — 1970년대 영미권에서 등장(Fook 2002, Healy 2014), 한국에서는 아직 충분히 소개되지 않은 영역이지만 본 강의가 비중 있게 다룸</div>
+        <div class="sub">핵심 명제</div>
+        <table class="comp-table compare">
+          <tr><th>명제</th><th class="th-blue">내용</th></tr>
+          <tr><td>원인</td><td>문제 = 구조적 불평등의 산물</td></tr>
+          <tr><td>위험</td><td>실천이 불평등을 재생산할 수 있음</td></tr>
+          <tr><td>방향</td><td>구조 변화가 궁극 목표</td></tr>
+          <tr><td>위치</td><td>사회복지사의 권력 위치에 대한 자기성찰</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 이론자원은 마르크스주의·페미니즘·비판인종이론·푸코로 다양함</div>
+      `
+    },
+    { icon: "⚔️", title: "반억압실천(AOP) — Lena Dominelli(2002)",
+      html: `
+        <div class="hbox hbox-blue">비판사회복지를 가장 영향력 있게 실천모델화한 것이 Lena Dominelli(2002)의 <b>반억압실천(AOP)</b></div>
+        <div class="sub">AOP 3차원</div>
+        <table class="comp-table compare">
+          <tr><th>AOP 3차원</th><th class="th-blue">내용</th></tr>
+          <tr><td>① 구조 분석</td><td>구조적 불평등 분석</td></tr>
+          <tr><td>② 관계 성찰</td><td>관계 안 권력에 대한 성찰</td></tr>
+          <tr><td>③ 결합</td><td>임파워먼트 + 사회변화 결합</td></tr>
+        </table>
+      `
+    },
+    { icon: "🧭", title: "교차성 (Intersectionality)",
+      html: `
+        <div class="hbox hbox-blue">한 개인은 인종·계급·젠더·장애·연령·성적지향이 교차하는 자리에 있음 — <b>교차성</b>(Crenshaw 1989)</div>
+        <div class="sub">예시</div>
+        <ul class="pts">
+          <li>"가난한 장애 여성 노인"은 네 억압이 교차한 한 사람</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 AOP는 이 교차성을 인식하고 권력분배·동맹형성을 추구함</div>
+      `
+    },
+    { icon: "📚", title: "프레이리의 의식화(Conscientização)와 교육 모델",
+      html: `
+        <div class="hbox hbox-blue">파울로 프레이리(Freire, 1970)의 <b>의식화</b> — 억압된 사람이 조건을 비판적으로 인식하고 변혁 행동에 나서는 것 = <b>실천(praxis)</b></div>
+        <div class="sub">두 교육 모델 비교</div>
+        <table class="comp-table compare">
+          <tr><th>교육 모델</th><th class="th-blue">방식</th><th class="th-green">사회복지 적용</th></tr>
+          <tr><td>은행식(저축식)</td><td>교사가 일방적 전달, 학생은 수동적 수용</td><td>전문가-수혜자 사회복지 (진단·처방)</td></tr>
+          <tr><td>문제제기식</td><td>함께 문제를 제기하고 해결 모색</td><td>비판·임파워먼트 사회복지 (함께 분석·변화모색)</td></tr>
+        </table>
+      `
+    },
+    { icon: "🔗", title: "김민서 적용 — 비판사회복지·AOP",
+      html: `
+        <div class="hbox hbox-blue">비판사회복지·AOP 관점을 김민서 사례에 적용한 보충설명</div>
+        <div class="sub">적용 내용</div>
+        <ul class="pts">
+          <li>구조 — 빈곤=청년실업·주거빈곤·학자금부채의 구조적 산물</li>
+          <li>교차성 — 청년×여성×비수도권×비정규직</li>
+          <li>의식화 — "의지부족"→"세대의 구조적 조건"</li>
+          <li>AOP — 사회복지사가 "의지부족" 라벨링 거부, 동맹형성</li>
+        </ul>
+      `
+    },
+    { icon: "📂", title: "06. 거시 실천의 이론적 자원",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">거시 실천의 세 이론적 자원</span>
+          <span class="badge badge-green">한국의 흐름</span>
+          <span class="badge badge-purple">김민서 적용 — 거시 실천</span>
+        </div>
+      `
+    },
+    { icon: "🏦", title: "거시 실천의 세 이론적 자원",
+      html: `
+        <div class="hbox hbox-blue">미시·중시·거시를 통합적으로 실천하려면 거시 차원의 이론적 자원이 필요 — 한국에서 잘 다뤄지지 않지만 본 강의가 복원하려는 영역</div>
+        <div class="sub">세 이론</div>
+        <table class="comp-table compare">
+          <tr><th>이론</th><th class="th-blue">학자</th><th class="th-green">핵심</th></tr>
+          <tr><td>정치경제학</td><td>Ferguson(2008), Mullaly(2007)</td><td>사회복지를 자본주의 구조적 모순을 관리하는 제도로 봄</td></tr>
+          <tr><td>공동체이론</td><td>Tönnies(1887), Putnam(2000)</td><td>게마인샤프트(공동사회) vs 게젤샤프트(이익사회); Putnam의 <b>사회자본</b>(신뢰·호혜성·시민참여)</td></tr>
+          <tr><td>거버넌스이론</td><td>Rhodes(1996), Stoker(1998)</td><td>통치(government)→협력적 통치(governance)로 전환</td></tr>
+        </table>
+      `
+    },
+    { icon: "🇰🇷", title: "한국의 흐름 — 거시 사회복지 이론의 주변화와 복원",
+      html: `
+        <div class="hbox hbox-blue">한국에서 거시 사회복지 이론의 형성과 이후 주변화 과정 (보충설명)</div>
+        <div class="sub">흐름</div>
+        <ul class="pts">
+          <li>1980s 민주화·빈민·노동운동과 결합 → 거시 사회복지 이론적 기반</li>
+          <li>1990s 이후 제도화·전문직화 과정에서 주변화</li>
+          <li>본 교재는 이를 복원하려 함</li>
+        </ul>
+      `
+    },
+    { icon: "🔗", title: "김민서 적용 — 거시 실천 이론자원",
+      html: `
+        <div class="hbox hbox-blue">거시 실천 이론자원을 김민서 사례에 적용한 보충설명</div>
+        <div class="sub">적용 내용</div>
+        <ul class="pts">
+          <li>정치경제학 — 청년실업률 등 통계의 결과</li>
+          <li>공동체이론 — 잃은 것은 직업이 아닌 공동체 자체 — 사회자본 붕괴</li>
+          <li>거버넌스 — 동주민센터·청년단체·NGO 협력 필요</li>
+          <li>통합 — 미시 사례관리+거시 정책옹호 결합</li>
+        </ul>
+      `
+    },
+    { icon: "📂", title: "07. 본 교재의 입장 — 다원주의 ≠ 상대주의",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">다원주의 4원칙(Healy)</span>
+          <span class="badge badge-green">네 관점 종합 비교</span>
+          <span class="badge badge-purple">클로징</span>
+        </div>
+      `
+    },
+    { icon: "⚖️", title: "다원주의 4원칙 (Healy, 2014)",
+      html: `
+        <div class="hbox hbox-blue">다원적 이론 활용은 "아무거나 다 좋다"는 상대주의가 아님 — Healy(2014)는 이를 네 원칙으로 정리</div>
+        <div class="sub">네 원칙</div>
+        <table class="comp-table compare">
+          <tr><th>원칙</th><th class="th-blue">내용</th></tr>
+          <tr><td>부분성</td><td>모든 이론은 부분적 진실</td></tr>
+          <tr><td>도구성</td><td>실천에 유용한 안목 제공이 가치</td></tr>
+          <tr><td>비중립성</td><td>이론 선택은 정치적 선택</td></tr>
+          <tr><td>성찰성</td><td>왜 이 이론을 택했는지 의식</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 본 강의는 다원주의 안에서도 두 가지 입장을 분명히 함 — ① 통합적 실천(미시·중시·거시 균형) ② 비판적 의식(구조분석과 권력자각) — "상대주의가 아니다, 다원주의에도 입장이 있다"</div>
+      `
+    },
+    { icon: "🔍", title: "네 관점 종합 비교 — 김민서 사례",
+      html: `
+        <div class="hbox hbox-blue">네 관점(생태·강점임파워먼트·비판AOP·거시자원)을 김민서 사례에 적용한 종합 비교 — 네 관점은 배타적이 아니라 <b>보완적</b></div>
+        <div class="sub">관점별 질문과 개입</div>
+        <table class="comp-table compare">
+          <tr><th>관점</th><th class="th-blue">질문</th><th class="th-green">개입</th></tr>
+          <tr><td>생태</td><td>어떤 체계와 단절되어 있는가</td><td>체계 연결·자원 연계</td></tr>
+          <tr><td>강점·임파워먼트</td><td>어떤 강점이 있고 어떻게 힘을 회복할 것인가</td><td>협력적 동반자, 또래모임</td></tr>
+          <tr><td>비판·AOP</td><td>어떤 구조가 이 사람을 만들었는가</td><td>구조 도전·동맹·의식화·라벨거부</td></tr>
+          <tr><td>거시 자원</td><td>어떤 정책·공동체가 필요한가</td><td>정책옹호·공동체형성·다주체협력</td></tr>
+        </table>
+      `
+    },
+    { icon: "🔚", title: "클로징",
+      html: `
+        <div class="hbox hbox-blue">오늘 살핀 것 — 네 가지 현대 관점(생태체계·강점·임파워먼트·비판/AOP) + 거시 실천 세 자원(정치경제학·공동체·거버넌스)</div>
+        <div class="hbox hbox-yellow">💡 "이론은 학술적 장식품이 아니라 사회복지 실천의 나침반이며, 어떤 이론을 택하느냐가 사회복지사가 만드는 실천의 모습을 결정한다"</div>
+        <div class="sub">다음 강 예고</div>
+        <ul class="pts">
+          <li>사회복지사의 정체성과 역할</li>
+        </ul>
+      `
+    },
+    { icon: "📝", title: "2강 핵심 요약",
+      html: `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>이론의 역할</b></td><td>진단 틀 제공·변화 가능성 정의·개입의 정당화 — <b>다원적 이론 활용</b>(Theoretical Pluralism)</td></tr>
+          <tr><td><b>이론 세 층위</b></td><td>기초이론(理) → <b>실천 관점(觀)</b> → 실천 모델(法)</td></tr>
+          <tr><td><b>생태체계 관점</b></td><td>GST → 생태학적 관점(적응적 상호작용) → <b>Bronfenbrenner 4수준</b>(미시·중시·외부·거시)</td></tr>
+          <tr><td><b>4체계 모델</b></td><td>클라이언트체계·표적체계·행동체계·<b>변화매개체계</b> — 사정 도구</td></tr>
+          <tr><td><b>강점관점</b></td><td>Saleebey(1996) — "무엇을 잘하는가/어떤 자원이 있는가" — <b>시선</b>의 전환</td></tr>
+          <tr><td><b>임파워먼트 관점</b></td><td>Solomon(1976) — 개인수준·대인수준·<b>정치수준</b> 세 차원이 함께 가야 함</td></tr>
+          <tr><td><b>비판사회복지·AOP</b></td><td>문제=구조적 불평등의 산물 — Dominelli의 <b>AOP</b>(구조분석·관계성찰·결합), <b>교차성</b>(Crenshaw)</td></tr>
+          <tr><td><b>의식화(Freire)</b></td><td>은행식 교육 vs <b>문제제기식</b> 교육 — 비판적 인식+변혁행동=praxis</td></tr>
+          <tr><td><b>거시 실천 자원</b></td><td>정치경제학·공동체이론(<b>사회자본</b>)·거버넌스이론</td></tr>
+          <tr><td><b>다원주의 4원칙</b></td><td>부분성·도구성·비중립성·<b>성찰성</b>(Healy) — 상대주의 아님</td></tr>
+        </table>
+      `
+    },
+  ]
+},
         {
           num: "3강", name: "사회복지사의 정체성과 역할", icon: "🎭",
           cards: [
@@ -19373,6 +19025,14 @@ function setFavFilter(subjectId) {
   renderFavOverlay();
 }
 
+const ORIGINAL_DOC_TITLE = document.title;
+
+function getPrintDateStamp() {
+  const d = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+}
+
 function printFavorites() {
   const favs = loadFavorites();
   const keys = Object.keys(favs);
@@ -19399,12 +19059,16 @@ function printFavorites() {
       <div class="fav-print-sub">${filterLabel} · 총 ${filteredKeys.length}개 · ${dateStr}</div>`;
   }
 
+  // PDF 저장 시 파일명으로 쓰이도록 문서 제목 임시 변경
+  document.title = `즐겨찾기_${filterLabel.replace(/\s+/g,'')}_${getPrintDateStamp()}`;
+
   setTimeout(() => window.print(), 100);
 }
 
 window.addEventListener('afterprint', () => {
   document.querySelectorAll('#favOvBody .fav-card-body.open').forEach(el => el.classList.remove('open'));
   document.querySelectorAll('#favOvBody .fav-card-arrow.open').forEach(el => el.classList.remove('open'));
+  document.title = ORIGINAL_DOC_TITLE;
 });
 
 /* ══════════════════════════════════════════
@@ -19510,6 +19174,11 @@ function printSelectedChapters() {
   }
 
   closeChapterPrintOverlay();
+
+  // PDF 저장 시 파일명으로 쓰이도록 문서 제목 임시 변경
+  const chNumsForFile = idxList.map(i => data.chapters[i].num).join('_');
+  document.title = `${data.title}_${chNumsForFile}_${getPrintDateStamp()}`;
+
   setTimeout(() => window.print(), 100);
 }
 
