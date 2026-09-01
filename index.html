@@ -1178,7 +1178,7 @@ hr {
 .fav-print-title { display:none; }
 
 @media print {
-  @page { size: A4; margin: 16mm 14mm; }
+  @page { size: A4; margin: 12mm 12mm; }
 
   html, body { background:#fff !important; }
   body > *:not(#fav-overlay) { display:none !important; }
@@ -1187,6 +1187,7 @@ hr {
     display:block !important; position:static !important; inset:auto !important;
     top:auto !important; background:#fff !important; z-index:auto !important;
     animation:none !important; overflow:visible !important; height:auto !important;
+    font-size:13px !important; line-height:1.42 !important;
   }
 
   #fav-overlay .fav-ov-header,
@@ -1198,9 +1199,9 @@ hr {
 
   .fav-print-title {
     display:block !important;
-    border-bottom:2px solid #111; padding-bottom:10px; margin-bottom:18px;
+    border-bottom:2px solid #111; padding-bottom:6px; margin-bottom:10px;
   }
-  .fav-print-title h1 { font-size:1.35em; margin:0 0 4px; color:#111; }
+  .fav-print-title h1 { font-size:1.3em; margin:0 0 3px; color:#111; }
   .fav-print-title .fav-print-sub { font-size:.85em; color:#555; }
 
   #fav-overlay .fav-ov-body {
@@ -1212,28 +1213,30 @@ hr {
   #fav-overlay .fav-card-wrap {
     background:#fff !important; border:none !important; border-bottom:1px solid #ccc;
     border-radius:0 !important; box-shadow:none !important;
-    padding:0 0 10px !important; margin-bottom:10px !important;
+    padding:0 0 6px !important; margin-bottom:6px !important;
     page-break-inside:auto; break-inside:auto;
   }
 
-  #fav-overlay .fav-card-meta { margin-bottom:6px; }
+  #fav-overlay .fav-card-meta { margin-bottom:3px; }
   #fav-overlay .fav-card-subj {
     background:none !important; color:#111 !important;
-    border:1px solid #111 !important; padding:2px 9px;
+    border:1px solid #111 !important; padding:1px 8px;
   }
   #fav-overlay .fav-card-chapter { color:#555 !important; }
 
-  #fav-overlay .fav-card-body { display:block !important; margin-top:6px !important; }
+  #fav-overlay .fav-card-body { display:block !important; margin-top:3px !important; }
 
   #fav-overlay .card {
     background:#fff !important; border:none !important; box-shadow:none !important;
     padding:0 !important; margin-bottom:0 !important;
   }
+  #fav-overlay .card-head { margin-bottom:5px !important; }
   #fav-overlay .card-title { font-size:1.05em; color:#111; }
 
-  /* 강조 박스 — 색 배경 대신 흰 배경 + 테두리로 (잉크 절약) */
+  /* 강조 박스 — 색 배경 대신 흰 배경 + 테두리로 (잉크 절약), 여백도 압축 */
   #fav-overlay .hbox {
     background:#fff !important; border:1px solid #999 !important; color:#111 !important;
+    padding:7px 9px !important; margin-top:5px !important; line-height:1.42 !important;
     page-break-inside:avoid; break-inside:avoid;
   }
   #fav-overlay .hbox-blue,
@@ -1242,19 +1245,32 @@ hr {
   #fav-overlay .hbox-red,
   #fav-overlay .hbox-purple { background:#fff !important; border-left:3px solid #333 !important; }
 
-  /* 표 — 제목 셀 옅은 회색(약 20%) + 검정 글씨 */
-  #fav-overlay .comp-table { page-break-inside:avoid; break-inside:avoid; }
+  /* 표 — 제목 셀 옅은 회색(약 20%) + 검정 글씨, 셀 여백 압축 */
+  #fav-overlay .comp-table { page-break-inside:avoid; break-inside:avoid; margin-top:3px !important; }
   #fav-overlay .comp-table th {
     background:#e2e2e2 !important; color:#111 !important; border:1px solid #999;
+    padding:5px 7px !important;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
-  #fav-overlay .comp-table td { color:#111 !important; border-bottom:1px solid #ccc !important; }
+  #fav-overlay .comp-table td {
+    color:#111 !important; border-bottom:1px solid #ccc !important; padding:5px 7px !important;
+  }
   #fav-overlay .comp-table tr:nth-child(even) td { background:#fff !important; }
   #fav-overlay .th-blue, #fav-overlay .th-green,
   #fav-overlay .th-purple, #fav-overlay .th-red, #fav-overlay .th-orange {
     background:#e2e2e2 !important; color:#111 !important;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
+
+  /* 리스트류 줄간격/여백 압축 */
+  #fav-overlay .pts, #fav-overlay .ptsFC, #fav-overlay .ptsCK,
+  #fav-overlay .star-list { gap:2px !important; margin-top:4px !important; }
+  #fav-overlay .pts li, #fav-overlay .ptsFC li, #fav-overlay .ptsCK li,
+  #fav-overlay .star-list li { line-height:1.42 !important; margin:1px 0 !important; }
+  #fav-overlay .badge-row { gap:4px !important; margin-top:4px !important; }
+  #fav-overlay .badge { padding:2px 9px !important; }
+  #fav-overlay .sub { margin:6px 0 3px !important; }
+  #fav-overlay .divider { margin:6px 0 !important; }
 
   /* 배지 / 기출 표시 / 플로우 / 리스트 — 색 없이 테두리·글자로만 구분 */
   #fav-overlay .badge,
@@ -1278,7 +1294,7 @@ hr {
   /* 강별 인쇄(챕터 선택 인쇄)용 구획 제목 */
   #fav-overlay .print-chapter-title {
     font-size:1.12em; font-weight:900; color:#111 !important;
-    margin:20px 0 10px; padding-bottom:6px; border-bottom:1.5px solid #333;
+    margin:12px 0 6px; padding-bottom:4px; border-bottom:1.5px solid #333;
     page-break-after:avoid; break-after:avoid;
   }
   #fav-overlay .print-chapter-block:first-child .print-chapter-title { margin-top:0; }
@@ -19154,7 +19170,9 @@ function printSelectedChapters() {
   if (bodyEl) {
     bodyEl.innerHTML = idxList.map(i => {
       const ch = data.chapters[i];
-      const cardsHtml = ch.cards.map(card => `
+      // 📂 섹션 헤더 카드는 내비게이션용(badge-row만 있음)이라 인쇄에서 제외 → 페이지 수 절감
+      const printCards = ch.cards.filter(card => card.icon !== '📂');
+      const cardsHtml = printCards.map(card => `
         <div class="fav-card-wrap">
           <div class="card">
             <div class="card-head">
