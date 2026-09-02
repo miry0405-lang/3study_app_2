@@ -58,6 +58,39 @@ body {
   padding-top:var(--gbar-h);
 }
 /* ══════════════════════════════════════════
+   팀 전용 비밀번호 게이트
+══════════════════════════════════════════ */
+.pw-gate {
+  position:fixed; inset:0; z-index:99999;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#1e293b,#0f172a);
+  padding:20px;
+}
+.pw-gate-card {
+  width:100%; max-width:340px; background:#fff; border-radius:20px;
+  padding:36px 28px 30px; text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+.pw-gate-icon { font-size:2.4em; margin-bottom:10px; }
+.pw-gate-title { font-size:1.15em; font-weight:900; color:var(--text); }
+.pw-gate-sub { font-size:.85em; color:var(--muted); margin-top:6px; margin-bottom:22px; }
+.pw-gate-input {
+  width:100%; padding:13px 14px; border-radius:12px; border:1.5px solid var(--border);
+  font-size:1em; text-align:center; letter-spacing:3px; font-family:inherit;
+  outline:none; transition:border-color .15s;
+}
+.pw-gate-input:focus { border-color:var(--accent); }
+.pw-gate-btn {
+  width:100%; margin-top:12px; padding:13px 14px; border:none; border-radius:12px;
+  background:var(--accent); color:#fff; font-size:.95em; font-weight:800;
+  cursor:pointer; transition:background .15s;
+}
+.pw-gate-btn:hover { background:var(--accent-dark); }
+.pw-gate-error {
+  min-height:1.2em; margin-top:10px; font-size:.82em; color:var(--red); font-weight:700;
+}
+
+/* ══════════════════════════════════════════
    전역 고정 상단바
 ══════════════════════════════════════════ */
 #global-topbar {
@@ -1178,7 +1211,7 @@ hr {
 .fav-print-title { display:none; }
 
 @media print {
-  @page { size: A4; margin: 12mm 12mm; }
+  @page { size: A4; margin: 16mm 14mm; }
 
   html, body { background:#fff !important; }
   body > *:not(#fav-overlay) { display:none !important; }
@@ -1187,7 +1220,6 @@ hr {
     display:block !important; position:static !important; inset:auto !important;
     top:auto !important; background:#fff !important; z-index:auto !important;
     animation:none !important; overflow:visible !important; height:auto !important;
-    font-size:13px !important; line-height:1.42 !important;
   }
 
   #fav-overlay .fav-ov-header,
@@ -1199,9 +1231,9 @@ hr {
 
   .fav-print-title {
     display:block !important;
-    border-bottom:2px solid #111; padding-bottom:6px; margin-bottom:10px;
+    border-bottom:2px solid #111; padding-bottom:10px; margin-bottom:18px;
   }
-  .fav-print-title h1 { font-size:1.3em; margin:0 0 3px; color:#111; }
+  .fav-print-title h1 { font-size:1.35em; margin:0 0 4px; color:#111; }
   .fav-print-title .fav-print-sub { font-size:.85em; color:#555; }
 
   #fav-overlay .fav-ov-body {
@@ -1213,30 +1245,28 @@ hr {
   #fav-overlay .fav-card-wrap {
     background:#fff !important; border:none !important; border-bottom:1px solid #ccc;
     border-radius:0 !important; box-shadow:none !important;
-    padding:0 0 6px !important; margin-bottom:6px !important;
+    padding:0 0 10px !important; margin-bottom:10px !important;
     page-break-inside:auto; break-inside:auto;
   }
 
-  #fav-overlay .fav-card-meta { margin-bottom:3px; }
+  #fav-overlay .fav-card-meta { margin-bottom:6px; }
   #fav-overlay .fav-card-subj {
     background:none !important; color:#111 !important;
-    border:1px solid #111 !important; padding:1px 8px;
+    border:1px solid #111 !important; padding:2px 9px;
   }
   #fav-overlay .fav-card-chapter { color:#555 !important; }
 
-  #fav-overlay .fav-card-body { display:block !important; margin-top:3px !important; }
+  #fav-overlay .fav-card-body { display:block !important; margin-top:6px !important; }
 
   #fav-overlay .card {
     background:#fff !important; border:none !important; box-shadow:none !important;
     padding:0 !important; margin-bottom:0 !important;
   }
-  #fav-overlay .card-head { margin-bottom:5px !important; }
   #fav-overlay .card-title { font-size:1.05em; color:#111; }
 
-  /* 강조 박스 — 색 배경 대신 흰 배경 + 테두리로 (잉크 절약), 여백도 압축 */
+  /* 강조 박스 — 색 배경 대신 흰 배경 + 테두리로 (잉크 절약) */
   #fav-overlay .hbox {
     background:#fff !important; border:1px solid #999 !important; color:#111 !important;
-    padding:7px 9px !important; margin-top:5px !important; line-height:1.42 !important;
     page-break-inside:avoid; break-inside:avoid;
   }
   #fav-overlay .hbox-blue,
@@ -1245,32 +1275,19 @@ hr {
   #fav-overlay .hbox-red,
   #fav-overlay .hbox-purple { background:#fff !important; border-left:3px solid #333 !important; }
 
-  /* 표 — 제목 셀 옅은 회색(약 20%) + 검정 글씨, 셀 여백 압축 */
-  #fav-overlay .comp-table { page-break-inside:avoid; break-inside:avoid; margin-top:3px !important; }
+  /* 표 — 제목 셀 옅은 회색(약 20%) + 검정 글씨 */
+  #fav-overlay .comp-table { page-break-inside:avoid; break-inside:avoid; }
   #fav-overlay .comp-table th {
     background:#e2e2e2 !important; color:#111 !important; border:1px solid #999;
-    padding:5px 7px !important;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
-  #fav-overlay .comp-table td {
-    color:#111 !important; border-bottom:1px solid #ccc !important; padding:5px 7px !important;
-  }
+  #fav-overlay .comp-table td { color:#111 !important; border-bottom:1px solid #ccc !important; }
   #fav-overlay .comp-table tr:nth-child(even) td { background:#fff !important; }
   #fav-overlay .th-blue, #fav-overlay .th-green,
   #fav-overlay .th-purple, #fav-overlay .th-red, #fav-overlay .th-orange {
     background:#e2e2e2 !important; color:#111 !important;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
-
-  /* 리스트류 줄간격/여백 압축 */
-  #fav-overlay .pts, #fav-overlay .ptsFC, #fav-overlay .ptsCK,
-  #fav-overlay .star-list { gap:2px !important; margin-top:4px !important; }
-  #fav-overlay .pts li, #fav-overlay .ptsFC li, #fav-overlay .ptsCK li,
-  #fav-overlay .star-list li { line-height:1.42 !important; margin:1px 0 !important; }
-  #fav-overlay .badge-row { gap:4px !important; margin-top:4px !important; }
-  #fav-overlay .badge { padding:2px 9px !important; }
-  #fav-overlay .sub { margin:6px 0 3px !important; }
-  #fav-overlay .divider { margin:6px 0 !important; }
 
   /* 배지 / 기출 표시 / 플로우 / 리스트 — 색 없이 테두리·글자로만 구분 */
   #fav-overlay .badge,
@@ -1294,7 +1311,7 @@ hr {
   /* 강별 인쇄(챕터 선택 인쇄)용 구획 제목 */
   #fav-overlay .print-chapter-title {
     font-size:1.12em; font-weight:900; color:#111 !important;
-    margin:12px 0 6px; padding-bottom:4px; border-bottom:1.5px solid #333;
+    margin:20px 0 10px; padding-bottom:6px; border-bottom:1.5px solid #333;
     page-break-after:avoid; break-after:avoid;
   }
   #fav-overlay .print-chapter-block:first-child .print-chapter-title { margin-top:0; }
@@ -1568,6 +1585,26 @@ hr {
 <body>
 
 <!-- ═══════════════════════════════════════════════════════════
+     팀 전용 비밀번호 게이트 — 인증 전까지 화면 전체를 덮음
+═══════════════════════════════════════════════════════════ -->
+<div id="pw-gate" class="pw-gate">
+  <div class="pw-gate-card">
+    <div class="pw-gate-icon">🔒</div>
+    <div class="pw-gate-title">사회복지학과 학습 허브</div>
+    <div class="pw-gate-sub">팀원 전용 자료입니다. 비밀번호를 입력해 주세요.</div>
+    <input type="password" id="pwGateInput" class="pw-gate-input" placeholder="비밀번호" autocomplete="off" inputmode="numeric">
+    <button type="button" class="pw-gate-btn" onclick="checkPwGate()">입장하기</button>
+    <div id="pwGateError" class="pw-gate-error"></div>
+  </div>
+</div>
+<script>
+  // 이미 인증된 기기라면 즉시 게이트를 숨겨 콘텐츠가 바로 보이게 함
+  if (localStorage.getItem('sw2-gate-ok') === '1') {
+    document.getElementById('pw-gate').style.display = 'none';
+  }
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
      전역 고정 상단바 — 모든 뷰에서 항상 표시
      홈 버튼 + 글자 크기 조절
 ═══════════════════════════════════════════════════════════ -->
@@ -1600,7 +1637,7 @@ hr {
     <div class="hero-icon">📚</div>
     <div class="hero-title">사회복지학과 학습 허브</div>
     <div class="hero-sub">과목별 요약정리 카드와 기출 퀴즈로<br>체계적으로 시험을 준비하세요</div>
-    <div class="hero-badge">🎓 방송통신대 사회복지학과 3학년 1학기 기말고사 대비</div>
+    <div class="hero-badge">🎓 방송통신대 사회복지학과 3학년 2학기 기말고사 대비</div>
   </div>
 
   <!-- 글자 크기 조절 바 — 전체 너비, 헤더에 밀착 -->
@@ -2116,6 +2153,29 @@ hr {
 
 
 <script>
+/* ── 팀 전용 비밀번호 게이트 ── */
+function checkPwGate() {
+  const input = document.getElementById('pwGateInput');
+  const errEl = document.getElementById('pwGateError');
+  const val = (input.value || '').trim();
+  if (val === '2026') {
+    try { localStorage.setItem('sw2-gate-ok', '1'); } catch(e) {}
+    document.getElementById('pw-gate').style.display = 'none';
+  } else {
+    errEl.textContent = '비밀번호가 올바르지 않습니다.';
+    input.value = '';
+    input.focus();
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  const input = document.getElementById('pwGateInput');
+  if (!input) return;
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPwGate();
+  });
+  if (localStorage.getItem('sw2-gate-ok') !== '1') input.focus();
+});
+
 /** 메인 페이지 글자 크기 설정 */
 function setIdxFs(size, key) {
   document.documentElement.style.setProperty('--fs', size + 'px');
@@ -19067,16 +19127,15 @@ function printFavorites() {
   const filterLabel = favActiveFilter === 'all'
     ? '전체 과목'
     : ((SUBJECT_META[favActiveFilter] && SUBJECT_META[favActiveFilter].name) || '');
-  const dateStr = new Date().toLocaleDateString('ko-KR');
   const titleEl = document.getElementById('favPrintTitle');
   if (titleEl) {
     titleEl.innerHTML = `
       <h1>⭐ 즐겨찾기 요약노트</h1>
-      <div class="fav-print-sub">${filterLabel} · 총 ${filteredKeys.length}개 · ${dateStr}</div>`;
+      <div class="fav-print-sub">${filterLabel} · 총 ${filteredKeys.length}개</div>`;
   }
 
   // PDF 저장 시 파일명으로 쓰이도록 문서 제목 임시 변경
-  document.title = `즐겨찾기_${filterLabel.replace(/\s+/g,'')}_${getPrintDateStamp()}`;
+  document.title = `즐겨찾기_${filterLabel.replace(/\s+/g, '')}_${getPrintDateStamp()}`;
 
   setTimeout(() => window.print(), 100);
 }
@@ -19152,14 +19211,13 @@ function printSelectedChapters() {
 
   const meta = SUBJECT_META[subjectId] || {};
   const chNums = idxList.map(i => data.chapters[i].num).join(', ');
-  const dateStr = new Date().toLocaleDateString('ko-KR');
 
   // 인쇄용 타이틀
   const titleEl = document.getElementById('favPrintTitle');
   if (titleEl) {
     titleEl.innerHTML = `
       <h1>${meta.icon || data.icon || ''} ${data.title}</h1>
-      <div class="fav-print-sub">${chNums} · ${dateStr}</div>`;
+      <div class="fav-print-sub">${chNums}</div>`;
   }
 
   // 강별 카드 전체 펼쳐서 마크업 구성 (즐겨찾기 인쇄용 스타일 재사용)
@@ -19170,9 +19228,7 @@ function printSelectedChapters() {
   if (bodyEl) {
     bodyEl.innerHTML = idxList.map(i => {
       const ch = data.chapters[i];
-      // 📂 섹션 헤더 카드는 내비게이션용(badge-row만 있음)이라 인쇄에서 제외 → 페이지 수 절감
-      const printCards = ch.cards.filter(card => card.icon !== '📂');
-      const cardsHtml = printCards.map(card => `
+      const cardsHtml = ch.cards.map(card => `
         <div class="fav-card-wrap">
           <div class="card">
             <div class="card-head">
