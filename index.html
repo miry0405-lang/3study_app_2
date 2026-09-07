@@ -1266,6 +1266,7 @@ hr {
     background:#fff !important; border:none !important; box-shadow:none !important;
     padding:0 !important; margin-bottom:0 !important;
   }
+  #fav-overlay .card-head { page-break-after:avoid; break-after:avoid; margin-bottom:5px !important; }
   #fav-overlay .card-title { font-size:1.05em; color:#111; }
 
   /* 강조 박스 — 색 배경 대신 흰 배경 + 테두리로 (잉크 절약) */
@@ -1280,14 +1281,17 @@ hr {
   #fav-overlay .hbox-red,
   #fav-overlay .hbox-purple { background:#fff !important; border-left:3px solid #333 !important; }
 
-  #fav-overlay .sub { margin:4px 0 2px !important; }
+  #fav-overlay .sub { margin:4px 0 2px !important; page-break-after:avoid; break-after:avoid; }
   #fav-overlay .pts li,
   #fav-overlay .star-list li { line-height:1.3 !important; margin:0 !important; }
   #fav-overlay .badge-row { margin-top:3px !important; gap:4px !important; }
   #fav-overlay .flow { margin-top:3px !important; }
 
   /* 표 — 제목 셀 옅은 회색(약 20%) + 검정 글씨 */
-  #fav-overlay .comp-table { page-break-inside:avoid; break-inside:avoid; }
+  /* 표 전체를 통으로 다음 페이지에 넘기지 않고, 행 단위로만 안 잘리게 하여
+     남는 공간을 채우며 자연스럽게 이어지도록 함 (빈 공간 최소화) */
+  #fav-overlay .comp-table { page-break-inside:auto; break-inside:auto; }
+  #fav-overlay .comp-table tr { page-break-inside:avoid; break-inside:avoid; }
   #fav-overlay .comp-table th,
   #fav-overlay .comp-table td { padding:4px 7px !important; }
   #fav-overlay .comp-table th {
@@ -1650,7 +1654,7 @@ hr {
     <div class="hero-icon">📚</div>
     <div class="hero-title">사회복지학과 학습 허브</div>
     <div class="hero-sub">과목별 요약정리 카드와 기출 퀴즈로<br>체계적으로 시험을 준비하세요</div>
-    <div class="hero-badge">🎓 방송통신대 사회복지학과 3학년 2학기 기말고사 대비</div>
+    <div class="hero-badge">🎓 방송통신대 사회복지학과 3학년 1학기 기말고사 대비</div>
   </div>
 
   <!-- 글자 크기 조절 바 — 전체 너비, 헤더에 밀착 -->
@@ -2526,292 +2530,442 @@ const SUMMARY_DATA = {
     subtitle: '1강 ~ 15강 강의별 요점카드',
     icon: '💼',
     chapters: [
-        { num: "1강", name: "사회복지실천 — 정의의 두 흐름과 통합적 실천", icon: "🌱",
-        cards: [
-          { icon: "📂", title: "01. 오프닝 — 두 장면의 사회복지사",
-            html: `
-              <div class="badge-row">
-                <span class="badge badge-blue">두 장면과 문제의식</span>
-                <span class="badge badge-green">학습목표 5가지</span>
-              </div>
-            `
-          },
-          { icon: "👥", title: "두 장면의 사회복지사와 문제의식",
-            html: `
-              <div class="hbox hbox-blue">익숙한 미시 장면(상담·사례관리·서비스 연계)과 덜 보이는 거시 장면(권익옹호·주민조직화·정책 제안) — 둘 다 정당한 실천 영역이라는 문제의식이 강의 전체를 관통</div>
-              <div class="sub">출발 질문과 비대칭</div>
-              <ul class="pts">
-                <li>오프닝 질문: "당신이 떠올린 사회복지사는 누구입니까?"</li>
-                <li>한국의 대중적 이미지·공식 자료엔 미시 장면이 훨씬 자주 보인다는 <b>비대칭</b>에서 강의 출발</li>
-              </ul>
-              <div class="hbox hbox-yellow">💡 "둘은 다른 사람이 아니다. 같은 전문직의 두 얼굴이다."</div>
-            `
-          },
-          { icon: "📂", title: "02. 개념의 출발 — Welfare",
-            html: `
-              <div class="badge-row">
-                <span class="badge badge-blue">Welfare 어원과 정의</span>
-                <span class="badge badge-green">사회복지 vs 사회복지실천</span>
-                <span class="badge badge-purple">용어의 변천</span>
-              </div>
-            `
-          },
-          { icon: "🔤", title: "Welfare의 어원과 사회복지의 정의",
-            html: `
-              <div class="hbox hbox-blue">Welfare = wel(좋은) + fare(지내다) → "잘 지내는 상태" — 사회복지는 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적·사회적 노력</div>
-              <div class="sub">Social Welfare의 두 질문</div>
-              <ul class="pts">
-                <li>누가 <b>구성원</b>인가 / 무엇이 <b>좋은 상태</b>인가</li>
-                <li>Social의 의미: 사교적·사회적·<b>공공의</b> 세 의미를 함께 지님</li>
-                <li>이 질문의 답은 시대·사회에 따라 달라져 왔음</li>
-              </ul>
-            `
-          },
-          { icon: "🌉", title: "제도와 삶 사이의 다리 — 사회복지 vs 사회복지실천",
-            html: `
-              <div class="hbox hbox-blue">사회복지실천은 제도를 삶으로 가져오고, 삶의 문제를 제도 변화로 되돌리는 <b>이중 방향</b> 활동</div>
-              <div class="sub">사회복지 vs 사회복지실천 비교</div>
-              <table class="comp-table compare">
-                <tr><th>구분</th><th class="th-blue">사회복지</th><th class="th-green">사회복지실천</th></tr>
-                <tr><td>주체</td><td>가치·제도·정책</td><td>사회복지사</td></tr>
-                <tr><td>내용</td><td>법·예산·전달체계</td><td>상담·연계·조직화·옹호</td></tr>
-                <tr><td>성격</td><td>구조 차원</td><td>삶의 변화 과정</td></tr>
-              </table>
-            `
-          },
-          { icon: "🕰️", title: "용어의 변천 — 사회사업 → 사회복지 → 사회복지실천",
-            html: `
-              <div class="hbox hbox-blue">시기에 따라 사회사업 → 사회복지 → 사회복지실천으로 용어가 변화해 왔으며, 이는 전문직 정체성의 이동을 담고 있음</div>
-              <div class="sub">시기별 용어와 함의</div>
-              <table class="comp-table">
-                <tr><th>시기</th><th>용어</th><th>함의</th></tr>
-                <tr><td>1960~70s</td><td>사회사업</td><td>자선·종교·구호의 흔적</td></tr>
-                <tr><td>1980s~</td><td>사회복지</td><td>국가·제도·정책의 확대</td></tr>
-                <tr><td>현재</td><td><b>사회복지실천</b></td><td>전문직 활동과 통합적 실천</td></tr>
-              </table>
-              <div class="hbox hbox-yellow">💡 작은 용어 변화가 아니라 <b>전문직 정체성의 이동</b>을 담고 있음</div>
-            `
-          },
-          { icon: "📂", title: "03. 역사적 뿌리",
-            html: `
-              <div class="badge-row">
-                <span class="badge badge-blue">역사적 배경과 두 흐름</span>
-                <span class="badge badge-green">COS의 발전과 한계</span>
-                <span class="badge badge-purple">인보관운동과 Jane Addams</span>
-              </div>
-            `
-          },
-          { icon: "🏙️", title: "역사적 배경과 두 흐름의 등장",
-            html: `
-              <div class="hbox hbox-blue">산업화·도시화로 빈곤이 대규모 도시 문제화되며 기존 구호 방식으로 감당이 불가능해진 배경에서 COS와 인보관운동이라는 두 흐름이 등장</div>
-              <div class="sub">COS vs 인보관운동 비교</div>
-              <table class="comp-table compare">
-                <tr><th>구분</th><th class="th-blue">COS (자선조직협회)</th><th class="th-green">인보관운동</th></tr>
-                <tr><td>질문</td><td>이 사람에게 지금 필요한 도움은?</td><td>문제가 반복되는 조건은?</td></tr>
-                <tr><td>방법</td><td>개별 사정·조정·기록</td><td>거주·조직화·옹호·정책</td></tr>
-                <tr><td>계보</td><td>미시 → 개별사회사업·사례관리</td><td>거시 → 지역사회조직·옹호</td></tr>
-              </table>
-              <div class="hbox hbox-yellow">💡 사회복지실천은 이 두 질문을 <b>동시에</b> 붙드는 전문 활동 / 역사는 "좋다·나쁘다"가 아니라 <b>무엇을 보았고 덜 보았는지</b>를 묻는 공부</div>
-            `
-          },
-          { icon: "📋", title: "COS(자선조직협회)의 발전과 공헌·한계",
-            html: `
-              <div class="hbox hbox-blue">COS는 개별 사정·조정·기록을 통해 빈곤 문제에 접근한 미시적 흐름으로, 개별사회사업·사례관리의 계보로 이어짐</div>
-              <div class="sub">발전 과정과 공헌·한계</div>
-              <ul class="pts">
-                <li>초기엔 중산층·상류층의 자원봉사(우애방문) → 이후 <b>유급 조사원·전문직 활동</b>으로 발전</li>
-              </ul>
-              <ul class="pts green">
-                <li>공헌: 자선 체계화, 조사·기록 발전</li>
-              </ul>
-              <ul class="pts red">
-                <li>한계: 빈곤을 개인 도덕성 문제로 좁게 볼 위험, 구조분석 약함</li>
-              </ul>
-            `
-          },
-          { icon: "🏘️", title: "인보관운동과 Jane Addams",
-            html: `
-              <div class="hbox hbox-blue">인보관운동은 이주민·노동자·여성·아동의 생활조건 개선을 위해 거주·조직화·옹호·정책개혁을 연결한 거시적 흐름으로, 지역사회조직·옹호의 계보로 이어짐</div>
-              <div class="sub">상징 인물과 공헌·주의점</div>
-              <ul class="pts">
-                <li>상징 인물: <b>Jane Addams</b> (Hull House) — 이주민·노동자·여성·아동의 생활조건 개선, 교육·조사·정책개혁 연결</li>
-              </ul>
-              <ul class="pts green">
-                <li>공헌: 빈곤의 구조적 조건을 보게 함</li>
-              </ul>
-              <ul class="pts red">
-                <li>주의점: 활동가의 계급적 위치가 영향, "함께 산다"에도 권력차 존재</li>
-              </ul>
-              <div class="hbox hbox-yellow">💡 계승하되 신화화하지 않기 — 이 "계보"는 이해를 돕는 지도일 뿐, 실제 역사는 정신분석·시민권운동·노동운동·정책학 등 여러 흐름이 혼재</div>
-              <div class="hbox hbox-red">❌ 유의 — Jane Addams는 사회복지사 <b>자격제도 이전</b>의 선구자로, "사회복지사였다"고 단정하지 않도록 주의</div>
-            `
-          },
-          { icon: "📂", title: "04. 정의 · 목적 · 기능",
-            html: `
-              <div class="badge-row">
-                <span class="badge badge-blue">정의의 계보</span>
-                <span class="badge badge-green">통합적 정의의 세 차원</span>
-                <span class="badge badge-purple">목적·기능·기준</span>
-              </div>
-            `
-          },
-          { icon: "📜", title: "정의의 계보 — Richmond → NASW → IFSW → 한국 윤리강령",
-            html: `
-              <div class="hbox hbox-blue">사회복지실천의 정의는 개인-환경 조정 중심(Richmond)에서 사회 변화·구조 개입을 포함하는 통합적 정의로 발전해 왔음</div>
-              <div class="sub">단계별 정의 핵심</div>
-              <table class="comp-table">
-                <tr><th>단계</th><th>정의 핵심</th></tr>
-                <tr><td>① Richmond (고전)</td><td>개인-환경 관계를 <b>의식적으로 조정</b></td></tr>
-                <tr><td>② NASW 정의</td><td>개인·집단·지역사회 기능 + 사회적 조건 형성</td></tr>
-                <tr><td>③ IFSW 정의</td><td>사회 변화·사회적 응집·<b>임파워먼트와 해방</b></td></tr>
-                <tr><td>④ 한국적 정의</td><td>인간 존엄성·자기결정·권익옹호·사회정의·전문성</td></tr>
-                <tr><td>⑤ 통합적 정의</td><td>개인의 삶 + 사회 구조를 <b>함께</b> 보는 통합적 활동</td></tr>
-              </table>
-              <div class="hbox hbox-yellow">💡 Richmond 정의는 당대의 개인 중심성을 비판적으로 읽을 필요 있음 / IFSW 정의에서 사회복지사는 단순한 서비스 제공자가 아니라 사람들의 권리·주체성을 확장하고 구조적 조건에 개입하는 전문직 / 한국적 정의의 과제는 기관문화·행정구조·자원제약 속에서의 <b>현장 적용</b></div>
-            `
-          },
-          { icon: "🔗", title: "통합적 정의의 세 차원",
-            html: `
-              <div class="hbox hbox-blue">통합적 정의는 한 사람의 변화·공동체의 형성·제도의 변화라는 세 차원을 함께 봄</div>
-              <div class="sub">세 차원과 방법 예시</div>
-              <table class="comp-table">
-                <tr><th>차원</th><th>방법 예시</th></tr>
-                <tr><td>한 사람의 변화</td><td>상담·사정·개입·사례관리</td></tr>
-                <tr><td>공동체의 형성</td><td>관계·집단·조직·지역자원</td></tr>
-                <tr><td>제도의 변화</td><td>옹호·정책 제안·거버넌스</td></tr>
-              </table>
-              <div class="hbox hbox-yellow">💡 세 차원을 <b>동시에 직접 수행할 필요는 없다</b> — 어느 층위에 있든 연결을 이해하고 협력하면 됨</div>
-            `
-          },
-          { icon: "🧭", title: "사회복지실천의 목적·기능·기준",
-            html: `
-              <div class="hbox hbox-blue">목적은 문제해결·욕구충족·사회적 기능 증진·권리와 정의 실현이며, 사정·개입·연계조정·옹호조직화의 기능으로 수행되고, 클라이언트 삶·사회조건·전문직윤리·책무성을 기준으로 판단</div>
-              <div class="sub">목적 / 기능 / 기준</div>
-              <table class="comp-table">
-                <tr><th>목적</th><th>기능</th><th>기준</th></tr>
-                <tr><td>문제해결·욕구충족·사회적 기능 증진·권리와 정의 실현</td><td>사정·개입·연계조정·옹호조직화</td><td>클라이언트 삶·사회조건·전문직윤리·책무성</td></tr>
-              </table>
-            `
-          },
-          { icon: "📂", title: "05. 통합적 실천과 한국적 맥락",
-            html: `
-              <div class="badge-row">
-                <span class="badge badge-blue">미시·중시·거시 세 층위</span>
-                <span class="badge badge-green">청년 1인가구 적용 사례</span>
-                <span class="badge badge-yellow">오해 방지</span>
-                <span class="badge badge-purple">한국적 맥락 시기별 전개</span>
-                <span class="badge badge-gray">왜 미시 중심 이미지가 강한가</span>
-              </div>
-            `
-          },
-          { icon: "🔺", title: "미시·중시·거시 세 층위",
-            html: `
-              <div class="hbox hbox-blue">어려움은 한 층위에서만 발생하지 않으므로, 필요에 따라 층위를 이동하며 판단해야 함</div>
-              <div class="sub">세 층위와 대상</div>
-              <table class="comp-table">
-                <tr><th>층위</th><th>대상</th></tr>
-                <tr><td>미시 (micro)</td><td>개인·가족</td></tr>
-                <tr><td>중시 (mezzo)</td><td>집단·기관·이웃</td></tr>
-                <tr><td>거시 (macro)</td><td>지역사회·정책·제도</td></tr>
-              </table>
-            `
-          },
-          { icon: "🏠", title: "청년 1인가구 적용 사례",
-            html: `
-              <div class="hbox hbox-blue">하나의 사례도 미시·중시·거시 세 층위에서 동시에 개입될 수 있음을 보여주는 예시</div>
-              <div class="sub">층위별 개입 예시</div>
-              <table class="comp-table">
-                <tr><th>층위</th><th>개입 예시</th></tr>
-                <tr><td>미시</td><td>불안·우울 상담, 강점 확인 (우울을 개인 심리 문제로만 볼지 사회구조 문제로 볼지는 관점에 따라 다름)</td></tr>
-                <tr><td>중시</td><td>가족 갈등, 동료 지지망, 기관 간 협력</td></tr>
-                <tr><td>거시</td><td>고용 불안정, 주거 문제, 청년 정책 옹호</td></tr>
-              </table>
-            `
-          },
-          { icon: "🚫", title: "오해 방지 — 통합성은 만능성이 아니다",
-            html: `
-              <div class="hbox hbox-blue">통합적 실천은 사회복지사 한 명이 모든 역할을 직접 다 해야 한다는 뜻이 아니라, 다른 층위와의 연결을 이해하고 협력하는 능력을 뜻함</div>
-              <div class="sub">오해와 핵심</div>
-              <ul class="pts red">
-                <li>오해: "사회복지사 한 명이 상담·조직화·정책을 다 직접 해야 한다"</li>
-              </ul>
-              <ul class="pts">
-                <li>핵심: "자신의 역할이 어느 층위든, 다른 층위와의 연결을 이해하고 협력한다"</li>
-              </ul>
-              <div class="hbox hbox-yellow">💡 핵심 암기 — <b>통합성은 만능성이 아니라 연결 능력</b></div>
-            `
-          },
-          { icon: "🇰🇷", title: "한국적 맥락 — 시기별 전개",
-            html: `
-              <div class="hbox hbox-blue">한국의 사회복지실천은 태동기부터 확장기까지 제도화·전문화 과정을 거쳐 발전해 왔음</div>
-              <div class="sub">시기별 전개</div>
-              <table class="comp-table">
-                <tr><th>시기</th><th>연도</th><th>사건</th></tr>
-                <tr><td>태동기</td><td>1921~45</td><td>태화여자관·방면위원제도</td></tr>
-                <tr><td>도입기</td><td>1947~60s</td><td>이화여대 기독교사회사업과·외원단체</td></tr>
-                <tr><td>제도화기</td><td>1970~80s</td><td>사회복지사업법·1983 자격제도</td></tr>
-                <tr><td>확장기</td><td>2003~</td><td>1급 국가시험·영역별 전문화</td></tr>
-              </table>
-            `
-          },
-          { icon: "🔍", title: "왜 미시 중심 이미지가 강한가",
-            html: `
-              <div class="hbox hbox-blue">교육 분화·행정 구조·전문직 이미지·대상 인구의 분화 등 여러 조건이 겹쳐 미시 중심 이미지가 강화되어 왔음</div>
-              <div class="sub">원인 조건</div>
-              <table class="comp-table">
-                <tr><th>조건</th><th>내용</th></tr>
-                <tr><td>교육 분화</td><td>실천론은 미시 중심, 지역사회·정책은 별도 과목</td></tr>
-                <tr><td>행정 구조</td><td>서비스제공·사례관리·평가지표가 업무를 조직</td></tr>
-                <tr><td>전문직 이미지</td><td>상담자 이미지는 선명, 조직가·옹호자는 약함</td></tr>
-                <tr><td><b>대상 인구의 분화</b></td><td>개입 대상이 세분화되며 미시 중심 서비스가 확대</td></tr>
-              </table>
-              <div class="hbox hbox-yellow">💡 "미시가 잘못"이 아니라 <b>연결이 약해질 위험</b>을 말함 — 통합의 회복 = 관계의 전문성(미시) + 자원 연결(중시) + 정책 시야(거시). "한 사람을 돕는 일과 조건을 바꾸는 일은 경쟁하지 않는다"</div>
-            `
-          },
-          { icon: "📂", title: "06. 앞으로의 학습 관점 — 여섯 렌즈",
-            html: `
-              <div class="badge-row">
-                <span class="badge badge-blue">여섯 관점</span>
-                <span class="badge badge-green">클로징 질문</span>
-              </div>
-            `
-          },
-          { icon: "🔭", title: "여섯 렌즈 — 앞으로의 학습 관점",
-            html: `
-              <div class="hbox hbox-blue">1강은 통합성·가치중심·관계성·비판성·책무성·미래성이라는 여섯 관점의 문을 여는 장</div>
-              <div class="sub">여섯 관점의 내용</div>
-              <table class="comp-table">
-                <tr><th>관점</th><th>내용</th></tr>
-                <tr><td>통합성</td><td>미시·중시·거시 연결</td></tr>
-                <tr><td>가치중심</td><td>인간 존엄성과 사회정의</td></tr>
-                <tr><td>관계성</td><td>협력적 동반 관계</td></tr>
-                <tr><td>비판성</td><td>권력과 구조의 인식</td></tr>
-                <tr><td>책무성</td><td>평가·기록·증거 활용</td></tr>
-                <tr><td>미래성</td><td>디지털·기후·지속가능성</td></tr>
-              </table>
-            `
-          },
-          { icon: "📝", title: "1강 핵심 요약",
-            html: `
-              <table class="comp-table">
-                <tr><th>개념</th><th>핵심 내용</th></tr>
-                <tr><td><b>두 장면</b></td><td>미시(상담·연계)와 거시(옹호·조직화) — <b>모두 정당한 실천 영역</b></td></tr>
-                <tr><td><b>Welfare</b></td><td>구성원이 함께 좋은 상태에 있도록 하는 <b>제도적·사회적 노력</b></td></tr>
-                <tr><td><b>용어 변천</b></td><td>사회사업 → 사회복지 → <b>사회복지실천</b> (전문직 정체성의 이동)</td></tr>
-                <tr><td><b>COS</b></td><td>개별 사정 중심 — <b>미시</b> 계보, 빈곤 개인화 위험</td></tr>
-                <tr><td><b>인보관운동</b></td><td>Jane Addams — <b>거시</b> 계보, 자격제도 이전 선구자(사회복지사 아님)</td></tr>
-                <tr><td><b>정의의 계보</b></td><td>Richmond → NASW → IFSW → 한국 → <b>통합적 정의</b></td></tr>
-                <tr><td><b>통합적 정의 세 차원</b></td><td>한 사람의 변화 / 공동체의 형성 / <b>제도의 변화</b></td></tr>
-                <tr><td><b>세 층위</b></td><td>미시(개인·가족) / 중시(집단·기관) / <b>거시</b>(지역사회·정책)</td></tr>
-                <tr><td><b>통합성</b></td><td>만능성이 아니라 <b>연결 능력</b></td></tr>
-                <tr><td><b>한국적 전개</b></td><td>태동기(1921~) → 도입기 → 제도화기(1983 자격제도) → <b>확장기</b>(2003~ 1급 국가시험)</td></tr>
-                <tr><td><b>여섯 렌즈</b></td><td>통합성·가치중심·관계성·비판성·책무성·<b>미래성</b></td></tr>
-              </table>
-            `
-          },
-        ]
-      },
         
+{
+  num: "1강", name: "사회복지실천 — 정의의 두 흐름과 통합적 실천", icon: "🧭",
+  cards: [
+    { icon: '📂', title: '01. 오프닝 — 두 장면의 사회복지사',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">두 장면의 사회복지사 — 미시와 거시 실천</span>
+        </div>
+      `
+    },
+    { icon: '👤', title: '두 장면의 사회복지사 — 미시와 거시 실천',
+      html: `
+        <div class="hbox hbox-blue">사회복지사는 상담·사례관리 같은 미시적 장면뿐 아니라, 권익옹호·조직화·정책제안 같은 거시적 장면도 수행하는 정당한 전문직이다.</div>
+        <div class="sub">두 가지 장면</div>
+        <ul class="pts">
+          <li>눈에 익숙한 장면: 복지관·센터·공공기관에서 <b>상담·사례관리·서비스 연계</b>를 수행하는 사회복지사</li>
+          <li>상대적으로 덜 보이는 장면: <b>권익옹호·주민조직화·캠페인·정책 제안</b>에 참여하는 사회복지사</li>
+        </ul>
+        <div class="sub">핵심 문제의식</div>
+        <ul class="star-list">
+          <li>두 장면 모두 사회복지사가 수행할 수 있는 정당한 실천 영역이다</li>
+          <li>이 강의 전체를 관통하는 문제의식: 사회복지실천을 한쪽(미시)으로만 좁혀 이해하지 않기</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 두 장면은 "다른 사람"이 아니라 같은 전문직의 두 얼굴이다. 한국의 대중적 이미지와 공식 자료에는 상담·사례관리 이미지(전자)가 훨씬 더 자주 노출되는데, 오늘 강의는 이 비대칭에서 출발한다.</div>
+      `
+    },
+
+    { icon: '📂', title: '02. 개념의 출발 — Welfare',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">Welfare와 Social Welfare의 개념</span>
+          <span class="badge badge-green">제도와 삶 사이의 다리</span>
+          <span class="badge badge-purple">용어의 변천</span>
+        </div>
+      `
+    },
+    { icon: '🌱', title: 'Welfare와 Social Welfare의 개념',
+      html: `
+        <div class="hbox hbox-blue">Welfare는 "잘 지내는 상태"를 뜻하며, Social Welfare는 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적·사회적 노력이다.</div>
+        <div class="sub">어원</div>
+        <ul class="pts">
+          <li><b>Welfare = wel(좋은/잘) + fare(지내다/살아가다)</b> — "잘 지내는 상태"를 뜻하는 말에서 출발한 개념</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 <b>Social</b>에는 "사교적인", "사회적인", "공공의"라는 뜻이 함께 담겨 있다. 따라서 <b>Social Welfare(사회복지)</b>는 개인 혼자만의 안녕이 아니라, 사회 구성원이 함께 좋은 상태에 있도록 하는 제도적·사회적 노력으로 이해할 수 있다.</div>
+        <div class="sub">Social Welfare를 이해하기 위한 두 질문</div>
+        <ul class="pts green">
+          <li>누가 <b>구성원</b>인가? (복지의 대상 범위)</li>
+          <li>무엇을 <b>좋은 상태</b>라고 볼 것인가? (복지의 내용/기준)</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 이 두 질문에 대한 답은 시대와 사회에 따라 달라져 왔다.</div>
+      `
+    },
+    { icon: '🌉', title: '제도와 삶 사이의 다리 — 사회복지 vs 사회복지실천',
+      html: `
+        <div class="hbox hbox-blue">사회복지실천은 제도를 삶으로 가져오고, 삶의 문제를 제도 변화로 되돌려 보내는 이중 방향의 활동이다.</div>
+        <div class="hbox hbox-yellow">💡 법과 예산은 책상 위에 있을 때는 추상적이다. 그것이 어느 가정의 식탁에 도착하고, 어느 청년의 삶의 선택지를 넓히고, 어느 지역에 자원을 연결할 때 비로소 사회복지실천이 된다. 동시에 사회복지실천은 제도를 적용하는 데서 끝나지 않고, 현장에서 발견한 삶의 문제를 다시 정책·제도 변화의 과제로 되돌려 보내는 역할도 한다.</div>
+        <div class="sub">사회복지 vs 사회복지실천 비교</div>
+        <table class="comp-table compare">
+          <tr><th>구분</th><th class="th-blue">사회복지</th><th class="th-green">사회복지실천</th></tr>
+          <tr><td>주체</td><td>가치·제도·정책</td><td>사회복지사</td></tr>
+          <tr><td>내용</td><td>법, 예산, 전달체계, 사회적 권리의 구조</td><td>사람 사이의 전문 활동 (상담, 연계, 조직화, 옹호)</td></tr>
+          <tr><td>성격</td><td>구조 차원</td><td>삶의 변화 과정</td></tr>
+        </table>
+      `
+    },
+    { icon: '🔤', title: '용어의 변천 — 사회사업에서 사회복지실천으로',
+      html: `
+        <div class="hbox hbox-blue">작은 용어 변화처럼 보이지만, 사회사업→사회복지→사회복지실천으로의 이동은 전문직 정체성의 이동을 담고 있다.</div>
+        <div class="sub">시기별 용어 변천</div>
+        <table class="comp-table compare">
+          <tr><th>시기</th><th>용어</th><th>함의</th></tr>
+          <tr><td>1960~70년대</td><td>사회사업</td><td>자선·종교·구호의 흔적</td></tr>
+          <tr><td>1980년대 이후</td><td>사회복지</td><td>국가·제도·정책의 확대</td></tr>
+          <tr><td>현재</td><td><b>사회복지실천</b></td><td>전문직 활동과 통합적 실천</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 이 용어 변화는 한국 사회복지가 자선 → 제도 → 전문적 실천으로 이동해 온 흔적이다.</div>
+      `
+    },
+
+    { icon: '📂', title: '03. 역사적 뿌리',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">역사적 배경</span>
+          <span class="badge badge-green">자선조직협회(COS)</span>
+          <span class="badge badge-purple">인보관운동</span>
+          <span class="badge badge-red">Jane Addams</span>
+          <span class="badge badge-gray">COS vs 인보관운동 비교</span>
+        </div>
+      `
+    },
+    { icon: '🏙️', title: '역사적 배경 — 두 가지 흐름의 등장',
+      html: `
+        <div class="hbox hbox-blue">같은 문제(빈곤·도시 문제) 앞에서 두 가지 서로 다른 답(COS, 인보관운동)이 등장했다.</div>
+        <div class="sub">배경 흐름</div>
+        <div class="flow">
+          <span class="flow-item">산업화</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">도시로의 인구 유입</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">슬럼과 노동문제 발생</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">기존 구호 방식의 한계 노출</span>
+        </div>
+      `
+    },
+    { icon: '📋', title: '자선조직협회(COS) — 개별 조사와 조정',
+      html: `
+        <div class="hbox hbox-blue">COS는 자선을 체계화하고 개별 가정의 상황을 조사·조정하여 중복 구호와 의존을 줄이려 한 흐름이다.</div>
+        <div class="sub">문제의식·초점·방법·유산</div>
+        <ul class="pts">
+          <li><b>문제의식</b>: 어떻게 하면 자선을 체계화하고, 중복 구호와 의존을 줄일 수 있을까?</li>
+          <li><b>초점</b>: 개별 가정의 상황 조사와 구호의 조정</li>
+          <li><b>방법</b>: 우애방문(friendly visiting), 기록, 사정, 기관 간 조정 — 초기에는 자원봉사(주로 중산층·상류층) 중심이었으나, 이후 유급 조사원과 전문직 활동으로 발전함</li>
+          <li><b>유산</b>: 개별사회사업(casework)과 전문직화의 토대</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 이 질문은 오늘날의 <b>효율성</b>에 대한 질문과 맥이 닿아 있다.</div>
+        <div class="sub">공헌과 한계</div>
+        <table class="comp-table compare">
+          <tr><th class="th-blue">공헌</th><th class="th-red">한계</th></tr>
+          <tr><td>자선을 체계화함</td><td>빈곤을 개인의 도덕성·생활습관 문제로 좁게 볼 위험</td></tr>
+          <tr><td>조사와 기록을 발전시킴</td><td>구조적 원인 분석이 약함</td></tr>
+          <tr><td>중복 구호를 조정함</td><td>도움 관계에 권력 비대칭이 큼</td></tr>
+          <tr><td>전문직화의 토대를 마련함</td><td>—</td></tr>
+        </table>
+        <ul class="star-list">
+          <li>역사는 "좋다/나쁘다"의 판단이 아니라, 무엇을 보았고 무엇을 덜 보았는지를 묻는 공부다</li>
+        </ul>
+      `
+    },
+    { icon: '🏘️', title: '인보관운동(Settlement House Movement) — 함께 살며 구조를 바꾸다',
+      html: `
+        <div class="hbox hbox-blue">인보관운동은 가난한 사람을 바꾸는 것이 아니라 함께 살며 지역과 제도를 바꾸려 한 흐름으로, 빈곤의 구조적 조건에 주목했다.</div>
+        <div class="sub">문제의식·초점·방법·유산</div>
+        <ul class="pts purple">
+          <li><b>문제의식</b>: 가난한 사람을 바꾸는 것이 아니라, 함께 살며 지역과 제도를 바꿀 수는 없을까? (= 무엇이 이 문제를 반복되게 만드는가?)</li>
+          <li><b>초점</b>: 빈곤 지역의 생활 조건과 사회 구조</li>
+          <li><b>방법</b>: 거주(함께 살기), 교육, 문화 활동, 주민 조직화</li>
+          <li><b>유산</b>: 지역사회조직, 옹호, 정책개입의 토대</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 인보관운동은 빈곤을 개인의 결함으로 보지 않고, 사람들이 살아가는 주거·노동·교육·위생·정치적 권리의 조건을 함께 보았다. 이는 곧 "환경 속의 인간(person-in-environment)" 관점과 연결된다.</div>
+        <div class="sub">공헌과 주의점</div>
+        <table class="comp-table compare">
+          <tr><th class="th-blue">공헌</th><th class="th-orange">주의점</th></tr>
+          <tr><td>빈곤의 구조적 조건을 보게 함</td><td>당시 활동가의 계급·문화적 위치가 영향을 줌</td></tr>
+          <tr><td>지역사회와 함께하는 실천을 발전시킴</td><td>"함께 산다"는 말에도 권력 차이가 존재</td></tr>
+          <tr><td>교육·문화·정책개혁을 연결함</td><td>모든 인보관이 급진적이었던 것은 아님</td></tr>
+          <tr><td>옹호와 조직화의 기반을 제공함</td><td>—</td></tr>
+        </table>
+        <ul class="star-list">
+          <li>비판적 존중: 계승하되 신화화하지 않는다</li>
+        </ul>
+      `
+    },
+    { icon: '🕊️', title: '인보관운동의 상징 인물 — Jane Addams',
+      html: `
+        <div class="hbox hbox-blue">제인 애덤스는 헐 하우스(Hull House)를 통해 이주민·노동자·여성·아동의 생활 조건 개선, 교육, 조사, 정책개혁을 연결한 인보관운동의 상징적 인물이다.</div>
+        <div class="sub">정의/특징·의의</div>
+        <ul class="pts red">
+          <li><b>정의/특징</b>: 헐 하우스(Hull House)를 통해 이주민·노동자·여성·아동의 생활 조건 개선, 교육, 조사, 정책개혁을 연결한 인물</li>
+          <li><b>의의</b>: 사회복지 역사와 평화운동의 교차점에 있는 중요한 인물</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 제인 애덤스는 현대적 의미의 사회복지사 자격 제도 이전의 인물이다. 따라서 "자격을 가진 사회복지사"로 표현하기보다는, 사회복지 역사에서 중요한 선구자로 설명하는 것이 정확하다.</div>
+      `
+    },
+    { icon: '⚖️', title: 'COS vs 인보관운동 비교',
+      html: `
+        <div class="hbox hbox-blue">COS는 개인 사정 중심의 미시 실천, 인보관운동은 지역사회·구조 개입 중심의 거시 실천으로 이어지는 서로 다른 실천 계보를 형성했다.</div>
+        <div class="sub">핵심 비교</div>
+        <table class="comp-table compare">
+          <tr><th>구분</th><th class="th-blue">COS</th><th class="th-purple">인보관운동</th></tr>
+          <tr><td>핵심 질문</td><td>이 사람에게 지금 필요한 도움은 무엇인가?</td><td>이 문제가 반복되게 만드는 조건은 무엇인가?</td></tr>
+          <tr><td>방법</td><td>개별 사정·사례관리·서비스 조정·기록</td><td>지역사회·조직화·옹호·정책 변화</td></tr>
+          <tr><td>실천 계보</td><td>미시 실천 → 개별사회사업·사례관리·임상사회복지</td><td>거시 실천 → 지역사회조직·옹호·정책개입</td></tr>
+        </table>
+        <ul class="star-list">
+          <li>사회복지실천은 이 두 질문(개인 사정 vs 구조적 조건)을 동시에 붙드는 전문 활동이다. 한 사람의 욕구를 해결하되, 그 사람이 놓인 환경적 조건도 함께 보고 바꾸려 하되 눈앞의 한 사람을 놓치지 않는 활동이다.</li>
+          <li>단, 이 "계보"는 이해를 돕는 지도일 뿐이며, 현실의 역사는 이보다 더 복잡함에 유의할 것</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 예를 들어 임상사회복지가 COS만의 후예도 아니고, 거시실천이 인보관운동만의 후예도 아니다. 정신분석, 시민권운동, 노동운동, 정책학, 지역사회 개발 등 여러 흐름이 함께 섞여 들어와 있다. 이 표는 단순화한 도구일 뿐, 역사의 전부는 아니다. → 그래서 COS적 접근과 인보관적 접근을 통합하는 사고가 필요하다.</div>
+      `
+    },
+
+    { icon: '📂', title: '04. 정의 · 목적 · 기능',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">정의의 계보</span>
+          <span class="badge badge-green">① Richmond의 고전적 정의</span>
+          <span class="badge badge-purple">② NASW의 현대적 확장</span>
+          <span class="badge badge-cyan">③ IFSW 계열의 정의</span>
+          <span class="badge badge-yellow">④ 한국적 정의의 기반</span>
+          <span class="badge badge-red">⑤ 통합적 정의</span>
+          <span class="badge badge-gray">목적·기능·기준</span>
+        </div>
+      `
+    },
+    { icon: '📜', title: '사회복지실천 정의의 계보',
+      html: `
+        <div class="hbox hbox-blue">사회복지실천의 정의는 Richmond → NASW → IFSW → 한국 윤리강령/본 교재로 이어지며 발전해온, 현장의 질문들이 쌓인 언어다.</div>
+        <div class="sub">정의 발전의 흐름</div>
+        <div class="flow">
+          <span class="flow-item">Richmond</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">NASW</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">IFSW</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">한국 윤리강령/본 교재</span>
+        </div>
+        <div class="hbox hbox-yellow">💡 앞서 본 두 흐름(개인과 환경, 구호와 개혁, 사례관리와 조직화)의 긴장이 아래 정의들 안에 계속 남아 있다.</div>
+      `
+    },
+    { icon: '①', title: '정의의 발전 ① — Richmond의 고전적 정의',
+      html: `
+        <div class="hbox hbox-blue">Richmond는 사회복지실천을 개인과 사회환경 사이의 관계를 의식적으로 조정하여 개인의 발달을 돕는 전문 활동으로 정의했다.</div>
+        <div class="sub">핵심 의미·주의</div>
+        <ul class="pts">
+          <li><b>핵심 의미 1</b>: 자선이 아니라 전문적 실천(의식적·전문적 활동)</li>
+          <li><b>핵심 의미 2</b>: 개인만이 아니라 환경과의 관계에 초점</li>
+          <li><b>주의</b>: 당대의 개인 중심성을 비판적으로 읽을 필요가 있음</li>
+        </ul>
+      `
+    },
+    { icon: '②', title: '정의의 발전 ② — NASW의 현대적 확장',
+      html: `
+        <div class="hbox hbox-blue">NASW의 정의는 개인·집단·지역사회의 기능을 돕고, 사회적 조건을 함께 만들어 가는 활동으로 확장되었다.</div>
+        <div class="sub">확장된 대상·목표</div>
+        <ul class="pts green">
+          <li><b>확장된 대상</b>: 개인 → 집단 → 지역사회</li>
+          <li><b>확장된 목표</b>: 적응만이 아니라 사회적 조건의 형성</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 사회복지실천이 개인의 적응만을 돕는 활동이 아니라, 환경과 그 조건을 함께 다루는 전문 활동으로 확장되어 가는 지점이다.</div>
+      `
+    },
+    { icon: '③', title: '정의의 발전 ③ — IFSW 계열의 정의',
+      html: `
+        <div class="hbox hbox-blue">IFSW 계열 정의는 사회복지실천을 사회 변화, 사회 발전, 사회적 응집, 임파워먼트와 해방을 촉진하는 전문직이자 학문 영역으로 규정한다.</div>
+        <div class="sub">세 가지 핵심 요소</div>
+        <ul class="pts purple">
+          <li><b>사회 변화</b>: 구조적 조건에 대한 개입</li>
+          <li><b>사회적 응집</b>: 관계와 공동체의 회복</li>
+          <li><b>임파워먼트</b>: 권리와 주체성의 확장</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 이 정의에서 사회복지사는 단순한 서비스 제공자가 아니라, 사람들의 권리와 주체성을 확장하고 공동체 관계를 회복하며 구조적 조건에 개입하는 전문직으로 이해된다.</div>
+      `
+    },
+    { icon: '④', title: '정의의 발전 ④ — 한국적 정의의 기반',
+      html: `
+        <div class="hbox hbox-blue">한국적 정의는 인간의 존엄성과 가치, 자기결정, 권익 옹호, 사회정의, 전문성을 핵심 가치로 삼는다.</div>
+        <div class="sub">강점·균형·과제</div>
+        <ul class="pts yellow">
+          <li><b>핵심 가치</b>: 인간의 존엄성과 가치 · 자기결정 · 권익 옹호 · 사회정의 · 전문성</li>
+          <li><b>강점</b>: 인간 존엄성을 상위 가치로 둠</li>
+          <li><b>균형</b>: 개인 지원과 사회정의를 함께 명시</li>
+          <li><b>과제</b>: 한국 현장 맥락에서의 구체화가 필요함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 윤리강령의 언어가 현장에서 저절로 실천되는 것은 아니다. 한국의 기관문화, 행정구조, 자원제약이라는 환경적 요건 속에서 이 가치들을 어떻게 구체화할지가 항상 남겨진 과제다.</div>
+      `
+    },
+    { icon: '⑤', title: '정의의 발전 ⑤ — 통합적 정의와 세 차원',
+      html: `
+        <div class="hbox hbox-blue">통합적 정의는 개인의 삶과 사회의 구조를 함께 보는 통합적 전문 활동으로 사회복지실천을 규정한다.</div>
+        <div class="sub">세 차원</div>
+        <table class="comp-table">
+          <tr><th>차원</th><th>내용</th><th>방법 예시</th></tr>
+          <tr><td><b>한 사람의 변화</b></td><td>개인 수준 개입(미시)</td><td>상담, 사정, 개입, 사례관리</td></tr>
+          <tr><td><b>공동체의 형성</b></td><td>관계·집단 수준 개입(중시)</td><td>관계, 집단, 조직, 지역사회 자원</td></tr>
+          <tr><td><b>제도의 변화</b></td><td>구조 수준 개입(거시)</td><td>옹호, 정책 제안, 거버넌스</td></tr>
+        </table>
+        <ul class="star-list">
+          <li>세 차원 중 하나만으로는 사회복지실천 전체를 설명하기 어렵다</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 그렇다고 모든 사회복지사가 세 차원을 동시에 직접 수행해야 한다는 뜻은 아니다. 중요한 것은 자신이 서 있는 자리에서 세 차원을 연결하고 통합하는 능력이다.</div>
+      `
+    },
+    { icon: '🎯', title: '목적 · 기능 · 기준',
+      html: `
+        <div class="hbox hbox-blue">사회복지실천의 목적, 기능, 기준은 문제 해결부터 전문직 책무성까지 아우른다.</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th>내용</th></tr>
+          <tr><td><b>목적</b></td><td>문제 해결, 욕구 충족, 사회적 기능 증진, 권리와 정의의 실현</td></tr>
+          <tr><td><b>기능</b></td><td>사정, 개입, 연계·조정, 옹호·조직화</td></tr>
+          <tr><td><b>기준</b></td><td>클라이언트의 삶, 사회적 조건, 전문직 윤리, 책무성</td></tr>
+        </table>
+        <ul class="star-list">
+          <li>좋은 의도만으로는 충분하지 않다. 전문적 판단과 책임이 필요하다</li>
+        </ul>
+      `
+    },
+
+    { icon: '📂', title: '05. 통합적 실천과 한국적 맥락',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">통합적 실천의 세 층위</span>
+          <span class="badge badge-green">적용 사례 — 청년 1인가구</span>
+          <span class="badge badge-purple">오해 방지</span>
+          <span class="badge badge-cyan">한국적 맥락 — 시기별 전개</span>
+          <span class="badge badge-yellow">단정 대신 조건 분석</span>
+          <span class="badge badge-red">통합의 회복</span>
+        </div>
+      `
+    },
+    { icon: '🔍', title: '통합적 실천의 세 층위 — 미시·중시·거시',
+      html: `
+        <div class="hbox hbox-blue">어려움은 한 층위에서만 발생하지 않으며, 필요에 따라 층위를 이동하며 판단하는 것이 통합적 실천이다.</div>
+        <div class="sub">세 층위와 대상</div>
+        <table class="comp-table">
+          <tr><th>층위</th><th>대상</th></tr>
+          <tr><td><b>미시(micro)</b></td><td>개인·가족</td></tr>
+          <tr><td><b>중시(mezzo)</b></td><td>집단·기관·이웃(네트워크)</td></tr>
+          <tr><td><b>거시(macro)</b></td><td>지역사회·정책·제도(사회구조)</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 예를 들어 한 사람의 우울은 개인의 감정 문제일 수도 있지만, 가족관계·직장환경·지역자원·복지제도와도 함께 연결되어 있다.</div>
+      `
+    },
+    { icon: '🧑', title: '적용 사례 — 청년 1인가구',
+      html: `
+        <div class="hbox hbox-blue">청년 1인가구 사례 하나에도 개인의 삶, 관계망, 사회 조건이 층위별로 함께 들어 있다.</div>
+        <div class="sub">층위별 개입 예시</div>
+        <table class="comp-table">
+          <tr><th>층위</th><th>개입 예시</th></tr>
+          <tr><td><b>미시</b></td><td>청년의 불안과 우울, 상담·생활 리듬 회복, 강점 확인</td></tr>
+          <tr><td><b>중시</b></td><td>가족 갈등, 학교·직장 관계, 동료 지지망, 기관 간 협력</td></tr>
+          <tr><td><b>거시</b></td><td>고용 불안정, 주거 문제, 청년 정책, 제도 개선 옹호</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 카메라를 한 걸음씩 물러서는 비유로 이해할 수 있다. 방 안(미시) → 관계망(중시) → 사회 조건(거시) 순으로 시야를 넓혀가며, 사회복지실천은 이 세 층위를 오가며 판단하는 일이다.</div>
+      `
+    },
+    { icon: '🚫', title: '오해 방지 — 통합성은 만능성이 아니다',
+      html: `
+        <div class="hbox hbox-blue">통합성은 한 명이 상담·조직화·정책을 모두 직접 하는 것이 아니라, 다른 층위와의 연결을 이해하고 협력하는 능력이다.</div>
+        <div class="sub">오해와 핵심</div>
+        <ul class="pts red">
+          <li><b>오해</b>: 사회복지사 한 명이 상담도, 조직화도, 정책도 모두 직접 해야 한다.</li>
+          <li><b>핵심</b>: 자신의 역할이 어느 층위에 있든, 다른 층위와의 연결을 이해하고 협력한다.</li>
+        </ul>
+        <ul class="star-list">
+          <li>통합성은 만능성이 아니라 연결 능력이다</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 현실의 사회복지사는 소속 기관·직무·권한·경력에 따라 특정 역할(미시/중시/거시 중 하나)을 맡게 된다. 예컨대 미시 실천을 하더라도 사례의 중시·거시적 맥락을 이해해야 하고, 정책 실천을 하더라도 현장과 개인·가족의 삶에 대한 이해가 있어야 한다.</div>
+      `
+    },
+    { icon: '🇰🇷', title: '한국적 맥락 — 시기별 전개',
+      html: `
+        <div class="hbox hbox-blue">한국 사회복지실천은 태동기부터 확장기까지 인보관적 실천의 도입에서 전문직 확장과 통합 과제로 전개되어 왔다.</div>
+        <table class="comp-table">
+          <tr><th>시기 구분</th><th>연도</th><th>주요 사건</th><th>의미</th></tr>
+          <tr><td><b>태동기</b></td><td>1921~45</td><td>태화여자관·방면위원제도</td><td>인보관적 실천의 도입</td></tr>
+          <tr><td><b>도입기</b></td><td>1947~60s</td><td>이화여대 기독교사회사업과·외원단체 활동</td><td>전문교육과 구호 실천</td></tr>
+          <tr><td><b>제도화기</b></td><td>1970~80s</td><td>사회복지사업법·1983년 사회복지사 자격제도</td><td>국가 제도화와 전문직 형성</td></tr>
+          <tr><td><b>확장기</b></td><td>2003~</td><td>2003년 1급 국가시험·영역별 전문화</td><td>전문직 확장과 통합 과제(복지국가 확대와 함께 활동 영역 확장)</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 연도와 사건은 강의용 요약이며, 세부 내용은 보충자료에서 더 정교하게 다룬다.</div>
+      `
+    },
+    { icon: '🧩', title: '단정 대신 조건 분석 — 왜 미시 중심 이미지가 강한가',
+      html: `
+        <div class="hbox hbox-blue">미시 중심 이미지가 강한 것은 교육·행정구조·전문직 이미지 등 여러 조건이 복합적으로 작용한 결과이며, 미시 자체가 잘못된 것은 아니다.</div>
+        <table class="comp-table">
+          <tr><th>조건</th><th>내용</th></tr>
+          <tr><td><b>교육과 교과목 분화</b></td><td>실천론·실천기술론은 미시(개인·가족) 중심, 지역사회·정책은 별도 과목화</td></tr>
+          <tr><td><b>기관과 행정 구조</b></td><td>서비스 제공·사례관리·평가지표·행정기록이 일상업무를 강하게 조직</td></tr>
+          <tr><td><b>전문직 이미지</b></td><td>상담자·사례관리자 이미지는 선명, 조직가·옹호자 이미지는 약함</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 대상 인구(아동·청소년·여성 등)가 세분화되어 있는 점도 미시 중심 이미지를 강화하는 조건 중 하나로 언급됨.</div>
+        <ul class="star-list">
+          <li>"미시가 잘못"이 아니라, 연결이 약해질 위험을 말하는 것이다</li>
+        </ul>
+      `
+    },
+    { icon: '🌐', title: '통합의 회복 — 깊이와 넓이를 함께',
+      html: `
+        <div class="hbox hbox-blue">사회복지실천의 힘은 깊이(미시)와 넓이(거시)를 함께 갖는 데 있으며, 한 사람을 돕는 일과 조건을 바꾸는 일은 서로 경쟁하지 않는다.</div>
+        <div class="sub">통합의 세 요소</div>
+        <ul class="pts">
+          <li>관계와 개입의 전문성(미시의 깊이)</li>
+          <li>집단·기관·지역 자원(중시의 연결)</li>
+          <li>권리·정책·사회 조건(거시의 시야)</li>
+        </ul>
+        <ul class="star-list">
+          <li>한 사람을 돕는 일과 조건을 바꾸는 일은 서로 경쟁하지 않는다. 오히려 서로가 서로를 필요로 하고 보완한다</li>
+        </ul>
+      `
+    },
+
+    { icon: '📂', title: '06. 앞으로의 학습 관점 — 여섯 가지 렌즈',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">여섯 가지 렌즈</span>
+        </div>
+      `
+    },
+    { icon: '🔭', title: '앞으로의 학습 관점 — 여섯 가지 렌즈',
+      html: `
+        <div class="hbox hbox-blue">1강은 통합성·가치중심·관계성·비판성·책무성·미래성이라는 여섯 가지 렌즈로 앞으로의 학습을 여는 장이다.</div>
+        <table class="comp-table">
+          <tr><th>관점</th><th>내용</th></tr>
+          <tr><td><b>통합성</b></td><td>미시·중시·거시 연결</td></tr>
+          <tr><td><b>가치 중심</b></td><td>인간 존엄성과 사회정의</td></tr>
+          <tr><td><b>관계성</b></td><td>협력적 동반 관계</td></tr>
+          <tr><td><b>비판성</b></td><td>권력과 구조의 인식</td></tr>
+          <tr><td><b>책무성</b></td><td>평가·기록·증거 활용</td></tr>
+          <tr><td><b>미래성</b></td><td>디지털·기후·지속가능성</td></tr>
+        </table>
+        <div class="sub">클로징 질문</div>
+        <ul class="pts purple">
+          <li>상담자? 사례관리자? 옹호자? 조직가? 정책기획자? 연구자?</li>
+          <li>이번 학기 동안 이 질문의 답을 넓혀간다</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 어느 하나의 이미지가 사회복지사를 전부 설명하지 않는다는 점이 핵심이다.</div>
+        <div class="sub">다음 강의 예고 키워드</div>
+        <ul class="pts">
+          <li>#생태체계 #강점관점 #임파워먼트 #비판사회복지</li>
+        </ul>
+      `
+    },
+
+    { icon: '📝', title: '1강 핵심 요약',
+      html: `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>Welfare / Social Welfare</b></td><td>"잘 지내는 상태"에서 출발, 사회 구성원이 함께 좋은 상태에 있도록 하는 <b>제도적·사회적 노력</b></td></tr>
+          <tr><td><b>용어의 변천</b></td><td>사회사업(자선) → 사회복지(제도) → <b>사회복지실천</b>(전문직 활동)</td></tr>
+          <tr><td><b>COS</b></td><td>개별 조사·조정 중심, <b>casework</b>과 전문직화의 토대, 미시 실천 계보</td></tr>
+          <tr><td><b>인보관운동</b></td><td>함께 살며 지역·구조를 바꿈, <b>지역사회조직·옹호·정책개입</b>의 토대, 거시 실천 계보</td></tr>
+          <tr><td><b>Jane Addams</b></td><td>헐 하우스(Hull House) — 인보관운동의 상징 인물, 사회복지 자격제도 이전의 <b>선구자</b></td></tr>
+          <tr><td><b>정의의 계보</b></td><td>Richmond(개인-환경 조정) → NASW(사회적 조건 형성) → IFSW(사회변화·응집·<b>임파워먼트</b>) → 한국적 정의</td></tr>
+          <tr><td><b>통합적 정의 세 차원</b></td><td>한 사람의 변화(미시) · 공동체의 형성(중시) · <b>제도의 변화(거시)</b></td></tr>
+          <tr><td><b>미시·중시·거시</b></td><td>어려움은 한 층위에서만 발생하지 않음 → <b>층위를 오가며 연결</b>하는 것이 실천</td></tr>
+          <tr><td><b>통합성의 의미</b></td><td>만능성이 아니라 <b>연결 능력</b> — 자신의 역할에서 다른 층위와 협력</td></tr>
+          <tr><td><b>여섯 가지 렌즈</b></td><td>통합성·가치중심·관계성·비판성·책무성·<b>미래성</b></td></tr>
+        </table>
+      `
+    }
+  ]
+},        
 { num: "2강", name: "생태체계·강점·임파워먼트·비판사회복지 — 실천 관점의 지도", icon: "🗺️",
   cards: [
     { icon: "📂", title: "01. 학습목표와 사례 — 김민서(29세)",
@@ -3714,7 +3868,516 @@ const SUMMARY_DATA = {
               `
             },
           ]
-        }
+        },
+        { num: "4강", name: "가치와 윤리", icon: "⚖️",
+  cards: [
+    { icon: "📂", title: "01. 강의 소개 — 가치 정향성과 김민서 사례",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">가치 정향적 실천과 학습목표</span>
+          <span class="badge badge-purple">사례 도입 — 김민서의 위기 표현</span>
+        </div>
+      `
+    },
+    { icon: "🎯", title: "가치 정향적 실천과 오늘의 학습목표",
+      html: `
+        <div class="hbox hbox-blue">사회복지실천은 가치에 의해 정향되는 활동이며, 클라이언트에 대한 옳고 그름의 판단·권장되거나 금지되는 행동의 기준은 사회복지사가 채택한 <b>가치체계</b>에서 나온다.</div>
+        <div class="sub">오늘의 학습목표 (45분의 길)</div>
+        <table class="comp-table">
+          <tr><th>번호</th><th>학습목표</th></tr>
+          <tr><td>01</td><td>사회복지의 핵심 가치(인간 존엄성·자기결정·사회정의·비밀보장 등)를 설명할 수 있다</td></tr>
+          <tr><td>02</td><td>사회복지실천의 주요 윤리 원칙과 윤리적 딜레마의 유형을 이해한다</td></tr>
+          <tr><td>03</td><td>한국사회복지사 윤리강령의 구조와 2023년 개정의 의미를 분석할 수 있다</td></tr>
+          <tr><td>04</td><td>윤리적 의사결정 모델을 사례에 적용할 수 있다</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 2023년 개정은 <b>디지털과 다문화 환경에 대한 인식</b>까지 새롭게 포함시킨 중요한 개정이다.</div>
+      `
+    },
+    { icon: "🚨", title: "사례 도입 — 김민서의 위기 표현",
+      html: `
+        <div class="hbox hbox-blue">지난 몇 개월간 만나온 김민서 씨가 오늘 처음으로 자살 생각과 입원 거부·비밀 유지를 표현하며, 사회복지사 앞에 다섯 가지 윤리 원칙이 동시에 펼쳐지는 통합 사례가 시작된다.</div>
+        <p style="font-style:italic; margin:8px 0;">"그만 살고 싶다는 생각이 자주 들어요. 그런데 정신과 입원은 절대 안 갈 거예요. 부모님께도 알리지 마세요."</p>
+        <div class="sub">동시에 부딪히는 다섯 가지 윤리 원칙</div>
+        <ul class="pts">
+          <li>① 자기결정권</li>
+          <li>② 비밀보장</li>
+          <li>③ 자기 자신으로부터의 보호 의무</li>
+          <li>④ 가족과의 관계</li>
+          <li>⑤ 위험 신고 의무</li>
+        </ul>
+        <ul class="star-list">
+          <li>어느 원칙을 따르더라도 다른 원칙은 위반된다 — 이것이 <b>윤리적 딜레마</b>다.</li>
+          <li>이 사례는 강의 전체(01~07)에 걸쳐 반복적으로 등장하며, 각 절에서 다룬 개념을 하나씩 적용해보는 통합 사례로 사용된다.</li>
+        </ul>
+      `
+    },
+    { icon: "📂", title: "01. 들어가며 — 가치 없는 기술적 실천은 존재하지 않는다",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">가치는 사회복지의 정체성이다</span>
+        </div>
+      `
+    },
+    { icon: "🧭", title: "가치는 사회복지의 정체성이다",
+      html: `
+        <div class="hbox hbox-blue">이 섹션은 가치가 사회복지의 본질인 이유와, 본 강의가 채택하는 「가치중심 실천」이라는 입장(positionality)을 정리한다 — <b>방법의 차이가 아니라 가치의 차이가 사회복지사를 정의한다.</b></div>
+        <div class="sub">인접 직업과의 비교 (VALUE = IDENTITY)</div>
+        <ul class="pts">
+          <li>가치는 사회복지를 인접 직업과 갈라내는 결정적 요소다.</li>
+          <li>임상심리사·정신과의사·상담사는 사회복지사와 <b>같은 방법</b>을 쓰더라도 <b>다른 가치</b>를 전제로 움직인다.</li>
+        </ul>
+        <div class="sub">사회복지사를 구분짓는 가치</div>
+        <ul class="pts blue">
+          <li>개인 변화를 돕는 동시에 사회정의를 추구한다 (NASW, 2017)</li>
+          <li>클라이언트의 자기결정을 존중하면서 권력 비대칭에 도전한다 (IFSW, 2018)</li>
+          <li>1강의 두 흐름(COS/인보관) + 2강의 비판사회복지 + 3강의 다중 역할 — 모두 가치 위에 선다</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 자신의 가치 기반을 인식하지 못한 채 수행되는 실천은 그 의도와 무관하게 사회복지의 본래 목적과 어긋날 수 있다. 4강은 앞선 1~3강의 내용을 "가치"라는 축으로 재통합하는 역할을 한다.</div>
+      `
+    },
+    { icon: "📂", title: "02. 사회복지의 가치 기반",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">가치·윤리·도덕의 위계 구분</span>
+          <span class="badge badge-green">NASW(2017) 여섯 가지 핵심 가치</span>
+          <span class="badge badge-purple">세 윤리체계 핵심가치 비교</span>
+        </div>
+      `
+    },
+    { icon: "🪜", title: "가치·윤리·도덕의 위계 구분",
+      html: `
+        <div class="hbox hbox-blue">가치·윤리·도덕은 <b>추상에서 구체로, 외부에서 내면으로</b> 위계를 이루는 세 개념이다.</div>
+        <div class="sub">세 개념 비교</div>
+        <table class="comp-table">
+          <tr><th>단계</th><th>개념</th><th>정의</th></tr>
+          <tr><td>1</td><td>가치 (Value)</td><td>인간이 추구할 만하다고 여기는 것에 대한 신념. 무엇이 좋은가·옳은가에 대한 답. 추상적·일반적이며 시간을 가로질러 안정적</td></tr>
+          <tr><td>2</td><td>윤리 (Ethics)</td><td>가치를 실천 상황에서 구체적 행동 규범으로 옮긴 것. 이 상황에서 무엇을 어떻게 해야 하는가에 대한 답. 윤리강령이 대표 문서</td></tr>
+          <tr><td>3</td><td>도덕 (Moral)</td><td>가치와 윤리의 개인적·내면적 차원. 외적 규범의 내면화</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 사회복지의 대표적 <b>가치</b>의 예: 인간의 존엄성, 자유, 평등, 정의, 연대. ★ 「좋은 사회복지사는 외적 윤리에 순응하는 자가 아니라 윤리를 자신의 도덕으로 내면화한 자」 — Banks(2012)</div>
+      `
+    },
+    { icon: "🇺🇸", title: "NASW(2017) 여섯 가지 핵심 가치",
+      html: `
+        <div class="hbox hbox-blue">NASW의 여섯 가치는 미국 사회복지의 가치 체계이며, <b>한국 윤리강령의 주요 참조점</b>이다.</div>
+        <table class="comp-table">
+          <tr><th>번호</th><th>가치</th><th>내용</th></tr>
+          <tr><td>1</td><td>서비스</td><td>도움이 필요한 사람에게 봉사한다</td></tr>
+          <tr><td>2</td><td>사회정의</td><td>사회적 불의에 도전한다</td></tr>
+          <tr><td>3</td><td>존엄성</td><td>모든 인간의 본질적 존엄을 존중한다</td></tr>
+          <tr><td>4</td><td>관계</td><td>인간관계 + 진실성 + 자기 역량 범위에서 활동하며 계속 학습</td></tr>
+          <tr><td>5</td><td>진실성</td><td>신뢰할 만한 방식으로 행동한다</td></tr>
+          <tr><td>6</td><td>역량</td><td>자신의 전문적 역량 범위 내에서 활동한다</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 뒤의 세 가치(관계·진실성·역량)는 한 묶음으로 이해할 수 있다 — 어떤 관계로 클라이언트를 만나는가, 어떤 자세로 그 관계에 임하는가, 그 능력을 어떻게 키우는가에 대한 가치들이다.</div>
+      `
+    },
+    { icon: "🌐", title: "세 윤리체계 핵심가치 비교 — NASW·IFSW·한국",
+      html: `
+        <div class="hbox hbox-blue">NASW(2017)·IFSW(2018)·한국(2023) 세 윤리강령의 핵심 가치를 비교한다.</div>
+        <table class="comp-table compare">
+          <tr><th>체계</th><th>핵심 가치</th></tr>
+          <tr><td>NASW</td><td>서비스·사회정의·존엄성·인간관계·진실성·역량 (6가치)</td></tr>
+          <tr><td>IFSW</td><td>인권·사회정의·집단적 책임·다양성·문화 인지·환경 정의·디지털 (2018 확장, 7개 영역)</td></tr>
+          <tr><td>한국</td><td>인간 존엄성·사회정의·다양성·자기결정·사회적 책임·전문성 (6가치)</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 IFSW는 <b>환경과 디지털을 명시적으로 강령 안에 포함</b>한 것이 21세기적 특징이다.</div>
+        <div class="sub">비판적 시각</div>
+        <ul class="pts red">
+          <li>한국 강령은 NASW·IFSW의 통합이지만, 비판자들은 「미국 모델의 직접 이식에 가깝다」고 지적한다.</li>
+          <li>이 비판의 요지는 한국만의 토착 이론과 관점이 상대적으로 결여되어 있다는 것이다.</li>
+        </ul>
+      `
+    },
+    { icon: "📂", title: "03. 사회복지의 핵심 윤리 원칙",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">인간 존엄성과 자기결정권</span>
+          <span class="badge badge-green">비밀보장</span>
+          <span class="badge badge-purple">사회정의와 전문적 관계</span>
+        </div>
+      `
+    },
+    { icon: "🗿", title: "인간 존엄성과 자기결정권 — 두 기둥(TWO PILLARS)",
+      html: `
+        <div class="hbox hbox-blue">사회복지 핵심가치는 구체적 윤리원칙으로 옮겨질 때 비로소 실천을 안내할 수 있다. 인간 존엄성과 자기결정권은 가장 근본적이면서 동시에 <b>가장 자주 충돌하는</b> 두 원칙이다.</div>
+        <div class="sub">인간 존엄성과 가치(정의)</div>
+        <ul class="pts">
+          <li>모든 인간이 인종·성별·연령·계급·종교·성적 지향·장애·국적·정치적 신념과 무관하게 본질적인 가치를 지닌다는 신념</li>
+        </ul>
+        <div class="sub">두 가지 실천적 함의</div>
+        <ul class="pts blue">
+          <li>모든 클라이언트를 동등하게 존중하라</li>
+          <li>존엄을 침해하는 사회 구조에 도전하라</li>
+        </ul>
+        <div class="sub">자기결정권 (Self-Determination)</div>
+        <ul class="pts green">
+          <li>Biestek(1957): 클라이언트는 자신의 삶에 관한 결정의 주체다. 사회복지사는 결정을 「대신」하지 않는다.</li>
+          <li>즉, 사회복지사는 클라이언트를 위해 결정하는 자가 아니라 클라이언트가 스스로 결정할 수 있도록 돕는 자다.</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 이 원칙은 절대적이지 않다 — 클라이언트가 스스로 위해를 가하거나 판단 능력이 손상되었을 때 <b>보호의 원칙</b>과 충돌한다 (04절 참고).</div>
+      `
+    },
+    { icon: "🔒", title: "비밀보장 — 신뢰의 토대, 그러나 절대적이지 않다",
+      html: `
+        <div class="hbox hbox-blue">비밀보장은 사회복지사가 클라이언트와의 관계에서 얻은 정보를 클라이언트의 동의 없이 공개하지 않는 원칙이며, 신뢰관계 형성의 토대다.</div>
+        <div class="sub">한국 사회복지에서 비밀보장이 깨질 수 있는 다섯 상황</div>
+        <table class="comp-table">
+          <tr><th>상황</th><th>근거 법령</th><th>지위</th></tr>
+          <tr><td>① 아동</td><td>아동학대처벌법</td><td>신고의무자</td></tr>
+          <tr><td>② 노인</td><td>노인복지법 제39조의6</td><td>신고의무자</td></tr>
+          <tr><td>③ 가정</td><td>가정폭력처벌법 제4조</td><td>신고의무자</td></tr>
+          <tr><td>④ 자살</td><td>—</td><td>자기 자신에 대한 명백한 위해 가능성</td></tr>
+          <tr><td>⑤ 제3자</td><td>1976 캘리포니아 판결(테라소프/Tarasoff 원칙)</td><td>제3자에 대한 명백한 위해 위험 시 경고 의무</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 신뢰관계 형성의 토대이며, 클라이언트가 솔직하게 말할 수 있는 조건이다. ★ 원칙: 이러한 한계는 클라이언트에게 사전에 명시되어야 한다 — <b>고지된 동의</b>.</div>
+      `
+    },
+    { icon: "🤝", title: "사회정의와 전문적 관계 — 네 번째·다섯 번째 원칙",
+      html: `
+        <div class="hbox hbox-blue">사회정의와 전문적 관계는 사회복지를 인접 직업과 갈라내는 두 원칙이다.</div>
+        <div class="sub">사회정의 (Social Justice)</div>
+        <ul class="pts">
+          <li>사회복지를 다른 인접 직업과 구별짓는 가장 중요한 가치</li>
+          <li>임상심리사·정신과의사도 클라이언트의 변화를 돕지만, 그들의 윤리강령에는 「사회구조적 불평등에 도전하라」는 명령이 없다. 사회복지에는 이 명령이 있다는 점이 결정적 차이다.</li>
+          <li>사회복지사는 개인의 변화를 돕는 자이면서 동시에 사회구조적 불평등에 도전하고, 의문을 던지고, 그 구조를 읽어내는 자다.</li>
+          <li>이론적 기반: 1강 인보관 전통 + 2강 비판사회복지·AOP의 윤리적 옮김 (IFSW, 2018)</li>
+        </ul>
+        <div class="sub">전문적 관계와 경계</div>
+        <ul class="pts green">
+          <li>친구·연인·가족과는 다른 「전문적 관계」가 사회복지실천의 기본 틀이다.</li>
+          <li>이 관계의 경계가 흐려지면 클라이언트는 보호받지 못하고, 사회복지 활동의 효과성도 잃게 된다.</li>
+          <li>이중 관계·성적 접촉·금전 거래는 엄격히 금지된다 → 5강에서 상세히 다룸</li>
+        </ul>
+      `
+    },
+    { icon: "📂", title: "04. 윤리적 딜레마와 갈등",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">윤리적 딜레마의 세 유형</span>
+          <span class="badge badge-green">자기결정 vs 보호</span>
+          <span class="badge badge-orange">비밀보장 vs 보고의무</span>
+          <span class="badge badge-purple">김민서 사례 분석 #1</span>
+        </div>
+      `
+    },
+    { icon: "⚡", title: "윤리적 딜레마의 정의와 세 유형 — Reamer(2018) 분류",
+      html: `
+        <div class="hbox hbox-blue">윤리적 딜레마란 2개 이상의 윤리 원칙이 충돌해서 한쪽을 따르면 다른 쪽을 위반할 수밖에 없는 상황이다.</div>
+        <div class="sub">사회복지사가 일상적으로 만나는 윤리적 충돌</div>
+        <table class="comp-table">
+          <tr><th>유형</th><th>내용</th><th>예시</th></tr>
+          <tr><td>① 자기결정 vs 보호</td><td>클라이언트 자신에 대한 위해 가능성</td><td>자살 위험·치료 거부·거식증·청소년의 부모 도움 거부</td></tr>
+          <tr><td>② 비밀보장 vs 보고</td><td>법적·윤리적 보고 의무</td><td>아동학대·노인학대·가정폭력·자살 위험·테라소프 원칙</td></tr>
+          <tr><td>③ 클라이언트 vs 기관</td><td>클라이언트 권익 vs 기관 규정·수퍼바이저 결정·제3자 이익</td><td>낙태를 반대하는 종교적 배경의 기관에서 근무하는 사회복지사가 원치 않은 임신을 한 여성을 도와야 하는 상황 — 클라이언트에 대한 충성과 기관·제3자에 대한 충성이 동시에 요구되는 <b>다중 충성</b>의 딜레마</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 한국사회의 맥락: 가족 동의 + 위계적 옹호의 어려움 + 종교·이념적 다양성이 세 유형의 딜레마를 더 복잡하게 만든다.</div>
+      `
+    },
+    { icon: "🧩", title: "자기결정 vs 보호 — 해결의 세 원칙",
+      html: `
+        <div class="hbox hbox-blue">핵심 질문: 위해 가능성이 있을 때 자기결정 원칙을 어떻게 다룰 것인가?</div>
+        <table class="comp-table">
+          <tr><th>단계</th><th>원칙</th><th>내용</th></tr>
+          <tr><td>1</td><td>위해 평가</td><td>심각성과 즉각성 평가. 즉각적·회복 불가능한 위해일수록 자기결정 제한 가능. 자살이 명백히 임박했을 때와 일반적인 우울 표현은 위해의 정도가 다르다</td></tr>
+          <tr><td>2</td><td>최소 침해</td><td>자율성에 가능한 한 적게 개입하면서 위해를 방지하는 방법 모색. 강제 입원과 외래 치료는 침해의 정도가 다르다</td></tr>
+          <tr><td>3</td><td>참여 유지</td><td>일방적 결정이 아닌 클라이언트와의 협력 속 보호 조치 (Reamer, 2018)</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 ★ 자기결정을 「버리는 것」이 아니라 「최소 침해 + 참여 유지」로 <b>다시 정의</b>하는 것이 핵심이다.</div>
+      `
+    },
+    { icon: "📋", title: "비밀보장 vs 보고 의무 — 해결의 세 원칙",
+      html: `
+        <div class="hbox hbox-blue">핵심 전제: 법적 의무가 거의 항상 우선하지만, <b>그 방식이 윤리적이어야 한다.</b></div>
+        <table class="comp-table">
+          <tr><th>원칙</th><th>내용</th></tr>
+          <tr><td>①</td><td>법적 의무는 거의 항상 비밀보장에 우선한다 (위반 시 사회복지사 법적 처벌)</td></tr>
+          <tr><td>②</td><td>보고 전에 가능한 한 클라이언트에게 고지한다 — 함께 대처의 가능성 모색</td></tr>
+          <tr><td>③</td><td>최소한의 정보만 공개 — 신고에 필요한 사실에 한정, 무관한 사적 정보는 공개 금지</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 ★ 「보고가 불가피한 상황에서도, <b>어떻게</b> 보고하는가가 윤리적 차이를 만든다」</div>
+      `
+    },
+    { icon: "🧑‍⚕️", title: "김민서 사례 분석 #1 — 자기결정 vs 보호",
+      html: `
+        <div class="hbox hbox-blue">「죽고 싶다 … 입원은 안 갈 거다」를 위해평가·최소침해·참여유지의 세 원칙으로 분석한 사례.</div>
+        <table class="comp-table">
+          <tr><th>단계</th><th>적용</th></tr>
+          <tr><td>평가</td><td>「자주 생각」= 자살 사고(思考)이지만 즉각적 자살 시도와는 다름 / 구체적인 행동 계획·수단 확보 여부·이전 시도 이력을 확인해야 함</td></tr>
+          <tr><td>최소</td><td>강제 입원 ≠ 유일한 답 — 외래 정신과·자조 모임·24시간 상담선 등 단계적 옵션</td></tr>
+          <tr><td>참여</td><td>「민서 씨 결정을 존중해요. 그리고 민서 씨가 그런 선택을 하지 않는 방법을 함께 찾고 싶어요」</td></tr>
+          <tr><td>통합</td><td>자기결정(보편적 가치) + 보호(생명 우선) + 비밀보장(가족 고지 시점은 별도 판단)</td></tr>
+        </table>
+      `
+    },
+    { icon: "📂", title: "05. 윤리적 의사결정 모델",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">Reamer(2018)의 7단계 모델</span>
+          <span class="badge badge-green">ETHIC 모델</span>
+          <span class="badge badge-orange">우선순위 7원칙</span>
+          <span class="badge badge-purple">Mattison의 관계적·맥락적 모델</span>
+          <span class="badge badge-gray">김민서 사례 분석 #2</span>
+        </div>
+      `
+    },
+    { icon: "🧠", title: "Reamer(2018)의 7단계 윤리적 의사결정 모델",
+      html: `
+        <div class="hbox hbox-blue">세 모델(Reamer, ETHIC, Mattison)은 공통적으로 <b>자의적 판단을 체계적 판단으로</b> 전환하는 것을 목표로 한다. Reamer 모델은 가장 체계적인 윤리적 의사결정 모델이다.</div>
+        <table class="comp-table">
+          <tr><th>단계</th><th>내용</th></tr>
+          <tr><td>1. 충돌 식별</td><td>충돌하는 가치·윤리·의무·원칙·관심사를 명확히 한다</td></tr>
+          <tr><td>2. 영향 파악</td><td>영향을 받는 개인·집단·조직을 모두 파악한다</td></tr>
+          <tr><td>3. 대안 탐색</td><td>가능한 행동 대안을 나열하고 각 대안의 잠재적 결과(가설)를 세운다</td></tr>
+          <tr><td>4. 근거 검토</td><td>강령·이론·실천·가치 — 각 대안에 대한 찬반의 윤리적 근거를 검토한다</td></tr>
+          <tr><td>5. 자문 수행</td><td>동료·슈퍼바이저·전문가의 자문</td></tr>
+          <tr><td>6. 결정·문서화</td><td>결정을 내린 후 그 과정과 결과를 문서화한다 (책임성 증진 목적)</td></tr>
+          <tr><td>7. 평가·모니터링</td><td>결정의 결과를 평가하고 지속적으로 모니터링</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 ★ 강점: 체계성 — 자의적 결정이 아닌 합리적·체계적 과정.</div>
+      `
+    },
+    { icon: "🔤", title: "ETHIC 모델 — Loewenberg & Dolgoff(2000)",
+      html: `
+        <div class="hbox hbox-blue">기억하기 쉬운 5단계 머리글자 모델로, Reamer의 7단계보다 단순화된 버전이다.</div>
+        <table class="comp-table">
+          <tr><th>머리글자</th><th>단계</th><th>내용</th></tr>
+          <tr><td>E</td><td>Examine (검토)</td><td>관련된 사회적·기관적·전문적 가치를 검토</td></tr>
+          <tr><td>T</td><td>Think (사고)</td><td>윤리강령과 법적 의무가 어떻게 적용되는지 생각</td></tr>
+          <tr><td>H</td><td>Hypothesize (가설)</td><td>"A를 선택하면 어떻게 될까, B를 선택하면 어떻게 될까"처럼 가능한 결정의 결과를 가설적으로 사고</td></tr>
+          <tr><td>I</td><td>Identify (식별)</td><td>가장 취약한 자 확인, 누가 이익을 얻고 누가 피해를 입을지 분석</td></tr>
+          <tr><td>C</td><td>Consult (자문)</td><td>슈퍼바이저와 동료의 자문</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 강점: 단순성·기억 용이성 / <b>한계</b>: 복잡한 다중 딜레마에서는 부족.</div>
+      `
+    },
+    { icon: "🏆", title: "우선순위 7원칙 (Critical Principle Screen) — Loewenberg & Dolgoff",
+      html: `
+        <div class="hbox hbox-blue">가치 간 충돌 시 어느 원칙을 우선할 것인가에 대한 위계 (표 4-2).</div>
+        <table class="comp-table">
+          <tr><th>순위</th><th>원칙</th><th>내용</th></tr>
+          <tr><td>1</td><td>생명 보호 (Life)</td><td>가장 우선 — 어떤 가치도 생명보호에 앞서지 못함</td></tr>
+          <tr><td>2</td><td>평등·자율 (Equality → Autonomy)</td><td>평등이 자율(자기결정)에 우선</td></tr>
+          <tr><td>3</td><td>최소 위해 (Least Harm)</td><td>위해를 최소화하는 선택</td></tr>
+          <tr><td>4</td><td>삶의 질 (Quality of Life)</td><td>단지 생존이 아닌 좋은 삶</td></tr>
+          <tr><td>5</td><td>사생활·진실 (Privacy → Truthfulness)</td><td>비밀보장과 진실성</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 ★ 「생명 → 평등 → 자율 → 최소위해 → 삶의 질 → 사생활 → 진실성」의 위계. 이 7원칙은 기계적·자동으로 적용하는 것이 아니라, <b>검토의 출발점</b>이 된다는 점을 유의해야 한다.</div>
+      `
+    },
+    { icon: "🪞", title: "Mattison(2000)의 관계적·맥락적 모델",
+      html: `
+        <div class="hbox hbox-blue">핵심 문제의식은 「윤리적 의사결정에는 사람이 있다」는 것 — 의사결정자가 자신의 가치·정체성·관계·감정을 의식적으로 검토해야 한다는 <b>positionality</b>(위치성) 개념에 기반한 모델.</div>
+        <table class="comp-table">
+          <tr><th>요소</th><th>내용</th></tr>
+          <tr><td>① 사실 (Facts)</td><td>무엇이 일어나고 있는가? 객관적 정보의 정리</td></tr>
+          <tr><td>② 원칙 (Principles)</td><td>어떤 윤리 원칙이 관련되는가?</td></tr>
+          <tr><td>③ 관계 (Relationships)</td><td>이 결정이 어떤 관계(client·가족·기관)에 영향을 미치는가?</td></tr>
+          <tr><td>④ 성찰 (Self-Awareness)</td><td>의사결정자 자신의 가치·편견·감정은 무엇인가?</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 강점: 추상적 원칙의 기계적 적용이 아닌 <b>구체적 인간의 판단 행위</b>. 2강 비판사회복지의 위치성(positionality) 개념과 연결된다.</div>
+      `
+    },
+    { icon: "🧑‍⚕️", title: "김민서 사례 분석 #2 — ETHIC 5단계 적용",
+      html: `
+        <div class="hbox hbox-blue">「죽고 싶다 · 입원 거부 · 부모 비밀」의 다중 딜레마를 ETHIC 5단계로 분석한 사례.</div>
+        <table class="comp-table">
+          <tr><th>단계</th><th>적용</th></tr>
+          <tr><td>① E · 검토</td><td>개인 가치(살리고 싶다)·전문 가치(자기결정)·기관(자살 위기 지침)·법(자살예방법)이 동시 작동</td></tr>
+          <tr><td>② T · 사고</td><td>윤리강령: 생명 보호 우선 / 법: 즉각 위해 시 응급 개입 가능 / 우선순위 7원칙도 생명이 1순위</td></tr>
+          <tr><td>③ H · 가설</td><td>강제 입원 시: 신뢰 붕괴, 6개월 관계 단절 위험 / 외래·자조 연계 시: 안전망 약화 위험</td></tr>
+          <tr><td>④ I·C</td><td>가장 취약 = 김민서 본인 / 슈퍼바이저·정신과와 협력 자문</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 최종 결정: 외래 정신과에 연계하고 24시간 상담 라인을 구축했다. 단계적으로, client가 계속 이 활동들에 참여할 수 있도록 약속했다. ★ ETHIC 모델은 「결정」이 아닌 「체계적 판단」을 안내한다.</div>
+      `
+    },
+    { icon: "📂", title: "06. 사회복지 윤리강령의 발달",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">NASW·IFSW 윤리강령의 발달</span>
+          <span class="badge badge-green">한국사회복지사 윤리강령 2023 개정</span>
+        </div>
+      `
+    },
+    { icon: "📜", title: "NASW·IFSW 윤리강령의 발달",
+      html: `
+        <div class="hbox hbox-blue">사회복지 윤리강령은 사회복지 가치와 윤리를 명문화한 문서이며, <b>사회복지사 직업의 정체성에 가장 권위 있는 표현</b>이다. 세 흐름: NASW(1960) → IFSW(1976) → 한국(1988~2023).</div>
+        <div class="sub">NASW 윤리강령 (미국)</div>
+        <ul class="pts">
+          <li>1960 채택 — 1967·1979·1990·1993·1996·1999·2008·2017·2021 개정</li>
+          <li>현행 NASW(2021) 4부 구성: 서문 · 목적 · 윤리 원칙 · 윤리 기준</li>
+          <li>윤리 기준 6 책임 대상: 클라이언트·동료·실천 현장·전문가·전문직·더 넓은 사회</li>
+          <li>마지막 「더 넓은 사회에 대한 책임」이 사회정의 가치를 명문화한 자리다.</li>
+          <li>「전문가는 답을 주는 사람이 아니라 변화의 동반자입니다.」</li>
+        </ul>
+        <div class="sub">IFSW 윤리 선언 (국제)</div>
+        <ul class="pts green">
+          <li>1976 채택 → 2004 윤리원칙 → 2018 세계선언</li>
+          <li>IFSW(국제사회복지사연맹)는 141개 회원협회가 300만 명 이상의 사회복지사를 대표하는 연합체이며, UN을 포함한 여러 국제기구와 공식 협의 지위를 갖고 있다. 본부는 스위스에 있으며, 한국의 KASW(한국사회복지사협회)도 IFSW의 회원 조직이다.</li>
+        </ul>
+        <div class="sub">2018년 개정의 확장</div>
+        <table class="comp-table">
+          <tr><th>영역</th><th>내용</th></tr>
+          <tr><td>인권 확대</td><td>인권과 인간 존엄성에 대한 인식의 확대</td></tr>
+          <tr><td>사회정의</td><td>사회정의와 집단적 책임의 강조</td></tr>
+          <tr><td>환경 정의</td><td>기후위기 시대의 새 가치로 환경 정의 추가</td></tr>
+          <tr><td>디지털</td><td>디지털 기술 윤리 + 전문적 진실성 강화</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 ★ IFSW 2018 선언은 <b>한국 윤리강령 2023 개정의 주요 참조점</b>이다.</div>
+      `
+    },
+    { icon: "🇰🇷", title: "한국사회복지사 윤리강령 — 2023 개정의 네 특징",
+      html: `
+        <div class="hbox hbox-blue">1982 제정 → 1988·1992·2001·2021·2023 개정 (총 5회) — 21세기 도전에 응답한 한국 윤리강령의 2023년 개정.</div>
+        <table class="comp-table">
+          <tr><th>특징</th><th>내용</th></tr>
+          <tr><td>① 2대 핵심가치</td><td>인간 존엄성·사회정의</td></tr>
+          <tr><td>② 책임</td><td>사회복지사 = 단순 서비스 제공자가 아닌 사회변화의 매개자</td></tr>
+          <tr><td>③ 디지털 환경윤리 추가</td><td>디지털 정보·정보통신기술 윤리적 행동 명시</td></tr>
+          <tr><td>④ 다문화+환경 정의 추가</td><td>다문화 사회 + 생태/자연환경 — 한국 사회의 변화 반영</td></tr>
+        </table>
+        <div class="sub">다문화·환경 조항의 취지</div>
+        <ul class="pts">
+          <li>다문화 조항: 다양한 문화적 강점을 인식·존중하고, 문화적 역량을 바탕으로 실천하며, 문화적으로 민감한 실천을 위해 자기 인식을 증진한다.</li>
+          <li>환경 조항: 인간과 자연이 떨어져 살 수 없음을 깨닫고, 자연환경·생명 등 생태에 미칠 영향을 생각하고 실천한다.</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 ★ 그러나 강령 개정만으로 실제 윤리 수준이 자동 향상되지 않는다 — <b>교육·슈퍼비전·기관 문화의 변화</b>가 함께 필요하다.</div>
+      `
+    },
+    { icon: "📂", title: "07. 한국적 윤리적 쟁점",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">가족주의와 자기결정의 충돌</span>
+          <span class="badge badge-green">위계적 문화와 옹호의 어려움</span>
+          <span class="badge badge-purple">다문화 사회와 문화 인지 윤리</span>
+          <span class="badge badge-orange">디지털 시대의 새로운 윤리적 쟁점</span>
+          <span class="badge badge-gray">김민서 사례 분석 #3</span>
+        </div>
+      `
+    },
+    { icon: "👨‍👩‍👧", title: "가족주의와 자기결정의 충돌 (FAMILISM)",
+      html: `
+        <div class="hbox hbox-blue">한국 사회의 강한 가족주의가 자기결정 원칙과 충돌하는 지점 — 서구는 결혼 같은 결정을 개인이 내리는 경우가 많지만, 한국은 <b>가족 단위</b>에서 그 결정이 이루어지는 경우가 많다.</div>
+        <div class="sub">한국적 현실</div>
+        <ul class="pts">
+          <li>성인 자녀의 결혼·취업·이주·학과 결정, 노인 부모의 의료 결정, 정신질환자의 입원 — 모두 가족이 개입한다</li>
+        </ul>
+        <div class="sub">두 가지 위험</div>
+        <ul class="pts red">
+          <li>1. 본인 결정 강조 → 가족이 「권한 무시」로 느낌</li>
+          <li>2. 가족 결정 따름 → 본인 자율성 침해</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 ★ 본 교재의 입장: <b>자기결정 = 양보 불가</b>. 그러나 실현 방식은 가족과의 협력 속에서 이루어진다 (가족 배제 ≠ 자기결정).</div>
+      `
+    },
+    { icon: "🏢", title: "위계적 문화와 옹호의 어려움 (HIERARCHY)",
+      html: `
+        <div class="hbox hbox-blue">신입·중간직 사회복지사가 상급자에게 클라이언트 권익을 옹호한다는 것 — 위계 질서를 거스르는 것으로 인식되어 <b>옹호의 직업적 부담</b>이 생긴다.</div>
+        <ul class="pts">
+          <li>이런 구조적 어려움 앞에서 피해는 사회복지사뿐 아니라 클라이언트에게도 돌아갈 수 있다.</li>
+        </ul>
+        <div class="sub">옹호를 지속하기 위한 조건</div>
+        <ul class="pts green">
+          <li>1. 집단적 옹호의 형성 — 동료·기관·협회가 함께</li>
+          <li>2. 윤리강령의 적극 활용 — 옹호는 사회복지사의 책임임을 근거로 삼는다</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 ★ 슈퍼바이저와 기관 문화가 옹호를 「가치 있는 실천」으로 평가해야 한다.</div>
+      `
+    },
+    { icon: "🌏", title: "다문화 사회와 문화 인지 윤리 (MULTICULTURAL)",
+      html: `
+        <div class="hbox hbox-blue">핵심 입장: <b>문화 상대주의도, 단순 보편주의도 답이 아니다.</b> 사회복지사가 만나는 인구 집단에는 이주노동자, 결혼이민자, 난민, 다문화 가족이 점점 증가하고 있다.</div>
+        <div class="sub">세 쟁점</div>
+        <ul class="pts">
+          <li>1. 문화 차이 존중 vs 보편적 인권(특히 여성·아동)</li>
+          <li>2. 모국 문화 vs 한국 문화 충돌</li>
+          <li>3. 사회복지사 자신의 문화적 편견 (positionality)</li>
+        </ul>
+        <div class="sub">두 함정</div>
+        <ul class="pts red">
+          <li>단순 문화상대주의 → 인권 후퇴</li>
+          <li>단순 보편주의 → 문화 식민주의</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 본 교재의 입장은 둘 다 거부한다. <b>문화 인지 윤리</b>란 사회복지사가 ① 자기 문화적 위치를 인식하고, ② 클라이언트의 문화 맥락을 존중하며, ③ 보편적 인권 책임을 유지하는 것을 뜻한다.</div>
+      `
+    },
+    { icon: "💻", title: "디지털 시대의 새로운 윤리적 쟁점",
+      html: `
+        <div class="hbox hbox-blue">핵심 문제의식: 디지털 환경이 만드는 <b>새로운 권력 관계</b>의 윤리 (12강과 연결).</div>
+        <table class="comp-table">
+          <tr><th>쟁점</th><th>내용</th></tr>
+          <tr><td>① 정보 보호</td><td>사회복지정보시스템·이메일·SNS에서의 클라이언트 정보 비밀보장</td></tr>
+          <tr><td>② AI 결정</td><td>복지 수급에 AI 알고리즘이 사용될 때의 차별·편향</td></tr>
+          <tr><td>③ 격차</td><td>디지털 기술 활용이 어려운 클라이언트가 서비스에서 배제되는 문제</td></tr>
+          <tr><td>④ 행복e음</td><td>전국 통합 사회보장정보 시스템 — 사회복지사의 일상적 의사결정을 알고리즘이 매개</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 ②의 근거: Virginia Eubanks(2018)가 저서 『Automating Inequality』(자동화된 불평등)에서 다룬 핵심 주제가 바로 AI 알고리즘에 의한 복지 수급 결정의 차별·편향 문제다. ★ 「디지털 시대 윤리는 기존 원칙의 적용이 아니라 새 권력 관계의 윤리적 재사유」— Eubanks(2018)</div>
+      `
+    },
+    { icon: "🧑‍⚕️", title: "김민서 사례 분석 #3 — 가족주의 vs 자기결정",
+      html: `
+        <div class="hbox hbox-blue">사회복지사가 김민서(29세 성인)의 자살 위험을 알게 된다 — 부모는 「당연히 알 권리」가 있다고 주장하는 가족주의 vs 자기결정 딜레마.</div>
+        <table class="comp-table">
+          <tr><th>관점</th><th>내용</th></tr>
+          <tr><td>보편</td><td>성인 클라이언트의 자기결정 = 양보 불가 / 부모는 자동적 결정권자가 아니다</td></tr>
+          <tr><td>법적</td><td>자살 위험 시 응급 개입은 가능 / 그러나 부모 통보는 법적 자동 의무가 아님</td></tr>
+          <tr><td>균형</td><td>「가족 배제 ≠ 자기결정」— 김민서의 동의 위에서 부모 참여 형태를 협의</td></tr>
+          <tr><td>역할</td><td>부모에게 「우리가 다 함께 김민서를 도울 수 있는 방법」을 협상하는 중재자가 된다</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 실천 예시: 사회복지사는 김민서에게 "부모님께 어디까지, 어떻게, 누가 알리는 것이 민서 씨에게 제일 도움이 될까요?"라고 물음으로써, 자기결정을 가족과의 협력 안에서 실현되도록 돕는다.</div>
+      `
+    },
+    { icon: "📂", title: "08. 강의 정리 — 김민서의 윤리적 좌표",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">세 사례, 한 사회복지사</span>
+          <span class="badge badge-purple">클로징</span>
+        </div>
+      `
+    },
+    { icon: "🧭", title: "김민서의 윤리적 좌표 — 세 사례, 한 사회복지사",
+      html: `
+        <div class="hbox hbox-blue">오늘 다룬 윤리 원칙·딜레마·모델이 한 사람의 위기에서 어떻게 통합되는지 정리한다.</div>
+        <table class="comp-table">
+          <tr><th>사례</th><th>쟁점</th><th>적용</th></tr>
+          <tr><td>사례 1</td><td>자기결정 vs 보호</td><td>위해 평가·최소 침해·참여 유지 (보편 원칙)</td></tr>
+          <tr><td>사례 2</td><td>다중 딜레마</td><td>ETHIC 5단계 + 우선순위 7원칙 (의사결정 체계)</td></tr>
+          <tr><td>사례 3</td><td>가족주의 vs 자기결정</td><td>가족 협력 안에서 본인 중심 (한국적 균형)</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 ★ 통합 공식: <b>원칙(보편) + 체계(모델) + 맥락(한국) = 가치 중심 실천</b></div>
+      `
+    },
+    { icon: "✨", title: "클로징 — 가치는 매일의 결정 기준이다",
+      html: `
+        <div class="hbox hbox-blue">가치는 액세서리가 아니다 — 매일의 결정 기준이다. 윤리는 외워서 되는 일이 아니라 <b>매일 선택해야 살아 있는 일</b>이다.</div>
+        <ul class="pts">
+          <li>오늘 다룬 것: 사회복지의 다섯 원칙, 세 의사결정 모델, 네 한국적 쟁점</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 사회복지사의 일상은 크고 작은 윤리적 결정의 연속이다. 이 결정들이 자의적이지 않고 체계적이어야 하며, 외적 강령에 순응하는 것을 넘어 자신의 도덕적 신념으로 내면화될 때, 사회복지사는 비로소 <b>가치 중심 실천</b>을 살아내는 사람이 된다.</div>
+      `
+    },
+    { icon: "📝", title: "4강 핵심 요약",
+      html: `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>가치·윤리·도덕</b></td><td>추상→구체, 외부→내면의 위계 — <b>가치</b>(신념) → <b>윤리</b>(행동규범) → <b>도덕</b>(내면화)</td></tr>
+          <tr><td><b>NASW 6가치</b></td><td>서비스·사회정의·존엄성·인간관계·진실성·역량</td></tr>
+          <tr><td><b>인간 존엄성 vs 자기결정권</b></td><td>가장 근본적이면서 가장 자주 충돌하는 두 원칙 — 자기결정권은 <b>절대적이지 않음</b></td></tr>
+          <tr><td><b>비밀보장의 5가지 예외</b></td><td>아동·노인·가정폭력·자살·제3자(테라소프 원칙) — <b>고지된 동의</b> 필요</td></tr>
+          <tr><td><b>사회정의·전문적 관계</b></td><td>사회복지를 인접 직업과 구별짓는 핵심 원칙</td></tr>
+          <tr><td><b>윤리적 딜레마 3유형</b></td><td>자기결정 vs 보호 / 비밀보장 vs 보고 / 클라이언트 vs 기관(다중 충성)</td></tr>
+          <tr><td><b>Reamer 7단계 모델</b></td><td>충돌식별→영향파악→대안탐색→근거검토→자문→결정·문서화→평가·모니터링</td></tr>
+          <tr><td><b>ETHIC 모델</b></td><td>Examine-Think-Hypothesize-Identify-Consult, 5단계 단순화 모델</td></tr>
+          <tr><td><b>우선순위 7원칙</b></td><td><b>생명 → 평등 → 자율 → 최소위해 → 삶의질 → 사생활 → 진실성</b> — 검토의 출발점(기계적 적용 금지)</td></tr>
+          <tr><td><b>Mattison 모델</b></td><td>사실·원칙·관계·성찰(positionality) — 관계적·맥락적 접근</td></tr>
+          <tr><td><b>윤리강령 발달 흐름</b></td><td>NASW(1960) → IFSW(1976, 2018 세계선언) → 한국(1982~2023)</td></tr>
+          <tr><td><b>한국 2023 개정 4특징</b></td><td>2대 핵심가치(존엄성·사회정의)·사회변화 매개자·디지털 환경윤리·다문화+환경 정의</td></tr>
+          <tr><td><b>한국적 4대 쟁점</b></td><td>가족주의·위계문화·다문화사회·디지털 전환</td></tr>
+        </table>
+      `
+    },
+  ]
+}
       ]
   },
 
@@ -4705,7 +5368,276 @@ const SUMMARY_DATA = {
             `
           },
         ]
-      }
+      },
+      { num: "4강", name: "사회복지조사의 윤리성과 정치성", icon: "⚖️",
+  cards: [
+    { icon: '📂', title: '01. 사회복지조사의 윤리적 쟁점',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">왜 윤리가 문제가 되는가</span>
+          <span class="badge badge-green">윤리적 쟁점 사례 4가지</span>
+          <span class="badge badge-purple">연구윤리 발생배경</span>
+          <span class="badge badge-red">윤리적 쟁점 7가지 유형</span>
+          <span class="badge badge-yellow">디지털 연구윤리</span>
+        </div>
+      `
+    },
+    { icon: '🎯', title: '왜 윤리가 문제가 되는가',
+      html: `
+        <div class="hbox hbox-blue">연구의 목적(결과)이 아무리 정당해도 그 과정(방법)에서 사람에게 해를 끼치면 비윤리적인 연구가 된다 — 윤리 문제는 <b>연구방법의 정당성</b>과 <b>참여자 보호</b>라는 두 축에서 발생</div>
+        <div class="sub">윤리 문제가 발생하는 두 가지 핵심 축</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th>내용</th><th>예시</th></tr>
+          <tr><td>연구방법의 정당성</td><td>연구결과가 아무리 중요해도 <b>방법이 잘못되면 안 됨</b></td><td>자료 조작, 연구결과를 원하는 방향으로 변경</td></tr>
+          <tr><td>참여자 보호</td><td>연구 때문에 <b>사람이 피해를 입어서는 안 됨</b></td><td>사생활 침해, 심리적 고통, 낙인, 개인정보 유출 등</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 1,000명 대상 전수·설문조사를 설계했는데 결과가 기대와 다르게 나오는 경우(예: 여성 비율이 높아야 하는데 남성이 더 높게 나옴), 연구자는 거대한 시간·비용을 들였는데 원하는 결과가 안 나온 아쉬움 때문에 자료를 살짝 바꾸거나 특정 변수를 빼고 재분석하고 싶은 유혹을 받게 된다 — 이 유혹 자체가 조사 과정에서 상시적으로 발생할 수 있는 윤리적 위험임</div>
+      `
+    },
+    { icon: '📚', title: '윤리적 쟁점 사례 4가지',
+      html: `
+        <div class="hbox hbox-blue">실제 조사연구에서 방법론적 선택이 윤리적 쟁점으로 이어진 대표 사례 4가지</div>
+        <div class="sub">사례 1. 고객을 가장한 평가조사</div>
+        <ul class="pts">
+          <li>○○○ 공단은 매년 경영성과 평가를 위해 모든 지사를 대상으로 경영평가를 실시함</li>
+          <li>평가 항목 중 '직원의 고객에 대한 친절·태도·업무 숙지도'를 평가하기 위해, 본부는 <b>고객을 가장한 평가단</b>을 지사에 파견하여 직원들의 응대를 몰래 평가함 (이른바 '암행조사')</li>
+          <li>쟁점: 고객을 가장하여 평가조사하는 방법은 <b>윤리적인가?</b> (연구자의 신분을 속이는 문제)</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 사전에 "친절도를 확인하는 조사"라고 밝히면 평가 대상 기간 동안 직원들이 평소보다 더 친절하게 행동해 있는 그대로의 실태를 파악할 수 없게 된다 — 신분을 숨기지 않으면 조사 자체가 무의미해지는 딜레마. 정답이 정해진 문제라기보다 "필요하다"는 입장과 "비윤리적이다"는 입장이 공존하는 쟁점임</div>
+        <div class="sub">사례 2. 연구자의 불법체류자 도움</div>
+        <ul class="pts">
+          <li>한 연구자가 추방 위기의 외국인 근로자들이 어떤 결정·계획을 세우고 어떻게 피신했는지, 그 과정에서 무엇을 경험했는지 알고자 함</li>
+          <li>이를 위해 불법체류 외국인 근로자들과 함께 생활했고, 이후 이들을 도와줬다는 이유로 경찰에 체포됨</li>
+          <li>쟁점: 불법체류자를 도운 것이 <b>위법</b>일 수는 있지만, 그것이 과연 <b>비윤리적</b>인 것인가? (합법성과 윤리성은 별개의 문제일 수 있음을 보여주는 사례)</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 이 연구는 이후 배우게 될 질적 연구의 대표적 접근 방식(참여관찰) 중 하나이며, 단순한 호기심이 아니라 불법체류자 문제를 사회적으로 해결하기 위한 목적으로 수행된 것이었다는 점에서 "이렇게까지 하지 않으면 연구 자체가 수행될 수 없는 것 아닌가"라는 반론도 함께 고려할 수 있음</div>
+        <div class="sub">사례 3. 복지연구가 800명 텍사스 주민의 복지 수혜를 보류하다</div>
+        <ul class="pts">
+          <li>텍사스 복지국은 기초수급자 자격 상실 후에도 4개월간 지원되던 의료지원금·육아지원금을 1년으로 확대하는 정책을 평가하고자 함</li>
+          <li>전체 기초수급자의 90%는 실험집단, 10%는 통제집단으로 할당</li>
+          <li>결과적으로 <b>통제집단 800명은 2년간 혜택을 받지 못함</b></li>
+          <li>쟁점: 연구 설계(실험/통제집단 구분)를 위해 특정 집단에게 응당 받아야 할 복지 혜택을 유보시킨 것이 정당화될 수 있는가 (연구참여자에 대한 위해 문제)</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 실험집단은 정책 혜택을 1년으로 확대 적용받고, 통제집단은 기존과 같이 혜택을 받지 못함 — 두 집단을 비교해야 정책 효과를 검증할 수 있어 이런 설계를 사용함. 문제는 통제집단 800명이 실험집단이었다면 받았을 혜택을 연구 설계 때문에 받지 못했다는 점, 즉 누군가는 연구로 인해 이득을 보고 누군가는 피해를 보는 상황이 실제로 발생했다는 데 있음</div>
+        <div class="sub">사례 4. 기초생활보장 수급자 조사</div>
+        <ul class="pts">
+          <li>연구자가 기초생활보장 수급자의 생활실태를 조사하려 함</li>
+          <li>담당 사회복지사가 수급자에게 "우리 기관에서 하는 조사이니 참여해 주세요"라고 권유했고, 연구자는 "참여 여부는 자유입니다"라고 설명함</li>
+          <li>쟁점: 이 조사는 진정한 <b>'자발적 참여'</b>라고 할 수 있을까? (수급자-사회복지사의 권력관계상 사실상 참여를 강요받는 상황일 수 있음)</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 연구자가 아무리 "자유롭게 결정하라"고 설명해도, 평소 서비스·혜택을 제공받는 담당 사회복지사가 직접 참여를 권유했다는 사실 자체가 심리적 압박으로 작용할 수 있음 — 형식적으로는 자발적 참여지만 실질적으로는 권력관계(수급자↔담당자) 때문에 완전히 자유로운 동의라고 보기 어려운 상황이 발생할 수 있음</div>
+      `
+    },
+    { icon: '📜', title: '연구윤리 발생배경 — 뉘른베르크 강령과 벨몬트 보고서',
+      html: `
+        <div class="hbox hbox-blue">인간 대상 실험의 참혹한 역사를 계기로 제정된 두 문서가 현대 연구윤리의 출발점이 됨</div>
+        <div class="sub">뉘른베르크 강령(Nuremberg Code)</div>
+        <ul class="pts">
+          <li>배경: 제2차 세계대전 이후 독일의 전범재판(뉘른베르크 재판) 과정에서, 사람을 대상으로 동의 없이 생체실험을 자행한 사실이 드러남</li>
+          <li>이를 계기로 앞으로 실험·연구·조사를 할 때 지켜야 할 원칙들을 담은 <b>뉘른베르크 강령</b>이 제정됨 (총 1~10항)</li>
+          <li>제1항: "<b>실험대상이 되는 사람의 자발적인 동의는 절대 필수적이다</b>." — 참여자 본인이 "참여하겠다"고 하지 않으면 실험을 해서는 안 된다는 원칙</li>
+          <li>핵심 정신: "<b>연구보다 사람이 먼저다</b>"</li>
+        </ul>
+        <div class="sub">벨몬트 보고서(The Belmont Report, 1979.4.18.)</div>
+        <div class="hbox hbox-yellow">💡 1970년대 후반 미국에서 정부가 빈곤 지역 흑인 남성들을 대상으로 약 30년간 매독 관련 조사를 진행하면서 참여자들에게 연구가 진행되고 있다는 사실 자체를 알리지 않고 의도한 대로 검사·실험을 계속한 사건이 사회적으로 알려지며 큰 논란이 됨 — 이를 계기로 인간 대상 연구의 윤리원칙과 지침을 제시하기 위해 만들어진 것이 벨몬트 보고서임</div>
+        <table class="comp-table">
+          <tr><th>원칙</th><th>원문</th><th>내용</th></tr>
+          <tr><td>인간 존중의 원칙</td><td>principles of respect for persons</td><td>사람을 자율적인 존재로 여겨야 한다</td></tr>
+          <tr><td>선행의 원칙</td><td>principles of beneficence</td><td>위험을 최소화하고 이득을 극대화한다</td></tr>
+          <tr><td>정의의 원칙</td><td>principles of justice</td><td>연구의 이득과 피해를 고르게 분배해야 한다 (누군가만 이득을 얻고 누군가만 피해를 보아서는 안 됨)</td></tr>
+        </table>
+        <div class="sub">의의</div>
+        <ul class="pts">
+          <li>뉘른베르크 강령과 벨몬트 보고서는 이후 사회 전반에서 "조사할 때는 이런 원칙들을 지켜야 한다"는 공식적인 기준을 마련하는 출발점이 되었다</li>
+        </ul>
+      `
+    },
+    { icon: '🔢', title: '윤리적 쟁점 7가지 유형',
+      html: `
+        <div class="hbox hbox-blue">사회복지조사 수행 과정에서 발생할 수 있는 대표적 윤리적 쟁점 7가지</div>
+        <div class="sub">1) 연구참여자의 시간과 에너지</div>
+        <ul class="pts">
+          <li>자료수집은 참여자의 시간과 에너지를 빼앗는 행위임 (다만 참여자 및 사회 이익 증진이라는 명분은 있음)</li>
+          <li>조사자는 참여자의 시간과 에너지, 개인정보 보호 등의 원칙을 준수해야 함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 응답자는 조사에 참여할 법적 의무가 없기 때문에, 최근에는 설문조사 참여자에게 소정의 보상(예: 커피 쿠폰, 모바일 상품권 등)을 제공하는 것이 거의 관행처럼 자리 잡고 있음 — 참여자의 시간·에너지를 존중하는 윤리적 실천의 한 형태</div>
+        <div class="sub">2) 자발적 참여</div>
+        <ul class="pts">
+          <li>참여자의 자발적 동의가 전제되어야 함</li>
+          <li>다만 자발적 참여만을 강조할 경우 연구 일반화 가능성이 저하될 우려가 있음 (자원자 위주 표본이 될 경우 모집단 대표성 부족)</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 자발적 신청자만으로 표본을 구성하면 참여율 자체가 낮아질 뿐 아니라, 자발적으로 참여를 선택한 사람들의 응답 성향이 전체 모집단과 다를 수 있어 연구결과의 일반화 가능성이 떨어질 수 있음 — 자발적 참여 원칙과 연구의 대표성 확보라는 목표가 서로 충돌하는 지점</div>
+        <div class="sub">3) 연구문제 은폐</div>
+        <ul class="pts">
+          <li>연구목적을 숨기는 것이 허용될 수 있는가의 문제</li>
+          <li>연구참여자가 연구목적을 알면 평소와 다르게 행동하는 <b>'반응성'</b>이 발생할 수 있어, 이를 통제하기 위해 목적을 은폐하려는 유인이 존재함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 "이 연구는 장애인에 대한 편견을 조사하는 연구입니다"라고 미리 밝히면, 참여자는 자신이 편견 조사 대상임을 인식하고 실제보다 편견이 없는 것처럼 응답하게 될 가능성이 높음 — 이 때문에 목적을 숨기려는 유인이 생기지만, 이는 다시 "연구 목적을 숨기는 것이 윤리적으로 정당한가"라는 새로운 딜레마를 낳음</div>
+        <div class="sub">4) 연구참여자에 대한 위해 방지</div>
+        <ul class="pts">
+          <li>자료수집이 참여자의 기억(트라우마 등)에 의존할 경우, 회상 과정에서 고통이 유발될 수 있음</li>
+          <li>이러한 불가피하게 발생하는 고통에 대한 대응 방안이 필요함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 질적 연구나 사례조사에서 과거의 고통스러운 경험을 인터뷰로 다시 끄집어내야 하는 경우가 많음 — 자료는 객관적 사실 그 자체가 아니라 참여자가 기억하고 진술하는 내용에 의존할 수밖에 없으며, 이 과정에서 발생하는 심리적 고통에 연구자가 어떻게 대응해야 하는지가 중요한 윤리적 쟁점이 됨</div>
+        <div class="sub">5) 익명성과 비밀보장</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th>정의</th></tr>
+          <tr><td>익명성(anonymity)</td><td>참여자의 신원을 밝히지 않고 응답하도록 하는 것 (연구자도 누가 응답했는지 모름)</td></tr>
+          <tr><td>비밀보장(confidentiality)</td><td>연구자는 참여자 정보를 알지만 이를 공개하지 않고 지키는 것</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 익명성은 설문조사에서 일반적으로 적용되는 원칙이지만, 성별·연령대·근무 기간 등 세부 항목을 여러 개 체크하다 보면 사실상 응답자가 누구인지 유추 가능해지는 경우도 있어 설계 시 주의가 필요함. 질적 연구·사례조사에서는 연구자가 참여자의 실명을 알고 있더라도 논문·보고서에는 이름을 밝히지 않고 'A씨', 'B씨' 등으로 표기하는 것이 원칙임</div>
+        <div class="sub">6) 연구자의 신분 숨기기</div>
+        <ul class="pts">
+          <li>연구자임을 숨기는 것이 연구 진행에 도움이 되는 상황이 존재함 (예: 사례1 고객 가장 평가조사)</li>
+          <li>그러나 이는 일종의 <b>속임수</b>이므로 윤리적 문제가 됨</li>
+        </ul>
+        <div class="sub">7) 분석과 보고</div>
+        <ul class="pts">
+          <li>조사연구는 사회적 의미와 결과를 가진 <b>공적 행위</b>임</li>
+          <li>연구결과의 분석·발표 과정에서도 윤리적 문제가 발생할 수 있음 (계획대로 되지 않거나 의도치 않은 결과가 나온 경우 등에 결과를 왜곡하지 않고 정직하게 보고해야 함)</li>
+        </ul>
+      `
+    },
+    { icon: '🤖', title: '디지털 연구윤리',
+      html: `
+        <div class="hbox hbox-blue">AI 시대에는 AI를 사용하지 않는 것이 아니라 <b>AI를 어디까지 사용할 것인지 판단하고 그 결과에 책임지는 것</b>이 윤리적 연구임</div>
+        <div class="sub">AI 시대의 새로운 연구윤리 쟁점</div>
+        <ul class="pts">
+          <li>AI를 사용하지 않는 것이 윤리적인 연구가 아니라, AI를 어디까지 사용할 것인지 판단하고 그 결과에 책임지는 것이 윤리적 연구임</li>
+          <li>AI가 산출하는 결과물이 <b>누구의 데이터로 만들어졌는지, 누구에게 유리하고 불리한지</b> 등을 질문해야 함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 AI로 정보를 검색하는 정도는 활용할 수 있지만, "이 보고서 작성해줘"와 같이 AI에게 문장·보고서 자체를 완성해달라고 요청하는 것은 윤리적이지 않은 활용으로 볼 수 있음. 또한 AI는 기존에 축적된 데이터를 기반으로 결과를 산출하기 때문에, 그동안 더 많은 권력·특권을 누려온 집단 위주의 데이터가 반영될 경우 AI가 기존의 차별을 그대로 답습·재생산할 위험이 있음 — "이 결과물이 누구의 데이터로 만들어졌으며 누구에게 유리·불리한가"를 항상 점검하는 태도가 필요함. 이는 연구자뿐 아니라 학습자(학생) 입장에서도 AI를 활용한 과제 수행 시 스스로 점검해야 할 학습윤리의 문제이기도 함</div>
+      `
+    },
+    { icon: '📂', title: '02. 윤리적 쟁점 해결방안',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">윤리적 딜레마 해결을 위한 노력 (리머·메티슨)</span>
+          <span class="badge badge-green">연구윤리 지침 마련과 적용</span>
+          <span class="badge badge-purple">기관생명윤리위원회(IRB)</span>
+        </div>
+      `
+    },
+    { icon: '🧭', title: '윤리적 딜레마 해결을 위한 노력 (리머·메티슨)',
+      html: `
+        <div class="hbox hbox-blue">윤리적 딜레마를 해결하기 위해 리머는 의사결정 <b>과정</b>(단계별 절차)을, 메티슨은 의사결정 <b>모델</b>을 제시함</div>
+        <div class="sub">대표적인 두 가지 접근</div>
+        <table class="comp-table">
+          <tr><th>학자</th><th>접근</th></tr>
+          <tr><td>리머(Reamer)</td><td>윤리적 의사결정 <b>과정</b>(단계별 절차) 제시</td></tr>
+          <tr><td>메티슨(Mattison)</td><td>윤리적 의사결정 <b>모델</b> 제시</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 단계를 순서대로 암기하는 것 자체보다는, "이런 윤리적 의사결정 절차·모델이 이미 마련되어 있다"는 점을 이해하는 것이 중요함. 아래 예시의 각 단계는 리머·메티슨이 제시한 단계와 사실상 대응됨</div>
+        <div class="sub">예시: 아동학대 경험이 있는 청소년 대상 심층면접 (리머의 윤리적 의사결정 과정 적용)</div>
+        <table class="comp-table">
+          <tr><th>단계</th><th>내용</th></tr>
+          <tr><td>1) 문제 확인</td><td>연구의 필요성 vs 참여자의 심리적 피해</td></tr>
+          <tr><td>2) 관련 가치 확인</td><td>연구의 공익성, 자기결정권, 위해 최소화</td></tr>
+          <tr><td>3) 가능한 대안 찾기</td><td>질문 수 줄이기, 상담 지원 연계, 언제든 면접 중단 가능, 전문상담자 참여 등</td></tr>
+          <tr><td>4) 최종 선택</td><td>가장 피해가 적고 권리를 보호하는 방법 선택</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 연구의 필요성과 참여자 보호라는 상충하는 가치를 확인한 뒤, 위해를 최소화할 수 있는 구체적 대안을 마련하고 최선의 방법을 선택하는 절차를 거침. <b>1단계(문제 확인)</b>: 단순한 연구자의 호기심이 아니라 "아동학대가 다시 발생하지 않도록 하는 정책을 마련하기 위해 이 조사가 필요하다"는 식으로 연구의 필요성이 명확히 확인되어야 하며, 이러한 명확한 필요성 없이는 애초에 연구를 진행해서는 안 됨. <b>3단계(대안 찾기)</b> 예시: 상처가 될 수 있는 질문의 수를 최소화하기, 면접 종료 후 아직 해결되지 않은 심리적 어려움이 있다고 판단되면 상담 지원을 연계하기, 참여자가 심각한 불안정을 보이면 언제든 면접을 중단할 수 있도록 하기, 전문적으로 훈련된 상담자를 면접 과정에 참여시켜 참여자가 불안정한 반응을 보일 때 대응하게 하기 등</div>
+      `
+    },
+    { icon: '📋', title: '연구윤리 지침 마련과 적용',
+      html: `
+        <div class="hbox hbox-blue">사회복지사 윤리강령과 미국 사회복지사 윤리강령은 조사·연구 과정에서 지켜야 할 구체적 윤리 지침을 명시함</div>
+        <div class="sub">사회복지사 윤리강령 (2. 전문성 개발을 위한 노력)</div>
+        <ul class="pts">
+          <li>(2) 클라이언트를 대상으로 연구하는 사회복지사는 그들의 권리를 보장하기 위해 <b>자발적이고 고지된 동의</b>를 얻어야 한다</li>
+          <li>(3) 연구 과정에서 얻은 정보는 <b>비밀 보장의 원칙</b>에서 다루어져야 하고, 이 과정에서 클라이언트는 신체적·정신적 불편이나 위험·위해 등으로부터 보호되어야 한다</li>
+        </ul>
+        <div class="sub">미국 사회복지사 윤리강령 (a~p 항목 중)</div>
+        <ul class="pts">
+          <li>b) 사회복지사는 지식의 발전을 위해 평가와 조사를 증진하고 촉진시켜야 한다</li>
+          <li>c) 사회복지사는 실천에 관련된 새로운 지식을 비판적으로 검토하고 파악하며, 평가와 조사연구에서 얻어진 증거들을 전문직 실천에 충분히 활용해야 한다</li>
+          <li>l) 평가와 조사를 담당하는 사회복지사는 참여자와 그들로부터 얻은 자료의 <b>익명성과 비밀</b>을 보장해야 한다. 사회복지사는 비밀 보장의 한계, 비밀 보장의 수단, 자료의 폐기 시기를 참여자들에게 알려야 한다</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 예를 들어 "이 자료는 익명성을 전제로 하지만 연구 결과가 언론에 공개될 수 있다", "비밀 보장을 위해 이런 방법을 사용한다", "이 자료는 연구 종료 후 즉시 폐기한다"와 같이 참여자에게 사전에 구체적으로 고지해야 한다는 의미임</div>
+      `
+    },
+    { icon: '🏛️', title: '기관생명윤리위원회(IRB)',
+      html: `
+        <div class="hbox hbox-blue">IRB(Institutional Review Board, 조사연구윤리심의위원회)는 인간 대상 연구 제안서를 심사·평가하여 윤리적으로 문제가 없는지 판단하는 독립적·전문적 심사기관</div>
+        <div class="sub">개인정보 이용하는 연구의 연구계획서 작성 양식 (기관생명윤리위원회, 2023)</div>
+        <ul class="pts">
+          <li>연구배경, 연구목적, 연구책임자·공동연구자·담당자 성명과 직명</li>
+          <li>연구 실시 기관명 및 주소, 연구 지원기관</li>
+          <li>연구기간, 수집하려는 개인정보, 선정 및 산출 근거</li>
+          <li>연구방법, 관찰항목, 정보 보관 및 폐기 등 자료분석과 통계적 방법</li>
+          <li>연구대상자의 위험과 이익, 연구참여에 따른 보상</li>
+          <li>참고문헌</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 대학마다 자체 IRB(심의위원회)를 두고 있으며(예: 방송대에도 IRB가 있음), 인간을 대상으로 하는 논문·연구는 반드시 소속 기관의 IRB 승인을 받아야 진행할 수 있음. IRB 심의위원회는 제출된 연구계획서를 검토하여 한 번에 승인되지 않으면 보완 후 재심의를 받는 절차를 거치기도 함. 최근 연구윤리는 점점 더 엄격해지는 추세이며 — 학술지 논문 투고 시 IRB 승인 결과 첨부가 필수인 경우가 많아짐(예전에는 요구되지 않았음), 표절률이 일정 기준(예: 5% 이상)을 넘으면 투고 자체가 거부됨, 최근에는 AI 활용 여부에 대한 검증도 강화되고 있음(연구자가 AI 사용 정도를 자가 체크리스트로 신고하게 하거나, AI 사용 여부를 판별하는 도구로 논문을 검토) — IRB는 인간 대상 연구윤리를 사전에 승인하는 제도로서 현대 연구윤리의 핵심 장치이며, 표절·AI 활용 등을 포함해 심사 범위와 엄격성이 계속 강화되고 있음</div>
+      `
+    },
+    { icon: '📂', title: '03. 조사연구의 정치성',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">질문 방식과 문제 규정</span>
+          <span class="badge badge-green">조사연구의 정치적 성격</span>
+          <span class="badge badge-purple">윤리성과 정치성 비교</span>
+        </div>
+      `
+    },
+    { icon: '❓', title: '질문 방식과 문제 규정',
+      html: `
+        <div class="hbox hbox-blue">동일한 주제도 '어떻게 질문하느냐'에 따라 질문 내용과 문제가 달라지며, 무엇을 문제라고 규정하는 순간 이미 하나의 관점을 선택하는 것임</div>
+        <div class="sub">질문 방식에 따라 달라지는 문제 규정</div>
+        <table class="comp-table compare">
+          <tr><th>질문 A</th><th>질문 B</th></tr>
+          <tr><td>왜 가난한 사람들은 일을 하지 않는가</td><td>왜 일을 해도 빈곤에서 벗어나기 어려운가</td></tr>
+        </table>
+        <ul class="pts">
+          <li>질문 A는 빈곤의 원인을 개인의 근로 태도(개인 문제)로 보는 관점을, 질문 B는 구조적 요인(구조 문제)으로 보는 관점을 전제하고 있음</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 이는 1강에서 다룬 '다수파 보고서·소수파 보고서'의 구도와 같은 맥락임 — 가난을 개인의 문제로 보는 관점과 사회구조적 문제로 보는 관점이 대립하는 것과 동일한 구조. 사회과학에서는 완전한 '중립'이 존재하지 않으며, 연구자는 연구 질문을 던지는 순간부터 이미 하나의 관점(철학)을 선택할 수밖에 없음 — 그렇기 때문에 연구자 본인이 어떤 관점과 철학을 가지고 있는지를 스스로 분명히 인식하는 것이 중요함</div>
+      `
+    },
+    { icon: '🏛️', title: '조사연구의 정치적 성격',
+      html: `
+        <div class="hbox hbox-blue">사회는 기본적으로 정치적이며, 이러한 사회를 조사연구하는 연구방법론도 정치적일 수밖에 없어 연구자에게는 정치적 민감성이 필요함</div>
+        <div class="sub">조사연구의 정치적 성격</div>
+        <ul class="pts">
+          <li>윤리성 측면에 비해 정치성은 그것이 무엇인지, 특히 정치적으로 올바르거나 정당하지 못한 것이 무엇인지가 <b>분명하지 않음</b></li>
+          <li>조사연구 주제는 가치지향적이며, 정치적 이념의 문제와 관련됨</li>
+          <li>사회는 기본적으로 정치적이며, 이러한 사회를 조사연구하는 연구방법론도 정치적일 수밖에 없음</li>
+          <li>따라서 연구자에게는 특정 집단의 이해나 이념이 반영되어 있는지를 파악하는 <b>정치적 민감성</b>이 필요함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 예를 들어 빈곤을 구조적 문제로 보는 관점과 순수하게 개인의 문제로 보는 관점이 있을 때, 어느 한쪽을 "명백히 틀렸다·정당하지 않다"고 단정하기는 어려움 — 이 점이 시비가 비교적 명확한 윤리성 쟁점과 다른 정치성 쟁점의 특징임. <b>정치의 삼각형</b>에 따르면 법이나 정책은 흔히 '다수의 객관적 합의'로 여겨지지만 실제로는 '철학 → 세력 → 정책'의 구조로 만들어짐, 즉 정책은 특정한 철학(관점)을 가진 세력이 만들어내는 것임. 빈곤을 개인의 문제로 볼 것인가 구조의 문제로 볼 것인가에 대한 철학적 입장에 따라 실제 정책의 방향이 달라지므로, 조사연구 결과를 볼 때도 "객관적이니 그대로 옳다"고 단정하기보다 특정 인종·성별·장애 등 특정 집단을 배제하거나 차별하는 결과로 이어지지는 않는지 항상 민감성을 가지고 살펴볼 필요가 있음. (사회복지학 관점) 사회복지학에서는 빈곤을 개인의 문제가 아니라 사회구조적 문제·사회적 위험으로 보고 이에 공적으로 대응하는 것을 사회복지의 본질로 이해하며, 이러한 관점 자체도 하나의 정치적·철학적 입장임을 인식해야 함</div>
+      `
+    },
+    { icon: '⚖️', title: '윤리성과 정치성 비교',
+      html: `
+        <div class="hbox hbox-blue">윤리는 연구 과정의 옳고 그름을 묻고, 정치성은 연구가 어떤 관점과 이해관계를 반영하는가를 묻는다</div>
+        <div class="sub">시험 대비 핵심 비교표</div>
+        <table class="comp-table compare">
+          <tr><th>구분</th><th>윤리성</th><th>정치성</th></tr>
+          <tr><td>핵심 질문</td><td>연구를 어떻게 해야 옳은가?</td><td>누구의 관점에서 문제를 보고 있는가?</td></tr>
+          <tr><td>사례</td><td>개인정보를 보호했는가?</td><td>빈곤을 개인문제로 보는가, 구조문제로 보는가</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 윤리성은 "개인정보를 보호했는가?"처럼 비교적 답이 명확한 편이지만, 정치성은 "빈곤은 개인 문제다/구조 문제다" 중 어느 한쪽이 절대적으로 옳다고 할 수 없다는 점에서 성격이 다름. 그럼에도 모든 연구자는 자신의 관점을 가지고 있으므로, 그 관점을 스스로 인식하고 타 연구의 관점도 비판적으로 읽어낼 수 있는 민감성을 기르는 것이 중요함</div>
+      `
+    },
+    { icon: '📝', title: '4강 핵심 요약',
+      html: `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>윤리 문제의 두 축</b></td><td><b>연구방법의 정당성</b>(과정)과 <b>참여자 보호</b> — 결과가 정당해도 과정에서 해를 끼치면 비윤리적</td></tr>
+          <tr><td><b>뉘른베르크 강령</b></td><td>나치 생체실험을 계기로 제정, 제1항 "자발적 동의는 절대 필수" — "연구보다 사람이 먼저다"</td></tr>
+          <tr><td><b>벨몬트 보고서</b></td><td>터스키기 매독 실험을 계기로 제정, <b>인간존중·선행·정의</b> 3원칙 제시</td></tr>
+          <tr><td><b>윤리적 쟁점 7유형</b></td><td>시간과 에너지, 자발적 참여, 연구문제 은폐, 위해 방지, <b>익명성·비밀보장</b>, 신분 숨기기, 분석과 보고</td></tr>
+          <tr><td><b>익명성 vs 비밀보장</b></td><td>익명성=신원 자체를 모름 / 비밀보장=연구자는 알지만 공개하지 않음</td></tr>
+          <tr><td><b>리머 vs 메티슨</b></td><td>리머=의사결정 <b>과정</b>(단계) / 메티슨=의사결정 <b>모델</b></td></tr>
+          <tr><td><b>IRB</b></td><td>기관생명윤리위원회 — 인간 대상 연구 제안서를 심사하는 독립적 심사기관, 최근 심사 강화 추세</td></tr>
+          <tr><td><b>질문의 정치성</b></td><td>질문 방식 자체가 이미 하나의 관점(개인 문제 vs 구조 문제)을 전제함</td></tr>
+          <tr><td><b>정치의 삼각형</b></td><td><b>철학 → 세력 → 정책</b> — 정책은 특정 철학을 가진 세력이 만들어내는 것</td></tr>
+          <tr><td><b>윤리성 vs 정치성</b></td><td>윤리성=연구 과정의 옳고 그름 / 정치성=연구가 반영하는 관점·이해관계</td></tr>
+        </table>
+      `
+    },
+  ]
+}
     ]
   },
 
@@ -5609,7 +6541,7 @@ const SUMMARY_DATA = {
         }
       ]
     },
-    { num: "4강", name: "사회적 배제 vs 권력 집중", icon: "📌",
+      { num: "4강", name: "사회적 배제 vs 권력 집중", icon: "📌",
       cards: [
         { icon: '📂', title: '01. 사회적 배제란 무엇인가',
           html: `
@@ -5944,7 +6876,839 @@ const SUMMARY_DATA = {
           `
         }
       ]
-    }
+    },
+    { num: "5강", name: "불평등 vs 평등", icon: "⚖️",
+  cards: [
+    { icon: '📂', title: '00. 평등의 정의',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">평등의 정의 — 기계적 평등관을 넘어서</span>
+        </div>
+      `
+    },
+    { icon: '📖', title: '평등의 정의 — 기계적 평등관을 넘어서',
+      html: `
+        <div class="hbox hbox-blue">"평등은 누구나 인간다운 삶을 살아갈 수 있도록 서로 다른 조건을 함께 고려하는 것이다." ★</div>
+        <div class="sub">평등과 불평등, 단순한 반대 개념이 아니다</div>
+        <ul class="pts">
+          <li>보통 불평등의 반대를 평등이라 생각하기 쉽지만, 두 개념을 기계적으로 정반대에 놓고 볼 수 있는지는 고민이 필요함</li>
+          <li>현재 우리 사회는 평등을 매우 기계적인 것(동일한 대우·자원 제공)으로만 이해하는 경향이 강함</li>
+          <li>그러다 보니 불평등 역시 기술적·형식적 측면으로만 접근하는 경향이 강함</li>
+          <li>이번 강의의 핵심은 이 기계적 평등관을 넘어서는 것</li>
+        </ul>
+        <div class="sub">정의의 핵심 키워드 — 인간다운 삶 & 서로 다른 조건</div>
+        <ul class="pts">
+          <li>정의의 핵심 키워드는 두 가지: ① 인간다운 삶, ② 서로 다른 조건(=차이)</li>
+          <li>서로 다른 조건이란 성별·연령·소득·학력 등 그 사람이 <b>타고나는</b> 특성을 말함</li>
+          <li>이러한 차이 자체가 인간다운 삶에 영향을 미치게 되는 것, 즉 차이가 차별로 작동하는 것이 문제</li>
+        </ul>
+      `
+    },
+    { icon: '📂', title: '01. 불평등이란 무엇인가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">차이와 불평등은 다르다</span>
+          <span class="badge badge-green">불평등은 자원의 불균등한 배분이다</span>
+          <span class="badge badge-purple">불평등은 생애과정에서 누적된다</span>
+        </div>
+      `
+    },
+    { icon: '🔍', title: '차이와 불평등은 다르다',
+      html: `
+        <div class="hbox hbox-blue">차이는 자연스러운 다양성이지만, 그 차이가 자원·권리·기회·사회적 인정의 차등으로 이어질 때 불평등이 발생한다.</div>
+        <div class="sub">차이 vs 불평등</div>
+        <ul class="pts">
+          <li>사람은 연령, 성별, 장애, 건강, 가족 형태, 교육, 직업, 소득, 문화적 배경 등에서 서로 다름</li>
+          <li>사람 간 차이 = 자연스러운 다양성 ★ — 차이 자체는 문제가 아니며 공동체 발전의 원동력임</li>
+          <li>차이가 자원, 권리, 기회, 사회적 인정의 <b>차등</b>으로 이어질 때 → <b>불평등 발생</b> ★</li>
+        </ul>
+        <div class="sub">사례로 보는 차이 → 차별 전환 과정</div>
+        <ul class="pts">
+          <li>과거 여성이라는 이유만으로 학교에 가지 못했던 어머니·할머니 세대, 반대로 장남이라는 이유로 재산을 물려받고 책임을 짊어져야 했던 경우 — 태어난 조건(성별, 출생 순서)의 차이가 삶의 기회에 대한 차별로 전환된 사례</li>
+          <li>누룽지 사례: 형이라는 이유만으로 누룽지를 먼저 먹으라는 것 — 단순한 나이·출생 순서의 차이가 사회적 인정의 차이로, 다시 기회의 차이로 이어짐 (차이 → 사회적 인정의 차등 → 기회의 배제·소외 → 자원과 권리의 불평등)</li>
+          <li>권력도 대표적인 자원: 권력이란 "자신의 삶을 자기 주도로 끌고 나갈 수 있는 힘" — 장애가 있는 사람은 이동 수단을 동원할 권력이 현격히 적어 이동의 권리와 권력에서 소외됨</li>
+        </ul>
+        <div class="sub">질문: 특정한 차이가 왜 불리함으로 전환되는가?</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th>내용</th><th>결과</th></tr>
+          <tr><td>거주지 (지역적 차이)</td><td>농어촌에 사는 것</td><td>병원과 복지서비스 이용이 어려움 → <b>지역 불평등</b></td></tr>
+          <tr><td>장애 (인간의 다양성)</td><td>장애가 있는 것</td><td>교통, 교육, 노동, 사회참여가 제한됨 → <b>사회적 불평등</b></td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 지역적 불평등의 대표 예: 서울 중심 일극체제가 지방 거주민을 소외시키는 불균형. 사회적 불평등의 예: 과거 장애아동 특수학교 설립을 지역 주민들이 반대했던 사건 — 장애로 인해 교육 기회 자체가 박탈된 명백한 불평등 사례</div>
+      `
+    },
+    { icon: '💰', title: '불평등은 자원의 불균등한 배분이다',
+      html: `
+        <div class="hbox hbox-blue">불평등은 소득·권력 등 자원의 불균등한 배분이며, 자원이 존재하는 것과 실제로 접근할 수 있는 것은 다르다.</div>
+        <div class="sub">불평등과 관련된 자원</div>
+        <ul class="pts">
+          <li>소득과 자산 / 안정적인 일자리 / 교육과 정보</li>
+          <li>건강과 의료 / 안전한 주거 / 돌봄과 이동</li>
+          <li>사회적 관계망 / 문화와 여가 / 정책 결정에 대한 영향력</li>
+          <li>같은 소득을 가진 사람도 사는 지역과 사회적 조건에 따라 실제 삶은 달라질 수 있음 (수도권 vs 비수도권)</li>
+          <li>장애 여부, 돌봄 책임, 가족관계, 고용 형태, 거주지역 등이 자원의 <b>실질적 이용 가능성</b>에 영향을 미침</li>
+        </ul>
+        <div class="sub">사례로 보는 실질적 이용 가능성의 차이</div>
+        <ul class="pts">
+          <li>정규직·비정규직 휴가 사용 사례: 정규직은 규정된 휴가를 비교적 자유롭게 쓸 수 있으나, 비정규직 근로자는 고용 안정에 부정적 영향을 줄까 우려해 제대로 쓰지 못하는 경우가 많음 — 같은 휴가 제도(자원)가 존재해도 실제 이용 능력은 고용 형태에 따라 현격히 달라짐</li>
+          <li>돌봄 이슈가 부각된 배경: 거대한 인구 집단인 베이비부머 세대가 60대에 진입하면서 은퇴 이후 소득·자산 문제가 돌봄 문제로 이어지고, 이것이 다시 사회적 관계망 단절과 지역사회 내 고립으로 연결됨</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 자원이 <b>존재하는 것</b>과 그 자원에 <b>실제로 접근할 수 있는 것</b>은 다름 — 세대를 이어 영향 요인으로 작동함 ★ 지역사회복지는 자원의 양과 함께, 누가 그 자원에 접근하고 이용할 수 있는가를 살펴야 한다.</div>
+      `
+    },
+    { icon: '🔄', title: '불평등은 생애과정에서 누적된다',
+      html: `
+        <div class="hbox hbox-blue">불평등은 한 시점의 상태가 아니라 생애과정에 걸쳐 누적·재생산되는 과정이다.</div>
+        <div class="sub">불평등의 누적 과정 예시</div>
+        <div class="flow">
+          <span class="flow-item">아동기 가족의 빈곤</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">교육 기회 부족</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">불안정한 노동시장 진입</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">낮은 소득과 주거 불안</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">건강 악화와 관계 단절</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">노년기 빈곤과 돌봄 공백</span>
+        </div>
+        <ul class="pts">
+          <li>한 시기의 불리한 조건은 생애 단계별로 기회를 제한할 수 있음</li>
+          <li>개인에게 주어진 가족, 소득, 주거, 관계망의 차이는 <b>위기에 대응하는 능력의 차이</b>로 연결 ★ — 위기 대응 능력의 대표적 구성 요소: 소득, 일자리, 사회적 관계망</li>
+          <li>불평등은 현재 상태만이 아니라 오랜 시간에 걸쳐 형성되고 재생산되는 과정</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 불평등을 이해하려면 현재의 격차가 어떻게 만들어지고 반복되었는가를 보아야 한다. ★</div>
+      `
+    },
+    { icon: '📂', title: '02. 평등이란 무엇인가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">모두에게 똑같이 제공하는 것이 평등인가</span>
+          <span class="badge badge-green">기회의 평등과 결과의 평등</span>
+          <span class="badge badge-purple">형평은 실질적 평등을 위한 방법이다</span>
+        </div>
+      `
+    },
+    { icon: '⚖️', title: '모두에게 똑같이 제공하는 것이 평등인가',
+      html: `
+        <div class="hbox hbox-blue">형식적으로 동일한 제공(기계적 평등)은 사람마다 다른 출발조건과 장벽을 무시해 오히려 불리함을 낳을 수 있다.</div>
+        <div class="sub">기계적 평등에 대한 문제제기</div>
+        <ul class="pts">
+          <li>평등을 저울처럼 양쪽 무게가 똑같이 맞춰진 "균형"으로 생각하기 쉬우나, 이러한 기계적 평등이 진정한 평등인지 고민해봐야 함</li>
+          <li>예를 들어 100m 달리기에서 여성 선수와 남성 선수를 같은 조건으로 출발시키지 않으며, 축구도 마찬가지로 조건에 따라 구분함</li>
+          <li>각자가 가진 차이(특성)를 무시하고 동일 선상에서 출발시키는 것은 진정한 평등이 아님</li>
+          <li>평등을 "모든 사람에게 같은 대우나 자원을 제공하는 것"으로 이해하기 쉬우나, 사람마다 출발 조건, 필요한 것, 경험하는 장벽이 다름</li>
+          <li>형식적으로 동일한 제도도 실제로는 일부 사람에게 불리하게 작용할 수 있음 ★</li>
+        </ul>
+        <div class="sub">동일 제공이 오히려 불리함을 낳는 사례</div>
+        <ul class="pts">
+          <li>이솝우화 "여우와 두루미(황새)": 황새가 여우를 초대했는데 접시에 담긴 음식을 긴 부리로는 먹을 수 없었던 것처럼, 서로 다른 차이를 인정하지 못하고 동일한 방식(제도)을 제공하면 오히려 불리함이 발생함</li>
+          <li>키오스크 이용의 어려움: 키오스크 사용이 익숙하지 않은 사람에게는 디지털 기기가 큰 장벽이며, 뒤에 기다리는 사람이 늘어날수록 심리적 부담도 커짐 — 디지털 기술이 모두에게 "동일하게" 제공되어도 실제 이용 가능성은 사람마다 다름</li>
+        </ul>
+        <div class="sub">예) 온라인 복지서비스 신청</div>
+        <table class="comp-table">
+          <tr><th>주민의 조건</th><th>동일한 온라인 신청이 갖는 의미</th></tr>
+          <tr><td>디지털 기기 사용에 익숙한 주민</td><td>편리한 행정서비스</td></tr>
+          <tr><td>스마트폰 사용이 어려운 고령층</td><td>서비스 접근 장벽</td></tr>
+          <tr><td>시각장애인</td><td>접근 가능한 화면과 보조 기술 필요</td></tr>
+          <tr><td>한국어가 익숙하지 않은 이주민</td><td>언어와 정보의 장벽</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 같은 방법을 제공하는 형식적 평등이 항상 실제 이용의 평등을 보장하지는 않는다. ★</div>
+      `
+    },
+    { icon: '🎯', title: '기회의 평등과 결과의 평등',
+      html: `
+        <div class="hbox hbox-blue">기회의 평등은 제도적 장벽 제거에, 결과의 평등은 재분배를 통한 격차 완화에 초점을 둔다.</div>
+        <div class="sub">기회의 평등 vs 결과의 평등</div>
+        <table class="comp-table compare">
+          <tr><th>구분</th><th class="th-blue">기회의 평등</th><th class="th-green">결과의 평등</th></tr>
+          <tr><td>초점</td><td>누구나 교육, 취업, 복지, 사회참여의 기회에 접근할 수 있어야 함</td><td>경쟁과 사회생활의 결과에서 지나치게 큰 격차가 발생하지 않도록 조정</td></tr>
+          <tr><td>방법</td><td>차별적인 규칙과 제도적 장벽을 제거하는 데 초점</td><td>조세, 사회보험, 공공부조, 사회서비스 등 재분배제도를 통해 격차 완화(예: 가족수당, 실업보험·실업수당)</td></tr>
+          <tr><td>특징</td><td>-</td><td>실패해도 재시도 기회 부여</td></tr>
+          <tr><td>원칙</td><td>-</td><td><b>재분배 원칙</b>이 작동함</td></tr>
+        </table>
+        <div class="sub">기회의 평등 사례 — 한국방송통신대학교 입학</div>
+        <ul class="pts">
+          <li>동일한 수능시험·입학시험만으로 대학에 들어가야 한다면 방송통신대학교처럼 만학·재도전의 방식으로 학습하고자 하는 사람들에게는 큰 장벽이 작동함</li>
+          <li>차별적 규칙이나 제도적 장벽을 제거하고 조건을 조정해, 서로 다른 출발선에 있는 사람도 같은 기회를 놓치지 않도록 하는 것이 기회의 평등 ★</li>
+        </ul>
+        <div class="sub">기회의 평등의 한계</div>
+        <ul class="pts">
+          <li>동일 선상의 출발점이라도 실제로 동일한 기회가 되기는 어려움</li>
+          <li>형식적으로 학교에 갈 수 있어도 사교육비, 주거(독립된 공간), 돌봄, 이동 조건에 따라 결과는 달라짐</li>
+        </ul>
+        <div class="sub">결과의 평등에 대한 오해</div>
+        <ul class="pts">
+          <li>결과의 평등을 "누구나 다 똑같은 삶을 유지하도록 하는 것"으로 오해하기 쉬움</li>
+          <li>실제로는 경쟁과 사회생활의 결과에서 지나치게 큰 격차가 발생하지 않도록, 일정 수준 이하로 떨어지지 않게 지원하는 것</li>
+          <li>예를 들어 청년이 한 번 실패했을 때 재기하지 못하면 고립·은둔에 빠질 수 있는데, 다시 도전할 수 있도록 제도·지원을 제공하는 것이 결과의 평등</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 지역사회복지는 기회의 문을 여는 것과 함께, 주민이 실제로 그 기회를 이용할 수 있는 조건도 마련해야 한다. ★</div>
+      `
+    },
+    { icon: '🤝', title: '형평은 실질적 평등을 위한 방법이다',
+      html: `
+        <div class="hbox hbox-blue">형평(equity)은 개인의 필요와 사회적 조건을 고려하여 지원의 수준과 방식을 다르게 적용해 실질적 평등에 도달하는 원리다.</div>
+        <div class="sub">형평의 원리</div>
+        <ul class="pts">
+          <li><b>형평(equity)</b>: 개인의 필요와 사회적 조건을 고려하여 지원의 수준과 방식을 다르게 적용하는 것</li>
+          <li>개인이 권리와 기회를 실제로 누릴 수 있도록 필요한 조건을 지원</li>
+        </ul>
+        <div class="sub">운동회 출발선 비유</div>
+        <ul class="pts">
+          <li>운동회에서 6학년과 1학년이 부모와 함께 달릴 때, 두 학년을 동일한 출발선에 세우면 즐거운 운동회가 되기 어려움</li>
+          <li>1학년을 앞쪽에, 6학년을 뒤쪽에 세워 각자 다른 출발선에서 동시에 출발시켜야 서로 응원하고 경쟁하는 즐거움과 결과에 대한 승복이 가능해짐 — 이것이 형평의 원리</li>
+        </ul>
+        <div class="sub">★ 차등 지원</div>
+        <ul class="pts">
+          <li>특혜가 아니라 기존의 불리함을 완화하는 방식(적극적 우대조치)</li>
+          <li>예: 바둑의 덤·접바둑 / 서해5도 주민에 대한 정주수당 지원</li>
+        </ul>
+        <div class="sub">사례로 보는 형평 — 적극적 우대조치와 정주수당</div>
+        <ul class="pts">
+          <li>적극적 우대조치(적극적 차별 정책)의 대표적 사례는 미국: 장애가 있는 사람들이 노동시장에 진출하기 위한 여건이 비장애인에 비해 현격히 약하기 때문에, 이들을 위해 더 많은 지원과 제도를 마련하는 것 — 특혜가 아니라 기존의 불리함을 완화하는 방식</li>
+          <li>서해 5도(백령도·연평도 등) 주민에게 지원하는 정주수당 — 대한민국에서 정주수당을 지원하는 지역은 흔치 않음. 접경 지역의 위험을 감수하며 거주하는 주민이 떠나지 않도록 하기 위한 지원으로, 형평의 대표적 사례</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 형평은 차이를 인정하고 필요한 지원을 다르게 제공하여 실질적 평등에 도달하려는 원리이다. ★</div>
+      `
+    },
+    { icon: '📂', title: '03. 지역사회에서 불평등은 어떻게 나타나는가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">공간의 불평등</span>
+          <span class="badge badge-green">돌봄의 불평등</span>
+          <span class="badge badge-purple">노인빈곤과 지역사회 불평등</span>
+          <span class="badge badge-red">청년의 불평등</span>
+        </div>
+      `
+    },
+    { icon: '🗺️', title: '공간의 불평등',
+      html: `
+        <div class="hbox hbox-blue">거주지역에 따라 의료·교육·교통·문화 등 자원에 대한 접근성이 달라지는 것이 공간의 불평등이다.</div>
+        <div class="sub">공간의 불평등 유형</div>
+        <table class="comp-table">
+          <tr><th>유형</th><th>내용</th></tr>
+          <tr><td>거주지역에 따른 접근성의 격차</td><td>거주지역에 따라 병원, 학교, 대중교통, 일자리, 복지기관, 문화시설에 대한 접근성의 격차</td></tr>
+          <tr><td>지역 간 생활 인프라 격차</td><td>도시와 농어촌, 수도권과 비수도권, 도심과 외곽 지역 간 생활 인프라 격차 (강남 vs 강북 등)</td></tr>
+          <tr><td>주거지역에 따른 조건의 격차</td><td>같은 도시 안에서도 주거지역에 따라 안전, 건강, 교육, 문화 조건의 격차</td></tr>
+        </table>
+        <div class="sub">사례: 임대단지·비임대단지 놀이터 차별</div>
+        <ul class="pts">
+          <li>동일한 주거지역 내에서도 임대단지에 사느냐 비임대단지에 사느냐에 따라 경계선을 긋고 차별하는 사례가 뉴스에 종종 보도됨 ★</li>
+          <li>"이 놀이터에는 놀러 오지 마"라는 식의 배제가 발생하는 것이 대표적인 공간적 불평등 사례</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 지역사회의 불평등은 기회와 위험을 다르게 배분한다. ★</div>
+      `
+    },
+    { icon: '🤲', title: '돌봄의 불평등',
+      html: `
+        <div class="hbox hbox-blue">돌봄은 생존과 일상생활 유지를 위한 필수 활동이며, 그 책임은 오랫동안 여성에게 집중되어 왔다.</div>
+        <div class="sub">돌봄 불평등의 양상</div>
+        <ul class="pts">
+          <li>돌봄은 생존과 일상생활을 유지하기 위한 <b>필수적인 활동</b></li>
+          <li>돌봄 책임은 오랫동안 가족, 특히 <b>여성</b>에게 집중되어 왔음 ★ — 최근에는 돌봄 책임의 주체가 가족에서 사회 공동체·국가로 전환되는 추세이며, 이는 정부 정책으로도 나타나고 있음</li>
+          <li>가족의 소득, 관계망, 거주지역에 따라 이용할 수 있는 돌봄의 수준이 달라짐</li>
+          <li>돌봄서비스가 부족한 지역에서는 가족의 부담과 시설 의존이 증가해 거주지를 떠나거나 시설 입소를 선택하게 됨</li>
+        </ul>
+        <div class="sub">사례: 옹진군 도서지역의 돌봄 인프라 부족</div>
+        <ul class="pts">
+          <li>서해 5도 연구 중 방문한 옹진군은 도서(섬) 지역이라는 특성상 돌봄 인프라, 특히 요양센터 등이 매우 부족함</li>
+          <li>저소득 지역·도서 지역일수록 돌봄 인프라 격차가 크게 나타남</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 돌봄은 이제 사적 책임이 아니라 지역사회와 국가가 보장해야 할 사회적 권리이다. ★</div>
+      `
+    },
+    { icon: '👵', title: '노인빈곤과 지역사회 불평등',
+      html: `
+        <div class="hbox hbox-blue">노인빈곤은 개인의 노후 준비 부족이 아니라 노동시장·연금·주거·의료·돌봄체계가 결합된 구조적 불평등이다.</div>
+        <div class="sub">노인빈곤의 현황</div>
+        <ul class="pts">
+          <li>노인빈곤 → 소득 부족 → 건강, 주거, 돌봄, 이동, 사회참여의 <b>제약</b>으로 이어짐</li>
+          <li>★ 현재 한국 사회의 노인 빈곤율은 <b>40% 이상</b> — 열 명 중 네 명이 절대적 빈곤 상태</li>
+          <li>여성 노인, 독거노인, 농어촌 노인, 장애가 있는 노인은 복합적 위험에 노출될 가능성이 큼</li>
+          <li>★ 노년기 빈곤은 개인의 노후 준비 부족만으로 설명하기 어려움 (예: 과거 사회보험제도의 부재)</li>
+        </ul>
+        <div class="sub">노인빈곤을 개인 문제로만 볼 수 없는 이유</div>
+        <ul class="pts">
+          <li>현재 노인 빈곤에 처한 세대는 한국이 발전 국가로 나아가던 시기에 정말 열심히 일했던 분들임</li>
+          <li>당시 사회보험제도가 부재했기 때문에 노후를 준비하지 못한 채 현재의 노년기 빈곤으로 이어짐</li>
+          <li>즉 노인빈곤은 개인의 게으름이나 준비 부족이 아니라 제도의 부재라는 구조적 원인이 큼</li>
+        </ul>
+        <div class="sub">노인빈곤에 영향을 미치는 구조</div>
+        <ul class="pts">
+          <li>공적연금의 사각지대</li>
+          <li>생애 주기 불안정 노동</li>
+          <li>낮은 임금과 경력 단절</li>
+          <li>높은 의료비와 주거비</li>
+          <li>돌봄 체계의 변화 (가족 책임 → 사회 책임으로 전환되었으나 지역사회 돌봄 인프라 부족으로 여전히 공백 발생)</li>
+          <li>지역 돌봄 서비스의 부족</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 노인빈곤은 노동시장, 연금, 주거, 의료, 돌봄체계가 결합된 구조적 불평등이다. ★</div>
+      `
+    },
+    { icon: '🧑‍🎓', title: '청년의 불평등',
+      html: `
+        <div class="hbox hbox-blue">청년의 불평등은 부모의 자산·소득 격차가 대물림되며, 현재의 소득 차이가 미래에 대한 기대의 차이로 이어진다.</div>
+        <div class="sub">청년 불평등의 양상</div>
+        <ul class="pts">
+          <li>부모의 소득, 자산, 교육지원, 주거환경 등이 청년의 진로와 노동시장 진입에 영향</li>
+          <li>주거비와 교육비 부담, 불안정 고용(노동시장의 이중화)은 청년의 독립과 계층이동 가능성을 제한함</li>
+          <li>"청년의 불평등은 현재 소득 차이에서 미래에 대한 기대의 차이로 이어짐" ★</li>
+          <li>"노력하면 더 나아질 수 있다"는 기대가 약화되면 사회적 신뢰와 참여도 감소할 수 있음</li>
+          <li>청년세대의 불평등은 세대 간 갈등, 지역사회 통합의 어려움으로도 작동함</li>
+        </ul>
+        <div class="sub">흙수저·금수저, N포세대, "아프니까 청년이다"</div>
+        <ul class="pts">
+          <li>★ 원가족의 소득·자산 격차가 자식 세대로 이어지는 현상은 흔히 "흙수저·금수저", "N포세대"라는 표현으로 나타남</li>
+          <li>"노력하면 나아질 수 있다"는 희망 섞인 말("아프니까 청년이다" 류의 위로)은 오히려 청년들에게 비수처럼 꽂히는 가슴 아픈 말이 됨</li>
+          <li>그 이유는 청년의 어려움이 개인의 능력 부족이 아니라, 사회적 신뢰와 사회적 참여도가 구조적으로 낮기 때문</li>
+        </ul>
+        <div class="sub">청년 불평등의 두 가지 설명 방식</div>
+        <table class="comp-table compare">
+          <tr><th class="th-blue">개인적 설명</th><th class="th-green">구조적 설명</th></tr>
+          <tr><td>노력 부족, 취업 준비 부족, 선택의 실패</td><td>부모 자산의 차이, 교육과 정보의 격차, 지역별 일자리 차이, 불안정 노동과 높은 주거비</td></tr>
+        </table>
+      `
+    },
+    { icon: '📂', title: '04. 지역사회복지는 평등을 어떻게 실천하는가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">보이지 않는 불평등을 드러내기</span>
+          <span class="badge badge-green">자원을 형평적으로 배분하기</span>
+          <span class="badge badge-purple">주민의 권리와 참여를 보장하기</span>
+        </div>
+      `
+    },
+    { icon: '👁️', title: '보이지 않는 불평등을 드러내기',
+      html: `
+        <div class="hbox hbox-blue">사회복지사는 익숙하게 반복되는 불리함을 사회적 불평등으로 드러내는 역할을 한다.</div>
+        <div class="sub">불평등을 자연스럽게 만드는 표현과 반박 ★</div>
+        <ul class="pts">
+          <li>"원래 농촌은 병원이 멀다." → 농촌이어도 병원은 멀면 안 됨</li>
+          <li>"노인은 원래 외롭다." → 그 누구도 원래 외로워서는 안 됨</li>
+          <li>"장애인은 이동하기 어렵다." → 돈과 장비(이동 지원 수단)가 있는 장애인은 이동이 어렵지 않음. 장비와 지원이 없는 곳에 사는 장애인만 이동이 어려운 것이므로, 문제는 장애 자체가 아니라 지원의 부재임</li>
+          <li>"가난한 사람은 문화생활을 하기 어렵다." → 문화생활은 소득수준과 무관하게 인간 존엄성 유지를 위해 누구나 평등하게 누려야 함</li>
+          <li>"디지털 서비스를 사용하지 못하면 가족에게 부탁하면 된다." → 가족이 없거나 부탁하기 어려운 사람은 어떻게 해야 하는가? 디지털 서비스 자체를 누구나 이용할 수 있게 하거나, 디지털 서비스 없이도 이용 가능한 대체 장치가 마련되어야 함</li>
+        </ul>
+        <div class="sub">사회복지적 질문</div>
+        <ul class="pts">
+          <li>"왜 일부 주민은 기본서비스를 이용하기 위해 더 많은 비용과 시간을 부담해야 하는가?"</li>
+          <li>"왜 특정 집단의 어려움은 개인이 감수해야 하는 일로 여겨지는가?"</li>
+          <li>"제도와 환경은 누구를 기준으로 설계되어 있는가?"</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 이러한 표현들은 구조적 문제를 개인·자연 현상처럼 보이게 만들어 불평등을 "당연한 것"으로 자연화시킨다. ★ 사회복지사는 익숙하게 반복되는 불리함을 사회적 불평등으로 드러낸다.</div>
+      `
+    },
+    { icon: '📊', title: '자원을 형평적으로 배분하기',
+      html: `
+        <div class="hbox hbox-blue">형평적 배분은 자원이 부족한 지역과 위험이 큰 주민에게 우선적으로 자원을 배치해 동등한 삶의 기회를 보장하는 것이다.</div>
+        <div class="sub">형평적 자원배분의 방향</div>
+        <ul class="pts">
+          <li>자원이 부족한 지역에 더 많은 지원 (= 적극적 우대조치)</li>
+          <li>사회적 위험이 큰 주민에게 집중적 지원</li>
+          <li>장애와 언어, 이동 조건에 따른 맞춤형 접근</li>
+          <li>서비스 접근 비용과 장벽을 고려한 지원</li>
+        </ul>
+        <div class="sub">예</div>
+        <ul class="pts">
+          <li>의료취약지역 방문의료 확대</li>
+          <li>대중교통 취약지역 이동지원</li>
+          <li>저소득지역 공공돌봄시설 우선 설치</li>
+          <li>장애인의 주민참여를 위한 접근성 지원</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 형평적 배분은 주민이 동등한 삶의 기회를 가질 수 있도록 자원을 조정하는 것이다. ★</div>
+      `
+    },
+    { icon: '🗳️', title: '주민의 권리와 참여를 보장하기',
+      html: `
+        <div class="hbox hbox-blue">평등한 지역사회는 복지급여 제공을 넘어 주민이 자신의 삶에 영향을 미치는 결정에 동등하게 참여할 수 있는 공동체다.</div>
+        <div class="sub">참여 보장의 의미</div>
+        <ul class="pts">
+          <li>★ 평등은 복지급여와 서비스(시혜적·잔여적·매뉴얼 방식의 제공)를 제공하는 것만으로 완성되지 않음</li>
+          <li>주민이 자신의 삶에 영향을 미치는 결정에 참여할 수 있어야 함</li>
+          <li>불평등을 가장 많이 경험한 주민의 지식과 경험이 정책에 반영되어야 함</li>
+          <li>★ "당사자 없는 정책은 앙꼬 없는 찐빵이다." — 당사자 참여 없는 정책은 실제 욕구와 어긋날 가능성이 큼</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 평등한 지역사회는 결정에 동등하게 참여할 수 있는 공동체이다. ★</div>
+      `
+    },
+    { icon: '📝', title: '5강 핵심 요약',
+      html: `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>평등의 정의</b></td><td>누구나 인간다운 삶을 살 수 있도록 <b>서로 다른 조건</b>을 함께 고려하는 것 — 평등과 불평등은 단순한 반대 개념이 아니며 기계적 평등관을 넘어서야 함</td></tr>
+          <tr><td><b>불평등의 발생</b></td><td>차이는 자연스러운 다양성이나, 차이가 자원·권리·기회·사회적 인정의 <b>차등</b>으로 이어지면 불평등이 됨</td></tr>
+          <tr><td><b>자원의 불균등 배분</b></td><td>불평등은 소득·권력 등 자원의 불균등한 배분 — 자원의 존재와 <b>실질적 접근·이용 가능성</b>은 다름</td></tr>
+          <tr><td><b>생애과정의 누적</b></td><td>불평등은 아동기부터 노년기까지 생애과정에 걸쳐 <b>누적·재생산</b>되는 과정</td></tr>
+          <tr><td><b>기회의 평등</b></td><td>차별적 규칙·제도적 장벽을 제거해 누구나 기회에 접근하도록 하는 것 (한계: 실질적 결과 격차 해소는 어려움)</td></tr>
+          <tr><td><b>결과의 평등</b></td><td><b>재분배 원칙</b>을 통해 경쟁·생활 결과의 지나친 격차를 완화하고 재시도 기회를 부여</td></tr>
+          <tr><td><b>형평(equity)</b></td><td>개인의 필요와 조건을 고려해 지원을 다르게 적용하는 <b>차등 지원</b> — 특혜가 아닌 불리함의 완화 (예: 바둑의 덤, 서해5도 정주수당)</td></tr>
+          <tr><td><b>공간의 불평등</b></td><td>거주지역에 따른 의료·교육·교통·문화 등 <b>접근성 격차</b> (예: 임대단지 놀이터 차별)</td></tr>
+          <tr><td><b>돌봄의 불평등</b></td><td>돌봄 책임이 오랫동안 <b>여성</b>에게 집중 — 이제는 사적 책임이 아닌 지역사회·국가가 보장할 사회적 권리</td></tr>
+          <tr><td><b>노인빈곤</b></td><td>한국 노인 빈곤율 <b>40% 이상</b> — 노동시장·연금·주거·의료·돌봄체계가 결합된 <b>구조적 불평등</b></td></tr>
+          <tr><td><b>청년의 불평등</b></td><td>부모 자산의 대물림, 현재 소득 차이가 미래 기대의 차이로 이어짐 — <b>흙수저·금수저, N포세대</b></td></tr>
+          <tr><td><b>지역사회복지 실천</b></td><td>① 보이지 않는 불평등 드러내기 ② 자원을 형평적으로 배분하기 ③ 주민의 권리와 참여 보장하기</td></tr>
+        </table>
+      `
+    },
+  ]
+},
+{ num: "6강", name: "억압 vs 참여", icon: "🗣️",
+  cards: [
+    { icon: '📂', title: '00. 억압과 참여의 정의',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">억압과 참여의 정의</span>
+        </div>
+      `
+    },
+    { icon: '📖', title: '억압과 참여의 정의',
+      html: `
+        <div class="hbox hbox-blue">"억압은 참여를 막고 침묵하게 만든다. 지역사회복지는 주민이 자신의 목소리로 결정에 참여하여 변화를 만들어 가는 과정이다." ★</div>
+        <div class="sub">매뉴얼식 서비스만으로는 해결되지 않는 이유</div>
+        <ul class="pts">
+          <li>복지관 현장에서 열심히 서비스와 프로그램을 제공했음에도 "나는 소외받고 억압받고 참여하지 못하고 있다"는 주민들의 상황이 나아지지 않았던 경험</li>
+          <li>매뉴얼 방식의 기술적 서비스 제공도 중요하지만, 공동체 전체를 지배하는 <b>구조와 질서</b>를 변화시키지 않으면 근본적인 문제는 해결되지 않음 — 이것이 이번 강의(억압과 참여)의 출발점</li>
+        </ul>
+      `
+    },
+    { icon: '📂', title: '01. 억압이란 무엇인가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">억압은 삶의 가능성을 제한하는 힘이다</span>
+          <span class="badge badge-green">억압은 침묵을 만든다</span>
+          <span class="badge badge-purple">억압은 구조의 문제이다</span>
+        </div>
+      `
+    },
+    { icon: '⛓️', title: '억압은 삶의 가능성을 제한하는 힘이다',
+      html: `
+        <div class="hbox hbox-blue">억압은 개인이나 집단이 자신의 삶을 스스로 결정하고 권리를 행사하며 사회적 관계에 참여할 가능성을 제한받는 상태이며, 폭력·차별뿐 아니라 보호·관리·효율·질서라는 이름으로도 나타난다.</div>
+        <div class="sub">억압의 내재화 ★</div>
+        <ul class="pts">
+          <li>지역사회에서는 본인이 억압받고 있음에도 그것을 억압으로 느끼지 못하는 경우가 많음 — "가난한 사람이 뭘", "딸인데 뭐 어떡하겠어", "장애가 있으니까" 등으로 스스로를 사회적 취약계층으로 규정</li>
+          <li>이는 당사자가 스스로 만든 인식이 아니라, 그들을 바라보는 우위의 시각(사회적 통념·제도)이 위계적 구조를 통해 내려와 스스로 억압하도록 만든 것</li>
+        </ul>
+        <div class="sub">사회복지사 스스로도 억압적 시각을 가질 수 있다</div>
+        <ul class="pts">
+          <li>상담자의 소득 기준선, 자녀의 성별(아들/딸에 따른 부양의무자 여부), 장애 유무를 무의식적으로 먼저 확인했던 경험 — 학교에서 배운 행정적 분류 기준(소득, 성별, 자녀유무, 최근에는 탈북자 여부 등)이 내면화된 결과</li>
+          <li>이러한 기준이 동일한 인간을 어떤 사람은 억압의 존재로, 어떤 사람은 참여의 존재로 규정짓게 만듦</li>
+        </ul>
+        <div class="sub">억압의 정의와 특징</div>
+        <ul class="pts">
+          <li><b>억압</b>: 개인이나 집단이 자신의 삶을 스스로 결정하고, 권리를 행사하며, 사회적 관계에 참여할 가능성을 제한받는 상태</li>
+          <li>폭력과 차별처럼 명백하게 나타나기도 하지만, <b>보호·관리·효율·질서</b>라는 이름으로 나타나기도 함</li>
+          <li>특정 개인의 악의만으로 발생하지 않으며, <b>제도와 문화, 일상적 관계</b> 속에서 반복될 수 있음 ★</li>
+        </ul>
+        <div class="sub">사례로 보는 억압의 작동과 해소</div>
+        <ul class="pts">
+          <li>히딩크 감독 사례 ★: 월드컵 대표팀을 맡으며 "모든 선수는 평등하다"고 선언하고 선후배 간 존댓말과 위계를 없앤 것은, 모두가 사회적 관계에 참여하고 스스로 결정할 수 있는 조건을 가로막던 억압(위계 구조)을 제거한 사례 — 선한 의도(보호) 없이도, 또는 반대로 선한 의도에서도 억압은 작동할 수 있음</li>
+          <li>"밤 9시 여성 통행" 사례: "여자는 밤 9시 넘어 다니면 위험하니 일찍 들어오라"는 말은 흔히 선의로 여겨지나, 왜 남성은 위험하지 않고 여성만 위험한가라는 질문이 필요함 — 문제는 밤늦게 다니는 여성이 아니라, 여성이 안전하게 다닐 수 없게 만드는 마을(구조) 자체일 수 있음</li>
+        </ul>
+        <div class="sub">★ 이론 — 아이리스 영(Iris Young)의 억압의 다섯 형태</div>
+        <table class="comp-table">
+          <tr><th>형태</th><th>내용</th></tr>
+          <tr><td>착취(exploitation)</td><td>특정 집단의 노동과 자원을 정당한 보상 없이 지속적으로 이용</td></tr>
+          <tr><td>주변화(marginalization)</td><td>노동, 교육, 정치, 지역사회 관계에서 밀려남</td></tr>
+          <tr><td>무력화(powerlessness)</td><td>자신의 삶에 영향을 미치는 결정에 영향력을 행사하지 못함</td></tr>
+          <tr><td>문화제국주의(cultural imperialism)</td><td>지배집단의 가치와 생활방식이 정상으로 간주됨</td></tr>
+          <tr><td>폭력(violence)</td><td>특정 집단을 향한 위협과 혐오</td></tr>
+        </table>
+        <div class="sub">다섯 형태의 구체적 사례</div>
+        <ul class="pts">
+          <li><b>착취</b>: 정규직과 비정규직의 문제 — 비정규직 노동자가 더 위험한 작업 환경에서 일하면서도 "비정규직이니까 할 수 있는 것 아니냐"며 착취를 정당화하는 경우(위험의 외주화)</li>
+          <li><b>주변화</b>: 처음 시작하려는 사람에게 "너는 아직 모르니까 밖에서 대기해", "들어오지 마"라고 하며 노동·교육·정치·지역사회 관계에서 밀어내는 것</li>
+          <li><b>문화제국주의</b>: 다문화지원센터에서 이주민에게 한국 문화 학습 프로그램만 10개 중 10개가 제공되고, 정작 그들의 고유한 고국 문화를 유지하도록 돕는 프로그램은 부재한 경우</li>
+          <li><b>폭력</b>: 학교폭력에서 친구의 가정환경이나 신체적 특성을 이슈 삼아 집단으로 따돌리는 것</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 억압은 자신의 삶을 선택하고 참여할 가능성을 구조적으로 제한하는 힘이다. ★</div>
+      `
+    },
+    { icon: '🤐', title: '억압은 침묵을 만든다',
+      html: `
+        <div class="hbox hbox-blue">억압받는 사람은 자신의 경험을 말하지 못하거나 말해도 받아들여지지 않는 경험을 반복하며, 침묵은 무관심이 아니라 말할 조건 부족의 결과다.</div>
+        <div class="sub">침묵이 만들어지는 이유</div>
+        <ul class="pts">
+          <li>억압받는 사람은 자신의 경험을 말하지 못하거나, 말해도 받아들여지지 않는 경험을 반복함</li>
+          <li>반복적으로 무시당한 사람은 더 이상 의견을 표현하지 않을 수 있음</li>
+          <li>침묵은 관심이나 욕구가 없다는 의미가 아니라, <b>말할 조건이 부족하거나 말해도 달라지지 않았던 경험의 결과</b>일 수 있음 ★</li>
+        </ul>
+        <div class="sub">침묵의 사회적 확산 메커니즘</div>
+        <ul class="pts">
+          <li>누군가를 무시하면 그 구조와 질서는 주류 집단 중심으로 권력이 뭉쳐지고, 사회적 취약계층은 계속 취약계층으로 남는 불평등한 구조가 고착됨</li>
+          <li>이 과정에서 그 누구도 진정으로 행복할 수 없는데, 누군가를 무시하는 것을 암묵적으로 용인하면 더 큰 권력 앞에서 자신도 똑같이 억압당할 수 있음을 스스로 인정하는 셈이 되기 때문</li>
+        </ul>
+        <div class="sub">★ 이론 — 파울로 프레이리(Freire)</div>
+        <ul class="pts">
+          <li>억압받는 사람들이 자신의 현실을 비판적으로 인식하고 말할 수 있는 능력을 회복하는 것을 <b>해방의 출발점</b>으로 봄</li>
+          <li>이러한 억압의 구조는 결국 <b>헤게모니(hegemony)</b> 문제로 연결됨</li>
+        </ul>
+        <div class="sub">침묵이 만들어지는 과정</div>
+        <div class="flow">
+          <span class="flow-item">의견 표현</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">무시 또는 비난</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">참여 효능감 저하</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">자기검열</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">회의와 관계에서 이탈</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">사회적 침묵</span>
+        </div>
+        <div class="hbox hbox-yellow">💡 사회복지사는 주민의 침묵을 무관심으로 해석하지 않고, 왜 말하기 어려웠는가를 살펴야 한다. ★</div>
+      `
+    },
+    { icon: '🏗️', title: '억압은 구조의 문제이다',
+      html: `
+        <div class="hbox hbox-blue">억압은 특정 개인의 악의가 아닌 구조의 문제이며, 실천도 개인의 변화가 아닌 환경 변화·권리보장·참여 확대로 나아가야 한다.</div>
+        <div class="sub">구조로서의 억압</div>
+        <ul class="pts">
+          <li>어떤 집단이 반복적으로 의사결정에서 배제되고, <b>보호의 대상</b>으로만 규정되는 구조</li>
+          <li>사회적으로 반복되는 편견과 제도는 개인의 선택과 기회를 제한함</li>
+          <li>지역사회 이슈나 문제를 <b>개인에게 환원시키지 않는 것</b>이 사회복지적으로 매우 중요함 — 구조가 이 문제를 어떻게 지원·제도화하는지, 혹은 참여를 어떻게 보장하지 못하는지를 보아야 함</li>
+        </ul>
+        <div class="sub">예: 편견이 규정하는 존재</div>
+        <ul class="pts">
+          <li>은퇴 노인 = 쉬어야 하는 존재</li>
+          <li>장애인 = 보호받는 객체</li>
+          <li>빈곤층 = 복지에 의존</li>
+          <li>정신적 어려움을 겪는 주민 = 위험한 사람</li>
+        </ul>
+        <div class="sub">편견의 구체적 폐해</div>
+        <ul class="pts">
+          <li><b>정년퇴직 노인</b>: "그냥 어르신, 쉬세요"라는 말은 피곤할 때 쉬라는 말과는 의미가 전혀 다름 — 65세가 넘는 순간 "쉬어야 하는 존재"로 규정되면, 본인 스스로 "더 이상 참여해도 소용없다"는 억압을 내재화하게 됨</li>
+          <li><b>장애인</b>: "제가 할 수 있습니다"라고 말함에도 "도와드리겠습니다"를 반복하는 것은 스스로 할 수 있는 존재를 보호받아야 할 객체로 만드는 것 — 잘 안 될 때 당사자가 스스로 도움을 요청하면 그때 함께하는 것이 바람직함</li>
+          <li><b>정신적 어려움을 겪는 주민(조현병 등)</b>: 실제 인터뷰에 따르면 증세가 나타나는 시점을 스스로 인식하고 약을 조절하려 노력함 — 그러나 지역사회에서 "위험한 사람"이라는 낙인을 받을 때 가장 크게 상처받으며, 이는 사회적 재활·자활·복귀를 어렵게 만듦</li>
+          <li><b>빈곤층 "의지 부족" 낙인</b>: 실제로는 노동시장이 경력직 채용을 요구하는 구조적 문제 때문에 취업하지 못해 빈곤에 빠지는 경우가 많음 — 의지가 있어도 구조가 기회를 막는 것</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 억압을 구조의 문제로 볼 때 실천도 개인의 변화가 아닌 환경 변화, 권리보장, 참여 확대로 나아갈 수 있다. ★</div>
+      `
+    },
+    { icon: '📂', title: '02. 지역사회에서 억압은 어떻게 나타나는가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">전문가주의와 주민 배제</span>
+          <span class="badge badge-green">낙인과 배제의 일상화</span>
+          <span class="badge badge-purple">보호라는 이름의 통제</span>
+        </div>
+      `
+    },
+    { icon: '🎓', title: '전문가주의와 주민 배제',
+      html: `
+        <div class="hbox hbox-blue">전문가의 지식이 주민의 생활 경험을 압도하면 주민은 수동적인 대상이 되고, 주민의 실천 지식은 비전문적 의견으로 축소될 수 있다.</div>
+        <div class="sub">전문가주의의 문제</div>
+        <ul class="pts">
+          <li>전문가는 제도와 정책에 관한 지식과 경험을 가지고 있음</li>
+          <li>그러나 전문가의 지식이 주민의 생활 경험을 압도하면 주민은 <b>수동적인 대상</b>이 될 수 있음</li>
+          <li>지역사회 문제를 직접 경험한 주민의 지식이 <b>비전문적 의견</b>으로 축소될 수 있음</li>
+        </ul>
+        <div class="sub">사례: 교수자 본인의 전문가주의 경험</div>
+        <ul class="pts">
+          <li>복지관 근무 시절 전문가주의에 젖어 있었음을 고백 — 전문가라는 인식이 사회복지사를 지배하면, 짜놓은 프로그램을 따르지 않는 주민을 "오류"로 여기게 되고 주민은 수동적 대상이 됨</li>
+          <li>지역사회 문제를 직접 겪는 주민의 지식은 그 문제를 가장 실질적으로 체감한 정보임에도, 전문가주의는 이를 비전문적 의견으로 축소시킬 위험이 있음</li>
+        </ul>
+        <div class="sub">전문가주의의 표현</div>
+        <ul class="pts">
+          <li>"주민들은 잘 모른다."</li>
+          <li>"전문가가 결정하는 것이 효율적이다."</li>
+          <li>"당사자는 감정적이기 때문에 객관적인 판단이 어렵다."</li>
+          <li>"이미 전문가들이 충분히 검토했다."</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 주민의 경험은 개인의 것이 아닌 지역사회를 이해하는 중요한 실천 지식이다. ★</div>
+      `
+    },
+    { icon: '🏷️', title: '낙인과 배제의 일상화',
+      html: `
+        <div class="hbox hbox-blue">낙인은 사람을 하나의 부정적 이미지로 고정해 참여를 제한하는 지역사회 억압의 방식이다.</div>
+        <div class="sub">낙인의 정의와 영향</div>
+        <ul class="pts">
+          <li><b>낙인</b>: 사람을 하나의 부정적 이미지로 고정함</li>
+          <li>사람의 다양한 경험과 가능성을 보지 못하게 함</li>
+          <li>관계 형성, 자기표현, 서비스 이용, 주민참여를 위축시킴</li>
+        </ul>
+        <div class="sub">낙인의 사례</div>
+        <ul class="pts">
+          <li>"노인은 새로운 것을 배우기 어렵다."</li>
+          <li>"정신질환자는 위험하다."</li>
+          <li>"빈곤한 사람은 의지가 부족하다."</li>
+          <li>"복지서비스 이용자는 의존적이다."</li>
+          <li>"이주민은 지역문화에 적응해야 한다."</li>
+        </ul>
+        <div class="sub">낙인에 대한 반박</div>
+        <ul class="pts">
+          <li>"노인은 새로운 것을 배우기 어렵다": 성장과 배움에서 중요한 것은 타인과 나의 차이를 이해하는 것이며, 노인은 오랜 삶의 경험을 통해 오히려 이러한 배움에 더 능숙할 수 있음</li>
+          <li>★ "복지서비스 이용자는 의존적이다": 이 세상에 의존적이지 않은 사람은 없음. 지하철이 없으면 학교에 올 수 없고, 식당 종업원이 없으면 점심을 먹을 수 없음. 모든 인간은 관계 속에서 의존적으로 살아감 — 문제는 "의존적"이라는 말로 복지서비스 이용자를 수동적 존재로 <b>객체화</b>시키는 것</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 낙인은 편견에 바탕을 두고 참여를 제한하는 지역사회 억압의 방식이다. ★</div>
+      `
+    },
+    { icon: '🚧', title: '보호라는 이름의 통제',
+      html: `
+        <div class="hbox hbox-blue">보호가 당사자의 의사와 권리를 충분히 고려하지 않을 경우 통제로 변할 수 있다.</div>
+        <div class="sub">보호의 통제화</div>
+        <ul class="pts">
+          <li>보호가 당사자의 의사와 권리를 충분히 고려하지 않을 경우 <b>통제</b>로 변할 수 있음</li>
+          <li>안전을 이유로 외출, 관계, 거주지, 서비스 선택을 제한할 수 있음 (노인, 장애인 등)</li>
+          <li>전문가와 가족이 당사자보다 우선적으로 결정하는 구조가 만들어질 수 있음</li>
+        </ul>
+        <div class="sub">사례: 탈시설로 보는 "보호라는 이름의 통제" ★</div>
+        <ul class="pts">
+          <li>시설에 거주하는 장애인이 마을에 나가 살고 싶어도, 가족이나 전문가가 "위험하다"는 이유로 반대해 평생 시설에서 지내는 경우가 있음</li>
+          <li>당사자는 "마을에 가서 살고 싶다, 먹고 싶은 것을 먹고 다니고 싶은 대로 다니고 싶다"고 말함 — 위험한 상황에 부딪혔을 때 지원할 제도와 체계를 마련해 탈시설을 지원하는 것이 진정한 보호이며, 무조건 막는 것은 보호가 아니라 통제</li>
+        </ul>
+        <div class="sub">자전거·운전 비유</div>
+        <ul class="pts">
+          <li>"위험하니까 하지 마"라는 논리가 당연시되면 그 누구도 자전거를 배우거나 운전을 배울 수 없음</li>
+          <li>당사자의 의사와 권리를 고려해 스스로 자신의 삶을 통제할 수 있는 주체로 성장시켜야 하며, 누구도 보호라는 명목으로 객체화·수동화되어서는 안 됨</li>
+        </ul>
+        <div class="sub">보호와 통제의 차이</div>
+        <table class="comp-table compare">
+          <tr><th class="th-blue">보호</th><th class="th-red">통제</th></tr>
+          <tr><td>당사자의 의사를 확인</td><td>당사자 대신 결정</td></tr>
+          <tr><td>가능한 대안을 제공</td><td>하나의 선택만 강요</td></tr>
+          <tr><td>위험을 함께 검토</td><td>위험을 이유로 선택권 제한</td></tr>
+          <tr><td>자율성과 안전을 함께 고려</td><td>안전을 명분으로 자유 제한</td></tr>
+          <tr><td>결정 과정에 당사자 참여</td><td>가족·전문가 중심 결정</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 사회복지사는 "안전을 위해 필요하다"는 설명만으로 충분한지, 당사자가 실제로 선택 과정에 참여했는지를 점검해야 한다. ★</div>
+      `
+    },
+    { icon: '📂', title: '03. 참여란 무엇인가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">참여는 참석이 아니라 영향력이다</span>
+          <span class="badge badge-green">참여는 역량강화의 과정이다</span>
+          <span class="badge badge-purple">참여는 지역 민주주의의 실천이다</span>
+        </div>
+      `
+    },
+    { icon: '📢', title: '참여는 참석이 아니라 영향력이다',
+      html: `
+        <div class="hbox hbox-blue">참여의 핵심은 주민이 문제 정의, 대안 마련, 결정, 실행, 평가에 어느 정도 영향력을 행사하는가에 있다. ★</div>
+        <div class="sub">참석과 참여의 차이</div>
+        <ul class="pts">
+          <li>회의나 공청회에 참석했다는 사실만으로 실질적 참여가 이루어진 것은 아님</li>
+          <li>주민의 의견이 실제 의사결정과 정책, 예산에 영향을 미칠 수 있어야 함</li>
+          <li>이미 결정된 내용을 설명하고 동의를 구하는 것은 <b>형식적 참여</b>에 가까움</li>
+        </ul>
+        <div class="sub">"목소리 큰 사람이 이긴다" 비유</div>
+        <ul class="pts">
+          <li>교통사고에서 목소리 큰 사람이 유리하다는 말처럼, 지역사회에서도 목소리 큰 사람이 더 많은 몫을 가져가는 구조가 나타날 수 있음</li>
+          <li>이러한 구조가 되지 않도록 하는 것이 참여의 과제</li>
+        </ul>
+        <div class="sub">★ 이론 — 아른스타인(Arnstein)의 시민참여 사다리</div>
+        <div class="flow">
+          <span class="flow-item">조작·치료</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">정보 제공</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">상담</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">회유</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">협력</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">권한 위임</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">시민 통제</span>
+        </div>
+        <div class="sub">사다리 단계의 의미</div>
+        <ul class="pts">
+          <li>조작·치료부터 회유까지의 단계는 참여가 <b>매우 수동적이고 객체화된</b> 수준</li>
+          <li>이 수준을 뛰어넘어 협력 단계로 넘어가면 참여자는 비로소 "함께하는 사람"이 되고, 권한이 위임되면 스스로를 <b>권력의 주체</b>로 인식하게 되며, 궁극적으로 시민 통제 단계에서 주민 스스로 지역사회(구조)를 통제하는 주체적 모습으로 나타남</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 참여는 의견 청취에서 시작하여 궁극적으로 권한을 나누는 과정으로 발전해야 한다. ★</div>
+      `
+    },
+    { icon: '💪', title: '참여는 역량강화의 과정이다',
+      html: `
+        <div class="hbox hbox-blue">참여를 위해서는 교육, 정보, 관계 형성, 조직 경험이 필요하며, 역량강화는 자신의 삶에 영향을 미치는 조건을 이해하고 변화시키는 힘을 갖는 과정이다.</div>
+        <div class="sub">참여 역량이 필요한 이유</div>
+        <ul class="pts">
+          <li>"생각하는 사회복지사가 지역사회를 만든다"</li>
+          <li>오랫동안 배제된 주민은 처음부터 능숙하게 의견을 말하기 어려울 수 있음</li>
+          <li>행정용어와 회의절차가 낯설고, 자신의 경험을 공적 언어로 표현하기 어려울 수 있음</li>
+          <li>참여를 위해서는 <b>교육, 정보, 관계 형성, 조직 경험</b>이 필요함</li>
+        </ul>
+        <div class="sub">참여 역량이 성장하는 실제 모습</div>
+        <ul class="pts">
+          <li>통·반장회의나 주민자치회의에 처음 참석한 주민은 의견을 꺼내기 어려워하지만, 참여를 거듭할수록 점점 능숙하게 이야기하게 됨 — 이것이 참여 역량이 강화되는 과정</li>
+          <li>이때 중요한 것은 <b>행정용어·공적 언어를 최소화</b>하는 것이며, 계속 행정용어를 쓰면 주민의 참여 역량은 강화되지 않음</li>
+        </ul>
+        <div class="sub">역량강화의 정의와 실천</div>
+        <ul class="pts">
+          <li><b>역량강화</b>: 개인과 집단이 자신의 삶에 영향을 미치는 조건을 이해하고 <b>변화시키는 힘</b>을 갖는 과정</li>
+          <li>참여 역량을 높이는 실천: 주민교육, 자조모임, 당사자 모임, 주민조직화, 소규모 학습모임, 의제 발굴 워크숍, 회의와 정책에 대한 사전교육</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 참여는 주민에게 지역사회가 함께 지원해야 할 학습과 성장의 과정으로 인식되어야 한다. ★</div>
+      `
+    },
+    { icon: '🗳️', title: '참여는 지역 민주주의의 실천이다',
+      html: `
+        <div class="hbox hbox-blue">지역사회복지는 주민의 일상생활과 가장 가까운 곳에서 민주주의를 실천하는 영역이다.</div>
+        <div class="sub">생활정치로서의 민주주의</div>
+        <ul class="pts">
+          <li>민주주의는 선거에만 머물지 않음 — 일상의 모든 것이 민주주의(생활정치로서의 민주주의)</li>
+          <li>주민이 자신의 삶에 영향을 미치는 지역문제에 대해 말하고, 토론하고, 결정에 참여할 때 지역 민주주의가 실현됨</li>
+          <li><b>지역사회복지</b>: 주민의 일상생활과 가장 가까운 곳에서 민주주의를 실천하는 영역</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 참여는 지역사회복지의 방법인 동시에, 주민을 동등한 시민으로 인정하는 민주주의의 실천이다. ★</div>
+      `
+    },
+    { icon: '📂', title: '04. 지역사회 이슈로 보는 억압과 참여',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">지역사회보장계획</span>
+          <span class="badge badge-green">사회복지 실천현장의 자기결정권</span>
+        </div>
+      `
+    },
+    { icon: '📋', title: '지역사회보장계획: 주민의 삶이 계획에 반영되는가',
+      html: `
+        <div class="hbox hbox-blue">지역사회보장계획은 지역의 복지 욕구와 자원을 분석해 사회보장사업을 설계하는 제도로, 주민참여가 부족하면 행정과 전문가 중심의 계획이 될 수 있다.</div>
+        <div class="sub">지역사회보장계획과 참여 부족의 위험</div>
+        <ul class="pts">
+          <li><b>지역사회보장계획</b>: 지역의 복지 욕구와 자원을 분석하고 사회보장사업을 설계하는 제도</li>
+          <li>주민참여가 부족하면 행정과 전문가 중심의 계획이 될 수 있음 (시군구 단위 행정·학계 전문가 중심)</li>
+          <li>장애인, 노인, 청년, 이주민, 빈곤주민, 고립가구 등의 경험이 <b>평균적 욕구</b> 속에서 사라질 수 있음</li>
+        </ul>
+        <div class="sub">참여를 독려하는 당부</div>
+        <ul class="pts">
+          <li>"여러분이 살고 있는 지역에서 지역사회보장계획을 수립할 때 절대 외면하지 말고 참여하라" — 그래야 그 경험이 계획에 반영되고, 주민의 삶이 실제로 계획에 담길 수 있음</li>
+        </ul>
+        <div class="sub">점검질문</div>
+        <ul class="pts">
+          <li>어떤 주민이 계획 수립에 참여했는가?</li>
+          <li>당사자는 단순한 조사 대상이었는가, 의사결정자였는가?</li>
+          <li>주민의 의견이 실제 사업과 예산에 반영되었는가?</li>
+          <li>의견이 반영되지 않은 이유가 설명되었는가?</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 지역사회보장계획은 주민을 조사 대상보다 복지정책을 함께 만드는 주체로 인정해야 한다. ★</div>
+      `
+    },
+    { icon: '🙋', title: '사회복지 실천현장의 자기결정권',
+      html: `
+        <div class="hbox hbox-blue">자기결정권은 원하는 대로 하도록 두는 것만을 의미하지 않으며, 충분한 정보 제공과 함께 위험을 검토하는 과정을 포함한다.</div>
+        <div class="sub">실천현장의 자기결정권</div>
+        <ul class="pts">
+          <li>억압과 참여의 문제는 정책 영역뿐 아니라 개별 실천에서도 나타남</li>
+          <li>사례회의, 서비스 계획, 시설생활, 돌봄 결정에서 당사자가 빠질 수 있음</li>
+          <li><b>자기결정권</b>은 원하는 대로 하도록 두는 것만을 의미하지 않음</li>
+          <li>충분한 정보 제공, 이해 가능한 설명, 선택 가능한 대안, 위험을 함께 검토하는 과정이 포함됨</li>
+        </ul>
+        <div class="sub">사례: 사례회의에서 당사자가 배제되었던 경험</div>
+        <ul class="pts">
+          <li>전문가(사회복지사)들이 모여 사례회의를 하고, 당사자에게 결정된 서비스를 "받아들이도록" 했던, 받아들이지 않으면 "할 수 없다"고 여겼던 경험</li>
+          <li>자기결정권에 기반한다면, 당사자에게 충분한 정보와 선택지를 제공하고 위험 요소를 함께 검토하는 과정, 즉 <b>일상 속 공동 참여</b>가 이루어져야 함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 참여는 지역사회 정책뿐 아니라 사회복지 실천의 일상에서부터 보장되어야 한다. ★</div>
+      `
+    },
+    { icon: '📂', title: '05. 지역사회복지는 참여를 어떻게 실천하는가',
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">말할 수 있는 장을 만들기</span>
+          <span class="badge badge-green">주민의 경험을 공적 의제로 전환하기</span>
+          <span class="badge badge-purple">권한을 주민과 나누기</span>
+          <span class="badge badge-red">억압 없는 참여구조 만들기</span>
+        </div>
+      `
+    },
+    { icon: '💬', title: '말할 수 있는 장을 만들기',
+      html: `
+        <div class="hbox hbox-blue">주민이 자신의 경험을 안전하게 말할 수 있는 공간과 관계를 조성하고, 발언 구조를 조정해 조용한 주민과 소수 집단의 경험도 존중받도록 지원한다.</div>
+        <div class="sub">말할 수 있는 장의 조건</div>
+        <ul class="pts">
+          <li>주민이 자신의 경험을 안전하게 말할 수 있는 공간과 관계를 조성</li>
+          <li>목소리가 큰 주민만 말하지 않도록 발언 구조를 조정</li>
+          <li>조용한 주민, 소수 집단, 당사자의 경험도 존중받도록 지원</li>
+          <li>공식회의뿐 아니라 소규모 대화, 찾아가는 모임, 생활공간 중심의 참여 활용</li>
+        </ul>
+        <div class="sub">"안전하게 말한다"의 의미</div>
+        <ul class="pts">
+          <li>안전하게 말한다는 것은 평가받거나 비난받지 않는 것을 뜻함</li>
+          <li>"그렇게 생각할 수도 있겠네요", "제가 미처 생각하지 못했던 부분인데 좀 더 이야기해 주시겠어요?"처럼, 동의를 요구하는 것이 아니라 그 의견을 <b>이해</b>할 수 있도록 반응하는 것이 중요함</li>
+          <li>침묵하는 주민도 의견이 없는 것이 아니라 참여를 못 하고 있을 뿐임을 유념해야 함</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 사회복지사는 서로 다른 주민의 목소리가 공정하게 들리도록 돕는 촉진자이다. ★</div>
+      `
+    },
+    { icon: '🔄', title: '주민의 경험을 공적 의제로 전환하기',
+      html: `
+        <div class="hbox hbox-blue">사회복지사는 개인의 불편을 사적인 문제로 남겨두지 않고, 반복되는 경험을 지역사회 의제로 전환한다.</div>
+        <div class="sub">개인의 경험 → 공적 의제로 전환</div>
+        <table class="comp-table compare">
+          <tr><th>개인의 경험</th><th>공적 의제로 전환</th></tr>
+          <tr><td>대중교통이 없어 병원에 가기 어렵다.</td><td>이동권과 의료 접근성</td></tr>
+          <tr><td>아이를 맡길 곳이 없다.</td><td>지역 돌봄체계 부족</td></tr>
+          <tr><td>복지 신청절차가 너무 어렵다.</td><td>복지 접근권과 행정 문해력</td></tr>
+          <tr><td>주민회의가 언제 열리는지 몰랐다.</td><td>정보공개와 참여권</td></tr>
+        </table>
+        <div class="sub">공적 의제 전환의 실제 방식</div>
+        <ul class="pts">
+          <li>대중교통이 없어 병원 가기 힘들다는 주민에게 "자녀분이 태워주면 안 되냐"고 개인적 해결책을 제안하기보다, "다른 사람 중에도 같은 어려움을 겪는 사람이 있는지" 찾아내어 <b>이동권과 의료 접근성</b>이라는 사회적 이슈로 부각시켜야 함</li>
+          <li>아이 맡길 곳이 없어 경력이 단절된 101호 주민의 사례가 201호, 301호에서도 반복된다면, 이는 개인 문제가 아니라 <b>지역 돌봄체계 부족</b>이라는 공적 의제</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 사회복지사는 개인의 불편을 사적인 문제로 남겨두지 않고, 반복되는 경험을 지역사회 의제로 전환한다. ★</div>
+      `
+    },
+    { icon: '🤲', title: '권한을 주민과 나누기',
+      html: `
+        <div class="hbox hbox-blue">지역사회복지에서 참여의 최종 목표는 주민을 지역사회 변화의 주체로 세우는 것이다.</div>
+        <div class="sub">권한 공유의 방식</div>
+        <ul class="pts">
+          <li>주민이 사업의 수혜자가 아니라 <b>기획자와 평가자</b>로 참여하도록 지원</li>
+          <li><b>전문가의 역할</b>: 주민 대신 결정하는 것이 아니라 정보와 자원을 제공하고 참여 조건을 만드는 것</li>
+          <li>권한 공유에는 정보, 예산, 평가, 책임 등의 공유가 포함됨</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 지역사회복지에서 참여의 최종 목표는 주민을 지역사회 변화의 주체로 세우는 것이다. ★</div>
+      `
+    },
+    { icon: '⚡', title: '억압 없는 참여구조 만들기',
+      html: `
+        <div class="hbox hbox-blue">억압 없는 지역사회는 그동안 말하기 어려웠던 주민이 실제 영향력을 가질 수 있는 공동체다.</div>
+        <div class="sub">권력의 차이를 점검하는 질문</div>
+        <ul class="pts">
+          <li>누가 말하고 있는가? (누가 말하지 못하고 있는가?)</li>
+          <li>누가 침묵하고 있는가?</li>
+          <li>누가 정보를 가지고 있는가?</li>
+          <li>누가 결정권을 가지고 있는가?</li>
+          <li>누가 결정의 결과를 부담하는가?</li>
+          <li>누구의 경험이 전문지식으로 인정되는가?</li>
+        </ul>
+        <div class="sub">실질적 참여를 위한 조건 보장</div>
+        <ul class="pts">
+          <li>실질적 참여를 위해 정보, 시간, 이동, 돌봄, 의사소통, 심리적 안전의 조건을 함께 보장</li>
+          <li>예: 낮에만 회의를 열지 않고 저녁에도 참여할 수 있도록 물리적 여건을 마련하는 것</li>
+          <li>오랫동안 배제된 집단의 참여를 우선적으로 지원</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 억압 없는 지역사회는 그동안 말하기 어려웠던 주민이 실제 영향력을 가질 수 있는 공동체이다. ★</div>
+      `
+    },
+    { icon: '📝', title: '6강 핵심 요약',
+      html: `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>억압의 정의</b></td><td>개인·집단이 자신의 삶을 스스로 결정하고 사회적 관계에 참여할 가능성을 제한받는 상태 — 폭력·차별뿐 아니라 <b>보호·관리·효율·질서</b>라는 이름으로도 나타남</td></tr>
+          <tr><td><b>억압의 다섯 형태(아이리스 영)</b></td><td>착취, 주변화, 무력화, <b>문화제국주의</b>, 폭력</td></tr>
+          <tr><td><b>억압의 내재화</b></td><td>당사자가 스스로 만든 인식이 아니라 사회적 통념·제도가 위계적 구조를 통해 스스로 억압하도록 만든 것 — 사회복지사도 무의식적 억압 시각(전문가주의)을 가질 수 있음</td></tr>
+          <tr><td><b>침묵의 형성(프레이리)</b></td><td>침묵은 무관심이 아니라 <b>말할 조건 부족</b>의 결과 — 비판적 인식 회복이 해방의 출발점, <b>헤게모니</b> 문제로 연결</td></tr>
+          <tr><td><b>억압은 구조의 문제</b></td><td>개인의 악의가 아닌 구조의 문제 — 실천도 개인 변화가 아닌 환경 변화·권리보장·참여 확대로 나아가야 함</td></tr>
+          <tr><td><b>전문가주의 / 낙인</b></td><td>전문가 지식이 주민 경험을 압도하면 주민은 수동적 대상이 됨 / 낙인은 부정적 이미지 고정으로 참여를 위축시킴</td></tr>
+          <tr><td><b>보호라는 이름의 통제</b></td><td>당사자 의사를 고려하지 않는 보호는 통제로 변함 (예: 탈시설 사례) — 당사자 참여 여부로 구분</td></tr>
+          <tr><td><b>참여의 정의</b></td><td>참석이 아니라 <b>영향력</b> — 아른스타인의 참여 사다리(조작·치료→…→시민 통제)</td></tr>
+          <tr><td><b>역량강화</b></td><td>자신의 삶에 영향을 미치는 조건을 이해하고 <b>변화시키는 힘</b>을 갖는 과정 — 교육·정보·관계·조직 경험 필요</td></tr>
+          <tr><td><b>지역 민주주의</b></td><td>참여는 지역사회복지의 방법이자 생활정치로서의 <b>지역 민주주의</b> 실천</td></tr>
+          <tr><td><b>지역사회보장계획 / 자기결정권</b></td><td>정책(계획)과 개별 실천(자기결정권) 모두에서 당사자 참여 여부가 억압·참여의 실제 이슈로 나타남</td></tr>
+          <tr><td><b>참여 실천 방향</b></td><td>① 말할 수 있는 장 만들기 ② 경험의 공적 의제화 ③ 권한을 주민과 나누기 ④ 억압 없는 참여구조 만들기</td></tr>
+        </table>
+      `
+    },
+  ]
+}
   ]
   },
 
