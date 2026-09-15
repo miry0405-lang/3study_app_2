@@ -1654,7 +1654,7 @@ hr {
     <div class="hero-icon">📚</div>
     <div class="hero-title">사회복지학과 학습 허브</div>
     <div class="hero-sub">과목별 요약정리 카드와 기출 퀴즈로<br>체계적으로 시험을 준비하세요</div>
-    <div class="hero-badge">🎓 방송통신대 사회복지학과 3학년 1학기 기말고사 대비</div>
+    <div class="hero-badge">🎓 방송통신대 사회복지학과 3학년 2학기 기말고사 대비</div>
   </div>
 
   <!-- 글자 크기 조절 바 — 전체 너비, 헤더에 밀착 -->
@@ -5965,7 +5965,7 @@ const SUMMARY_DATA = {
             icon: "📊",
             title: "찰스 부스: 빈곤지도와 런던 빈곤조사",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue"><b>찰스 부스</b>: 19세기 말 영국 대공황 시 런던의 빈곤 실태를 객관적 증거로 입증한 사회조사의 개척자</div>
               <div class="sub">부스의 빈곤조사 동기</div>
               <ul class="pts">
@@ -5995,7 +5995,7 @@ const SUMMARY_DATA = {
             icon: "📈",
             title: "시봄 라운트리: 빈곤선 개념의 창시",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue"><b>시봄 라운트리</b>: 요크시 주민의 27.84% 빈곤 실태를 밝히고, <b>'빈곤선' 개념</b>을 통해 빈곤 조사의 지평 확장</div>
               <div class="sub">라운트리의 핵심 기여</div>
               <ul class="pts">
@@ -6022,7 +6022,7 @@ const SUMMARY_DATA = {
             icon: "👥",
             title: "비어트리스 웹과 사회조사의 의미",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue"><b>비어트리스 웹과 남편 시드니</b>: 페이비언 협회 소속, 부스의 조사를 직접 보조하며 <b>'사회구조적 문제'라는 관점</b> 획득</div>
               <div class="sub">비어트리스 웹의 인물관계</div>
               <ul class="pts">
@@ -6287,7 +6287,7 @@ const SUMMARY_DATA = {
             icon: "🔬",
             title: "과학적 방법과 과학적 지식",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue"><b>과학적 지식</b>: 인간의 믿음을 참된 지식으로 정당화할 수 있는 방법 — 현재까지 확보된 근거로 가장 타당한 설명</div>
               <div class="sub">과학적 지식의 특성</div>
               <ul class="pts">
@@ -6382,7 +6382,7 @@ const SUMMARY_DATA = {
             icon: "↓",
             title: "연역적 방법 (Deductive Method)",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue"><b>연역적 방법</b>: '대전제에서 결론을 이끌어 낸다' (논리학 기반). 이론에서 출발하여 가설을 도출하고, 관찰을 통해 가설을 검증</div>
               <div class="sub">절차</div>
               <ul class="pts">
@@ -6406,7 +6406,7 @@ const SUMMARY_DATA = {
             icon: "↑",
             title: "귀납적 방법 (Inductive Method)",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue"><b>귀납적 방법</b>: 구체적 현상들에서 출발하여 보편적인 결론으로 귀결. 구체적 관찰을 통해 새로운 이론을 발견</div>
               <div class="sub">절차</div>
               <ul class="pts">
@@ -7413,6 +7413,347 @@ const SUMMARY_DATA = {
       `
     }
   ]
+},
+{ num: "6강", name: "조사설계", icon: "🧪",
+  cards: [
+    { icon: "🎯", title: "조사설계의 필요성과 사회복지조사의 전체 과정",
+      html: `
+        <div class="hbox hbox-blue">조사설계란 정말 X(정책·개입) 때문에 Y(변화)가 일어났다고 말할 수 있는가를 확인하는 장치이다</div>
+        <div class="sub">선후관계 vs 인과관계 — 노인 대중교통 지원 사례</div>
+        <ul class="pts">
+          <li>"정책 이후 변화가 나타났다" — 시간적 선후관계만을 의미</li>
+          <li>"정책 때문에 변화가 나타났다" — 정책이 변화의 원인이라는 인과관계를 의미</li>
+        </ul>
+        <div class="sub">사회복지조사의 전체 과정</div>
+        <div class="flow">
+          <span class="flow-item">연구문제(문제제기)</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">조사설계</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">자료수집</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">자료분석</span>
+          <span class="flow-arrow">▶</span>
+          <span class="flow-item">조사보고서 작성</span>
+        </div>
+      `
+    },
+    { icon: "📂", title: "01. 인과관계와 내적타당도",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">인과관계 개념과 성립요건</span>
+          <span class="badge badge-green">내적타당도와 저해요인</span>
+        </div>
+      `
+    },
+    { icon: "🔗", title: "인과관계의 개념과 성립요건",
+      html: `
+        
+        <div class="hbox hbox-blue">인과관계란 한 변수(독립변수)가 원인이 되어 다른 변수(종속변수)의 변화에 영향을 미치는 관계</div>
+        <div class="sub">독립변수 · 종속변수</div>
+        <ul class="pts">
+          <li>독립변수: 원인이라고 생각하는 변수</li>
+          <li>종속변수: 그 결과로 변한다고 생각하는 변수</li>
+        </ul>
+        <div class="sub">인과관계 성립요건 (3가지 모두 충족)</div>
+        <table class="comp-table">
+          <tr><th>요건</th><th>내용</th></tr>
+          <tr><td><b>공변성</b></td><td>독립변수와 종속변수가 같이 변해야 한다</td></tr>
+          <tr><td><b>시간적 우선성</b></td><td>원인(독립변수)이 결과(종속변수)보다 먼저 발생해야 한다</td></tr>
+          <tr><td><b>외부 설명의 통제</b></td><td>종속변수의 변화를 설명할 수 있는 다른 설명(경쟁가설)을 제거해야 한다</td></tr>
+        </table>
+        <div class="hbox hbox-yellow">💡 공변성 관련 — X(독립변수) 발생 시점과 Y(종속변수) 발생 시점 사이 간격이 지나치게 길면(예: 2년 전 X, 2년 후 Y) 그 사이 다른 변수가 개입했을 가능성이 커 인과관계로 보기 어렵다</div>
+      `
+    },
+    { icon: "🎯", title: "내적타당도와 저해요인",
+      html: `
+        
+        <div class="hbox hbox-blue">내적타당도란 종속변수의 변화가 독립변수 때문에 일어났다고 얼마나 확신할 수 있는가를 의미하며, 인과관계 성립요건 중 '외부 설명의 통제'가 얼마나 잘 이루어졌는가와 관련된다</div>
+        <div class="sub">내적타당도 저해요인</div>
+        <table class="comp-table">
+          <tr><th>저해요인</th><th>의미</th><th>확인 질문</th></tr>
+          <tr><td><b>우연한 사건</b></td><td>조사 기간 중 의도치 않게 일어나 종속변수에 영향을 미치는 사건</td><td>밖에서 무슨 일이 생겼나?</td></tr>
+          <tr><td><b>성숙</b></td><td>시간이 흐르면서 대상자에게 자연스럽게 나타나는 변화</td><td>시간 때문에 변했나?</td></tr>
+          <tr><td><b>상실</b></td><td>조사가 진행되는 중간에 조사대상자가 탈락하는 것</td><td>누가 빠졌나?</td></tr>
+          <tr><td><b>선정편향</b></td><td>연구 시작 전부터 이미 존재하는 두 집단 간의 차이</td><td>처음부터 집단이 달랐나?</td></tr>
+          <tr><td><b>검사효과</b></td><td>사전검사를 실시한 경험 자체가 사후검사 결과에 영향을 미치는 것</td><td>먼저 검사한 영향인가?</td></tr>
+          <tr><td><b>도구화</b></td><td>사전검사와 사후검사에서 측정자나 측정도구가 달라지는 것</td><td>측정방법이 달라졌나?</td></tr>
+          <tr><td><b>통계적 회귀</b></td><td>사전조사에서 극단적인 값을 보인 대상자가 사후조사에서는 평균값 쪽으로 이동하는 현상</td><td>처음 점수가 너무 극단적이었나?</td></tr>
+        </table>
+      `
+    },
+    { icon: "📂", title: "02. 집단수준 조사설계: 실험설계",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">실험설계 개념과 유형 구분</span>
+          <span class="badge badge-green">순수실험설계</span>
+          <span class="badge badge-purple">유사실험설계</span>
+          <span class="badge badge-yellow">전실험설계</span>
+        </div>
+      `
+    },
+    { icon: "🧪", title: "실험설계의 개념과 유형 구분",
+      html: `
+        <div class="hbox hbox-blue">실험설계란 조사 대상에 대한 변수 사이의 인과관계를 인위적으로 조작하여, 조작된 변수의 효과를 파악하는 방법</div>
+        <div class="sub">실험설계 유형 구분 기준</div>
+                <table class="comp-table">
+          <tr><th>유형</th><th>구분 기준</th></tr>
+          <tr><td><b>순수실험설계</b></td><td>무작위 할당 <b>사용</b></td></tr>
+          <tr><td><b>유사실험설계</b></td><td>무작위 할당 <b>미사용</b> + 통제집단·다중측정 <b>있음</b></td></tr>
+          <tr><td><b>전실험설계(비실험설계)</b></td><td>무작위 할당 <b>미사용</b> + 통제집단·다중측정 <b>없음</b></td></tr>
+        </table>
+        <div class="sub">무작위 할당 · 실험집단 · 통제집단</div>
+        <ul class="pts purple">
+          <li><b>무작위 할당:</b> 특정 집단을 그대로 묶는 것이 아니라, 대상을 무작위로(예: 지나가는 임의의 사람들) 실험·통제집단에 배치하는 것</li>
+          <li><b>실험집단:</b> 실제로 실험적 처리(프로그램·개입)를 가하는 집단</li>
+          <li><b>통제집단:</b> 처리를 가하지 않고 비교를 위해 두는 집단 — 프로그램 효과 확인을 위해 두 집단을 비교해야 한다</li>
+        </ul>
+      `
+    },
+    { icon: "🥇", title: "순수실험설계 — 개요와 3가지 유형",
+      html: `
+        
+        <div class="hbox hbox-blue">순수실험설계는 통제집단이 있고 무작위 할당이 이루어지는, 인과관계 확인에 가장 이상적인 방법</div>
+        <div class="sub">순수실험설계 3가지 유형</div>
+        <ul class="star-list">
+          <li>통제집단 사전-사후검사 설계</li>
+          <li>통제집단 사후검사 설계</li>
+          <li>솔로몬 4집단 설계</li>
+        </ul>
+        <div class="sub">실험설계에서 사용되는 기호</div>
+        <ul class="pts">
+          <li><b>X</b>: 실험집단에 대한 실험적 처리(프로그램 개입)</li>
+          <li><b>R</b>: 대상자를 실험집단 및 통제집단에 배치할 때 무작위 할당을 실시하였음을 의미</li>
+          <li><b>Q</b>: 조사 또는 측정</li>
+        </ul>
+        <div class="sub">1) 통제집단 사전-사후검사 설계</div>
+        <table class="comp-table" style="text-align:center;">
+          <tr><th>구분</th><th>무작위</th><th>사전검사</th><th>처치</th><th>사후검사</th></tr>
+          <tr><td>실험집단</td><td>R</td><td>Q1</td><td>X</td><td>Q2</td></tr>
+          <tr><td>통제집단</td><td>R</td><td>Q3</td><td>—</td><td>Q4</td></tr>
+        </table>
+        <ul class="pts">
+          <li>가장 대표적이고 전형적인 실험설계 유형</li>
+          <li>대상자를 실험집단·통제집단에 무작위 배치(R)</li>
+          <li>실험집단: 사전검사(Q1) → 처리(X) → 사후검사(Q2)</li>
+          <li>통제집단: 처리 없이 사전검사(Q3)·사후검사(Q4)만 실시</li>
+        </ul>
+        <div class="sub">2) 통제집단 사후검사 설계</div>
+        <table class="comp-table" style="text-align:center;">
+          <tr><th>구분</th><th>무작위</th><th>처치</th><th>사후검사</th></tr>
+          <tr><td>실험집단</td><td>R</td><td>X</td><td>Q1</td></tr>
+          <tr><td>통제집단</td><td>R</td><td>—</td><td>Q2</td></tr>
+        </table>
+        <ul class="pts">
+          <li>사전검사를 실시하지 않고 무작위 할당(R) 후 사후검사만 실시</li>
+          <li>사전검사를 실시하지 않아 사전검사로 인한 '검사효과'를 방지할 수 있음</li>
+        </ul>
+        <div class="sub">3) 솔로몬 4집단 설계</div>
+        <table class="comp-table" style="text-align:center;">
+          <tr><th>구분</th><th>무작위</th><th>사전검사</th><th>처치</th><th>사후검사</th></tr>
+          <tr><td>실험집단1</td><td>R</td><td>Q1</td><td>X</td><td>Q2</td></tr>
+          <tr><td>통제집단1</td><td>R</td><td>Q3</td><td>—</td><td>Q4</td></tr>
+          <tr><td>실험집단2</td><td>R</td><td>—</td><td>X</td><td>Q5</td></tr>
+          <tr><td>통제집단2</td><td>R</td><td>—</td><td>—</td><td>Q6</td></tr>
+        </table>
+        <ul class="pts">
+          <li>통제집단 사전-사후검사 설계 + 통제집단 사후검사 설계를 결합한 4개 집단 구성</li>
+          <li>종속변수 변화가 개입(X) 효과인지, 사전검사 자체의 효과(검사효과)인지까지 구별 가능</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 가장 명확한 효과 확인이 가능하지만, 4개 집단을 무작위 할당하고 각각 사전검사·개입·사후검사를 진행해야 해 비용·시간 면에서 현실적으로 실행하기 쉽지 않다</div>
+        <div class="hbox hbox-yellow">💡 어떤 실험설계를 선택해야 한다는 정답은 없다 — 연구 문제와 상황(시간·비용·윤리성 등)을 고려해 선택하며, 그로 인한 한계(예: 검사효과 가능성)는 연구 결과에 한계점으로 명시하면 된다</div>
+      `
+    },
+    { icon: "🥈", title: "유사실험설계 — 비동일 통제집단 설계 · 시계열 설계",
+      html: `
+        <div class="hbox hbox-blue">유사실험설계는 실험설계와 유사하나 무작위 할당을 사용하지 않는 설계 — 통제집단은 있지만(有) 무작위 할당은 없다(無)</div>
+        <div class="sub">1) 비동일 통제집단 설계(비동일 통제집단 사전사후 조사)</div>
+        <table class="comp-table" style="text-align:center;">
+          <tr><th>구분</th><th>사전검사</th><th>처치</th><th>사후검사</th></tr>
+          <tr><td>실험집단</td><td>Q1</td><td>X</td><td>Q2</td></tr>
+          <tr><td>통제집단</td><td>Q3</td><td>—</td><td>Q4</td></tr>
+        </table>
+        <ul class="pts">
+          <li>무작위 할당 없이 이미 구성되어 있는 두 집단을 실험·통제집단으로 사용, 각각 사전·사후검사 실시</li>
+          <li>사회복지실천현장에서 가장 많이 활용하는 조사설계</li>
+          <li>무작위 할당이 없다는 것은 이미 의도되어 구성된 집단을 사용한다는 의미</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 예시 — A·B노인복지관 이용자를 무작위로 섞어 배치할 수 없어, 각각 사전검사 후 A복지관에만 프로그램(X) 개입하고 B복지관은 개입 없이 두 집단 차이를 비교</div>
+        <div class="sub">2) 시계열 설계</div>
+        <div class="flow">
+          <span class="flow-item">Q1</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q2</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q3</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q4</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">X</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q5</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q6</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q7</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q8</span>
+        </div>
+        <ul class="pts">
+          <li>하나의 집단을 대상으로 개입(X) 전후에 여러 차례 반복적으로 측정</li>
+          <li>적용 사례: 저상 버스 확대(X)가 장애인의 이동(Q)을 증가시켰는가를 확인</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 장애인 외출 빈도를 매월 측정 시 1~4개월차 3·4·3·5회 → 저상버스 확대 후 5~8개월차 7·8·7·9회로, 개입 후 수치가 확실히 늘어 저상버스 확대가 이동을 증가시켰다고 볼 수 있음</div>
+      `
+    },
+    { icon: "🥉", title: "전실험설계(비실험설계) — 단일집단 사전-사후 · 사후검사 설계",
+      html: `
+        <div class="hbox hbox-blue">전실험설계는 무작위 할당과 통제집단을 모두 사용하지 않는 실험설계 — 개입 효과로 보이는 결과가 나타나도 인과관계라고 강하게 주장하기엔 근거가 부족하다는 한계</div>
+        <div class="sub">1) 단일집단 사전-사후검사 설계</div>
+        <div class="flow">
+          <span class="flow-item">Q1</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">X</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q2</span>
+        </div>
+        <ul class="pts">
+          <li>통제집단 없이 하나의 집단에 대해 사전검사(Q1) → 개입(X) → 사후검사(Q2) 실시</li>
+          <li>사례: 노인복지관 '선배시민' 교육 프로그램 — 참여 노인(약 1,000명) 대상 프로그램 전 설문 후 약 3개월 교육, 동일 설문으로 사후검사하여 인식 변화 확인</li>
+          <li>통제집단까지 두면 더 좋지만, 연구 기간이 짧거나 즉시 진행해야 하는 등 현실적 제약이 있을 때 선택 가능한 적정 설계가 될 수 있으며, 이 경우 한계점을 함께 제시</li>
+        </ul>
+        <div class="sub">2) 단일집단 사후검사 설계</div>
+        <div class="flow">
+          <span class="flow-item">X</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">Q2</span>
+        </div>
+        <ul class="pts">
+          <li>개입(X) 이후 하나의 집단에 대해 사후검사(Q2)만 실시</li>
+          <li>사례: 사회복지조사론 수강 후 수강생 대상 사회복지조사 방법에 대한 인식·태도 측정</li>
+        </ul>
+        <div class="hbox hbox-red">❌ 사후검사 점수(예: 10점 척도 8점)만 있는 경우 비교 기준(준거)이 없어 높은지 낮은지 판단 불가 — 사전검사 6점 → 사후검사 8점처럼 사전·사후 비교가 있어야 "태도가 증가했다"고 말할 수 있으며, 수강이 인식·태도를 변화시켰다고 단정할 수 없음</div>
+      `
+    },
+    { icon: "📂", title: "03. 단일사례 조사설계",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">단일사례 vs 실험조사 비교 · 조사과정</span>
+          <span class="badge badge-green">설계 유형(AB·ABAB·ABCD·다중기초선)</span>
+          <span class="badge badge-purple">결과분석</span>
+        </div>
+      `
+    },
+    { icon: "📊", title: "단일사례조사설계와 실험조사설계 비교 · 조사과정",
+      html: `
+        <div class="hbox hbox-blue">단일사례 조사설계는 단일사례(N=1)를 대상으로 개입효과·성공여부를 반복측정을 통해 확인하는 방법</div>
+        <div class="sub">단일사례조사설계 vs 실험조사설계</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th class="th-blue">단일사례조사설계</th><th class="th-green">실험조사설계</th></tr>
+          <tr><td>분석단위</td><td>단일사례(N=1)</td><td>집단(N=다수)</td></tr>
+          <tr><td>목적</td><td>개입효과, 성공여부 확인</td><td>인과관계 규명</td></tr>
+          <tr><td>적용</td><td>클라이언트 개입에 대한 평가</td><td>기관의 프로그램 평가</td></tr>
+          <tr><td>측정</td><td>반복측정</td><td>사전·사후 각 1회</td></tr>
+        </table>
+        <div class="sub">단일사례 조사설계 과정</div>
+        <div class="flow">
+          <span class="flow-item">문제확인·규명</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">실험 변수 선정</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">표적행동 결정</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">개입목표 정리</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">설계유형 결정</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">조사 실시</span><span class="flow-arrow">▶</span>
+          <span class="flow-item">개입효과 평가</span>
+        </div>
+      `
+    },
+    { icon: "🔁", title: "단일사례 조사설계 유형 — AB · ABAB · ABCD · 다중기초선",
+      html: `
+        
+        <div class="hbox hbox-blue">기초선(A: 개입 이전 표적행동 관찰)과 개입(B: 개입 이후 변화 관찰) 단계를 조합해 개입 효과를 확인하는 여러 유형으로 구성 — 아래는 지각 횟수가 잦은 휠체어 이용 장애인 노동자 김씨 사례로 설명</div>
+        <div class="sub">1) AB설계</div>
+        <ul class="pts">
+          <li>단일사례 조사설계의 가장 기본적인 유형</li>
+          <li>A(기초선): 개입 이전 표적행동 상태 관찰 / B(개입): 개입 실시 후 변화 관찰</li>
+          <li>예시: 김씨 월별 지각 횟수를 몇 개월 측정(A) 후 회사가 유연근무제(B) 적용, 이후 지각 횟수가 확실히 줄어들면 유연근무제가 효과 있었다고 판단</li>
+        </ul>
+        <div class="sub">2) ABAB 설계</div>
+        <ul class="pts">
+          <li>기초선(A)-개입(B)-기초선(A)-개입(B)을 반복하는 설계</li>
+          <li>개입 제거(두 번째 A) 시 표적행동이 다시 변화하고, 재도입(두 번째 B) 시 다시 효과가 나타나는지 확인해 AB설계보다 효과를 더 명확히 확인 가능</li>
+          <li>예시: 유연근무제 적용(B)으로 지각 감소 → 제거(두 번째 A) 시 재증가 → 재도입(두 번째 B) 시 재감소 — 지각 감소가 우연이 아니라 유연근무제 때문임을 명확히 확인</li>
+        </ul>
+        <div class="hbox hbox-red">❌ 효과 있는 개입을 일부러 제거했다가 다시 도입하는 과정에서 대상자에게 일시적 불이익(고통)이 발생할 수 있어 윤리성 문제가 제기될 수 있음 — 설계 선택 시 효과 검증의 명확성뿐 아니라 윤리성까지 함께 고려해야 함</div>
+        <div class="sub">3) ABCD 설계</div>
+        <ul class="pts">
+          <li>기초선(A) 이후 서로 다른 개입(B, C, D)을 순차적으로 적용</li>
+          <li>하나가 아닌 여러 개입 방법의 효과를 비교·확인하고자 할 때 활용</li>
+          <li>예시: 유연근무제(B) 적용 후 개선 미미 → 보조공학기기 지원(C) 추가로 지각 더 감소 → 직무 재설계·재배치(D)로 한층 더 감소 — 각 개입 효과를 비교 확인</li>
+        </ul>
+        <div class="sub">4) 다중기초선 설계</div>
+        <ul class="pts">
+          <li>둘 이상의 표적행동·대상자·상황에 대해 기초선(A) 시작 시점을 서로 다르게 하여 개입(B)을 순차적으로 적용</li>
+          <li>서로 다른 시점에 개입한 여러 사례에서 각각 개입 시점에 맞추어 유사한 변화가 반복 나타나면, 그 변화가 우연이 아니라 개입 때문이라는 확신을 높일 수 있음</li>
+          <li>예시: 김씨·박씨·강씨에게 개입 시작 시점을 각각 다르게(6·11·16회차) 적용, 각자 개입 시점부터 공통적으로 지각 횟수가 줄어드는 패턴이 나타나면 효과를 더 확실히 뒷받침</li>
+        </ul>
+        <div class="hbox hbox-yellow">💡 ABAB·ABCD·다중기초선설계는 현실적으로 실행하기 쉽지 않으며, 시간·예산이 충분할 때 개입 효과를 더 뚜렷하게 확인하기 위해 선택 — 여건이 부족하면 AB설계 정도로 진행하는 경우가 많음</div>
+      `
+    },
+    { icon: "📈", title: "단일사례 조사설계 결과분석",
+      html: `
+        <div class="hbox hbox-blue">단일사례 조사설계의 결과는 시각적·통계적·실용적 분석 방법으로 판단한다</div>
+        <div class="sub">분석 방법 3가지</div>
+        <ul class="pts">
+          <li><b>시각적 분석</b>: 기초선과 개입단계의 '그래프'를 바탕으로 변화를 시각적으로 판단하는, 가장 보편적인 분석 방법</li>
+          <li><b>통계적 분석</b>: 평균비교(기초선·개입단계 자료의 평균 비교), 경향선 접근(경향선을 기준으로 개입단계 관찰점이 상단·하단에 위치할 경우 효과적인 개입으로 평가)</li>
+          <li><b>실용적 분석</b>: 변화의 크기를 임상적인 기준으로 판단해 보는 방법</li>
+        </ul>
+      `
+    },
+    { icon: "📂", title: "04. 외적타당도",
+      html: `
+        <div class="badge-row">
+          <span class="badge badge-blue">외적타당도 개념과 내적타당도 비교</span>
+          <span class="badge badge-red">외적타당도 영향요인과 반복</span>
+        </div>
+      `
+    },
+    { icon: "🌍", title: "외적타당도의 개념과 내적타당도 비교",
+      html: `
+        
+        <div class="hbox hbox-blue">외적타당도란 실험조사 결과를 어느 정도 일반화할 수 있는가, 즉 다른 대상자·다른 상황에서도 동일한 결과가 가능한가를 의미</div>
+        <div class="sub">예시</div>
+        <ul class="pts">
+          <li>출퇴근 유연근무제가 김씨가 속한 회사뿐 아니라 다른 회사의 다른 장애인 노동자들에게도 똑같이 효과가 있는가를 묻는 것이 외적타당도의 문제</li>
+        </ul>
+        <div class="sub">내적타당도 vs 외적타당도</div>
+        <table class="comp-table">
+          <tr><th>구분</th><th>핵심 질문</th></tr>
+          <tr><td><b>내적타당도</b></td><td>정말 개입 때문에 좋아졌나?</td></tr>
+          <tr><td><b>외적타당도</b></td><td>다른 사람에게도 효과가 있을까?</td></tr>
+        </table>
+      `
+    },
+    { icon: "⚠️", title: "외적타당도 영향요인과 높이는 방법(반복)",
+      html: `
+        <div class="hbox hbox-blue">외적타당도는 대표성 없는 표본, 반응적 세팅, 검사반응성, 다중개입 간섭 등에 의해 저해될 수 있다</div>
+        <div class="sub">외적타당도 영향요인</div>
+        <table class="comp-table">
+          <tr><th>영향요인</th><th>의미</th><th>설명(예시)</th></tr>
+          <tr><td><b>대표성 없는 표본</b></td><td>전체 대상(예: 전체 노인)에게 일반화할 수 있을까</td><td>서울 노인복지관 이용자 30명만 연구</td></tr>
+          <tr><td><b>반응적 세팅</b></td><td>평상시에도 같은 행동을 할까</td><td>연구자들이 옆에서 계속 관찰하는 특수한 상황</td></tr>
+          <tr><td><b>검사반응성</b></td><td>실제 생활에서도 같은 효과일까</td><td>사전검사를 받아 연구목적을 눈치챔</td></tr>
+          <tr><td><b>다중개입 간섭</b></td><td>어떤 개입 때문인지, 다른 상황에서도 같은 결과일지 판단하기 어려움</td><td>상담, 운동, 약물, 교육을 모두 받음</td></tr>
+        </table>
+        <div class="sub">외적타당도 높이는 방법 — 반복</div>
+        <ul class="pts">
+          <li>연구 결과가 한 상황에서만 확인된 것이 아니라, 여러 다른 조건에서도 동일하게 나타나는지 반복적으로 확인함으로써 외적타당도를 높일 수 있음</li>
+          <li>예시: A복지관에서 효과가 있었다면 B복지관에서도, 농촌에서도, 다른 연령대에서도, 다른 연구자가 연구하더라도 같은 결과를 얻는지 순차적으로 확인</li>
+        </ul>
+      `
+    },
+    { icon: "📝", title: "6강 핵심 요약",
+      html: `
+        <table class="comp-table">
+          <tr><th>개념</th><th>핵심 내용</th></tr>
+          <tr><td><b>조사설계</b></td><td>'변화가 있었다'에 멈추지 않고, <b>그 변화가 정말 개입 때문에 일어났는가</b>를 확인하기 위한 계획</td></tr>
+          <tr><td><b>인과관계 성립요건</b></td><td><b>공변성, 시간적 우선성, 외부 설명의 통제</b> — 내적타당도는 이 중 외부 설명의 통제와 관련</td></tr>
+          <tr><td><b>집단수준 조사설계</b></td><td>무작위 할당·통제집단·다중측정 유무에 따라 <b>순수실험설계, 유사실험설계, 전실험설계</b>로 구분</td></tr>
+          <tr><td><b>단일사례 조사설계</b></td><td>단일사례(N=1) 대상 개입효과 반복측정 — <b>AB·ABAB·ABCD·다중기초선설계</b></td></tr>
+          <tr><td><b>외적타당도</b></td><td>연구 결과를 다른 대상자·다른 상황에 일반화할 수 있는가 — <b>반복</b>을 통해 높일 수 있음</td></tr>
+        </table>
+      `
+    },
+  ]
 }
     ]
   },
@@ -8054,7 +8395,7 @@ const SUMMARY_DATA = {
         },
         { icon: '🧩', title: '1) 이슈는 공동체의 문제이다',
           html: `
-            <span class="kichul">⭐ 기출</span>
+            
             <div class="hbox hbox-blue">이슈는 사회구성원의 관점에 따라 입장 차이가 드러나며 사회정치적 문제로 부각됨 — 개인·가족과 동떨어진 문제로 보는 접근은 논리적으로 성립하지 않음</div>
             <div class="sub">이슈의 본질</div>
             <ul class="pts">
@@ -8115,7 +8456,7 @@ const SUMMARY_DATA = {
         },
         { icon: '🌍', title: '1) 세상읽기는 현실을 비판적으로 이해하는 과정이다',
           html: `
-            <span class="kichul">⭐ 기출</span>
+            
             <div class="hbox hbox-blue">이슈를 파악하고 설정하기 위해서는 세상읽기가 필요하며, 사회복지사는 문제보다 구조를 먼저 읽어야 함</div>
             <div class="sub">세상읽기의 의미</div>
             <ul class="pts">
@@ -8144,7 +8485,7 @@ const SUMMARY_DATA = {
         },
         { icon: '⚖️', title: '3) 이슈 설정의 본질: 대상화 vs 주체화',
           html: `
-            <span class="kichul">⭐ 기출</span>
+            
             <div class="hbox hbox-blue">이슈 설정은 주민을 지원의 대상으로 보는 <b>대상화</b>와 변화의 주체로 보는 <b>주체화</b>로 나뉨</div>
             <div class="sub">대상화 vs 주체화 비교</div>
             <table class="comp-table compare">
@@ -8186,7 +8527,7 @@ const SUMMARY_DATA = {
         },
         { icon: '📚', title: '2) 이슈는 주민교육과 조직화의 출발점이 된다',
           html: `
-            <span class="kichul">⭐ 기출</span>
+            
             <div class="hbox hbox-blue">주민교육은 지식 전달이 아니라 주민이 지역사회 문제를 이해하고 함께 해결할 수 있는 힘을 기르는 과정임</div>
             <div class="sub">주민교육과 조직화의 흐름</div>
             <div class="flow">
@@ -8266,7 +8607,7 @@ const SUMMARY_DATA = {
         },
         { icon: '👂', title: '1) 주민의 삶 속에서 이슈를 발견한다',
           html: `
-            <span class="kichul">⭐ 기출</span>
+            
             <div class="hbox hbox-blue">지역사회 이슈는 통계자료나 언론보도보다 주민의 일상과 경험 속에서 먼저 발견됨</div>
             <div class="sub">이슈 발견 방법</div>
             <ul class="pts">
@@ -10844,7 +11185,6 @@ const SUMMARY_DATA = {
             icon: "⚖️",
             title: "잔여주의 vs. 제도주의 ★★",
             html: `
-              <span class="kichul">⭐ 기출</span>
               <div class="hbox hbox-blue">정책론뿐 아니라 사회복지 전체에서 핵심적으로 이해해야 하는 개념 — 시장과 국가에 대한 근본적 관점의 차이</div>
               <div class="sub">두 관점의 전체 비교</div>
               <table class="comp-table">
@@ -10937,7 +11277,7 @@ const SUMMARY_DATA = {
             icon: "📜",
             title: "1601년 영국 엘리자베스 빈민법 ★★",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue">사회복지법의 기원이자 복지국가의 가장 깊은 뿌리로 평가 — 국가가 제도·법으로 처음 개입하기 시작한 시점</div>
               <div class="sub">명칭 및 의미</div>
               <ul class="pts blue">
@@ -10974,7 +11314,7 @@ const SUMMARY_DATA = {
             icon: "🏛️",
             title: "복지국가 정착기 — 스웨덴과 영국 ★",
             html: `
-              <span class="kichul">⭐ 기출</span>
+              
               <div class="hbox hbox-blue">1차 세계대전 이후~1930년대에 걸쳐 복지국가가 실제로 <b>정착</b>된 시기 — 두 나라의 역할이 결정적</div>
               <div class="sub">스웨덴 — 방향성 제시</div>
               <table class="comp-table">
@@ -18480,7 +18820,7 @@ const SUMMARY_DATA = {
     },
     { icon: '📊', title: '혼인 외 출생 비율 국가 비교',
       html: `
-        <span class="kichul">⭐ 기출</span>
+        
         <div class="hbox hbox-blue">OECD 평균 혼인 외 출생 비율은 40.2%인 반면 한국은 2.5%로 비교 대상국 중 최하위권(일본 다음)으로 낮음 — 한국은 혼인과 출산이 매우 강하게 결부된 사회 (출처: OECD(2025), Family Database)</div>
         <div class="sub">국가별 비교</div>
         <table class="comp-table">
