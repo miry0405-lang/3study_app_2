@@ -514,15 +514,15 @@ hr {
 #view-summary .ptsCK li::before { content:'☑'; color:var(--c3); position:absolute; left:0; top:0; }
 
 /* 시험 포인트 */
-#view-summary .pts {
+#view-summary .star-list {
   list-style:none; display:flex; flex-direction:column;
   gap:5px; word-break:keep-all;
 }
-#view-summary .pts li {
+#view-summary .star-list li {
   display:block; position:relative; padding-left:18px;
   font-size:.93em; line-height:1.75;
 }
-#view-summary .pts li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
+#view-summary .star-list li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
 /* 비교표 */
 #view-summary .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:4px; }
 #view-summary .comp-table { width:100%; border-collapse:collapse; font-size:.90em; margin-top:4px; }
@@ -1172,9 +1172,9 @@ hr {
 #fav-overlay .pts.red li::before { color:var(--c3); }
 #fav-overlay .pts.purple li::before { color:var(--c5); }
 #fav-overlay .pts.yellow li::before { color:var(--c4); }
-#fav-overlay .pts { list-style:none; display:flex; flex-direction:column; gap:5px; }
-#fav-overlay .pts li { display:block; position:relative; padding-left:18px; font-size:.93em; line-height:1.75; }
-#fav-overlay .pts li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
+#fav-overlay .star-list { list-style:none; display:flex; flex-direction:column; gap:5px; }
+#fav-overlay .star-list li { display:block; position:relative; padding-left:18px; font-size:.93em; line-height:1.75; }
+#fav-overlay .star-list li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
 #fav-overlay .hbox { border-radius:10px; padding:13px 15px; margin-top:8px; font-size:.93em; line-height:1.7; }
 #fav-overlay .hbox-blue { background:var(--c1l); border-left:3px solid var(--c1); }
 #fav-overlay .hbox-green { background:var(--c2l); border-left:3px solid var(--c2); }
@@ -1299,7 +1299,7 @@ hr {
 
   #fav-overlay .sub { margin:4px 0 2px !important; page-break-after:avoid; break-after:avoid; }
   #fav-overlay .pts li,
-  #fav-overlay .pts li { line-height:1.3 !important; margin:0 !important; }
+  #fav-overlay .star-list li { line-height:1.3 !important; margin:0 !important; }
   #fav-overlay .badge-row { margin-top:3px !important; gap:4px !important; }
   #fav-overlay .flow { margin-top:3px !important; }
 
@@ -1334,7 +1334,7 @@ hr {
   #fav-overlay .flow-item { background:#fff !important; color:#111 !important; border:1px solid #999 !important; }
   #fav-overlay .flow-arrow { color:#333 !important; }
   #fav-overlay .pts li::before,
-  #fav-overlay .pts li::before { color:#333 !important; }
+  #fav-overlay .star-list li::before { color:#333 !important; }
   #fav-overlay .tag,
   #fav-overlay .tag-blue, #fav-overlay .tag-green, #fav-overlay .tag-red,
   #fav-overlay .tag-yellow, #fav-overlay .tag-purple, #fav-overlay .tag-cyan {
@@ -2566,7 +2566,7 @@ const SUMMARY_DATA = {
           <li>상대적으로 덜 보이는 장면: <b>권익옹호·주민조직화·캠페인·정책 제안</b>에 참여하는 사회복지사</li>
         </ul>
         <div class="sub">핵심 문제의식</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>두 장면 모두 사회복지사가 수행할 수 있는 정당한 실천 영역이다</li>
           <li>이 강의 전체를 관통하는 문제의식: 사회복지실천을 한쪽(미시)으로만 좁혀 이해하지 않기</li>
         </ul>
@@ -2671,7 +2671,7 @@ const SUMMARY_DATA = {
           <tr><td>중복 구호를 조정함</td><td>도움 관계에 권력 비대칭이 큼</td></tr>
           <tr><td>전문직화의 토대를 마련함</td><td>—</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li>역사는 "좋다/나쁘다"의 판단이 아니라, 무엇을 보았고 무엇을 덜 보았는지를 묻는 공부다</li>
         </ul>
       `
@@ -2695,7 +2695,7 @@ const SUMMARY_DATA = {
           <tr><td>교육·문화·정책개혁을 연결함</td><td>모든 인보관이 급진적이었던 것은 아님</td></tr>
           <tr><td>옹호와 조직화의 기반을 제공함</td><td>—</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li>비판적 존중: 계승하되 신화화하지 않는다</li>
         </ul>
       `
@@ -2721,7 +2721,7 @@ const SUMMARY_DATA = {
           <tr><td>방법</td><td>개별 사정·사례관리·서비스 조정·기록</td><td>지역사회·조직화·옹호·정책 변화</td></tr>
           <tr><td>실천 계보</td><td>미시 실천 → 개별사회사업·사례관리·임상사회복지</td><td>거시 실천 → 지역사회조직·옹호·정책개입</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li>사회복지실천은 이 두 질문(개인 사정 vs 구조적 조건)을 동시에 붙드는 전문 활동이다. 한 사람의 욕구를 해결하되, 그 사람이 놓인 환경적 조건도 함께 보고 바꾸려 하되 눈앞의 한 사람을 놓치지 않는 활동이다.</li>
           <li>단, 이 "계보"는 이해를 돕는 지도일 뿐이며, 현실의 역사는 이보다 더 복잡함에 유의할 것</li>
         </ul>
@@ -2815,7 +2815,7 @@ const SUMMARY_DATA = {
           <tr><td><b>공동체의 형성</b></td><td>관계·집단 수준 개입(중시)</td><td>관계, 집단, 조직, 지역사회 자원</td></tr>
           <tr><td><b>제도의 변화</b></td><td>구조 수준 개입(거시)</td><td>옹호, 정책 제안, 거버넌스</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li>세 차원 중 하나만으로는 사회복지실천 전체를 설명하기 어렵다</li>
         </ul>
         <div class="hbox hbox-yellow">💡 그렇다고 모든 사회복지사가 세 차원을 동시에 직접 수행해야 한다는 뜻은 아니다. 중요한 것은 자신이 서 있는 자리에서 세 차원을 연결하고 통합하는 능력이다.</div>
@@ -2830,7 +2830,7 @@ const SUMMARY_DATA = {
           <tr><td><b>기능</b></td><td>사정, 개입, 연계·조정, 옹호·조직화</td></tr>
           <tr><td><b>기준</b></td><td>클라이언트의 삶, 사회적 조건, 전문직 윤리, 책무성</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li>좋은 의도만으로는 충분하지 않다. 전문적 판단과 책임이 필요하다</li>
         </ul>
       `
@@ -2882,7 +2882,7 @@ const SUMMARY_DATA = {
           <li><b>오해</b>: 사회복지사 한 명이 상담도, 조직화도, 정책도 모두 직접 해야 한다.</li>
           <li><b>핵심</b>: 자신의 역할이 어느 층위에 있든, 다른 층위와의 연결을 이해하고 협력한다.</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li>통합성은 만능성이 아니라 연결 능력이다</li>
         </ul>
         <div class="hbox hbox-yellow">💡 현실의 사회복지사는 소속 기관·직무·권한·경력에 따라 특정 역할(미시/중시/거시 중 하나)을 맡게 된다. 예컨대 미시 실천을 하더라도 사례의 중시·거시적 맥락을 이해해야 하고, 정책 실천을 하더라도 현장과 개인·가족의 삶에 대한 이해가 있어야 한다.</div>
@@ -2911,7 +2911,7 @@ const SUMMARY_DATA = {
           <tr><td><b>전문직 이미지</b></td><td>상담자·사례관리자 이미지는 선명, 조직가·옹호자 이미지는 약함</td></tr>
         </table>
         <div class="hbox hbox-yellow">💡 대상 인구(아동·청소년·여성 등)가 세분화되어 있는 점도 미시 중심 이미지를 강화하는 조건 중 하나로 언급됨.</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>"미시가 잘못"이 아니라, 연결이 약해질 위험을 말하는 것이다</li>
         </ul>
       `
@@ -2925,7 +2925,7 @@ const SUMMARY_DATA = {
           <li>집단·기관·지역 자원(중시의 연결)</li>
           <li>권리·정책·사회 조건(거시의 시야)</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li>한 사람을 돕는 일과 조건을 바꾸는 일은 서로 경쟁하지 않는다. 오히려 서로가 서로를 필요로 하고 보완한다</li>
         </ul>
       `
@@ -3429,7 +3429,7 @@ const SUMMARY_DATA = {
                   <li>연구자 — <b>청년 1인가구 연구 프로젝트</b>의 연구자로 구체화됨</li>
                   <li>자조모임 교육자 (자조 모임의 교육가)</li>
                 </ul>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>모두 같은 자격증을 가졌다. 다만 일곱 가지 다른 얼굴이다 → 사회복지사 정체성의 다중성을 보여주는 상징적 사례로, 본 강의 전체에 걸쳐 반복 적용됨</li>
                 </ul>
                 <div class="hbox hbox-yellow">💡 오늘 강의는 이 다양한 역할을 하는 사람들이 어떻게 다르고, 또 어떻게 연결되는지에 대한 이야기</div>
@@ -3446,7 +3446,7 @@ const SUMMARY_DATA = {
                   <tr><td>03</td><td>인접 직업</td><td>사회복지사와 평생교육사·민간 활동가의 경계는 어떻게 이해할 것인가?</td></tr>
                 </table>
                 <div class="hbox hbox-yellow">💡 인접 직업의 범위를 "평생교육사·민간 활동가·주민조직가" 등 인근 직업으로 조금 더 넓게 언급함</div>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>이 질문들이 본 강의의 흐름을 만든다</li>
                   <li>"사회복지사는 누구인가?"에 대한 답은 사회복지사를 만나는 사람의 위치에 따라 달라진다</li>
                 </ul>
@@ -3540,7 +3540,7 @@ const SUMMARY_DATA = {
                   <tr><td>7</td><td>정책기획분석가</td><td>Policy Analyst</td><td>정책과정에 참여</td></tr>
                   <tr><td>8</td><td>평가연구자</td><td>Researcher</td><td>효과성 평가 및 지식생산</td></tr>
                 </table>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>일곱 역할은 배타적이지 않다 — 한 사회복지사가 하루에도 여러 역할을 수행한다</li>
                   <li>경력에 따른 일반적 비중: 신입 — 임상·사례관리·교육 / 중견 — 옹호·조직·평가 / 상급 — 정책기획·연구</li>
                 </ul>
@@ -3605,7 +3605,7 @@ const SUMMARY_DATA = {
                 <ul class="pts green">
                   <li>부모교육·양육·자기관리·위기 대처·사회적 권리에 관한 지식 전달 — 구체적으로 부모교육·양육기술·자기관리·시간관리·위기대처·사회적 권리에 대한 지식까지 포함됨</li>
                 </ul>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>의식화 교육자 역할이 단순 정보 전달을 넘어 비판적 의식 형성으로 (2강 Freire 참조)</li>
                 </ul>
                 <div class="sub">인접 직업</div>
@@ -3670,7 +3670,7 @@ const SUMMARY_DATA = {
                   <li>사회복지 교육에서 옹호는 흔히 부수적 활동, 또는 사례관리의 한 단계 정도로만 다뤄져 왔다는 반성적 지적이 있음 — 이 강의는 그 자각을 회복하고자 하는 것이 핵심 주제</li>
                   <li>정책 옹호의 구체적 예시: 장애인 노동 관련법, 장애인 이동수단 관련법 제정 운동</li>
                 </ul>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>네 유형은 상호 보완적 — 사례 옹호에서 계급 옹호로, 다시 정책 옹호로 확장된다</li>
                 </ul>
               `
@@ -3693,7 +3693,7 @@ const SUMMARY_DATA = {
                   <tr><td>4. 행동</td><td>Action</td><td>실제 집단행동의 조직과 실행</td></tr>
                 </table>
                 <div class="hbox hbox-yellow">💡 사회복지 직업 정체성으로서의 조직화는 한국 사회복지학에서 아직 충분히 자리 잡지 못한 경향이 있다고 지적됨</div>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>사회복지사 = 클라이언트가 자기 이야기를 형성하고, 연결되고, 행동에 나서는 동반자</li>
                 </ul>
               `
@@ -3734,7 +3734,7 @@ const SUMMARY_DATA = {
                   <tr><td>체계·조직</td><td>동주민센터 1인가구 발굴 사업 자체의 개선 + Ganz 모델로 청년 자조 모임 조직화</td></tr>
                 </table>
                 <div class="hbox hbox-yellow">💡 체계 옹호의 구체적 방식: "사업을 지속하고 대상을 늘리는 것", "사업이 유용하고 필요가 크므로 예산·지속 기간을 늘려달라"고 요구하는 활동이 예시로 제시됨</div>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>한 사람을 위한 활동이 한 세대를 위한 활동으로 확장된다</li>
                 </ul>
               `
@@ -3789,7 +3789,7 @@ const SUMMARY_DATA = {
                   <tr><td>이용시설</td><td>사회복지관·노인복지관·장애인복지관·청소년상담복지센터 등 — 클라이언트가 일정 시간 시설을 이용하고 귀가하는 형태</td></tr>
                   <tr><td>생활시설</td><td>양로시설·장애인거주시설·아동양육시설·자립지원시설 등 — 클라이언트가 거주 시설에서 거주하는 형태</td></tr>
                 </table>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>종합사회복지관: 2024년 기준 전국 약 481개 — 한국 지역사회 복지의 거점</li>
                 </ul>
                 <div class="hbox hbox-yellow">💡 잠재력: 평생학습마을·주민자치회·마을공동체 등 실천의 자리이나, 미시 프로그램 중심에 머무름</div>
@@ -3857,7 +3857,7 @@ const SUMMARY_DATA = {
             { icon: '🎬', title: '클로징 — 일곱 얼굴, 하나의 정체성',
               html: `
                 <div class="hbox hbox-blue">임상가·사례관리자·옹호자·조직가·정책가·평가자·연구자 — 어느 하나에 머물지 않되, 가장 깊이 살고 싶은 역할을 찾는 것이 이 강의의 마무리 메시지</div>
-                <ul class="pts">
+                <ul class="star-list">
                   <li>어느 하나에 머물지 않되, 어느 하나는 가장 깊이 살고 싶은 역할이 있을 것이다</li>
                 </ul>
                 <div class="hbox hbox-yellow">💡 한국 사회복지에서 임상가는 익숙하고, 옹호자와 조직가는 다소 낯선 얼굴이다. 이 강의는 그 낯선 얼굴들을 다시 사회복지의 얼굴로 회복하려는 시도임을 강조하며 마무리됨</div>
@@ -3921,7 +3921,7 @@ const SUMMARY_DATA = {
           <li>④ 가족과의 관계</li>
           <li>⑤ 위험 신고 의무</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li>어느 원칙을 따르더라도 다른 원칙은 위반된다 — 이것이 <b>윤리적 딜레마</b>다.</li>
           <li>이 사례는 강의 전체(01~07)에 걸쳐 반복적으로 등장하며, 각 절에서 다룬 개념을 하나씩 적용해보는 통합 사례로 사용된다.</li>
         </ul>
@@ -4722,7 +4722,7 @@ const SUMMARY_DATA = {
           <li><b>권력 남용</b>: 사회복지 관계의 본질적 권력 비대칭 — 「동의」가 있어 보여도 사실상 권력 남용일 수 있다. 이중 관계 금지는 「규칙」이 아니라 「클라이언트 보호」가 본질이다</li>
         </ul>
         <div class="sub">두 가지 위험</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>전문적 판단의 왜곡 — 정서적 애착이 의사결정에 영향</li>
           <li>권력 비대칭 악화 — 다른 관계의 권력이 추가됨</li>
         </ul>
@@ -5881,7 +5881,7 @@ const SUMMARY_DATA = {
           <li>개입은 개인뿐 아니라 그를 둘러싼 <b>환경(가족·이웃·기관·정책)</b>도 대상으로 한다</li>
         </ul>
         <div class="sub">통합적 개입의 세 가지 원칙</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>클라이언트의 어려움이 <b>다층적</b>이라는 인식</li>
           <li>미시·중시·거시 세 차원이 <b>한 사례에서 통합</b>되어야 한다는 원칙</li>
           <li>한 차원에서 다른 차원으로 <b>의식적으로 이동하는 판단력</b>의 요구</li>
@@ -6087,7 +6087,7 @@ const SUMMARY_DATA = {
           <li>알코올·약물·흡연·도박·식습관·만성질환 관리에 효과 검증</li>
         </ul>
         <div class="sub">네 가지 원칙</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>공감의 표현 (empathy)</li>
           <li>모순의 발견 (현재와 원하는 미래의 모순 인식)</li>
           <li>저항의 우회 (rolling with resistance)</li>
@@ -6209,7 +6209,7 @@ const SUMMARY_DATA = {
           <li>연대 형성 (네트워킹 효과 도모)</li>
         </ul>
         <div class="sub">네 유형의 옹호</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>사례 옹호</b> — 개별 클라이언트의 권리 침해에 대한 협상</li>
           <li><b>계급 옹호</b> — 같은 처지의 집단 전체의 권익 옹호 (예: 민서 씨 한 사람이 아니라 구직 중인 청년층 집단 전체의 권익 옹호)</li>
           <li><b>정책 옹호</b> — 정책의 문제 분석·개선안 제시·입법 운동</li>
@@ -6391,7 +6391,7 @@ const SUMMARY_DATA = {
           <li>그러나 민서는 이 경험을 통해 <b>효능감</b>("내가 할 수 있겠다")을 막 느끼기 시작한 시점이다.</li>
           <li>이때 종결이 갑자기 닥치면 "이 사회복지사는 나에게 관심이 없구나" 하는 <b>버려진 느낌</b>과 정리되지 않은 감정이 남는다.</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>마무리는 사회복지의 끝이 아니라, 마지막 실천이다.</b> 오늘 강의는 이 <b>정리(마무리)의 기술과 윤리</b>를 다룬다.</li>
         </ul>
         <div class="hbox hbox-yellow">💡 이 사례는 평가의 <b>관점 문제</b>(1장)와 종결의 <b>감정 문제</b>(2장)로 이어진다. 부적절한 종결과 적절한 종결에서 클라이언트가 경험하는 것은 2장 표에서 비교한다.</div>
@@ -6410,7 +6410,7 @@ const SUMMARY_DATA = {
           <tr><td>종결 없는 관계</td><td>클라이언트에게 <b>새로운 상처</b>를 만든다</td><td>종결을 적절히 다루지 못하면 버려졌다는 느낌, 정리되지 못한 변화가 남는다</td></tr>
           <tr><td>기록의 부재</td><td><b>책무성이 약화</b>되고 다음 활동의 토대가 무너진다</td><td>기록이 부정확하면 다음 사회복지사가 잘못된 정보로 이어가고, 누락되면 활동이 입증되지 못한다</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>마무리의 질이 곧 사회복지 전체의 질이다.</b></li>
         </ul>
       `
@@ -6481,7 +6481,7 @@ const SUMMARY_DATA = {
           <li><b>사회복지사의 평가</b> — 활동의 효과·과정·결과</li>
           <li>두 평가는 <b>자주 엇갈린다.</b> 사회복지사는 "성공적 종결"이라 평가하는데 클라이언트는 "이렇게 갑자기 끊으면 어떡하느냐"고 경험할 수 있고, 그 반대도 가능하다.</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li>이 <b>두 관점의 통합</b>이 실천 평가의 핵심이다. 클라이언트의 목소리를 형식적 만족도 조사 너머의 <b>진정한 평가</b>로 발전시켜야 한다.</li>
         </ul>
       `
@@ -6500,7 +6500,7 @@ const SUMMARY_DATA = {
         <ul class="pts red">
           <li>네 목적은 상호 보완적이지만 때로 <b>긴장 관계</b>에 있다. 책무성 목적의 평가는 외부에 보여주기 위한 <b>정량 지표</b>에 집중하기 쉽고, 그것이 개선과 지식 생산의 깊이를 제약할 수 있다.</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>책무성 평가(정량 지표)와 개선·지식 평가의 균형</b>이 평가 문화의 핵심이다.</li>
         </ul>
       `
@@ -6520,7 +6520,7 @@ const SUMMARY_DATA = {
         <ul class="pts green">
           <li><b>클라이언트 · 프로그램 · 기관 · 정책</b> 수준</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>과정만 보면 의미 있는 변화를, 결과만 보면 변화의 과정을 놓친다.</b></li>
           <li>과정만 평가하면 의미 있는 변화를 만들었는지 알 수 없고, 결과만 평가하면 그 변화가 어떻게 이루어졌는지 알 수 없다.</li>
         </ul>
@@ -6627,7 +6627,7 @@ const SUMMARY_DATA = {
           <tr><td>② 조기 종결</td><td>목표 달성 전에 클라이언트가 "그만하고 싶다"며 <b>자발적으로 중단</b>하거나, 사회복지사의 <b>직장 이동·기관 사정</b></td><td><b>정서적·관계적 작업이 특히 중요.</b> 가능하면 다른 사회복지사·기관으로 <b>의뢰</b>해 지속하게 함</td></tr>
           <tr><td>③ 강제 종결</td><td>클라이언트·사회복지사의 <b>의사와 무관</b>하게 기관 폐쇄·정책 변화(사업 폐지)·법적 사유</td><td>통제할 수 없는 부분이 많지만 <b>가능한 한도의 마무리·자원 연계</b></td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li>어떤 유형이든 <b>정서적 마무리와 자원 연계의 책임은 남는다.</b></li>
         </ul>
         <div class="sub">유형별 사회복지사의 추가적 책임</div>
@@ -6637,7 +6637,7 @@ const SUMMARY_DATA = {
           <tr><td>조기 종결</td><td>정서 작업·다른 자원 의뢰·<b>왜 종결되었는지 문서화</b> / 클라이언트의 결정 존중</td></tr>
           <tr><td>강제 종결</td><td>통제 불가를 인정하되, 가능한 한도의 정서 마무리·자원 연계·<b>사후 안부</b></td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>통제 가능성이 줄어들수록 정서적 마무리의 책임은 오히려 커진다.</b></li>
         </ul>
       `
@@ -6767,7 +6767,7 @@ const SUMMARY_DATA = {
         <ul class="pts purple">
           <li>앞으로 더 두드러질 것이다. 기록 시스템 <b>표준화의 양면성</b>, 정보의 <b>영구성과 공유의 윤리</b>, <b>알고리즘</b> 등이 큰 쟁점이 된다.</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>행복e음은 효율의 도구이자, 비판적 사유의 대상이다.</b></li>
         </ul>
         <div class="hbox hbox-green"><b>한 줄 정리 (기록)</b> — 기록은 책무성을 위한 필수 활동이지만, 양이 아닌 질이 기준이고 클라이언트의 비밀·접근·잊혀질 권리와 균형을 이뤄야 한다.</div>
@@ -6807,7 +6807,7 @@ const SUMMARY_DATA = {
           <tr><td>③ 사후 안부</td><td><b>3개월·6개월</b> 후 안부를 미리 약속하고, 새로운 어려움이 생기면 <b>다시 찾을 수 있다고 알려</b> 준다</td></tr>
           <tr><td>④ 의뢰 시 연결</td><td>단순한 <b>행정적 이관</b>이 아니라 <b>정서적 연결의 자리</b>로 다룬다 → 사후관리 강화, 중도 탈락 감소</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>드롭아웃을 줄이는 것은 기술이 아니라 마무리의 문화다.</b></li>
         </ul>
       `
@@ -7217,7 +7217,7 @@ const SUMMARY_DATA = {
             title: "조사(調査)의 정의",
             html: `
               <div class="hbox hbox-blue"><b>조사</b>: 모르는 것을 알아가는 과정, 안다고 믿어 온 것이 정말 맞는지를 확인하는 과정</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li><b>핵심</b>: "자신이 알고 있다고 생각하는 것" vs "실제로 근거가 있는 지식"을 구분하는 작업</li>
               </ul>
             `
@@ -7528,7 +7528,7 @@ const SUMMARY_DATA = {
                 <li>강의보충: 증거기반실천을 공부하는 궁극적 목적은 "우리가 선택한 개입 방법·실천 전략이 정말로 도움이 되는가"를 살펴보는 것</li>
               </ul>
               <div class="sub">프락시스(Praxis)와 증거기반실천의 관계</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>프락시스(Praxis): "의미를 물으면서 실천하자"는 뜻으로, 사회복지학과에서 중요하게 사용하는 개념</li>
               </ul>
               <ul class="pts">
@@ -7564,7 +7564,7 @@ const SUMMARY_DATA = {
               <ul class="pts">
                 <li>강의보충: 의학은 사람의 생명을 다루는 분야이기 때문에 더욱 과학적·객관적·체계적인 데이터와 증거가 필요하여 증거기반 실천이 가장 먼저 시작된 영역임. 이후 교육, 심리 등 다른 학문 분과로 확산되었고, 사회복지에서는 임상과 정책 두 영역 모두에 적용됨</li>
               </ul>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>국내에서는 공계순·서인해(2006)의 「증거기반 사회복지실천에 대한 이해와 한국에서의 적용 가능성에 관한 연구」 발표 이후 활발한 논의가 진행됨 — 강의보충: 실제로 논문 제목에 '증거기반실천'이라는 용어를 직접 사용한 연구는 많지 않지만, 대부분의 양적 조사 연구들은 이론에 기반하고 과학적 데이터를 통해 결과를 제시한다는 점에서 넓은 의미의 증거기반실천 과정으로 볼 수 있음</li>
               </ul>
             `
@@ -8160,7 +8160,7 @@ const SUMMARY_DATA = {
         </table>
         <div class="hbox hbox-yellow">💡 '기술'은 정보 제공에 가까운 목적으로, 예컨대 "독거노인의 70%가 사회적 고립 상태"처럼 현재 상태를 파악하는 것이다. '탐색'은 독거노인이 혼자 밥을 먹을 때, 명절 때 등 구체적으로 어떤 상황에서 외로움을 경험하는지를 살펴보는 것이다. '척도개발'은 사회적 고립처럼 추상적인 개념을 측정 가능한 구체적 기준(예: 혼자 밥 먹는 횟수 등)으로 만드는 작업이며, 이후 별도의 장에서 다시 다룬다.</div>
         <div class="sub">③ 연구질문</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>연구질문을 구체화하는 과정이 무엇보다도 중요함</li>
         </ul>
         <div class="hbox hbox-yellow">💡 연구질문이 지나치게 추상적이거나 일반적이면 연구를 진행하기 어렵다. 예를 들어 "독거노인은 외로운가?"라는 질문은 범위가 너무 넓어 연구하기 힘들며, 더 구체화해야 연구가 가능해진다.</div>
@@ -8242,12 +8242,12 @@ const SUMMARY_DATA = {
     { icon: '💡', title: '조사연구문제 설정 — 독창성',
       html: `
         <div class="hbox hbox-blue">연구문제란 의문·질문이며, 좋은 연구문제가 되려면 <b>독창성</b>이 필요하다</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>좋은 연구는 좋은 질문에서 시작한다!</li>
         </ul>
         <div class="hbox hbox-yellow">💡 독창성이란 이미 많은 연구자가 반복해온 연구를 그대로 다시 하지 않는 것을 의미한다. 같은 주제라도 기존 연구의 한계에 대한 제언을 살펴보거나, 기존 연구들을 검토했을 때 특정 영역이 빠져 있음을 발견하는 등, 새로운 질문을 찾아내는 것이 독창성이다.</div>
         <div class="sub">문제의식이 좋은 연구문제로 구체화되는 예시</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>노인 문제는 심각한가?</li>
           <li>독거노인은 외로운가?</li>
           <li>독거노인의 사회적 관계망은 사회적 고립에 어떤 영향을 미치는가?</li>
@@ -8370,7 +8370,7 @@ const SUMMARY_DATA = {
           <li>가설은 명제와 관련성이 있어야 하며, 다수의 가설·사실 관계들로 명제를 검증해 나감</li>
         </ul>
         <div class="sub">예시: 명제 → 가설 도출</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>명제: "사회적 관계가 많은 노인이 더 행복하다"</li>
           <li>가설 1: 친구와 만나는 횟수가 많을수록 생활만족도가 높을 것이다</li>
           <li>가설 2: 사회단체 참여횟수가 많을수록 생활만족도가 높을 것이다</li>
@@ -8387,7 +8387,7 @@ const SUMMARY_DATA = {
           <tr><td>대립가설(alternative hypothesis)</td><td>연구가설</td><td>연구자 주장이 담긴, 이론으로부터 도출된 가설</td></tr>
           <tr><td>영가설(null hypothesis)</td><td>귀무가설</td><td>대립가설을 기각하기 위해 설정하는 가설</td></tr>
         </table>
-        <ul class="pts">
+        <ul class="star-list">
           <li>귀무가설을 기각하면 연구가설을 지지하는 근거를 확보하게 된다</li>
           <li>통계분석을 통해 '관계가 없다'는 주장(귀무가설)을 기각할 수 있는가를 확인하는 것이 가설검증의 핵심 논리이다</li>
         </ul>
@@ -8523,7 +8523,7 @@ const SUMMARY_DATA = {
         
         <div class="hbox hbox-blue">순수실험설계는 통제집단이 있고 무작위 할당이 이루어지는, 인과관계 확인에 가장 이상적인 방법</div>
         <div class="sub">순수실험설계 3가지 유형</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>통제집단 사전-사후검사 설계</li>
           <li>통제집단 사후검사 설계</li>
           <li>솔로몬 4집단 설계</li>
@@ -8985,7 +8985,7 @@ const SUMMARY_DATA = {
     { icon: "📈", title: "신뢰도를 높이는 방법",
       html: `
         <div class="hbox hbox-blue">측정도구의 신뢰도를 향상시키기 위한 여섯 가지 방법이다.</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>측정도구의 모호성을 제거한다.</li>
           <li>측정항목의 수를 늘린다. 예를 들어 복지 태도를 10문항만으로 측정하면 문항이 매우 명확하게 잘 만들어지지 않은 이상 신뢰도가 불안정해질 수 있는데, 문항 수를 50문항 정도로 늘리면 일반적으로 신뢰도가 더 높아진다.</li>
           <li>측정자의 측정 방식과 태도에 일관성을 유지한다.</li>
@@ -9140,7 +9140,7 @@ const SUMMARY_DATA = {
           <li>반면 <b>척도</b>는 우울이라는 하나의 개념에 대해 관련 문항을 여러 개 만들고 그 응답을 하나의 점수로 낸다.</li>
         </ul>
         <div class="sub">척도 구성 시 중요한 원칙</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>단일차원성</b> — 삶의 만족도 척도라면 모든 문항이 삶의 만족도라는 한 방향을 가리켜야 한다. 당연해 보이지만 조사에서는 이를 단일차원성이라는 개념으로 표현한다.</li>
         </ul>
       `
@@ -9301,7 +9301,7 @@ const SUMMARY_DATA = {
           <span class="badge badge-green">⑤ 기타</span>
         </div>
         <div class="sub">두 가지 바탕 원칙</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>포괄성</b> — 응답자가 체크할 항목이 반드시 있어야 한다. 위 예에서 '기타'가 없다면 시설에서 거주하는 사람이나 무상으로 거주하는 사람은 체크할 곳이 없다. 그래서 설문 문항에는 기타 항목을 많이 둔다.</li>
           <li><b>상호배타성</b> — 두 항목에 동시에 체크되지 않아야 한다. 연령 문항에서 1번이 '20세 이하', 2번이 '20세~30세'이면 20세인 사람은 두 곳에 모두 해당한다. 이는 척도를 잘못 만든 것이며 2번을 '21~30세'로 해야 한다.</li>
         </ul>
@@ -9318,7 +9318,7 @@ const SUMMARY_DATA = {
     { icon: '📝', title: '리커트 척도',
       html: `
         <div class="hbox hbox-blue">여러 문항의 응답점수를 합산하여 응답자의 태도나 인식 수준을 하나의 점수로 나타내는 척도 — 일반적으로 '매우 그렇다'에서 '전혀 그렇지 않다'까지 4~5개의 서열화된 범주로 구성한다.</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>사회조사에서 가장 많이 사용하는 척도</b></li>
         </ul>
         <div class="sub">예) '복지의식' 측정 — 문항 형태</div>
@@ -9354,7 +9354,7 @@ const SUMMARY_DATA = {
     { icon: '🪜', title: '거트만 척도',
       html: `
         <div class="hbox hbox-blue">질문을 약한 수준에서 강한 수준으로 순서대로 배열하고, 응답자가 어느 수준까지 동의하는지 측정하는 척도 — 더 강한 수준에 동의한 사람은 그보다 약한 수준에도 동의할 것이라고 예상한다.</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>응답의 일관성</b>이 가장 중요하다.</li>
         </ul>
         <div class="sub">예시 문항 (외국인 노동자에 대한 인식)</div>
@@ -9582,7 +9582,7 @@ const SUMMARY_DATA = {
           <li>가능하면 <b>뒤쪽</b>에 배치한다. 앞에서 설문에 익숙해진 뒤 구체적이고 난해한 문항을 두는 것이다.</li>
         </ul>
         <div class="sub">순서효과</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>깔때기 접근방식</b>으로 해결한다 — 처음에는 느슨하게 일반적인 내용을 묻고 점점 구체적인 내용으로 좁혀 간다. 어려운 문항을 뒤에 두는 원칙과 비슷한 개념이다.</li>
         </ul>
       `
@@ -9855,7 +9855,7 @@ const SUMMARY_DATA = {
                 <li>매뉴얼이 10개, 100개, 1,000개로 계속 증가하면서 전문성 향상의 기준이 만들어지나, 매뉴얼에서 제외되는 사람이 발생하고 현상과 상황 자체에 신경 쓸 여력이 없어짐 → 결식아동의 숫자도 계속 늘어나는 역설적 상황</li>
               </ul>
               <div class="sub">예시</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>무료 경로식당 이용 기준(소득, 가족 구조 등)에 맞는가?</li>
                 <li>결식청년·천원학식 사례 — 국가와 사회가 부유해짐에도 불구하고 새로운 대상(청년)에 대한 매뉴얼만 계속 추가될 뿐, 왜 식품 빈곤 문제가 반복해서 나타나는지 본질에는 다가가지 못함</li>
               </ul>
@@ -9989,7 +9989,7 @@ const SUMMARY_DATA = {
               <div class="sub">사회복지사의 시선 전환</div>
               <div class="hbox hbox-blue">문제 확인에서 <b>삶의 이해</b>로 이동 필요</div>
               <div class="sub">사회복지사가 물어야 할 질문들</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>"<b>무엇이 부족한가</b>"와 함께</li>
                 <li>"<b>어떤 삶의 과정을 지나왔는가</b>"</li>
                 <li>"<b>어떤 관계 안에서 지지받거나 배제되었는가</b>"</li>
@@ -10025,7 +10025,7 @@ const SUMMARY_DATA = {
             html: `
               <div class="hbox hbox-blue">지역사회복지는 필연적으로 <b>민주주의</b>와 연결됨</div>
               <div class="sub">지역사회복지의 목표</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>주민이 자신의 삶과 지역사회에 대해 발언할 수 있고</li>
                 <li>지역사회 의사결정 과정에 참여하며</li>
                 <li>함께 변화를 만들어가는 힘을 갖도록 하는 것</li>
@@ -10196,7 +10196,7 @@ const SUMMARY_DATA = {
             html: `
               <div class="hbox hbox-blue"><b>지역사회복지론</b>: 지역사회에서 발생하는 문제를 어떻게 이해하고, 누구와 함께 해결할 것인지 생각하는 힘을 기르는 학습</div>
               <div class="sub">현상을 당연하게 받아들이지 않기</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>익숙한 장면 속에서 질문을 발견</li>
                 <li>침묵 속에서 배제된 목소리를 끌어냄</li>
               </ul>
@@ -12143,7 +12143,7 @@ const SUMMARY_DATA = {
           <li>소외된 주민들의 참여를 우선적으로 보장</li>
         </ul>
         <div class="sub">★ 열린 연대의 조건</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>쉬운 언어와 충분한 정보</li>
           <li>접근 가능한 장소</li>
           <li>이동·돌봄·통역 지원</li>
@@ -12187,7 +12187,7 @@ const SUMMARY_DATA = {
           <li>강의 전체를 관통하는 핵심어는 <b>인간다운 삶</b>이다. 그 누구도 인간다운 삶에서 소외되거나 억압받아서는 안 되며, 이는 <b>공동의 책임</b>이다</li>
         </ul>
         <div class="sub">학습목표</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>사익은 무엇인가, 개인과 사익·지역사회와 사익의 관계를 파악한다</li>
           <li>공공성의 개념에 대해 이해한다</li>
           <li>사익과 공공성의 갈등에 대해 파악한다</li>
@@ -12465,7 +12465,7 @@ const SUMMARY_DATA = {
           <li>찬반의 구도로 접근하는 것은 매우 기계적인 접근이다. 이는 두 집단의 의견을 마치 대등한 것처럼 보이게 만들지만, 실제로는 어느 한쪽의 기본적 인권·생존권이 약화되고 있다면 저울은 이미 기울어져 있는 것이다</li>
         </ul>
         <div class="sub">지역사회복지사가 던져야 할 질문</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>누구의 이익이 우선되고 있는가?</li>
           <li>누구의 권리가 제한되고 있는가?</li>
           <li>사회적 약자의 권리는 충분히 고려되었는가?</li>
@@ -12621,7 +12621,7 @@ const SUMMARY_DATA = {
           <li>이번 9강을 끝으로 지역사회 이슈에 대한 학습이 마무리되며, 다음 강의부터는 교육을 통한 조직화, 시민 실천의 조직화를 다루게 된다</li>
         </ul>
         <div class="sub">학습목표</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>지역사회에서 갈등이 발생하는 원인에 대해 파악한다</li>
           <li>지역사회에서 토론이 필요한 이유를 이해한다</li>
           <li>지역사회 이슈가 갈등으로 나타난 사례에 대해 파악한다</li>
@@ -13132,7 +13132,7 @@ const SUMMARY_DATA = {
           <li>원인을 분석할 때는 주민들의 이야기를 직접 듣는 것에서 출발한다 — 비슷한 삶을 살아온 사람들에게서 유사한 문제 상황이 반복되고 있음을 발견하게 되며, 이는 지역사회(공동체)의 구조가 그들의 삶을 제대로 지원하거나 뒷받침하지 못하고 있음을 보여준다</li>
         </ul>
         <div class="sub">사례</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>청년 실업 문제는 청년 개인의 실력·노력 부족이 아니라, 청년이 노동시장에 진입할 수 있는 사회 구조적 환경이 마련되지 못한 문제로 이해해야 한다</li>
           <li>농어촌 총각의 결혼 문제 역시 개인(총각)의 문제가 아니라 농촌이라는 구조의 문제로 바라보아야 한다</li>
         </ul>
@@ -13225,7 +13225,7 @@ const SUMMARY_DATA = {
         </ul>
         <div class="hbox hbox-yellow">💡 사회복지사가 먼저 찾아가는 이유는 주민이 자신이 살고 있는 생활공간을 '안전한 공간'으로 인식하기 때문이다 — 복지관과 같은 형식적인 공간보다 생활공간에서 이야기할 때 훨씬 더 자연스럽게 관계와 신뢰를 맺을 수 있고, 대화와 교육의 기회도 마련할 수 있다</div>
         <div class="sub">사례</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>서울시의 '찾아가는' 서비스 — 생활·복지 상담을 위해 사회복지사가 직접 주민을 찾아가는 서비스</li>
         </ul>
       `
@@ -18414,7 +18414,7 @@ const SUMMARY_DATA = {
     { icon: "🎯", title: "앞으로 나아가야 할 방향 ★",
       html: `
         <div class="hbox hbox-blue">철학(보편복지), 재원(소득이전), 세력(시민력)이라는 세 가지 축이 함께 갖춰져야 함을 시사하며 마무리됨</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>철학: 보편복지</li>
           <li>재원: 소득이전</li>
           <li>세력: 시민력</li>
@@ -18759,7 +18759,7 @@ const SUMMARY_DATA = {
               <li><b>상호작용:</b> 사람과 상황 사이의 연속적인 상호작용을 나타냄</li>
             </ul>
             <div class="sub">사회적 행동의 근본적인 동기</div>
-            <ul class="pts">
+            <ul class="star-list">
               <li><b>사회적 유대형성</b> — 인간행동에 내재한 가장 기본적인 동기 (인간은 사회적 동물). 사회적 고립으로 인한 괴로움은 출혈을 동반한 외상을 입었을 때 느끼는 고통과 유사함(마취제로 진정)(Panksepp, 2005). 최근 사회적 고립·은둔형 문제가 늘고 있는데, 이런 고통은 실제 신체적 외상의 고통과 유사한 강도이며, 마취제가 그 고통을 진정시키는 효과를 발휘함</li>
               <li><b>자신과 타인이해하기</b> — 자신과 타인이해는 삶을 더욱 효율적으로 만들며, 이러한 현실과의 '접촉이 끊긴' 사람은 사회집단에서 살아남기 쉽지 않음. 사회적 인지는 다른 사람들을 돌보고 해석하고 기억하는 것과 관련된 정서적 과정으로 모든 인간관계에서 본질적임</li>
               <li><b>지위를 얻고 유지하기</b> — 당장의 물질적 이득뿐만 아니라 다른 사람의 존경과 존중을 얻는 사회적 이득도 있음. 타인에게 자신의 긍정적 측면을 드러내는 것뿐만 아니라 자신의 당당한 행동을 확인하기 위해서도 중요함 (예: 대학생과 학점, 직장인과 승진, 정치인과 당선, 학위 취득)</li>
@@ -19366,7 +19366,7 @@ const SUMMARY_DATA = {
           html: `
             <div class="hbox hbox-blue">현대사회는 고정되고 안정된 사회가 아니라 끊임없이 변화하며 고정된 삶의 방식이나 정체성을 유지하기 어려운 유동적인 사회</div>
             <div class="sub">액체근대의 다섯 가지 특징</div>
-            <ul class="pts">
+            <ul class="star-list">
               <li><b>불확실성:</b> 미래 예측이 어려움. 새로운 기술 등장과 직업변화 등 AI가 등장한 지 채 5년도 되지 않아 사회가 크게 변했고, AI를 탑재한 로봇이 생산 공정에 투입되는 등 예측이 어려운 변화가 계속됨</li>
               <li><b>유동성:</b> 모든 것이 빠르게 변함 — 직업, 기술, 가치관, 인간관계</li>
               <li><b>개인화:</b> 과거에는 가족, 학교, 지역사회가 삶의 방향을 어느 정도 결정해 주었으나, 오늘날에는 개인이 모든 것을 선택하고 책임짐</li>
@@ -20021,7 +20021,7 @@ const SUMMARY_DATA = {
               <li>아들러는 인간을 여러 심리 요소로 분해해서 보지 않고, 삶의 목표와 사회적 관계를 포함한 '나눌 수 없는 하나의 통합된 존재(indivisible whole)'로 보았음</li>
             </ul>
             <div class="sub">개인심리학의 두 가지 기본관점</div>
-            <ul class="pts">
+            <ul class="star-list">
               <li>개인은 나눌 수 없는 통합된 존재다</li>
               <li>그 통합된 존재는 사회 속에서 다른 사람과 함께 살아간다</li>
             </ul>
@@ -20030,7 +20030,7 @@ const SUMMARY_DATA = {
         { icon: "📜", title: "이론적 전제",
           html: `
             <div class="hbox hbox-blue">아들러 개인심리학이 인간을 바라보는 다섯 가지 기본전제</div>
-            <ul class="pts">
+            <ul class="star-list">
               <li>인간은 통일되고 자아일치된 유기체다(통일되고 자아일치된 성격구조: 생활양식)</li>
               <li>역동적으로 완성을 추구하며 인생목표를 향해 전진한다</li>
               <li>개인이 창조적인 힘을 가지고 자기 삶을 결정할 수 있다</li>
@@ -21123,7 +21123,7 @@ const SUMMARY_DATA = {
             <div class="hbox hbox-blue">매슬로는 자기실현적 인간의 특징을 원래 15가지 정도로 제시했으며, 강의에서는 그중 세 가지를 예시와 함께 구체적으로 설명함</div>
             <div class="hbox hbox-yellow">📝 문헌에 따라 11~12가지로 축약해서 제시되기도 함. 아래는 슬라이드에 제시된 전체 목록이며, 이 중 굵게 표시된 세 가지는 강의에서 예시와 함께 구체적으로 설명됨</div>
             <div class="sub">전체 특징 목록</div>
-            <ul class="pts">
+            <ul class="star-list">
               <li><b>현실을 효율적으로 지각하고 현실과 편안한 관계를 맺음</b></li>
               <li>자신, 타인, 자연을 있는 그대로 수용함</li>
               <li>자발성, 단순성, 자연스러움을 지닌 생활</li>
@@ -21645,7 +21645,7 @@ const SUMMARY_DATA = {
           html: `
             <div class="hbox hbox-blue">★긍정적 기능은 강화하고 불평등과 부담은 줄이는 방향으로, 가족의 돌봄 기능 강화·공정한 분담·민주적 의사결정·다양성 존중·기회격차 완화가 필요함</div>
             <div class="sub">통합적 관점의 실천적 시사점</div>
-            <ul class="pts">
+            <ul class="star-list">
               <li><b>가족의 돌봄과 정서적 지지 기능 강화:</b> 기능주의든 갈등론이든 공통적으로 인정하는 가족의 가장 기본적이고 소중한 가치이므로, 이를 어떻게 지속적으로 강화할지 고민이 필요함</li>
               <li><b>역할과 부담의 공정한 분담:</b> 눈에 잘 보이지 않는 가사·돌봄노동(★그림자노동)도 중요한 노동으로 인정하고 공정하게 나눌 수 있도록 고민해야 함</li>
               <li><b>가족 내 민주적인 의사결정:</b> 갈등론적 관점에서는 경제적 기여(외부에서 돈을 벌어오는 것)가 큰 사람이 더 큰 의사결정권을 갖는다고 분석하는데, 실제로 그렇게 독점하지 않도록 하고 그림자노동의 가치도 함께 인정해야 함</li>
@@ -21806,7 +21806,7 @@ const SUMMARY_DATA = {
               <li>기존 가족관계가 완전히 사라지지 않으며, 친부모·전배우자·계부모와 자녀가 여러 가구에 걸쳐 관계를 이어감</li>
             </ul>
             <div class="sub">재결합가족의 주요 과제</div>
-            <ul class="pts">
+            <ul class="star-list">
               <li>이전 배우자와 새 배우자의 관계를 ★조정해야 함</li>
               <li>계부모의 역할과 권한이 분명하지 않을 수 있음 → 어느 정도 자녀를 훈육하고 돌보아야 하는지를 협의해야 함</li>
               <li>자녀가 친부모와 계부모 사이에서 충성심 갈등을 경험할 수 있음</li>
@@ -22598,7 +22598,7 @@ const SUMMARY_DATA = {
       html: `
         <div class="hbox hbox-blue">건강한 집단은 목표와 역할이 명확하고, 반대 의견을 안전하게 표현할 수 있으며(★심리적 안전감), 정보를 개방적으로 공유하고 갈등을 건설적으로 다루는 특징을 가짐</div>
         <div class="sub">건강한 집단의 조건</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>목표와 역할이 명확하다:</b> 상황이 변하거나 구성원의 능력이 달라지면 역할을 재조정할 수 있어야 하며, 역할이 경직되어 개인의 참여와 성장을 막아서는 안 됨</li>
           <li><b>반대 의견을 안전하게 표현할 수 있다:</b> ★심리적 안전감(Psychological safety)은 구성원들이 질문하고, 도움을 요청하며, 실수를 인정하거나 반대 의견을 제시해도 모욕이나 불이익을 받지 않을 것이라는 공유된 믿음임. 집단은 유지되는 것을 넘어 계속 발전·발달해야 하므로, 자유롭게 의견을 말할 수 있는 구성원이 있어야 함</li>
           <li><b>정보를 개방적으로 공유한다:</b> 일부 사람에게만 정보와 발언권이 집중되지 않도록 하며, 구성원 각자가 가진 독특한 정보를 토론에 포함시킴</li>
@@ -23248,7 +23248,7 @@ const SUMMARY_DATA = {
       html: `
         <div class="hbox hbox-blue">건강한 조직은 구성원과 관리자가 협력하여 건강·안전·안녕과 조직의 지속가능성을 향상시키며, WHO의 ★건강한 일터 모형이 대표적 기준을 제시함</div>
         <div class="sub">건강한 조직의 조건</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>건강한 조직은 구성원과 관리자가 협력하여 구성원의 건강, 안전과 안녕 및 조직의 지속가능성을 지속적으로 향상하는 조직</li>
           <li>세계보건기구의 ★건강한 일터 모형(Healthy Workplace Framework and Model): 물리적 작업환경, 심리사회적 작업환경, 개인 건강자원과 지역사회에 대한 조직의 참여를 함께 고려해야 함(WHO, 2010)</li>
           <li>건강한 조직은 구성원에게 명확한 역할, 적정한 업무량, 자율성·사회적 지원과 공정한 절차를 제공해야 함</li>
@@ -23424,7 +23424,7 @@ const SUMMARY_DATA = {
             title: "헌법 제34조와 사회복지의 법적 근거",
             html: `
               <div class="hbox hbox-blue">대한민국헌법 제34조는 인간다운 생활을 할 권리와 국가의 사회보장·복지 증진 의무를 규정한 사회복지의 최고 법적 근거</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>① 모든 국민은 인간다운 생활을 할 권리를 가진다</li>
                 <li><b>② 국가는 사회보장·사회복지의 증진에 노력할 의무를 진다</b> ← 가장 핵심</li>
                 <li>③ 국가는 여자의 복지와 권익의 향상을 위하여 노력하여야 한다</li>
@@ -23560,7 +23560,7 @@ const SUMMARY_DATA = {
             html: `
               <div class="hbox hbox-blue">성폭력, 성희롱, 가정폭력, 디지털 성범죄 등 여성에게 특정하게 발생하는 젠더 기반 위험이 존재</div>
               <div class="sub">주요 젠더 기반 위험</div>
-              <ul class="pts">
+              <ul class="star-list">
                 <li>성폭력, 성희롱</li>
                 <li>디지털 성범죄(딥페이크 등)</li>
                 <li>가정폭력, 데이트폭력</li>
@@ -24380,7 +24380,7 @@ const SUMMARY_DATA = {
       html: `
         <div class="hbox hbox-blue">유럽 국가들이 200~300년에 걸쳐 겪은 가족·결혼관의 변화를, 한국은 산업 구조의 압축적 성장("한강의 기적")과 마찬가지로 불과 3~40년 만에 이루어냄</div>
         <div class="sub">핵심 시사점</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>산업 구조와 마찬가지로 가족에 대한 태도, 결혼관에 대한 인식 역시 수십 년 사이에 급격히 변화해 왔음</li>
         </ul>
       `
@@ -24552,7 +24552,7 @@ const SUMMARY_DATA = {
       html: `
         <div class="hbox hbox-blue">가족의 형태와 의미가 급변하는 이 시점에서, 여성의 역할과 정체성을 재정비하고 여성복지가 가족구조 변화에 유연하게 대응해야 함</div>
         <div class="sub">함께 생각해 봅시다 (우리의 과제)</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>지금의 가족 정책과 사회복지 제도들은 변화된 가족의 모습을 충분히 반영하고 있는가?</li>
           <li>대안적 가족에 대한 수용도 — '정상가족' 이데올로기는 해체되어야 할까?</li>
         </ul>
@@ -25093,7 +25093,7 @@ const SUMMARY_DATA = {
           <li>청년 여성 / 중장년 여성 / 여성 노인</li>
         </ul>
         <div class="sub">고민할 지점들</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>젠더 관점이 반영된 사회복지정책의 필요성</li>
           <li>여성 노인 빈곤 해결을 위한 소득보장제도</li>
           <li>독거노인 및 취약 노인에 대한 신체적, 심리적, 사회적 지원 강화</li>
@@ -25650,7 +25650,7 @@ const SUMMARY_DATA = {
       html: `
         <div class="hbox hbox-blue">가정폭력 문제 해결을 위해서는 인식개선·신고 활성화, 초기대응·법제도 개선, 피해자 보호시설 지원 강화, 여성 인권 보장이 함께 이루어져야 함</div>
         <div class="sub">논의 지점</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>가정폭력에 대한 인식변화가 필요함 — 인식 개선과 신고의 활성화</li>
           <li>초기대응 및 특례법 적용에서의 문제점</li>
           <li>피해자 보호시설 지원 강화</li>
@@ -26050,7 +26050,7 @@ const SUMMARY_DATA = {
       html: `
         <div class="hbox hbox-blue">디지털 전환 시대의 여성 노동을 둘러싼 기회와 위협, 성평등 노동의 가능성에 대해 함께 생각해볼 질문들</div>
         <div class="sub">논의 주제</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>"디지털 전환 시대에 여성의 기회 요인과 위협 요인은 무엇이 있을까?" ("여성에게 4차 혁명은 기회인가, 위협인가?")</li>
           <li>"평등한 노동은 가능한가?"</li>
           <li>"성별에 따라 직업을 다르게 선택하는 것은 자연스러운 일일까?"</li>
@@ -28478,7 +28478,7 @@ const SUMMARY_DATA = {
           <li>구애 행동을 할 수 있는 건강·소득·이동성에서의 문제</li>
           <li>죽음을 앞두고 얼마 남지 않은 기간 동안 관계에 투자하고 싶지 않은 노인들의 성향</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li>But, 인구 고령화로 인한 노인재혼에 대한 태도 변화 + 노년기의 장기화로 노인재혼이 증가 추세</li>
         </ul>
         <div class="hbox hbox-yellow">💡 고령화로 인해 혼자 살아야 하는 기간이 예상보다 길어지면서 노인의 재혼에 대한 태도가 변화하고 있으며, <b>노인 재혼 여부는 당사자의 의사가 가장 중요</b>하다는 점, 제3자가 대신 살아주는 것이 아니라는 점이 강조됨</div>
@@ -28520,7 +28520,7 @@ const SUMMARY_DATA = {
         <ul class="pts">
           <li>일정 기간 동거 후에도 재혼 또는 해체되지 않는 경향을 보임</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>프랑스의 팍스(PACS: pacte civil de solidarité, 1999)</b>: 초반에는 동성커플을 법적으로 보호하는 의미가 강했으나, 최근 동성혼이 인정(2013)되면서 동성커플보다 <b>재혼을 원하지 않는 노년층</b>에서 이 제도를 더 선호하는 경향을 보임</li>
         </ul>
         <div class="sub">팍스(PACS) 제도의 특징</div>
@@ -28558,7 +28558,7 @@ const SUMMARY_DATA = {
     { icon: '📉', title: '배우자와의 사별과 스트레스 척도',
       html: `
         <div class="hbox hbox-blue">배우자와의 사별은 일생 중 가장 큰 스트레스를 동반하는 사건이며, 홈스와 라헤의 척도상 최고점(100점)에 해당함</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li><b>홈스와 라헤(Holmes & Rahe)의 사회재적응평가척도</b>: 의사였던 홈스와 라헤는 병원 입원 환자들을 관찰한 결과, 입원 6개월~1년 전에 여러 생활사건을 경험한 경우가 많다는 점에 착안하여, 생활사건이 큰 스트레스가 되어 신체화된다는 것을 밝히는 척도를 개발함</li>
         </ul>
         <div class="sub">척도의 구성</div>
@@ -28768,7 +28768,7 @@ const SUMMARY_DATA = {
           <li>서구 복지국가는 노후소득이 공적이전을 중심으로 구성되나, 한국은 공적이전의 비중이 낮고 사적이전과 근로소득의 비중이 높음</li>
           <li>노인의 빈곤 여부는 가족, 특히 자녀세대로부터의 사적이전 소득의 여부와 규모에 따라 달라짐</li>
         </ul>
-        <ul class="pts">
+        <ul class="star-list">
           <li>우리나라는 서구 복지국가에 비해 노인빈곤율이 높은 편임</li>
         </ul>
         <div class="sub">노인빈곤율 정의</div>
@@ -28821,7 +28821,7 @@ const SUMMARY_DATA = {
     { icon: '💭', title: '독거노인의 삶의 의미·우울·자살생각',
       html: `
         <div class="hbox hbox-blue">독거노인은 비독거노인에 비해 삶의 의미 수준은 낮고 자살생각·우울수준은 높으며, 우울이 삶의 의미와 자살생각 사이를 완전매개함</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>비독거노인에 비해 독거노인의 <b>삶의 의미 수준은 낮고, 자살생각·우울수준은 높음</b></li>
         </ul>
         <div class="sub">삶의 의미-우울-자살생각의 관계</div>
@@ -28924,7 +28924,7 @@ const SUMMARY_DATA = {
           <li>경도인지장애 유병률('23): <b>28.42%</b></li>
         </ul>
         <div class="sub">치매 고위험군</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>치매 고위험군: <b>여성, 고령, 농어촌, 독거가구, 교육수준이 낮은 경우</b></li>
         </ul>
         <div class="sub">치매환자 가족의 돌봄 부담</div>
@@ -29519,7 +29519,7 @@ const SUMMARY_DATA = {
     { icon: '💬', title: '여가활동을 통해 충족되는 욕구(카플란)',
       html: `
         <div class="hbox hbox-blue">카플란은 노년기 여가활동을 통해 충족되는 8가지 욕구를 제시했으며, 이러한 욕구 충족은 성공적 노화와 삶의 만족으로 이어짐</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>사회적으로 유용한 서비스를 제공하려는 욕구</li>
           <li>사회에서 소속감을 느끼고 싶은 욕구</li>
           <li>동반자 관계를 갖고 싶은 욕구</li>
@@ -29624,7 +29624,7 @@ const SUMMARY_DATA = {
           <li>삶의 만족과 여가 만족이 대체로 "보통" 수준. 노년기가 길어지는 만큼 노년기 삶의 만족은 전체 삶에서 중요한 비중을 차지하므로 정책적 지원 필요</li>
         </ul>
         <div class="sub">여가문화활동 참여실태(2023년 노인실태조사)</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>노인의 <b>82.3%가 지난 1년간 여가문화활동에 참여</b>함</li>
         </ul>
         <ul class="pts blue">
@@ -29639,7 +29639,7 @@ const SUMMARY_DATA = {
       html: `
         <div class="hbox hbox-blue">남성·저연령·고학력·고소득·건강한 노인일수록 여가활동에 적극적으로 참여하며, 참여하지 못하는 가장 큰 이유는 "어떻게, 무엇을 해야 할지 몰라서"임</div>
         <div class="sub">여가활동 참여에 영향을 미치는 요인</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>남성, 저연령, 고학력, 고소득, 건강한 노인이 여가활동에 적극적으로 참여함</li>
         </ul>
         <div class="sub">여가활동에 참여하지 못하는 이유</div>
@@ -29719,7 +29719,7 @@ const SUMMARY_DATA = {
     { icon: '📊', title: '노년기 자원봉사활동 참여율',
       html: `
         <div class="hbox hbox-blue">우리나라 전체 자원봉사 참여율은 약 10%에 불과하며, 65세 이상 노인의 참여율은 약 2.5%로 더욱 낮은 수준임</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>통계청 사회조사: 우리나라 전체 인구 중 자원봉사활동 참여 비율은 <b>약 10%</b>에 불과(다른 나라 대비 낮은 수준)</li>
         </ul>
         <ul class="pts">
@@ -30196,7 +30196,7 @@ const SUMMARY_DATA = {
     { icon: '❗', title: '노인복지정책의 필요성',
       html: `
         <div class="hbox hbox-blue">노인복지정책은 인구고령화, 가족구조 변화, 여성의 사회참여 증가, 가치관 변화, 사회공헌에 대한 보상이라는 5가지 필요성에 근거함</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>5가지 필요성: 인구고령화 / 산업화로 인한 가족구조의 변화 / 여성의 사회참여 증가 / 가치관의 변화 / 사회공헌에 대한 보상</li>
         </ul>
         <div class="sub">필요성 상세 설명</div>
@@ -31312,7 +31312,7 @@ const SUMMARY_DATA = {
           <li><b>노인의료비 증가</b>: 요양보호가 필요한 사람이 오히려 장기 입원을 하게 되면서 개인·가족의 경제적 부담과 국가 재정 부담이 심화됨. 의료비 절감을 위해 장기요양 보호의 제도화가 필요함</li>
         </ul>
         <div class="sub">제도 도입의 기대효과</div>
-        <ul class="pts">
+        <ul class="star-list">
           <li>노인의 삶의 질 향상(지속적 서비스로 일상생활 영위)</li>
           <li>가족 부양 부담 완화</li>
           <li>노인의료비 감소</li>
