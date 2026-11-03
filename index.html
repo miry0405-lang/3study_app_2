@@ -357,31 +357,8 @@ hr {
   display:flex; align-items:center; gap:10px;
   margin-bottom:8px;
 }
-#view-summary .sum-header-row1 {
-  display:flex; justify-content:space-between;
-  align-items:flex-start; margin-bottom:8px;
-}
 #view-summary .sum-header-titles h1 { font-size:1.1em; font-weight:900; letter-spacing:-.5px; }
 #view-summary .sum-header-titles p { font-size:.90em; color:#94a3b8; margin-top:2px; }
-#view-summary .sum-back-btn {
-  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
-  color:rgba(255,255,255,.9); border-radius:8px; padding:8px 14px;
-  cursor:pointer; font-family:inherit; font-size:.88em; font-weight:700;
-  transition:all .15s; white-space:nowrap; flex-shrink:0; margin-right:10px;
-}
-#view-summary .sum-back-btn:hover { background:rgba(255,255,255,.25); }
-#view-summary .sum-title-wrap { display:flex; align-items:center; }
-#view-summary .sum-fs-wrap { display:flex; gap:4px; flex-shrink:0; }
-#view-summary .sum-fs-btn {
-  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22);
-  color:rgba(255,255,255,.85); border-radius:6px; padding:6px 10px;
-  cursor:pointer; font-family:inherit; font-size:13px; font-weight:700;
-  line-height:1.3; transition:all .15s;
-}
-#view-summary .sum-fs-btn.active,
-#view-summary .sum-fs-btn:hover {
-  background:rgba(255,255,255,.9); color:#1a1a2e; border-color:rgba(255,255,255,.9);
-}
 /* 검색창 */
 #view-summary .sum-search-row { width:100%; display:flex; align-items:center; gap:8px; }
 #view-summary .sum-search-box {
@@ -465,17 +442,6 @@ hr {
 #view-summary .card-head { display:flex; align-items:center; gap:8px; margin-bottom:12px; padding-right:32px; }
 #view-summary .card-icon { font-size:1.2em; }
 #view-summary .card-title { font-size:1.0em; font-weight:900; color:#1a1a2e; }
-/* 태그 */
-#view-summary .tag {
-  display:inline-block; padding:3px 10px; border-radius:4px;
-  font-size:.80em; font-weight:700; margin-bottom:8px;
-}
-#view-summary .tag-blue { background:var(--c1l); color:var(--c1); }
-#view-summary .tag-green { background:var(--c2l); color:var(--c2); }
-#view-summary .tag-red { background:var(--c3l); color:var(--c3); }
-#view-summary .tag-yellow { background:var(--c4l); color:var(--c4); }
-#view-summary .tag-purple { background:var(--c5l); color:var(--c5); }
-#view-summary .tag-cyan { background:var(--c6l); color:var(--c6); }
 /* 포인트 리스트 */
 #view-summary .pts {
   list-style:none; display:flex; flex-direction:column;
@@ -491,28 +457,6 @@ hr {
 #view-summary .pts.purple li::before { color:var(--c5); }
 #view-summary .pts.yellow li::before { color:var(--c4); }
 
-#view-summary .ptsFC {
-  list-style:none; display:flex; flex-direction:column;
-  gap:6px; word-break:keep-all; word-wrap:break-word;
-}
-#view-summary .ptsFC li {
-  display:block; position:relative; padding-left:16px;
-  font-size:.94em; line-height:1.6; margin:2px 0;
-}
-#view-summary .ptsFC li:first-child::before { content:'▸'; color:var(--c1); position:absolute; left:0; top:0; }
-#view-summary .ptsFC li:not(:first-child) { position: relative; padding-left:25px; }
-#view-summary .ptsFC li:not(:first-child)::before { content: '-'; color: var(--c1); position: absolute; left: 15px; top: 0; }
-
-#view-summary .ptsCK {
-  list-style:none; display:flex; flex-direction:column; flex-direction:row; flex-wrap: wrap;
-  gap:6px; word-break:keep-all; word-wrap:break-word;
-}
-#view-summary .ptsCK li {
-  display:inline; position:relative; padding-left:20px;
-  font-size:.94em; line-height:1.6; margin:2px 5px 2px 0;
-}
-#view-summary .ptsCK li::before { content:'☑'; color:var(--c3); position:absolute; left:0; top:0; }
-
 /* 시험 포인트 */
 #view-summary .star-list {
   list-style:none; display:flex; flex-direction:column;
@@ -523,10 +467,7 @@ hr {
   font-size:.93em; line-height:1.75;
 }
 #view-summary .star-list li::before { content:'★'; color:#f59e0b; position:absolute; left:0; top:0; }
-/* 비교표 */
-#view-summary .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:4px; }
 #view-summary .comp-table { width:100%; border-collapse:collapse; font-size:.90em; margin-top:4px; }
-#view-summary .table-wrap .comp-table { margin-top:0; min-width:420px; }
 
 /* 헤더 */
 #view-summary .comp-table th {
@@ -598,18 +539,11 @@ hr {
   padding:2px 7px; margin-left:5px; vertical-align:middle;
   white-space:nowrap;
 }
-/* 구분선 / 소제목 */
-#view-summary .divider { height:1px; background:#e5e0d8; margin:10px 0; }
 #view-summary .sub {
   font-size:.88em; font-weight:800; color:#374151;
   margin:10px 0 6px; text-transform:uppercase; letter-spacing:.5px;
 }
-#view-summary .sub-tit {
-  font-size:.9em; font-weight:800; color:#000000;
-  margin:10px 0 6px; text-transform:uppercase; letter-spacing:.5px;
-}
 #view-summary .no { color:var(--c3); font-weight:700; }
-#view-summary .ok { color:var(--c2); font-weight:700; }
 #view-summary strong { font-weight:800; }
 /* 검색 결과 오버레이 */
 #sumSearchResults {
@@ -673,7 +607,6 @@ hr {
   color:#fff; border-radius:8px; padding:5px 10px;
   cursor:pointer; font-family:inherit; font-size:.90em; font-weight:700;
 }
-#sumSearchResults .sr-title { color:#fff; font-size:.88em; font-weight:700; }
 #sumSearchResults .sr-count { color:#94a3b8; font-size:.76em; margin-left:auto; }
 
 /* ══════════════════════════════════════════
@@ -813,22 +746,8 @@ hr {
   position:sticky; top:var(--gbar-h); z-index:100;
   box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
-.qz-back-btn {
-  background:#f1f5f9; border:1px solid var(--border); color:var(--muted);
-  border-radius:8px; padding:8px 13px; cursor:pointer;
-  font-family:inherit; font-size:.88em; font-weight:700;
-  transition:all .15s; margin-right:6px;
-}
-.qz-back-btn:hover { background:var(--accent-light); color:var(--accent); border-color:var(--accent); }
 .qz-title-sm { font-weight:700; color:var(--accent); font-size:.9em; }
 #qz-font-btns { display:flex; gap:4px; }
-.qfb {
-  background:#f1f5f9; border:1px solid var(--border); color:var(--muted);
-  border-radius:6px; padding:6px 10px; cursor:pointer;
-  font-family:inherit; font-size:13px; transition:all .2s;
-}
-.qfb.active { background:var(--accent); color:#fff; border-color:var(--accent); }
-.qfb:hover:not(.active) { border-color:var(--accent); color:var(--accent); background:#eff6ff; }
 #qz-app { width:100%; max-width:720px; padding:0 12px; }
 .qz-screen { display:none; }
 .qz-screen.active { display:block; }
@@ -1101,7 +1020,6 @@ hr {
   color:#374151; margin-bottom:14px; cursor:pointer; user-select:none;
 }
 .cpo-select-all input { width:17px; height:17px; accent-color:#2563eb; cursor:pointer; }
-.cpo-chapter-group { margin-bottom:18px; }
 .cpo-chapter-item {
   display:flex; align-items:center; gap:10px;
   background:#fff; border:1.5px solid #e5e0d8; border-radius:12px;
@@ -1155,16 +1073,6 @@ hr {
 #fav-overlay .card-head { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
 #fav-overlay .card-icon { font-size:1.2em; }
 #fav-overlay .card-title { font-size:1.0em; font-weight:900; color:#1a1a2e; }
-#fav-overlay .tag {
-  display:inline-block; padding:3px 10px; border-radius:4px;
-  font-size:.80em; font-weight:700; margin-bottom:8px;
-}
-#fav-overlay .tag-blue { background:var(--c1l); color:var(--c1); }
-#fav-overlay .tag-green { background:var(--c2l); color:var(--c2); }
-#fav-overlay .tag-red { background:var(--c3l); color:var(--c3); }
-#fav-overlay .tag-yellow { background:var(--c4l); color:var(--c4); }
-#fav-overlay .tag-purple { background:var(--c5l); color:var(--c5); }
-#fav-overlay .tag-cyan { background:var(--c6l); color:var(--c6); }
 #fav-overlay .pts { list-style:none; display:flex; flex-direction:column; gap:6px; word-break:keep-all; }
 #fav-overlay .pts li { display:block; position:relative; padding-left:16px; font-size:.94em; line-height:1.75; }
 #fav-overlay .pts li::before { content:'▸'; color:var(--c1); position:absolute; left:0; top:0; }
@@ -1182,9 +1090,7 @@ hr {
 #fav-overlay .hbox-red { background:var(--c3l); border-left:3px solid var(--c3); }
 #fav-overlay .hbox-purple { background:var(--c5l); border-left:3px solid var(--c5); }
 #fav-overlay .hbox b { font-weight:800; }
-#fav-overlay .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:4px; }
 #fav-overlay .comp-table { width:100%; border-collapse:collapse; font-size:.90em; margin-top:4px; }
-#fav-overlay .table-wrap .comp-table { margin-top:0; min-width:420px; }
 #fav-overlay .comp-table th { background:#1a1a2e; color:#fff; padding:9px 10px; text-align:center; font-weight:700; }
 #fav-overlay .comp-table td { padding:9px 10px; border-bottom:1px solid #e5e0d8; vertical-align:top; }
 #fav-overlay .comp-table tr:last-child td { border-bottom:none; }
@@ -1215,11 +1121,8 @@ hr {
 #fav-overlay .flow-arrow { color:#374151; }
 #fav-overlay .kichul { display:inline-flex; align-items:center; gap:3px; background:#fef2f2; color:#b91c1c; border:1.2px solid #fca5a5; border-radius:5px; font-size:.80em; font-weight:800; padding:2px 7px; margin-left:5px; vertical-align:middle; }
 #fav-overlay .sub { font-size:.88em; font-weight:800; color:#374151; margin:10px 0 6px; letter-spacing:.5px; }
-#fav-overlay .sub-tit { font-size:.9em; font-weight:800; color:#000; margin:10px 0 6px; }
-#fav-overlay .divider { height:1px; background:#e5e0d8; margin:10px 0; }
 #fav-overlay strong { font-weight:800; }
 #fav-overlay .no { color:var(--c3); font-weight:700; }
-#fav-overlay .ok { color:var(--c2); font-weight:700; }
 
 /* ══════════════════════════════════════════
    [추가] 즐겨찾기 인쇄용 A4 문서 스타일
@@ -1335,11 +1238,6 @@ hr {
   #fav-overlay .flow-arrow { color:#333 !important; }
   #fav-overlay .pts li::before,
   #fav-overlay .star-list li::before { color:#333 !important; }
-  #fav-overlay .tag,
-  #fav-overlay .tag-blue, #fav-overlay .tag-green, #fav-overlay .tag-red,
-  #fav-overlay .tag-yellow, #fav-overlay .tag-purple, #fav-overlay .tag-cyan {
-    background:#fff !important; color:#111 !important; border:1px solid #999 !important;
-  }
 
   /* 강별 인쇄(챕터 선택 인쇄)용 구획 제목 */
   #fav-overlay .print-chapter-title {
@@ -1432,7 +1330,6 @@ hr {
   transition:border-color .15s;
 }
 .rq-opt.rq-correct { border-color:#059669; background:#f0fdf4; color:#065f46; font-weight:700; }
-.rq-opt.rq-hidden-ans { border-color:#e5e0d8; color:#9ca3af; }
 .rq-toggle-btn {
   background:#1a1a2e; color:#fff; border:none;
   border-radius:8px; padding:7px 14px;
@@ -1451,12 +1348,6 @@ hr {
   text-align:center; padding:50px 20px; color:#9ca3af;
 }
 .rq-no-q .rq-no-icon { font-size:2em; margin-bottom:10px; }
-/* 전체 답 토글 바 */
-.rq-global-bar {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:10px 0 14px; border-bottom:1px solid #e5e0d8; margin-bottom:14px;
-}
-.rq-global-label { font-size:.8em; color:#6b7280; font-weight:600; }
 .rq-global-toggle {
   background:#f1f5f9; border:1.5px solid #e2e8f0;
   color:#475569; border-radius:8px; padding:6px 14px;
@@ -1475,9 +1366,6 @@ hr {
 }
 .fav-card-chapter {
   font-size:.90em; color:#374151; font-weight:600;
-}
-.fav-card-title {
-  font-size:.9em; font-weight:800; color:#1a1a2e; margin-bottom:10px;
 }
 .fav-card-go {
   background:#1a1a2e; color:#fff; border:none; border-radius:8px;
@@ -1566,28 +1454,6 @@ hr {
   transition:all .15s;
 }
 .wn-clear-btn:hover { background:#fee2e2; }
-/* 메인 오답노트 접근 버튼 */
-.wrong-note-main-btn {
-  background:linear-gradient(135deg,#f5f3ff,#ede9fe);
-  border:1.5px solid #c4b5fd; border-radius:14px;
-  padding:14px 18px; margin-bottom:14px;
-  display:flex; align-items:center; gap:12px;
-  cursor:pointer; transition:all .18s;
-}
-.wrong-note-main-btn:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(124,58,237,.15); }
-.wnm-info { flex:1; }
-.wnm-label { font-size:.80em; font-weight:800; color:#7c3aed; letter-spacing:.5px; margin-bottom:2px; }
-.wnm-title { font-size:.97em; font-weight:800; color:#4c1d95; }
-.wnm-sub { font-size:.90em; color:#374151; margin-top:2px; }
-/* 오답노트 빈 상태 */
-.wn-empty-state {
-  background:#fff; border:1.5px solid #e2e8f0;
-  border-radius:14px; padding:16px 18px;
-  display:flex; align-items:center; gap:12px;
-  margin-bottom:14px;
-}
-.wn-empty-icon { font-size:1.4em; flex-shrink:0; opacity:.4; }
-.wn-empty-text { font-size:.8em; color:#94a3b8; line-height:1.5; }
 /* 과목별 오답 행 */
 .wn-subj-row {
   background:#fff; border:1.5px solid #e2e8f0;
@@ -41637,15 +41503,6 @@ function showSumCh(idx, btn) {
   saveLastPosition({ type:'summary', subjectId: currentSummarySubjectId, chapterIdx: idx, scrollY: 0 });
 }
 
-/** 글씨 크기 조절 (요점정리 전용) */
-function setSumFs(px, label) {
-  document.documentElement.style.setProperty('--fs', px + 'px');
-  document.querySelectorAll('.sum-fs-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim() === label);
-  });
-  try { localStorage.setItem('sumFontKey', JSON.stringify({ px, label })); } catch(e) {}
-}
-
 /* ── 검색 기능 ── */
 let sumSearchIdx = null;
 
@@ -41719,16 +41576,6 @@ function buildSrChNav(hits, q) {
   nav.innerHTML = allChaps.map(function(ch) {
     return '<button class="sr-ch-btn" onclick="goSumChapter(' + ch.secIdx + ')">' + ch.chNum + '</button>';
   }).join('');
-}
-
-function filterSrCh(secIdx, btn, q) {
-  document.querySelectorAll('.sr-ch-btn').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-  if (!sumSearchIdx) sumSearchIdx = buildSumSearchIdx();
-  var kw = q.toLowerCase();
-  var hits = sumSearchIdx.filter(function(item){ return item.cardText.toLowerCase().indexOf(kw) !== -1; });
-  if (secIdx !== null) hits = hits.filter(function(item){ return item.secIdx === secIdx; });
-  renderSrHits(hits, kw);
 }
 
 function doSumSearch(q) {
@@ -63850,15 +63697,6 @@ function showQzResult() {
 
   showQzScreen('qz-result');
   window.scrollTo({ top: 0 });
-}
-
-/* ── 퀴즈 폰트 크기 ── */
-function setQzFs(size, key) {
-  document.documentElement.style.setProperty('--fs', size + 'px');
-  document.querySelectorAll('.qfb').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim().replace(' ','') === key.replace(' ',''));
-  });
-  try { localStorage.setItem('qzFontKey', JSON.stringify({ px: size, label: key })); } catch(e) {}
 }
 
 /* ── 공통 유틸리티 ── */
